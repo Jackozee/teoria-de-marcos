@@ -1,0 +1,974 @@
+\chapter{Teoría de categorías}
+%\section*{(SESIÓN 1: 7 SEP)}
+
+\section{Categorías}
+Una categoría  $\mathcal{C}$ consiste de
+\begin{itemize}
+  \item una colección $\Ob\cal C$, cuyos elementos son llamados los
+  objetos de $\cal C$;
+  \item para cada par de objetos $A,B\in\Ob\cal C$, una
+    colección $\cal C(A,B)$, cuyos elementos se llaman
+    \emph{morfismos (o flechas) de $A$ en $B$}, de
+    modo que cada $\cal C(A,B)$ es disjunto de los demás;
+    es decir; si $A\neq A'$ o si $B\neq B'$, entonces
+    $\cal C(A,B)\cap\cal C(A',B')=\emptyset$;
+  \item para cualesquiera objetos $A,B,C\in\Ob\cal C$, una
+    función
+    \begin{align*}
+        \circ:\cal C(B,C)\times\cal C(A,B)&\to\cal C(A,C) \\
+        (f,g)&\mapsto f\circ g\equiv fg 
+    \end{align*}
+    denominada 'composición';
+    \item para cada objeto $A\in\Ob\cal C$,
+    una flecha distinguida $\id_A\in\cal C(A,A)$ llamada
+      \emph{la flecha identidad} de $A$;
+\end{itemize}
+sujetos a las condiciones:
+\begin{itemize}
+  \item asociatividad: si $f\in\mathcal{C}(A,B),g\in\mathcal{C}(B,C),h\in\mathcal{C}(C,D)$, entonces $(h\circ g)\circ f = h\circ(g\circ f)$.
+  \item identidad: para todo $f\in\mathcal{C}(A,B)$, se cumple
+  que $f\id_A=f=\id_B f$.
+\end{itemize}
+
+\begin{obs}
+Dependiendo del autor, el conjunto de morfismos, que aquí
+denotamos como $\cal C(A,B)$, se puede escribir como
+$\mathrm{Hom}(A,B)$,
+$\mathrm{Hom}_{\cal C}(A,B)$, $(A,B)$, $[A,B]$, etc.
+Además, pueden exigir que cada $\cal C(A,B)$ sea un conjunto,
+pero para los propósitos de estas notas, esta clase puede no ser
+cardinable.
+\end{obs}
+
+\begin{exa}\leavevmode
+\begin{itemize}
+    \item $\mathbb{Z}$ puede ser visto como categoría de, al
+    menos, dos formas diferentes:
+        \begin{itemize}
+            \item Tomando $\Ob(\cal Z)=\{\bullet\}$ y
+            $\cal
+            Z(\bullet,\bullet)=\{\bullet\overset{n}{\to}\bullet\mid
+            n\in\Z\}$, tomando la composición como la
+            multiplicación usual en $\Z$ (nótese que aquí
+            la composición es conmutativa),
+            y la identidad es $1\in\Z$ ($1m=m=m1$
+            se cumple trivialmente).
+            \item Pensemos a $\Z$ con el orden dado por la divisibilidad, $(\Z, \leq_{div})$, donde $n\leq_{div}m$ si y sólo si $m=nk$ para algún $k\in \Z$.
+            Para esta categoría, $\Ob(\Z)=\Z$ y
+            $\Z(n,m)=\{(n,m)\}$ si y sólo si $n\leq_{div}m$.
+        \end{itemize}
+        \item En general, para cualquier conjunto parcialmente ordenado $(A,\leq)$ se puede pensar la categoría $\mathcal{C}$ dada por $\Ob\cal C=A$ y 
+        \[
+        \cal C(a,b) =
+        \begin{cases}
+            \{(a,b)\}, & m\leq n \\
+            \emptyset, & m\nleq n.
+        \end{cases}
+        \]
+        \item Similarmente, cualquier monoide $M$ se puede
+        entender como una categoría con un solo objeto $\bullet$
+        y definiendo $\cal C(\bullet,\bullet)=M$ y definiendo la
+        composición como la operación del monoide.
+        \item La categoría de conjuntos $\Con$, donde $\Ob(\Con)$
+        consta de todos los conjuntos, $\Con(A,B)$ son las
+        funciones de conjuntos $A\to B$ y utilizando la
+        composición usual.
+        \item Dado un campo $k$, se tiene la categoría $\Vect_k$,
+        cuyos objetos son los espacios vectoriales sobre $k$, y
+        las flechas son las transformaciones $k-$lineales.
+        \item La categoría $\Top$, tomando como objetos los
+        espacios topológicos, y las flechas son las funciones
+        continuas.
+        \item La categoría de campos $\Fld$, cuyos objetos son
+        campos y sus morfismos son morfismos de anillos
+        (preservan suma, multiplicación y mandan el $1$ al $1$).
+        \item La categoría de extensiones de campos.
+        $\Fld^\to$.
+        Los objetos de $\Fld^\to$ son las
+        extensiones de campos, esto es, los morfismos de $\Fld$.
+      Dados $(k\xto f L),(k'\xto gL')\in\Ob(\Fld^\to)$,
+      los morfismos de $f$ a $g$ en la categoría $\Fld^\to$
+      son morfismos de extensiones; esto es:
+      pares de morfismos de campos que son compatibles con
+      las extensiones:
+      \[
+        \Fld^\to(f,g)
+        = \left\{
+          (u,v)\in \Fld(k,k')\times \Fld(L,L')
+          \middle|
+          \begin{tikzcd}
+            L \ar[r,"v"'] & L' \\
+            k \ar[u,"f"'] \ar[r,"u"] & k' \ar[u,"g"]
+            \ar[equal,from=1-1,to=2-2,shorten=5mm]
+          \end{tikzcd}
+        \right\}
+      .\]
+    Dados $f,g,h\in\Ob(\Fld^\to)$, la composición se hereda de la
+    composición en $\Fld$:
+    \begin{align*}
+      \Fld^\to(f,g)\times\Fld^\to(g,h) &\to \Fld^\to(f,h) \\
+      ((u,v) , (x,y)) &\mapsto (x,y)(u,v)=(xu,yv).
+    \end{align*}
+    En un diagrama:
+    \[
+        \begin{tikzcd}
+          L \ar[r,"v"'] \ar[rr,bend left,"yv"] & L' \ar[r,"y"'] & L''\\
+          k \ar[u,"f"'] \ar[r,"u"] \ar[rr,bend right,"xu"']
+          & k' \ar[u,"g"] \ar[r,"x"] & k''\ar[u,"h"]
+          \ar[equal,from=1-1,to=2-2,shorten=5mm]
+          \ar[equal,from=1-2,to=2-3,shorten=5mm]
+        \end{tikzcd}
+    .\]
+    La conmutatividad del rectángulo exterior se hereda de la
+    conmutatividad de los dos cuadrados:
+      \[
+          hxu = ygu = yvf
+      .\]
+    La asociatividad de la composición se hereda de la
+    asociatividad de la composición de morfismos de campos
+    \[
+        \begin{tikzcd}
+          L \ar[r,"v"'] & L' \ar[r,"y"'] & L'' \ar[r,"b"'] & L'''\\
+          k \ar[u,"f"'] \ar[r,"u"]
+          & k' \ar[u,"g"] \ar[r,"x"]
+          & k''\ar[u,"h"] \ar[r,"a"]
+          & k''' \ar[u,"j"]
+          \ar[equal,from=1-1,to=2-2,shorten=5mm]
+          \ar[equal,from=1-2,to=2-3,shorten=5mm]
+          \ar[equal,from=1-3,to=2-4,shorten=5mm]
+        \end{tikzcd}
+    .\]
+    Esto es:
+    \begin{align*}
+        ((a,b)(x,y))(u,v)
+        &= (ax,by)(u,v) \\
+        &= (axu,byv) \\
+        &= (a,b)(xu,yv) \\
+        &= (a,b)((x,y)(u,v))
+    \end{align*}
+    La identidad de la extensión $f:k\to L$ es
+    $\id_f = (\id_k,\id_L):f\to f$.
+    En efecto, dadas $(u,v):f\to g$ y $(c,d):h\to f$, tenemos
+    \begin{align*}
+        (u,v)(\id_k,\id_L) &= (u \id_k,v \id_L) = (u,v) \\
+        (\id_k,\id_L)(c,d) &= (\id_k c,\id_L d) = (c,d).
+    \end{align*}
+\end{itemize}
+\end{exa}
+
+
+\section{Funtores}
+    Para comparar los objetos de una categoría, utilizamos las
+    flechas de la categoría, y ahora, además, para comparar
+    categorías, definimos el concepto de funtor.
+    Por ejemplo, si tenemos una flecha entre espacios topológicos
+    , esta flecha es una función continua, lo que significa que
+    respeta la estructura,en el sentido de que la premiagen de
+    abiertos es abierta; un morfismo de grupos respeta la
+    estructura del grupo; un morfismo de anillos respeta la
+    estructura del anillo, etc.
+    Con esto en mente, tenemos la definición de funtor:
+    \begin{defn}[Funtor]
+        Para dos categorías $\mathcal{C,D}$, un funtor $F:\mathcal{C\to D}$ actua sobre los objetos y las flechas, de manera que consiste de lo siguiente:
+        \item Una asignación 
+            \begin{align*}
+                Ob(\mathcal{C}) & \longrightarrow Ob(\mathcal{D}) \\
+                A & \to F(A)
+            \end{align*}
+        \item Para cada $A,A'\in \mathcal{C}$, una asignación
+            \begin{align*}
+                \mathcal{C}(A,A') & \longrightarrow D(FA,FA') \\
+                f & \to F(f) \\
+            \end{align*}
+        Que además cumple que $F(id_A)=id_{FA}$. 
+    \end{defn}
+    
+    \begin{exa}
+    \item Dada cualquier categoría $\cal C$, el functor identidad
+        $\id_{\cal C}:\cal C\to\cal C$ manda todo objeto a sí mismo y todo
+        morfismo a sí mismo.
+    \item En la categoría de grupos abelianos $\Z\ds\Mod$, para
+    un grupo abeliano $G$,     definimos a $TG$ como el grupo de
+    torsión, que consta de todos los elementos de $G$ de orden
+    finito. Si $G=TG$ decimos que $G$ es de torsión, y si $TG=0$
+    decimos que $G$ es libre de torsión.
+    \end{exa}
+    
+    \begin{exe}%[Armando $\checkmark$]
+        Mostrar que la construcción del grupo de torsión
+        es un endo-funtor $T:\Z\ds\Mod\to\Z\ds\Mod$.
+        \begin{sol}
+    Primero, sean $a,b\in T_G$ arbitrarios, entonces, existen $n,m\in\Z^+$ tales que
+    \begin{equation*}
+        a^n=e,\ b^m=e,\ e\in G \text{ el neutro de } G.
+    \end{equation*}
+    Si consideramos a $p:=mn$, tenemos que 
+    \begin{align*}
+        (ab)^p & = a^p b^p \\
+               & = (a^n)^m (b^m)^n \\
+               & = e^m e^n \\
+               & = e \cdot e = e
+    \end{align*}
+    con $p=mn\in\Z^+$. Ya que $a,b$ son arbitrarios, se sigue que $ab\in T_G$ y en consecuencia $T_G$ es cerrado bajo el producto de $G$.\\
+    Ahora, sea $c\in T_G$ arbitrario, entonces existe $k\in\Z^+$ tal que $c^k=e$. Ahora nótese que:
+    \begin{align*}
+        cc^{-1} & = e \\
+        (cc^{-1})^k & = e^k = e \\
+        \underbrace{c^k}_{=e}(c^{-1})^k & = e \\
+        (c^{-1})^k & = e,\quad k\in\Z^+.
+    \end{align*}
+    Así, como $c$ es arbitrario, obtenemos que $c^{-1}\in T_G$ y por ende $T_G$ contiene a los inversos.\\
+    Con lo anterior, concluimos que $T_G$ es un subgrupo de $G$ y por lo tanto, ya que $G$ es arbitrario, el functor $T$ manda objetos de $\Z-\mathrm{Mod}$ en objetos de $\Z-\mathrm{Mod}$.
+    Continuando, para una función $(A\overset{f}{\to}B)\in \Z-\mathrm{Mod}$, nótese que $(T_A\overset{Tf}{\to}T_B)$ se define cómo $Tf=f\mid_{T_A}$, la restricción de $f$ en $T_A$.
+    Ahora, para $a\in T_A$ arbitrario, se cumple que $a^n=e$ para algún $n\in\Z^+$. Luego:
+    \begin{align*}
+        f(a^n) = f(e) & = e \\
+        f\left(\underbrace{a\cdot a \cdots a}_{n \text{ veces}}\right) & = e \\
+        \text{Como $f\in Ab$ ,} \underbrace{f(a)f(a)\cdots f(a)}_{n\text{ veces}} & = e \\
+        \left(f(a)\right)^n & = e\\
+    \end{align*}
+    Así, $(Tf)(a)=f(a)\in T_B$, y cómo $a$ es arbitrario, se tiene que $Tf:T_A\to T_B$ está bien definido.\\
+    Luego, nótese que $(Tf)(e)=f(e)=e$, y se tiene que $e^1 = e$, por tanto, $Tf$ preserva al neutro.\\
+    Con esto, $Tf$ es un morfismo de Grupos Abelianos.\\
+    Finalmente, es claro que $T1_A=1_{T_A}$, por lo tanto $T$ preserva morfismos, y en conclusión, es un endo-functor de $\Z-\mathrm{Mod}$. 
+\end{sol}
+    \end{exe}
+
+Adicionalmente, los functores deben respetar la composición de las categorías en una de dos maneras, que determinan la varianza del functor.
+\begin{defn}[Functor covariante y contravariante]
+    Dados dos objetos $A,B\in\mathcal{C}$, un functor F es covariante si
+    \begin{equation*}
+        F(A\overset{f}{\to}B)=FA\overset{Ff}{\to}FB
+    \end{equation*}
+    y es contravariante si
+    \begin{equation*}
+        F(A\overset{f}{\to}B)=FA\overset{Ff}{\leftarrow}FB
+    \end{equation*}
+    para todo $f\in\mathcal{C}(A,B)$.
+    Con esto, se tiene que, para cualesquiera dos flechas $f,g$ compatibles (que se pueden componer), se tiene que un functor $F$ cumple que:
+    \begin{equation*}
+        F(gf)=F(g)F(f)
+    \end{equation*}
+    si es covariante, y 
+    \begin{equation*}
+        F(gf)=F(f)F(g)
+    \end{equation*}
+    si es contravariante.
+\end{defn}
+Finalmente, introducimos unas propiedades adicionales de los functores.
+\begin{defn}[Fidelidad]
+    Un functor $F$ es fiel si, para cada $A,A'\in\mathcal{C}$ la función 
+    \begin{align*}
+        \mathcal{C}(A,A') & \to \mathcal{D}(FA,FA')\\
+        f & \to F(f)
+    \end{align*}
+    es inyectiva.
+\end{defn}
+\begin{defn}[Plenitud]
+    Un functor $F$ es pleno si, para cada $A,A'\in\mathcal{C}$ la función 
+    \begin{align*}
+        \mathcal{C}(A,A') & \to \mathcal{D}(FA,FA')\\
+        f & \to F(f)
+    \end{align*}
+    es suprayectiva.
+\end{defn}
+
+\section{Transformaciones naturales}
+    Ahora que podemos comparar categorías mediante los functores, queremos herramientas que nos permitan comparar dos functores entre dos categorías. Para cumplir esta idea, se creó el concepto de transformación natural.
+    \begin{defn}[Transformación natural]
+        Dados dos functores $F,G:\mathcal{C\to D}$, una transformación natural $\alpha:F\to G$ es una familia $(F(A)\overset{\alpha_A}{\to}G(A))_{A\in\mathcal{C}}$ de flechas de $\mathcal{D}$ tal que, para toda flecha $(A\overset{f}{\to}A')\in\mathcal{C}$, se cumple que:
+        \begin{equation*}
+            G(f)\circ\alpha_A = \alpha_{A'}\circ F(f).
+        \end{equation*}
+        Aquí, los $(\alpha_\bullet)_{A\in\mathcal{C}}$ se llaman los componentes de la transformación.
+    \end{defn}
+    Y además, podemos componer transformaciones naturales:\\
+    Si $F,G,H:\mathcal{C\to D}$ son functores, y $\alpha:F\to G$,$\beta:G\to H$ son transformaciones naturales entre los functores, entonces, la composición $\beta\alpha:F\to H$ es una transformación natural que va del functor $F$ al functor $H$.
+    
+    Estas transformaciones se llaman 'naturales' porque precisamente aparecen de forma 'natural' en el ámbito matemático.
+    
+    Támbien, se denota por $[\mathcal{C,D}]$ a la clase de todas las transformaciones naturales de $\mathcal{C}$ en $\mathcal{D}$, y támbien se le suele llamar la 'exponenciación', y se denota $\mathcal{D^C}$.
+    
+    \begin{defn}[Isomorfismo natural]
+        Se dice que una transformación natural es un isomorfismo natural precisamente cuando es un isomorfismo en $\mathcal{D^C}$.
+    \end{defn}
+    \begin{exe}%[Yareli $\checkmark$ ]
+    (*) Probar que la exponenciación es una categoría.
+\end{exe}
+\begin{proof}
+  Consideramos la clase de los funtores $F\colon C\to D$. Para las categorías $C,D$ fijas.\\
+Consideramos las transformaciones naturales como morfismos.\\
+Sean $F,G,H,I:C\to D$ funtores y $\alpha\colon F\to G$, $\beta\colon G\to H$ y $\gamma\colon H\to I$ transformaciones naturales. Tenemos que el siguiente diagrama
+
+\[
+\begin{tikzcd}
+F(A) \arrow[d, "F(f)"'] \arrow[r, "\alpha_A"] & G(A) \arrow[d, "G(f)" description] \arrow[r, "\beta_A"] & H(A) \arrow[d, "H(f)" description] \arrow[r, "\gamma_A"] & I(A) \arrow[d, "I(f)"] \\
+F(A') \arrow[r, "\alpha_{A'}"']               & G(A') \arrow[r, "\beta_{A'}"']                          & H(A') \arrow[r, "\gamma_{A'}"']                          & I(A')                 
+\end{tikzcd}
+\]
+
+conmuta. Es decir, para cada $A\in C$,
+\[\alpha_{A'}\circ F(f)=G(f)\circ \alpha_A \qquad \beta_{A'}\circ G(f)=H(f)\circ \beta_A \qquad \gamma_{A'}\circ H(f)=I(f)\circ \gamma_A.\]
+\begin{itemize}
+\item[\blacksmiley{}] \textit{La composición es una transformación natural.}\\ Definimos $\beta\alpha\colon F\to H$ a la familia $(F(A)\xrightarrow{\beta_A\circ \alpha_A} H(A))$ de $D$.\\
+Sea $(A\xrightarrow{f}A')\in C$. Tenemos que
+\begin{align*}
+\beta_{A'}\circ(\alpha_{A'}\circ F(f))&=\beta_{A'}\circ(G(f)\circ \alpha_A)\\
+&=(\beta_{A'}\circ G(f))\circ \alpha_A\\
+&=(H(f)\circ\beta_A)\circ\alpha_A.
+\end{align*}
+Por lo que $(\beta_{A'}\circ\alpha_{A'})\circ F(f)=H(f)\circ(\beta_A\circ\alpha_A)$, es decir, el siguiente diagrama
+\[
+\begin{tikzcd}
+F(A) \arrow[d, "F(f)"'] \arrow[r, "\beta_A\circ \alpha_A"] & H(A) \arrow[d, "H(f)"] \\
+F(A') \arrow[r, "\beta_{A'}\circ\alpha_{A'}"']             & H(A')                 
+\end{tikzcd}
+\]
+conmuta.
+\item[\blacksmiley{}] \textit{La composición es asociativa.}\\
+Sabemos que $\gamma\circ (\beta\circ\alpha)=(\gamma\circ\beta)\circ\alpha$ ya que $\gamma_A\circ(\beta_A\circ\alpha_A)=(\gamma_A\circ\beta_A)\circ\alpha_A$ para cada $(A\xrightarrow{f} A')\in C$.
+\item[\blacksmiley{}] \textit{$I_F$ es una transformación natural.}\\
+Sea $F\colon C\to D$ un funtor. Definimos $I_F\colon F\to F$ como la familia $(F(A)\xrightarrow{I_A}F(A))\in D$, donde $I_A$ es el morfismo identidad de $F(A)$, para cada $A\in C$.\\
+Sea $(A\xrightarrow{f} A')\in D$. Sabemos que $I_{A'}\circ F(f)=F(f)=F(f)\circ I_A$. Por lo que el diagrama
+\[
+\begin{tikzcd}
+F(A) \arrow[d, "F(f)"'] \arrow[r, "I_A"] & F(A) \arrow[d, "F(f)"] \\
+F(A') \arrow[r, "I_{A'}"']               & F(A')                 
+\end{tikzcd}
+\]
+conmuta. Es decir, $I_F$ es una transformación natural.
+\item[\blacksmiley{}] \textit{Identidad.}\\
+Sean $\alpha\colon F\to G$ y $\beta\colon H\to F$ transformaciones lineales, sabemos que $\alpha\circ I_F=\alpha$ y $I_F\circ \beta=\beta$, ya que $\alpha_A\circ I_A=\alpha_A$ y $I_A\circ\beta_A=\beta_A$, para cada $A\in C$.
+\end{itemize}
+\end{proof}
+
+Además, dados dos functores $F,G\in[\mathcal{C,D}]$, $F(A)\simeq G(A)$ es la naturalidad en $A$ si $F,G$ son naturalmente isomorfos.
+
+Ahora un ejemplo:
+Sean $V\in\Vect_k^{<\infty}$ de la categoría de $k-$espacios vectoriales de dimensión finita, y consideramos su espacio dual $V^*=\Hom(V,k)$, esto es una transformación natural $()^*:\Vect_k^{<\infty}\to\Vect_k^{<\infty}$, y además se tiene un iso-natural $V\overset{\alpha_V}{\simeq} V^{**}$, dado por la evaluación en $v$, $v\in V$:
+    \begin{align*}
+        \alpha_V(v)\in V^{**} & = \Hom(V^*,k) \\
+        \alpha_V(v)(\phi) & = \phi(v)
+    \end{align*}
+Esto determina una transformación natural $\alpha:\id\to(\bullet)^{**}$, que además es un isomorfismo canónico (se llama así ya que esta dado de forma 'no-arbitraria').
+
+Con estos conceptos, se puede construir la definición de categorías equivalentes.
+
+La idea es como sigue: Queremos que $\mathcal{C\equiv D}$ signifique que existen dos functores $F:\mathcal{C\to D}$, $G:\mathcal{C\leftarrow D}$ tales que $GF\equiv 1_\mathcal{C}$ y $FG\equiv 1_\mathcal{D}$. Esto quiere decir que hay isomorfismos naturales $\eta:1_\mathcal{C}\to Gf$ y $\varepsilon: FG\to1_\mathcal{D}$.
+
+\begin{defn}
+    Un functor $F\in [\mathcal{C,D}]$ es escencialmente suprayectivo en objetos si, para todo $D\in\mathcal{D}$, existe un $A\in\mathcal{D}$ tal que $F(A)\simeq D$.
+\end{defn}
+
+Con esta definición, podemos observar que un functor es una equivalencia si y sólo si es pleno, fiel y esencialmente suprayectivo en objetos.
+\begin{exe}%[Alfredo $\checkmark$ ]
+    (**) Probar que un funtor es una equivalencia ssi es
+      esencialmente suprayectivo y fielmente pleno.
+\end{exe}
+\begin{sol}
+    Primero probaremos el siguiente lema.
+    \begin{lemma}
+        Si $\alpha:F\to G$ es un isomorfismo natural entre dos funtores
+        $F,G:\cal C\to\cal D$, cada componente $\alpha_A:FA\to GA$ de
+        $\alpha$ es un isomorfismo en $\cal D$.
+    \end{lemma}
+    \begin{proof}
+        Como $\alpha:F\to G$ es un isomorfismo, existe una trasformación
+        natual $\alpha^{-1}:G\to F$ tal que
+        \begin{align*}
+            \alpha\alpha^{-1} &= \id_G
+                & \alpha\alpha^{-1} &= \id_F
+        \end{align*}
+        Esto significa que, al fijarnos en
+        las componentes en cualquier objeto $A$ de $\cal C$, tenemos
+        \begin{align*}
+                \alpha_A(\alpha^{-1})_A
+                = (\alpha\alpha^{-1})_A
+                &= (\id_G)_A
+                = \id_{GA} \\
+                (\alpha^{-1})_A\alpha_A
+                =(\alpha^{-1}\alpha)_A
+                &= (\id_{F})_A
+                = \id_{FA}
+        \end{align*}
+        Luego, $\alpha_A$ es un isomorfismo con inverso
+        $(\alpha_A)^{-1}=(\alpha^{-1})_A$.
+        En particular, la notación $\alpha^{-1}_A$ no es ambigua.
+    \end{proof}
+    Ahora sí, continuamos con el ejercicio.
+    Sea $F:\cal C \to \cal D$ una equivalencia.
+    Entonces hay otro funtor $G:\cal D\to \cal C$ e isomorfismos
+    \begin{align*}
+        \epsilon : FG &\simeq \id_{\cal D} & \eta : \id_{\cal C} &\simeq GF.
+    \end{align*}
+    \begin{itemize}
+        \item 
+        Primero probaremos que $F$ es fiel.
+        Supongamos que $f,g:A\to B$ son morfismos de $\cal C$ tales que
+        $Ff = Fg$.
+        Aplicando $G$, obtenemos $GFf=GFg$.
+        Luego, como $\eta$ es transformación natural, tenemos los siguientes
+        diagramas conmutativos
+        \[
+        \begin{tikzcd}
+            GFA \ar[d,"GFf"'] & A \ar[l,"\eta_A"',"\sim"] \ar[d,"f"] \\
+            GFB & B \ar[l,"\eta_B","\sim"']
+            \com{1-1}{2-2}
+        \end{tikzcd}
+        \hspace{20mm}
+        \begin{tikzcd}
+            GFA \ar[d,"GFg"'] & A \ar[l,"\eta_A"',"\sim"] \ar[d,"g"] \\
+            GFB & B \ar[l,"\eta_B","\sim"']
+            \com{1-1}{2-2}
+        \end{tikzcd}
+        ,\]
+        donde $\eta_A$ y $\eta_B$ son isomorfismos, por el lema que probamos.
+        Recordando que $GFf=Gfg$, tenemos
+        \begin{align*}
+            f
+            &= (\eta_B^{-1})(GFf)(\eta_A) \\
+            &= (\eta_B^{-1})(GFg)(\eta_A) \\
+            &= g,
+        \end{align*}
+        como se quería.
+        
+        \item
+        Ahora veremos que $F$ es pleno.
+        Sea $g:FA\to FB$ un morfismo en $\cal D$.
+        Queremos construir un morfismo $f:A\to B$ tal que $Ff=g$.
+        Como $G$ es el inverso de $F$ (salvo iso),
+        el candidato natural sería $Gg$.
+        El problema es que este es un
+        morfismo de $GFA$ en $GFB$.
+        Podemos intentar arrerglar esto recordando que los componentes de
+        la transformación $\eta:\id_{\cal C} \to GF$ son isomorfimos.
+        Consideramos la composición $h=(\eta_B^{-1})(Gg)(\eta_A)$:
+        \[
+        \begin{tikzcd}
+            GFA \ar[d,"Gg"'] & A \ar[l,"\eta_A"',"\sim"] 
+            \ar[d,"h",dotted]\\
+            GFB & B \ar[l,"\eta_B","\sim"']
+        \end{tikzcd}
+        .\]
+        Aplicando $F$, tenemos
+        \[
+        \begin{tikzcd}
+            FA \ar[d,"g"]
+                & \ar[l,"\epsilon_{FA}"',"\sim"] FGFA \ar[d,"FGg"']
+                & FA \ar[l,"F\eta_A"',"\sim"]  \ar[d,"Fh"]\\
+            FB  & FGFB \ar[l,"\epsilon_{FB}","\sim"']
+                & FB \ar[l,"F\eta_B","\sim"']
+        \end{tikzcd}
+        ,\]
+        lo cual nos dice que $Fh$ y $g$ difieren por un isomorfismo.
+        Tendríamos $Fh=g$ si fuera el caso que
+        $(\epsilon_{FA})(F\eta_A)=\id_{FA}$
+        y que $(\epsilon_{FB})(F\eta_B)=\id_{FB}$.
+        Sin embargo, esto no es cierto, en general.
+        
+        Para remediar esto, en lugar de tomar $h$, tomamos la composición
+        $f$ como
+        \[
+        \begin{tikzcd}
+            GFA \ar[d,"Gg"']
+            & GFGFA \ar[l,"GF\eta_A^{-1}"']
+            & GFA \ar[l,"G\epsilon_{FA}^{-1}"']
+            & A \ar[l,"\eta_A"']
+            \ar[d,"f",dotted]\\
+            GFB
+            & GFGFB \ar[l,"GF\eta_B^{-1}"']
+            & GFB \ar[l,"G\epsilon_{FB}^{-1}"']
+            & B \ar[l,"\eta_B"']
+        \end{tikzcd}
+        ,\]
+        de modo que, al aplicar $F$, tenemos
+        \[
+        \begin{tikzcd}
+            FA \ar[d,"g"]
+            & FGFA \ar[d,"FGg"'] \ar[l,"\epsilon_{FA}"']
+            & FGFGFA \ar[l,"FGF\eta_A^{-1}"']
+            & FGFA \ar[l,"FG\epsilon_{FA}^{-1}"']
+            & FA \ar[l,"F\eta_A"']
+            \ar[d,"Ff",dotted]\\
+            FB
+            & FGFB \ar[l,"\epsilon_{FB}"']
+            & FGFGFB \ar[l,"FGF\eta_B^{-1}"']
+            & FGFB \ar[l,"FG\epsilon_{FB}^{-1}"']
+            & FB \ar[l,"F\eta_B"']
+        \end{tikzcd}
+        .\]
+        La situación puede parecer peor, pero la naturalidad nos salva.
+        Agregando arriba y abajo los cuadrados conmutativos que nos
+        da la condición de naturalidad, tenemos
+        \[
+        \begin{tikzcd}
+            & FA \ar[equal,dl]
+            & FGFA \ar[l,"F\eta_A^{-1}"']
+            & FA \ar[l,"\epsilon_{FA}^{-1}"']
+            \\
+            FA \ar[d,"g"]
+            & FGFA \ar[d,"FGg"'] \ar[u,"\epsilon_{FA}"]\ar[l,"\epsilon_{FA}"']
+            & FGFGFA \ar[l,"FGF\eta_A^{-1}"'] \ar[u,"\epsilon_{FGFA}"]
+            & FGFA \ar[l,"FG\epsilon_{FA}^{-1}"'] \ar[u,"\epsilon_{FA}"]
+            & FA \ar[l,"F\eta_A"']
+            \ar[d,"Ff",dotted]
+            \\
+            FB
+            & FGFB \ar[l,"\epsilon_{FB}"']\ar[d,"\epsilon_{FB}"']
+            & FGFGFB \ar[l,"FGF\eta_B^{-1}"'] \ar[d,"\epsilon_{FGFB}"]
+            & FGFB \ar[l,"FG\epsilon_{FB}^{-1}"'] \ar[d,"\epsilon_{FB}"]
+            & FB \ar[l,"F\eta_B"']
+            \\
+            & FB \ar[equal,ul]
+            & FGFB \ar[l,"F\eta_B^{-1}"]
+            & FB \ar[l,"\epsilon_{FB}^{-1}"]
+        \end{tikzcd}
+        .\]
+        Siguiendo el camino exterior, obtenemos que
+        \[
+            (F\eta_B^{-1})(\epsilon_{FB}^{-1})(\epsilon_{FB})(F\eta_B)Ff
+            = g(F\eta_A^{-1})(\epsilon_{FA}^{-1})(\epsilon_{FA})(F\eta_A)
+        .\]
+        Es decir, $Ff=g$.
+        
+        \item
+        Con el lema que probamos, es fácil ver que $F$ es
+        esencialmente suprayectivo.
+        En efecto, 
+        para cualquier objeto $B$ de $\cal D$, el componente
+        $\epsilon_B:FGB\to B$ de $\epsilon:FG\to\id_{\cal D}$ es un
+        isomorfismo, así que $B$ es isomorfo a un objeto en la
+        imagen de $F$.
+    \end{itemize}
+    Ahora la otra implicación.
+    Supongamos que $F:\cal C\to\cal D$ es fielmente pleno
+    y esencialmente suprayectivo.
+    Queremos definir un funtor $G:\cal C\to \cal D$ que haga de
+    inverso de $F$ (salvo iso).
+    Como $F$ es esencialmente suprayectivo, el axioma de
+    elección nos permite elegir, para cada objeto $B$ de $\cal D$,
+    un objeto $GB$ de $\cal C$ y un isomorfismo
+    $\epsilon_B:FGB\xrightarrow{\sim} B$.
+    
+    Falta definir la acción de $G$ en morfismos.
+    Dado $g:B_1\to B_2$ en $\cal D$, definimos
+    $f=(\epsilon_{B_2})^{-1}g(\epsilon_{B_1}):FGB_1\to FGB_2$, de tal
+    modo que
+    \[
+        \begin{tikzcd}
+            B_1 \ar[d,"g"']
+            & FGB_1 \ar[l,"\epsilon_{B_1}"'] \ar[d,"f",dotted] \\
+            B_2 & FGB_2 \ar[l,"\epsilon_{B_2}"]
+            \com{1-1}{2-2}
+        \end{tikzcd}
+    .\]
+    Como $F$ es fielmente pleno, podemos definir a $Gg:GB_1\to GB_2$
+    como el único morfismo que satisface $FGg=f:FGB_1\to FGB_2$.
+    
+    Veremos que $G$ es un funtor.
+    Si tomamos morfismos
+    \[
+        \begin{tikzcd}
+            B_1 \ar[d,"g"'] \\
+            B_2 \ar[d,"h"'] \\
+            B_3
+        \end{tikzcd}
+    \]
+    entonces, por definición, $G(hg)$, $Gh$ y $Gg$
+    son los únicos morfismos tales que los diagramas
+    \[
+        \begin{tikzcd}
+            B_1 \ar[d,"g"'] & FGB_1 \ar[l,"\epsilon_{B_1}"'] \ar[dd,"FG(hg)"] \\
+            B_2 \ar[d,"h"'] \\
+            B_3 & FGB_2 \ar[l,"\epsilon_{B_3}"']
+            \com{1-1}{3-2}
+        \end{tikzcd}
+        \hspace{10mm}
+        \begin{tikzcd}
+            B_1 \ar[d,"g"'] & FGB_1 \ar[l,"\epsilon_{B_1}"'] \ar[d,"FGg"] \\
+            B_2 \ar[d,"h"'] & FGB_2 \ar[l,"\epsilon_{B_2}"'] \ar[d,"FGh"] \\
+            B_3 & FGB_2 \ar[l,"\epsilon_{B_3}"']
+            \com{1-1}{2-2} \com{2-1}{3-2}
+        \end{tikzcd}
+    .\]
+    Se sigue que $FG(hg)=(FGh)(FGg)$.
+    Por funtorialidad de $F$, esto es $FG(hg)=F((Gh)(Gg))$.
+    Luego, como $F$ es fiel, tenemos $G(hg)=(Gh)(Gg)$.
+    
+    Por otro lado, tomando el morfismo identidad
+    \[
+        \begin{tikzcd}
+            B \ar[d,"\id_B"'] \\
+            B
+        \end{tikzcd}
+    \]
+    tenemos que $G\id_B$ es el único morfismo $GB\to GB$ que hace conmutar
+    el diagrama
+    \[
+        \begin{tikzcd}
+            B \ar[d,"\id_B"'] & FGB \ar[l,"\epsilon_B"'] \ar[d,"FG\id_B"] \\
+            B & FGB \ar[l,"\epsilon_B"']
+            \com{1-1}{2-2}
+        \end{tikzcd}
+    \]
+    Por lo tanto, $FG\id_B=\id_{FGB}=F\id_{GB}$.
+    Como $F$ es fiel, esto implica que $G\id_B =\id_{GB}$.
+    
+    Por definición de la acción de $G$ en morfismos, para cualquier morfismo
+    $g:B_1\to B_2$ en $\cal D$ el diagrama
+    \[
+        \begin{tikzcd}
+            B_1 \ar[d,"g"']
+            & FGB_1 \ar[l,"\epsilon_{B_1}"'] \ar[d,"FGg"] \\
+            B_2 & FGB_2 \ar[l,"\epsilon_{B_2}"]
+            \com{1-1}{2-2}
+        \end{tikzcd}
+    \]
+    es conmutativo.
+    Esto significa que la familia de morfismos $(\epsilon_B:FGB\to B)_{B\in\Ob\cal D}$
+    es una transformación natural
+    \[
+        \epsilon : FG\to \id_{\cal D}
+    .\]
+    Como cada $\epsilon_B$ es un isomorfismo y el diagrama anterior
+    es conmutativo, se sigue que $\epsilon$ es un
+    isomorfismo natural, cuya inversa
+    $\epsilon:\id_{\cal D}\to FG$ tiene componentes dadas por
+    \[
+        (\epsilon^{-1})_B = (\epsilon_B)^{-1}:B\to FGB
+    \]
+    para cada objeto $B$ de $\cal D$.
+    
+    Resta construir un isomorfismo natural $\eta:\id_{\cal C}\to GF$.
+    Sea $A$ un objeto de $\cal C$.
+    Como $F$ es fielmente pleno y $\epsilon:FG\to\id_{\cal D}$ es un
+    isomorfismo, podemos definir $\eta_A$ como el único morfismo
+    $\eta_A:A\to GFA$ tal que $F\eta_A=\epsilon_{FA}^{-1}:FA\to FGFA$.
+    
+    Dado que $F\eta_A$ es un isomorfismo (con inverso $\epsilon_{FA}$),
+    se sigue que cada $\eta_A$ es un isomorfismo, cuyo inverso $\eta_A^{-1}$ es el
+    único morfismo $\eta_A:A\to GFA$ tal que $F\eta_A^{-1}=\epsilon_{FA}:FGFA\to FA$.
+    En efecto, si $f:GFA\to A$ es tal que $Ff=\epsilon$, entonces
+    \begin{align*}
+        F(\eta_Af)
+        &=(F\eta_A)(Ff)=\epsilon_{FA}^{-1}\epsilon_{FA}=\id_{FGFA}=F\id_{GFA} \\
+        F(f\eta_A)
+        &=(Ff)(F\eta_A)=\epsilon_{FA}\epsilon_{FA}^{-1}=\id_{FA}=F\id_A
+    \end{align*}
+    así que $\eta_Af=\id_{GFA}$ y $f\eta_A=\id_A$, pues $F$ es fiel,
+    por lo cual $f=\eta_A^{-1}$.
+    
+    Finalmente, observemos que $\eta$ es una transformación natural.
+    En efecto, para cualquier morfismo $f:A_1\to A_2$ en $\cal C$,
+    $Ff:FA_1\to FA_2$ es un morfismo en $\cal D$, por lo cual el diagrama
+    \[
+        \begin{tikzcd}
+            FA_1 \ar[d,"Ff"']
+            & FGFA_1 \ar[l,"\epsilon_{FA_1}"'] \ar[d,"FGFf"] \\
+            FA_2 & FGFA_2 \ar[l,"\epsilon_{FA_2}"]
+            \com{1-1}{2-2}
+        \end{tikzcd}
+    \]
+    es conmutativo.
+    Como observamos antes, $F\eta_A^{-1}=\epsilon_A$ para cualquier $A$, así
+    que esto es
+    \[
+        \begin{tikzcd}
+            FA_1 \ar[d,"Ff"']
+            & FGFA_1 \ar[l,"F\eta_{A_1}^{-1}"'] \ar[d,"FGFf"] \\
+            FA_2 & FGFA_2 \ar[l,"F\eta_{A_2}^{-1}"]
+            \com{1-1}{2-2}
+        \end{tikzcd}
+    .\]
+    Es decir,
+    \[
+        F(f\eta_{A_1}^{-1})
+        =(Ff)(F\eta_{A_1}^{-1})
+        =(F\eta_{A_2}^{-1})(FGFf)
+        =F(\eta_{A_2}^{-1}GFf)
+    ,\]
+    de modo que $f\eta_{A_1}^{-1}=\eta_{A_2}^{-1}GFf$, pues $F$ es fiel.
+    Luego, $\eta_{A_2}f=(GFf)\eta_{A_1}$.
+    Es decir, el diagrama
+    \[
+        \begin{tikzcd}
+            A_1 \ar[d,"f"'] \ar[r,"\eta_{A_1}"]
+            & GFA_1 \ar[d,"GFf"] \\
+            A_2 \ar[r,"\eta_{A_2}"'] & GFA_2
+            \com{1-2}{2-1}
+        \end{tikzcd}
+    \]
+    es conmutativo.
+    Esta es la condición de naturalidad.
+\end{sol}
+
+\section{Adjunciones}
+\label{ss:adjunciones}
+
+En general, dadas dos categorías y dos functores entre ellas, es muy díficil saber a priori cuando estos functores forman una equivalencia, por eso se buscó las condiciones mínimas que se pueden exigir para tratar a dichas categorías 'como si fueran equivalentes'. De esta idea surgió el concepto de adjunción.
+\begin{defn}
+    Dadas dos categorías $\mathcal{C,D}$ y dos functores $F:\mathcal{C\to D}$, $G:\mathcal{C\to D}$, diremos que $F$ es el adjunto izquierdo de $G$, y que $G$ es el adjunto derecho de $F$, denotado $F\dashv G$, si $\mathcal{D}(F(A),B)\simeq \mathcal{C}(A,G(B))$, y esto es natural en $A$ y en $B$.
+    Es decir, para cualesquiera morfismos $f:A'\to A$
+    en $\cal C$ y $g:B\to B'$ en $\cal D$,
+    el siguiente diagrama es conmutativo:
+    \[
+        \begin{tikzcd}
+            \cal D(FA,B)
+                \ar[d,"g\circ-\circ Ff"']
+                \ar[r,"\sim",shift left]
+            & \cal C(A,GB) 
+                \ar[d,"Gg\circ-\circ f"]
+                \ar[l,"\sim",shift left] \\
+            \cal D(FA',B')
+                \ar[r,"\sim",shift left]
+            & \cal C(A',GB')
+                \ar[l,"\sim",shift left]
+        \end{tikzcd}
+    \]
+\end{defn}
+La definición anterior quiere decir que hay un iso natural entre los functores:
+
+Si $A\in\mathcal{C}, B\in\mathcal{D}$,
+entonces existe una correspondencia biyectiva entre las flechas
+$FA\to B$ y $A\to GB$.
+Es decir, a cualesquiera morfismos
+$(FA\xto p B)\in\cal{D}$
+y $(A\xto q GB)\in\mathcal{C}$
+les corresponden unas únicas flechas
+$(A\xto{\Bar{p}}GB)$
+y $(FA\xto{\Bar{q}}B)$,
+respectivamente,
+tales que $\Bar{\Bar{p}}=p$ y $\Bar{\Bar{q}}=q$.
+Esto nos lleva al axioma de naturalidad,
+el cual es equivalente a la conmutatividad
+del diagrama de arriba.
+
+\begin{axiom}[De naturalidad]
+    \leavevmode
+    \begin{enumerate}
+        \item
+        Poniendo $A=A'$ y $f=\id_A:A\to A$ en el diagrama,
+        obtenemos la condición de que,
+        para cualquier morfismo $p:FA\to B$,
+        se tenga $(Gg)\bar p=\ol{gp}$:
+        \[
+            \Big(GB' \lar{Gg} GB \lar{\bar p} A\Big)
+            =
+            \ol{\Big(B' \lar g B \lar p FA \Big)}
+        .\]
+        \item
+        Poniendo $B=B'$ y $g=\id_B:B\to B$ en el diagrama,
+        obtenemos la condición de que,
+        para cualquier morfismo $q:A\to GB$,
+        se tenga $\bar q(Ff)=\ol{qf}$:
+        \[
+            \Big(B\lar{\bar q} FA\lar{Ff}FA'\Big)
+            =
+            \ol{\Big(GB\lar q A\lar f A'\Big)}
+        .\]
+    \end{enumerate}
+\end{axiom}
+
+\begin{exa}
+\begin{itemize}
+    \item En álgebra surge mucho el ejemplo $free\dashv forget$. Tomando las categorias $\Vect_k$ y $\Con$, tenemos el functor de olvidar $u:\Vect_k\to\Con$, definido por $u((V,+,\cdot))= V$ (olvida la estructura del espacio y lo considera como conjunto), y el functor libre $F:\Con\to\Vect_k$, definido como $F(U)$ es el espacio libre generado por $U$, y estos functores forman una adjunción.
+    
+    Para mostrar esto, tomamos $S\in\Con$, $V\in\Vect_k$, y la flecha $g:F(S)\to V$.
+    Definamos $\Bar{g}:S\to u(V)=V$, como $\Bar{g}(s)=g(s)$ para cada $s\in S$, lo que implica que tenemos la flecha $\Vect_k(FS,V)\to\Con(S,uV)$ que manda cada $g$ a $\Bar{g}$.
+    Ahora sea $f\in\Con(S,uV)$. Entonces definimos $\Bar{f}$:
+    \begin{align*}
+        \Bar{f}:FS & \to V \\
+        \Bar{f}\left(\sum_{s\in S}\lambda_ss\right)=\sum_{s\in S}\lambda_s f(s)
+    \end{align*}
+    \item Un caso similar se da con grupos ('mismo' functor de olvidar, y el functor que asigna el grupo libre del conjunto).
+    \item El funtor del espacio vectorial libre es el
+      adjunto izquierdo del de olvidar.
+      Tenemos el funtor olvidadizo $\Vect_k\to\Con$ que para cada
+      espacio vectorial $V$ “olvida” su estructura y le asocia el
+      conjunto subyacente. A cada conjunto $X$ se puede asociar
+      el espacio vectorial $k\langle X\rangle$ generado por $X$;
+      es decir, el espacio cuya base corresponde a los elementos
+      de $X$. En este caso toda aplicación lineal $f:k\langle
+      X\rangle\to V$ se define de manera única por los imágenes
+      de los elementos de la base.
+      \[\begin{tikzcd}
+    	{X} & {k\langle X\rangle} \\
+    	{V}
+    	\arrow["{f}"', from=1-1, to=2-1]
+    	\arrow[from=1-1, to=1-2, hook]
+    	\arrow["{\exists !}"', from=2-1, to=1-2, dotted]
+    \end{tikzcd}\]
+    Esto nos da una biyección natural
+    $$\Vect_k(k\<X\>, V)
+    \cong
+    \Con(X,V)$$
+    Luego, el funtor $k\<-\>$ es adjunto izquierdo del
+    funtor olvidar $\Vect_k\to\Con$.
+    
+    \item
+    Tomando los grupos abelianos $\Z-\mathrm{Mod}$, existe una adjunción con $\Grp$, $F\dashv u$, donde $u$ es el functor de inclusión (olvida que es abeliano), y $F$ asigna a cada grupo $G$ su respectiva 'abelianización', dada por $G/[G,G]$,
+    donde $[G,G]=\langle xyx^{-1}y^{-1}\mid x,y\in G\rangle$
+    es el subgrupo conmutador.
+    \item Sean $A,B,C\in\Con$, y consideremos $f\in\Con(A\times B, C)$, entonces
+    \begin{align*}
+        f: A\times B & \to C \\
+        (a,b) & \to f(a,b)
+    \end{align*}
+    Si fijamos $a$, consideramos la función:
+    \begin{align*}
+        f_A: A & \to \Con(B,C)\\
+        a & \to f_A(a): B\to C \\
+        &\quad = f(a,-)(b)=f(a,b)\in C
+    \end{align*}
+    Es decir, podemos definir una función de conjuntos
+    \begin{align*}
+        \Con(A\times B, C) & \xto{\widehat{(-)}} \Con(A,\Con(B,C)) \\
+        f&\mapsto \hat{f_{\bullet}}
+    \end{align*}
+    y recíprocamente, tomamos una función $f:A\to\Con(B,C)$, entonces queremos definir una función
+    \begin{align*}
+        \Bar{f}:A\times B & \to C \\
+        \Bar{f}(a,b) &= f(a)(b)
+    \end{align*}
+    Así, definimos la función 
+    \begin{align*}
+        \Con(A,\Con(B,C))
+        & \xto{\ol{(-)}}
+        \Con(A\times B, C)
+    \end{align*}
+    y notemos que $\ol{(-)}$ y $\widehat{(-)}$ son inversas una de la otra, por tanto son una biyección, y tenemos una adjunción dada por
+    \begin{equation*}
+        \Con(A\times B, C)\simeq\Con(A,\Con(B,C))
+    \end{equation*}
+    donde $\Con(C,B)=:C^B$ se le llama la exponenciación de $C$ en $B$, y los functores son
+    \begin{equation*}
+        {-}\times B:\Con\to \Con
+    \end{equation*}
+    y el otro functor es 'exponenciar':
+    \begin{equation*}
+        ({-})^B:\Con\to \Con
+    \end{equation*}
+\end{itemize}
+\end{exa}
+    
+Recordemos que cuando dos categorías tiene una adjunción:
+\begin{center}
+\begin{tikzcd}
+    \mathcal{A} \arrow[dd, "F"', bend right] \\
+    \dashv \\
+    \mathcal{B} \arrow[uu, "G"', bend right]
+\end{tikzcd}
+\end{center}
+Se cumple que $\mathcal{B}(FA,B)\simeq\mathcal{A}(A,GB)$, y supongamos que tenemos la configuración:
+\begin{equation*}
+    FA\overset{g}{\longrightarrow}B\overset{q}{\longrightarrow}B'
+\end{equation*}
+entonces, la composición $qg$ le corresponde una única flecha:
+\begin{equation*}
+    \overline{qg}:A\longrightarrow GB'
+\end{equation*}
+o támbien podemos considerar solamente la única flecha de $g$:
+\begin{equation*}
+    \overline{g}:A\longrightarrow GB
+\end{equation*}
+y luego componerla con $G(q):GB\to GB'$ para obtener una nueva flecha
+\begin{center}
+    \begin{tikzcd}
+A \arrow[r, "\overline{g}"] \arrow[rd, "G(q)\circ\overline{g}"', bend right] & GB \arrow[d, "G(q)"] \\
+                                                                             & GB'                 
+\end{tikzcd}
+\end{center}
+y la compatibilidad dice que deberiamos obtener la misma flecha, es decir $\overline{qg}=G(q)\circ\overline{g}$.
+Ahora, nótese que para cualquier $A\in\mathcal{A}$, se tiene una flecha:
+\begin{equation*}
+    A\underset{\eta_A}{\longrightarrow}GFA
+\end{equation*}
+y por lo anterior, esta flecha es la que le corresponde a la identidad, $\eta_A=\overline{1_{FA}}$, y tenemos el caso para  cada $B\in\mathcal{B}$, es decir
+\begin{align*}
+    \panth{A\underset{\eta_A}{\longrightarrow}GFA} & = \overline{\panth{F(A)\overset{1_{FA}}{\longrightarrow}F(A)}} \\
+    \panth{FGB\underset{\varepsilon_B}{\longrightarrow}B} & = \overline{\panth{G(B)\overset{1_{GB}}{\longrightarrow}G(B)}}
+\end{align*}
+entonces, esto define las transformaciones naturales en cada componente:
+\begin{align*}
+    \eta_\bullet: 1_\mathcal{A}\longrightarrow GF \\
+    \varepsilon_\bullet: FG\longrightarrow 1_\mathcal{B}
+\end{align*}
+que son, respectivamente, la \textbf{unidad} y la \textbf{co-unidad} de adjunción.
+
+Por ejemplo, tomemos la adjunción:
+\begin{center}
+    \begin{tikzcd}
+\mathrm{Vect}_k \arrow[dd, "u"', bend right] \\
+\vdash                               \\
+\mathrm{Set} \arrow[uu, "F"', bend right]   
+\end{tikzcd}
+\end{center}
+del functor que olvida $u$ y el functor de la realización libre $F$.
+Aquí, la unidad y la co-unidad son:
+\begin{align*}
+    & \eta_S : S\longrightarrow uF(S)=\pangle{\sum\lambda_s s\mid s\in S} \\
+    & \varepsilon_V: Fu(V)\longrightarrow V.
+\end{align*}
+
+Ahora, consideremos una adjunción $F\dashv G$ entre categorías, con su unidad y co-unidad $\eta,\varepsilon$, entonces los diagramas
+\[
+\begin{tikzcd}
+    F \arrow[r, "F\eta"] \arrow[rd, "1_F"'] & FGF \arrow[d, "\varepsilon F"] & G \arrow[r, "\eta G"] \arrow[rd, "1_G"'] & GFG \arrow[d, "G\varepsilon"] \\
+     & F & & G                            
+\end{tikzcd}
+\]
+tienen que conmutar, pues si evaluamos la unidad en cada objeto $\panth{A\overset{\eta_A}{\to}GFA}\in\cal{A}$ y le aplicamos $F$, tenemos $FA\overset{F\eta_A}{\to}FGFA$.
+Por otro lado, buscando al transpuesto de $GFA\overset{1_{GFA}}{\to}GFA$, obtenemos
+\begin{align*}
+    \overline{1_{GFA}}: FGFA\to FA
+\end{align*}
+pero esto es precisamente la co-unidad $\eta_{FA}$, y al componerlo con $F\eta_A$
+\begin{center}
+    \begin{tikzcd}
+FA \arrow[r, "F\eta_A"] \arrow[rd, bend right] & FGFA \arrow[d, "\varepsilon_{FA}"] \\
+                                               & FA                                
+\end{tikzcd}
+\end{center}
+Entonces, por definición de transposiciones, obtenemos que $\overline{\eta_A}=\overline{\overline{1_{FA}}} = 1_{FA}$, y la conmutatividad del otro diagrama se prueba de manera análoga.
+
+Esto nos dice que, para cualquier adjunción 
+\begin{center}
+    \begin{tikzcd}
+\mathcal{A} \arrow[dd, "F"', bend right] \\
+\dashv                           \\
+\mathcal{B} \arrow[uu, "G"', bend right]
+\end{tikzcd}
+\end{center}
+con unidad $\eta$ y co-unidad $\varepsilon$, se cumple que la transposición es inducida por $\eta$ como $\overline{g}=G(g)\eta_A$, para cualquier $g\in\mathcal{B}\panth{FA,B}$, y dualmente por $\varepsilon$ como $\overline{f}=\varepsilon_BF(f)$, para cualquier $f\in\mathcal{A}\panth{A,GB}$.
+\begin{exe}%[Yareli $\checkmark$ ]
+  Las transposiciones inducidas por la
+  unidad y counidad coinciden con las transposiciones
+  originales.
+\end{exe}
+\begin{proof}
+    Recordemos que, por compatibilidad:
+    \begin{align*}
+        \left(\ol{F(A)\xto g B \xto q B'}\right)
+        &=
+        \left(A\xto{\ol g} G(B) \xto{G(q)}G(B')\right) \\
+        \left(\ol{A'\xto p A \xto f G(B)}\right)
+        &=
+        \left(F(A')\xto{F(p)} F(A) \xto{\ol f}B\right),
+    \end{align*}
+    es decir, $\ol{qg}=G(q)\ol g$ y $\ol{fp}=\ol f F(p)$.\\
+    Debemos demostrar que $\overline{g}=G(g)\eta_A$ y $\overline{f}=\epsilon_BF(f)$ para $g\colon F(A)\to B$ y $f\colon A\to G(B)$.\\
+Tenemos que
+\begin{align*}
+G(g)\eta_A&=G(g)\overline{\id}_{F(A)}\\
+&=\overline{g\circ \id}_{F(A)}\\
+&=\overline{g}.
+\end{align*}
+Además, 
+\begin{align*}
+\epsilon_B F(f)&=\overline{\id}_{G(B)}F(f)\\
+&=\overline{\id_{F(A)}\circ f}\\
+&=\overline{f}.
+\end{align*}
+\end{proof}
+
+

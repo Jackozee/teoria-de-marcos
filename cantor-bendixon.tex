@@ -1,0 +1,587 @@
+\chapter{La derivada de Cantor-Bendixon}
+
+%\section*{SESIÓN 14: 28 OCT (parte 2)}
+
+\begin{exe}
+    Muestre que la categoría $\Top_0$ de espacios topológicos
+    $T_0$ reflexiva en $\Top$.
+    Es decir, que el funtor de inclusión $\Top_0\to\Top$
+    tiene un adjunto izquierdo.
+\end{exe}
+
+Recordemos que, dada una derivada $f\in DA$,
+definimos $\infty$ como el menor ordinal donde la cadena
+\[
+    f^0\leq f^1\leq \cdots\leq f^\alpha \leq f^{\alpha+1} \leq \cdots
+\]
+se detiene.
+Esta construcción nos permite obtener
+el menor operador cerradura $f^\infty$
+que está por encima de $f$.
+
+Ahora veremos que hay derivadas $f\in DA$ tales que
+su ordinal de cerradura $\infty$ es arbitrariamente grande.
+
+Dado un espacio topológico $S$,
+denotaremos como $\cal CS$ al conjunto de los cerrados de $S$.
+Es decir,
+\[
+    \cal CS = \{u'\mid u\in\cal OS\}
+.\]
+Además, dado un subconjunto $X\subseteq S$,
+decimos que un punto $x\in S$ es un punto límite de $X$ si,
+para toda vecindad abierta $u\in\cal OS$ de $x$,
+existe un punto $y\in u\cap X$, $y\neq x$.
+Al conjunto de puntos límite de $X$ lo denotamos como $\lim X$.
+
+No es difícil verificar las siguientes propiedades.
+\begin{itemize}
+    \item si $X\in\cal CS$, entonces $\lim X\in\cal CS$,
+    \item si $X\in\cal CS$, entonces $\lim X\subseteq X$,
+    \item si $X,Y\in\cal CS$ y $X\subseteq Y$,
+        entonces $\lim X\subseteq\lim Y$.
+    \item si $x,Y\in\cal CS$,
+        entonces $\lim(X\cup Y)=\lim X\cup\lim Y$.
+\end{itemize}
+
+Ahora, dado un abierto $u\cal OS$, definimos $\cbd u = \lim(u')'$.
+Debido a las cuatro propiedades de arriba,
+se sigue que $\cbd$ es una función $\cbd:\cal OS\to\cal OS$
+monótona que, además, infla, y respeta ínfimos (intersección).
+En otras palabras, $\cbd$ es un prenúcleo en $\cal OS$,
+al cual llamamos la derivada de Cantor-Bendixon.
+
+Notemos que, dado un punto $x\in S$,
+tenemos $\lim(\{x\})=\emptyset$,
+de modo que $\cbd(\{x\}')=S$.
+
+En topología, un conjunto perfecto es un subconjunto cerrado tal que todos sus puntos son puntos de acumulación (es decir, el conjunto carece de puntos aislados).
+
+Un conjunto es booleano si para cualquier elemento dentro del conjunto, este tiene complemento dentro del conjunto.
+\begin{itemize}
+\item La derivada de Cantor-Bendixson es una herramienta que permite construir conjuntos perfectos.
+\item La derivada de Cantor-Bendixson mide que tan booleano es un conjunto
+\end{itemize}
+
+\begin{defn}
+Para un marco $A$ y elementos $a\leq b$, el intervalo $[a,b]$ es booleano si, como marco, este es booleano.
+\end{defn}
+
+\noindent
+En otras palabras, si $x\in[a,b]$ existe un único elemento $y\in[a,b]$ tal que $x\wedge y=a$ y $x\vee y=b$. Cuando existe este elemento $y$ es de la forma $$y=(x\succ a)\wedge b\mbox{  (ó }x=(y\succ a)\wedge b).$$
+
+\noindent
+Por ejemplo, al sustituir a $x$ obtenemos lo siguiente:
+
+\begin{itemize}
+    \item $x\wedge y$ $=((y\succ a)\wedge b)\wedge y=y\wedge a\wedge b=a$
+\item $x\vee y$ $=((y\succ a)\wedge b)\vee y=((y\succ a)\vee y)\wedge (b\vee y)=(y\succ a)\vee y)\wedge b=b$.
+\end{itemize}
+
+\noindent
+Notemos que si $x$ es el complemento de $y$, $x\vee y=b$. Luego $$(y\succ a)=(y\succ x\wedge y)\leq x\Rightarrow y\vee (y\succ a)\leq y\vee x=b.$$
+Entonces $x=(y\succ a)\wedge b.$
+
+\begin{lemma}
+Sean $A\in$ \textit{Frm} y $a\in A$. Sea $X\subseteq A$, $$X=\{x\in X|a\leq x\mbox{ y } [a, x]\mbox{ es booleano}\},$$ entonces $\bigvee X\in X$. 
+\end{lemma}
+
+\begin{proof}
+Sea $b=\bigvee X$. Notemos que $a\leq\bigvee X$ así resta ver que $[a, b]$ es booleano.\\
+\noindent
+Sea $y\in A$ tal que $a\leq y\leq b$. Sabemos que para cualquier $x\in X$, $[a, x]$ es booleano. Como $a\leq x\wedge y\leq x$ $\exists z(x)\in [a,x]$ tal que 
+$$z(x)\wedge (x\wedge y)=a\mbox{  y  }z(x)\vee (x\wedge y)=x.$$
+
+\noindent
+Tomemos $z=\bigvee\{z(x)|x\in X\}$, entonces $y\wedge z=y\wedge\bigvee\{z(x)|x\in X\}$.Al ser $z(x)\leq x$, entonces $z(x)\wedge x=z(x)$, luego $z(x)\wedge x\wedge y=z(x)\wedge y$, pero  $z(x)\wedge(x\wedge y)=a$. Por lo tanto $y\wedge z=\bigvee\{z(x)\wedge y|x\in X\}=a$.
+
+\noindent
+Resta ver $z\vee y=b$. Sabemos que $x=z(x)\vee (x\wedge y)=(z(x)\vee x)\wedge (z(x)\vee y)$, pero como $z(x)\leq x$, entonces $x=x\wedge (z(x)\vee y)$ y esto implica que $x\leq z(x)\vee y\leq b=\bigvee X.$ Luego $$y\vee z=y\vee\bigvee\{z(x)|x\in X\}=\bigvee\{y\vee z(x)|x\in X\}\leq b.$$
+
+\noindent
+Además, $b=\bigvee X\leq \bigvee\{z(x)\vee y|x\in X\}$. Por lo tanto $y\vee z=b.$ Así,hemos probado que el intervalo $[a,b]$ es booleano y de esta forma $b=\bigvee X\in X$.
+\end{proof}
+
+\begin{defn}
+Para cualquier marco $A$, si $a,x\in A$, decimos que $x$  es \textbf{esencialmente mayor que} $a$ $(a\lessdot x)$ si y sólo si $$a\leq x\mbox{  y  }(x\succ a)=a.$$
+Con esta relación entre elementos de un marco ya podemos definir la \textbf{derivada de Cantor-Bendixson} como $$cbd^A(a)=\bigwedge\{x\in A|a\lessdot x\}.$$
+\end{defn}
+
+\begin{lemma}\label{Lema46}
+Sea $A\in$ \textit{Frm}. Para cualquier $a\in A$, $[a,cbd^A(a)]$ es el intervalo booleano más grande arriba de $a$. Es decir, para cualquier $x\in A$, si $[a,x]$ es booleano, entonces $x\leq cbd^A(a)$.
+\end{lemma}
+
+\begin{proof}
+Supongamos que $[a,y]$ es un intervalo booleano y sea $x\in A$ tal que $a\lessdot x$. Sea $b=x\wedge y$, entonces $a\leq b\leq y$. Como $[a,y]$ es booleano existe $c\in [a, y]$ tal que $$c\wedge b=a\mbox{  y  }c\vee b=y.$$
+Si $c\wedge x\wedge y\leq c\wedge y\leq a$, entonces $c\wedge y\leq (x\succ a)=a$. Como $a\leq x\wedge y=b$ tenemos que $c\wedge y\leq b$.
+
+\noindent
+Así, $b=b\vee (y\wedge c)=(b\vee y)\wedge(b\vee c)=(b\vee y)\wedge y=y$. Con ello $b=x\wedge y=y$, es decir, $y\leq x$ para cualquier $x\in A$ con $a\lessdot x$. Entonces $y\leq \bigwedge\{x\in A|a\lessdot x\}=cbd^A(a)$.
+
+\noindent
+Veamos que $[a, cbd^A(a)]$ es booleano. Sea $d=cbd^A(a)$ y $y\in A$ tal que $a\leq y \leq d$. Tomemos $z=(y\succ a)$, entonces $a\leq (y\succ a)=z$ y $y\wedge z=y\wedge (y\succ a)=a$. Con ello $((y\vee z)\succ a)=(y\succ a)\wedge(z\succ a)=a$. De aquí que $$a\leq z\vee y\mbox{ y }((y\vee z)\succ a)=a,$$ 
+es decir, $a\lessdot (y\vee z)$. Por lo tanto, $d=\bigwedge\{x\in A|a\lessdot x\}\leq y\vee z$.
+
+\noindent
+Notemos que $$y\wedge(z\wedge d)=(y\wedge z)\wedge d=a\wedge d=a$$ y $$y\vee (z\wedge d)=(y\vee z)\wedge (y\vee d)=(y\vee z)\wedge d=d,$$ 
+es decir, $z\wedge d$ es el complemento de $y$ en $[a,cbd^A(a)]$. Por lo tanto $[a,cbd^A(a)]$ es booleano. 
+\end{proof}
+
+\begin{lemma}
+Sea $A\in$ \textit{Frm}, para cualesquiera $a,b,y,x\in A$ tenemos que:
+\begin{enumerate}
+\item $b\leq a\lessdot x\leq y\Rightarrow b\lessdot y$.
+\item Si $a\lessdot x$ y $b\lessdot y$, entonces $a\wedge b\lessdot x\wedge y$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Para la primera parte, por hipótesis $a\leq x$ y $(x\succ a)=a$, de aqui que $b\leq y$. Resta ver que $(y\succ b)=b$. Sabemos que $b\leq (y\succ b)$. Ahora si $x\leq y$, entonces $(y\succ b)\wedge x\leq (y\succ b)\wedge y=y\wedge b=b\leq a$, así $(y\succ b)\wedge x\leq a$. Por definición de implicación $(y\succ b)\leq (x\succ a)=a\leq y$. Con ello $(y\succ b)=(y\succ b)\wedge y=y\wedge b\leq b$. De esta forma $(y\succ b)=b$.
+
+\noindent
+Por lo tanto $b\lessdot y$.
+
+Para la segunda parte, notemos que $a\leq x$ y $b\leq y$, entonces $a\wedge b\leq x\wedge y$. Veamos que $((x\wedge y)\succ (a\wedge b))=a\wedge b$.
+
+\noindent
+Sea $z=((x\wedge y)\succ (a\wedge b))$, luego $z\wedge (x\wedge y)=(x\wedge y)\wedge (a\wedge b)\leq a\wedge b\leq b$. Entonces 
+\begin{equation*}
+\begin{split}
+    z\wedge x\leq (y\succ b)=b\leq y & \Rightarrow z\wedge x\leq z\wedge x\wedge y\leq a\wedge b\leq a\\
+    & \Rightarrow z\leq (x\succ a)=a.
+\end{split}
+\end{equation*}
+Así, $z= z\wedge a\leq z\wedge x\leq b$ implica que $z\leq a$ y si $z\leq b$, entonces $z\leq a\wedge b$. Además también se cumple que $a\wedge b\leq z$, pues $(a\wedge b)\leq ((x\wedge y)\succ (a\wedge b))$. Por lo tanto $a\wedge b\lessdot x\wedge y$.
+\end{proof}
+
+En el contexto de teoría de marcos,
+la derivada de Cantor-Bendixson en el marco $A$ es el operador
+$$cbd:A\to A$$
+$$cbd(a)=\bigwedge\{x\in A|a\lessdot x\}.$$
+Tomemos ahora un marco $A$ y $j\in NA$. Si $j\in NA$, entonces
+$A_j$ es un marco y su derivada de Cantor-Bendixon es
+$$cbd^{A_j}:A_j\to A_j$$ 
+$$cbd^{A_j}(a)=\bigwedge\{x\in A_j|a\lessdot x\}.$$
+Recordemos que si $j\in NA$, $A_j$ es un conjunto implicativo, es decir, $(x\succ a)\in A_j$. Entonces $$\mbox{esencialmente mayor en }A_j\Rightarrow\mbox{ esencialmente mayor en }A.$$
+
+Consideremos la siguiente composición
+$$A\xrightarrow{j} A_j\xrightarrow{cbd^{A_j}} A_j\xrightarrow{i} A$$
+Esta composición nos da un operador de $A$ que llamamos $cbd_j^{A}$ y al fijarnos puntualmente en la composición tenemos que
+$$cbd_j^A:A\to A$$
+$$cbd_j^{A}(a)=\bigwedge\{x\in A_j|j(a)\lessdot x\}.$$
+Notemos que $cbd_j^{A}\neq cbd^{A_j}$ pues el primero es un operador en $A$ y el segundo en $A_j$. Si $j=id_A$ entonces $cbd_j^{A}= cbd^{A_j}$.
+
+En lo que sigue, cuando sea claro el marco en el que se este trabajando omitiremos escribir el supraíndice.
+
+\begin{thm}
+Sea $A\in$ \textit{Frm} y $j\in NA$, entonces $cbd_j^{A}\in PA$.
+\end{thm}
+
+\begin{proof}
+Sea $j\in NA$ y $x\in A$. Tomemos $e_x=j\circ u_x\circ v_x\circ j$. Como $j, u_x, v_x\in NA$, entonces $e_x$ es al menos un prenúcleo. Sea $e=\bigwedge\{e_x|x\in A\}$, entonces $e\in PA$, pues es ínfimo de prenúcleos.
+\begin{description}
+\item[Afirmación:] $cbd_j=e$. 
+\end{description}
+
+Veamos que $cbd_j\leq e$. Sean $a\in A$ y $x\in A_j$ tales que $j(a)\lessdot x$. Por como se definió $e_x$, $e_x(a)=(j\circ u_x\circ v_x\circ j)(a)=j(x\vee (x\succ j(a)))=j(x\vee j(a))=j(x)=x$ pues $j(a)\lessdot x$ y $x\in A_j$. Además, $e\leq e_x$, entonces 
+$$e(a)\leq e_x(a)=x\leq \bigwedge\{x\in A|j(a)\lessdot x\}=cbd_j(a).$$
+Por lo tanto $e\leq cbd_j$.
+
+Para la otra desigualdad. Tomamos $x,a\in A$ y $z=x\vee (x\succ j(a))=(u_x \circ v_x\circ j)(a)$ y $y=e_x(a)=j(z)=(j\circ u_x \circ v_x\circ j)(a)$. Entonces $j(a)\leq z\leq j$.
+
+\noindent
+Notemos que $$(y\succ j(a))=(j(z)\succ j(a))=(z\succ j(a))=((x\vee (x\succ j(a))\succ j(a))=j(a).$$ 
+Como $j(a)\leq y$ entonces $j(a)\lessdot y$ y por la definición de derivada para el núcleo $j$ tenemos que $cbd_j\leq y=e_x(a)$.
+
+\noindent
+Así, $cbd_j\leq e_x$ $\forall x\in A$. Por lo tanto $e=cbd_j$ y $cbd_j\in PA$. 
+\end{proof}
+
+\begin{lemma}
+Si $A\in$ \textit{Frm} y $j\in NA$, la cerradura idempotente de $cbd_j$, $cbd_j^{\infty}$, es el núcleo mas pequeño que colapsa a todos los intervalos $[a, b]$ en $A$ si $[j(a),j(b)]$ es booleano en $A_j$.
+\end{lemma}
+
+\begin{proof}
+Como $cbd_j\in PA$, entonces $(cbd_j)^\infty\in$ es un nucleo.
+
+\noindent
+Sean $a,b\in A$ tales que $[j(a),j(b)]$ es booleano en $A_j$. Veamos que $((cbd_j)^\infty )(a)= ((cbd_j)^\infty )(b)$. Notemos $$b\leq j(b)\leq cbd^{A_j}(j(a))=cbd_j^A(a)\leq (cbd_j^A)^\infty (a)$$
+Como $(cbd_j^A)^\infty\in NA$ entonces 
+$$((cbd_j^A)^\infty )(b)\leq ((cbd_j^A)^\infty)((cbd_j^A)^\infty (a))= (cbd_j^A)^\infty (a).$$ 
+Así, $cbd_j(b)\leq cbd_j(a)$.
+
+\noindent
+Para la otra desigualdad notemos que,
+si $a\leq b$ entonces
+\[
+  ((cbd_j^A)^\infty )(a)\leq ((cbd_j^A)^\infty )(b)
+.\]
+Por lo tanto, $((cbd_j^A)^\infty )(a)= ((cbd_j^A)^\infty )(b)$.
+
+\noindent
+Ahora solo nos queda ver que $(cbd_j^A)^\infty$ es el menor núcleo que colapsa intervalos que son booleanos bajo $j$ en $A_j$. Supongamos que existe un operador $k\in NA$ tal que cumple la propiedad mencionada.
+
+\noindent
+Queremos ver que si $s\in A$, entonces $(cbd_j^A)(a)\leq k(a)$. Tomemos el intervalo $[a,cbd_j^A(a)]$ en $A$, entonces $[j(a),j(cbd_j^A(a))]$ es un intervalo en $A_j$. Notemos que $$j(cbd_j^A)(a))=cbd_j^A(a)=cbd^{A_j}(j(a)).$$ 
+Así, $[j(a), j(cbd_j^A(a))]=[j(a),cbd^{A_j}(j(a))]$. Por lema \ref{Lema46} este es booleano.
+
+\noindent
+Como $k$ colapsa los intervalos de $A$ que son booleanos en $A_j$ bajo $j$, entonces $$k(cbd_j^A(a))=k(a)$$
+de esta forma podemos ver que $$cbd_j^A(a)\leq k(a).$$ 
+Así, $$cbd_j^A(a)\leq (cbd_j^A)^\infty\leq k(a).$$
+Por lo tanto $(cbd_j^A)^\infty$ es el menor núcleo que cumple la propiedad mencionada.
+\end{proof}
+
+Si consideramos $j=id$ en el lema anterior obtenemos el siguiente corolario.
+
+\begin{cor}
+Para cualquier $A\in$\textit{Frm}, $(cbd^A)^\infty$ es el núcleo mas pequeño que colapsa a todos los intervalos booleanos de $A$.
+\end{cor}
+
+\begin{thm}
+Sea $A\in$\textit{Frm}, entonces para cualesquiera $j\in NA$ y $a\in A$ $$cbd_j^A(a)=(w_{j(a)}\succ j)(a)$$
+\end{thm}
+Notemos que la implicación que se enuncia en el Teorema es en $NA$ que no se define como la evaluación puntual.
+
+\begin{proof}
+Sean $j\in NA$ y $a\in A$ y consideremos $b=cbd_j^A(a)$ y $k=(w_{j(a)}\succ j)$. Veamos que $b=k(a)$
+
+\noindent
+Para la desigualdad $b\leq k(a)$. Tomemos el núcleo $l=u_b\wedge v_{j(a)}$. Notemos que $$j(a)\leq (w_{j(a)}\succ j)(a)\Rightarrow a\leq j(a)\leq k(a).$$
+
+\begin{description}
+\item[Afirmación:] $l\leq k$.
+\end{description}
+
+Sea $x\in A$ y $y=(x\succ j(a))$, entonces
+
+\begin{equation*}
+\begin{split}
+y\wedge w_{j(a)}(x) &=y\wedge ((x\succ j(a))\wedge j(a))\\
+& =y\wedge(y\succ j(a))\\
+& =y\wedge j(a)\leq j(a)
+\end{split}
+\end{equation*}
+Entonces $$y\wedge w_{j(a)}(x)\wedge v_{j(a)}(x)\leq j(a)\wedge v_{j(a)}(x)=(j(a)\succ x)\wedge j(a)\leq x.$$
+Luego
+\begin{equation}\label{Eq1}
+x\vee (y\wedge w_{j(a)}(x)\wedge v_{j(a)}(x))=(y\vee x)\wedge w_{j(a)}(x)\wedge v_{j(a)}(x)\leq x
+\end{equation}
+Recordemos que $((x\vee (x\succ j(a)))\succ j(a))=j(a)$ y además $j(a)\leq (x\succ j(a))\leq x\vee (x\succ j(a))$, es decir,
+$$j(a)\lessdot (x\vee (x\succ j(a)))=x\vee y\leq j(x\vee y).$$
+Luego $j(a)\lessdot j(x\vee y).$\\
+Como $j(x\vee y)\in A_j$, entonces $b=cbd_j^A(a)=cbd^{A_j}(a)\leq j(x\vee y)$. Así,
+\begin{equation*}
+\begin{split}
+b\vee x\leq j(x\vee y)\vee x=j(x\vee y) &\Rightarrow  \forall x\in A, x\vee b=u_b(x)\leq j(x\vee y).\\
+& \Rightarrow u_b(x)\wedge v_{j(a)}(x)\wedge w_{j(a)}(x)\\
+& \leq j(x\vee y)\wedge v_{j(a)}(x)\wedge w_{j(a)}(x)\\ 
+& \leq j(x\vee y)\wedge j(v_{j(a)}(x))\wedge j(w_{j(a)}(x))\\
+& =j((y\vee x)\wedge w_{j(a)}(x)\wedge v_{j(a)}(x))\leq j(x).
+\end{split}
+\end{equation*}
+La última desigualdad la obtenemos de aplicar $j$ en \eqref{Eq1}.
+
+Como $l=u_b\vee v_{j(a)}$ sustituyendo obtenemos que 
+\begin{equation*}
+\begin{split}
+(l\wedge w_{j(a)})(x)\leq j(x) & \Rightarrow l\leq w_{j(a)}\succ j=k\\
+& \Rightarrow l(j(a))\leq k(j(a)).
+\end{split}
+\end{equation*}
+Notemos que 
+\begin{equation*}
+\begin{split}
+l(j(a))=(u_b\wedge v_{j(a)})(j(a))& =(b\vee j(a))\wedge (j(a)\succ j(a))\\
+& =b\vee j(a)=cbd_j^A(a)\vee j(a)\\
+& =cbd_j^A(a)
+\end{split}
+\end{equation*}
+y $j(a)\leq k(a)\leq k(k(a))=k(a)$. Por lo tanto $b\leq k(a)$.
+
+Para la otra desigualdad. Sea $y\in A_j$ tal que $j(a)\lessdot y$, entonces $a\leq j(a)\leq y=j(y)$ y $w_{j(a)}(y)=((y\succ j(a))\succ j(a))=(j(a)\succ j(a))=1$.
+
+Luego 
+\begin{equation*}
+\begin{split}
+k(a)\leq k(y)=k(y)\wedge 1 & =k(y)\wedge w_{j(a)}(y)\\
+& \leq (k\wedge w_{j(a)})(y)\\
+& =((w_{j(a)}\succ j)\wedge w_{j(a)})(y)\\
+& =(w_{j(a)}\wedge j)(y)\\
+& \leq j(y)=y.
+\end{split}
+\end{equation*}
+Así, $k(a)\leq y$, para cualquier $y\in A_j$ que cumpla $j(a)\lessdot y$. Entonces $k(a)\leq \bigwedge\{y\in A_j|j(a)\lessdot y\}=cbd_j^A(a)=b$.
+
+\noindent
+Por lo tanto $k(a)=b$.
+\end{proof}
+
+\begin{cor}
+Sea $A\in$ \textit{Frm} para cualquier $j\in NA$, $cbd_j^A=tp\Leftrightarrow j=w_a$, donde $a=j(0)$.
+\end{cor}
+
+\begin{proof}
+Sean $A\in$ \textit{Frm} y $j\in NA$. Sea $a=j(0)$. Como $j(j(0))=j(0)$, entonces $j\leq w_{j(0)}=w_a$. Por el teorema anterior $cbd_j^A(0)=(w_a\succ j)(0)$. De aquí que
+\begin{equation*}
+\begin{split}
+cbd_j^A=tp & \Leftrightarrow 1=cbd_j^A(0)=(w_a\succ j)(0)\\
+& \Leftrightarrow (w_a\succ j)=1\\ 
+& \Leftrightarrow w_a\leq j\\
+& \Leftrightarrow w_a=j.
+\end{split}
+\end{equation*}
+
+\end{proof}
+
+Notemos que para cada marco $A$ le asignamos su derivada $cbd^A$. Recordemos que $NA$ también es un marco, entonces de manera similar podemos asignarle su derivada $cbd^{NA}$. Esto mismo puede hacerse para cada $N^\alpha A$ del ensamble.
+
+Para identificar las distintas derivadas en los primeros niveles
+de la torre de ensambles, introducimos más notación.
+Como notaremos mas adelante, existe una relación entre
+ellas.
+\begin{description}
+\item[Notación:]
+\end{description}
+\begin{itemize}
+\item La derivada en $A$: $$cbd_j^A:A\to A$$
+$$cbd_j^A(a)=\bigwedge\{x\in A_j|j(a)\lessdot x\}$$
+\item La derivada en $NA$:  $$Cbd_J^A=cbd_J^{NA}:NA\to NA$$
+$$Cbd_J^A(k)=\bigwedge\{l\in NA_J|J(k)\lessdot l\}$$
+\item La derivada en $N^2A$: $$CBD_\mathfrak{J}^A=Cbd_\mathfrak{J}^{NA}=cbd_\mathfrak{J}^{N^2A}:N^2A\to N^2A$$
+$$CBD_\mathfrak{J}^A(K)=\bigwedge\{L\in N^2A_\mathfrak{J}|\mathfrak{J}(K)\lessdot L\}$$
+\item La derivada en $N^3A$: $$\mathbb{CBD}_\mathfrak{j}^A=CBD_\mathfrak{j}^{NA}=Cbd_\mathfrak{j}^{N^2A}=cbd_\mathfrak{j}^{N^3A}:N^3A\to N^3A$$
+$$\mathbb{CBD}_\mathfrak{j}^A(\mathfrak{K})=\bigwedge\{\mathfrak{L}\in N^3A_\mathfrak{j}|\mathfrak{j}(\mathfrak{K})\lessdot \mathfrak{L}\}$$
+\end{itemize}
+
+Siguiendo esta idea podemos construir la derivada para los distintos niveles de la torre de ensambles.
+
+\begin{thm}\label{Teo24}
+Sea $A\in$ \textit{Frm}, entonces $(cbd_j^A)^\infty=Cbd^A(j)$. Para cada $j\in NA$.
+\end{thm}
+
+\begin{proof}Veamos que $(cbd_j^A)^\infty\leq Cbd^A(j)$ y $Cbd^A(j)\leq (cbd_j^A)^\infty$.\\
+Sean $j,k\in NA$ tales que $j\lessdot k$. Sea $x\in A$ y definimos $a=k(x)$, entonces $a\leq j(a)\leq k(a)=k(k(x))=k(x)=a$, es decir, $j(a)=k(a)=a$. Así, $$k\leq w_a\Rightarrow (w_a\succ j)\leq (k\succ j)=j$$ 
+Por el teorema anterior $$cbd_j^A(a)=(w_a\succ j)(a)\leq j(a)=a \Rightarrow cbd_j^A(a)\leq a$$
+Al ser $cbd_j^A$ un prenúcleo se cumple también $a\leq cbd_j^A(a)$. Por lo tanto, $cbd_j^A(a)=a$.
+
+\noindent
+Veamos por inducción sobre los ordinales que $a=cbd_j^\alpha(a)$. Si $\alpha=0$ obtenemos el caso anterior.\\
+Tomemos $\alpha=\beta^{+}$ y supongamos que $cbd_j^\beta(a)=a$.
+Entonces
+\[
+  cbd_j^\alpha (a)=cbd_j(cbd_j^\beta(a))=cbd_j(a)=a
+.\]
+Finalmente si $\alpha$ es ordinal límite y suponemos que para cualquier ordinal $\beta\leq \alpha$, $cbd_j^\beta(a)=a$ obtenemos que $$cbd_j^\alpha(a)=\bigvee \{cbd_j^\beta(a)|\beta\leq \alpha\}=a.$$
+Como esta propiedad se cumple para cualquier ordinal, en particular se cumple para $cbd_j^\infty(a)=a$. Entonces $$cbd_j^\infty(x)=cbd_j^\infty(a)=a=k(x), \quad \forall x\in A$$
+Así $cbd_j^\infty\leq k$, $\forall k\in NA$ tal que $j\lessdot k$ y por la definición de derivada obtenemos $cbd_j^\infty\leq Cbd(j)$.\\
+Para la otra desigualdad. Sea $x\in A$ y consideremos $a=cbd_j^\infty(x)$. Entonces $$a\leq j(a)\leq cbd_j(a)=cbd_j(cbd_j^\infty(x))=cbd_j^\infty(x)=a$$
+Así, $j(a)=a$h con ello $j\leq w_a$. Por el teorema anterior
+\begin{equation*}
+\begin{split}
+a=cbd_j(a)=(w_{j(a)}\succ j)(a)=(w_a\succ j)(a) & \Rightarrow a=(w_a\succ j)(a)\\
+& \Rightarrow (w_a\succ j)\leq w_a
+\end{split}
+\end{equation*}
+y $j\leq (w_a\succ j)$. De esta forma 
+$$(w_a\succ j)=(w_a\succ j)\wedge w_a=w_A\wedge j=j\Rightarrow j\lessdot w_a$$
+Luego al evaluar ambos operadores en $x$ obtenemos $$Cbd(j)\leq w_a\Rightarrow Cbd(j)(x)\leq w_a(x)\leq w_A(a)=a=cbd_j^\infty(x), \quad\forall x\in A.$$ 
+Por lo tanto $cbd_j^\infty=Cbd(j)$.
+
+\end{proof}
+
+\begin{lemma}
+Sea $A\in$ \textit{Frm}, entonces 
+$$Cbd(v_b\vee j\vee u_a)=v_b\vee Cbd(j)\vee u_a=v_b\circ Cbd(j)\circ u_a$$
+para todo $a,b\in A$ y $j\in NA.$
+\end{lemma}
+
+\begin{proof}
+    Recordemos que los supremos entre prenúcleos se relacionan con la composición. Con ello obtenemos la segunda igualdad. Para la otra mostremos que se cumplen las desigualdades 
+    $$Cbd(v_b\vee j\vee u_a)\leq v_b\vee Cbd(j)\vee u_a\mbox{  y  }Cbd(v_b\vee j\vee u_a)\geq v_b\vee Cbd(j)\vee u_a.$$
+    Notemos que $Cbd(v_b\vee j\vee u_a)\leq v_b\vee Cbd(j)\vee u_a$ ya que $u_a,v_b,Cbd(j)\leq Cbd(v_b\vee j\vee u_a)$, pues $Cbd$ infla y es monótona.
+    
+    \noindent
+    Para la otra desigualdad como $Cbd$ es un prenúcleo obtenemos lo siguiente
+    \begin{equation*}
+        \begin{split}
+            u_b\wedge v_a\wedge Cbd(v_b\vee j\vee u_a)& \leq Cbd(u_b \wedge v_a)\wedge Cbs(v_b\vee j\vee u_a)\\
+            & =Cbd((u_b\vee v_a)\wedge (v_b\vee j\vee u_a))\\
+            & =Cbd((u_b\wedge v_a\wedge v_b)\vee (u_b\wedge v_a\wedge j)\vee (u_b\wedge v_a\wedge u_a))\\
+            & =Cbd(u_b\wedge j\wedge v_a)\leq Cbd(j).
+        \end{split}
+    \end{equation*}
+    Entonces $u_b\wedge v_a\wedge Cbd(v_b\vee j\vee u_a)\leq Cbd(j)$. Haciendo supremos con $v_b$ y $u_a$ en ambos lados de la desigualdad obtenemos que
+    \begin{equation*}
+        \begin{split}
+            v_b\vee Cbd(j)\vee u_a & \geq v_b\vee (u_b\wedge v_a\wedge Cbd(v_b\vee j\vee u_a))\vee u_a\\
+            & =v_b\vee Cbd(v_b\vee j\vee u_a)\vee u_a\\
+            & =Cbd(v_b\vee j\vee u_a).
+        \end{split}
+    \end{equation*}
+    Así $Cbd(v_b\vee j\vee u_a)\leq v_b\vee Cbd(j)\vee u_a$. Por lo tanto obtenemos la igualdad buscada.
+\end{proof}
+
+Notemos que para cada nivel del ensamble, la derivada se denota de una forma diferente. En relación con el teorema anterior se obtiene la siguiente notación la cual se utiliza solo para simplificar la escritura. 
+
+\begin{description}
+\item[Notación:]
+\end{description}
+\begin{itemize}
+\item \textbf{Nivel 0}: Se menciona en el teorema anterior.
+\item \textbf{Nivel 1}: $NA\in$ \textit{Frm} $\Rightarrow$ $(cbd_j^{NA})^\infty=Cbd^{NA}(j)$ $\forall j\in N^2A$
+\item \textbf{Nivel 2}: $N^2A\in$ \textit{Frm} $\Rightarrow$ $(cbd_j^{N^2A})^\infty=Cbd^{N^2A}(j)$ $\forall j\in N^3A$
+\item \textbf{Nivel 3}: $N^3A\in$ \textit{Frm} $\Rightarrow$ $(cbd_j^{N^3A})^\infty=Cbd^{N^3A}(j)$ $\forall j\in N^4A$
+\item $\ldots$
+\end{itemize}
+
+Si tomamos $j=id$ 
+\begin{itemize}
+\item \textbf{Nivel 0}: $(cbd^A)^\infty=Cbd^A(id)$.
+\item \textbf{Nivel 1}: $NA\in$ \textit{Frm} $\Rightarrow$ $(cbd^{NA})^\infty=Cbd^{NA}(id)$, $id\in N^2A$
+\item \textbf{Nivel 2}: $N^2A\in$ \textit{Frm} $\Rightarrow$ $(cbd^{N^2A})^\infty=Cbd^{N^2A}(id)$, $id\in N^3A$
+\item \textbf{Nivel 3}: $N^3A\in$ \textit{Frm} $\Rightarrow$ $(cbd^{N^3A})^\infty=Cbd^{N^3A}(id)$,  $id\in N^4A$
+\item $\ldots$
+\end{itemize}
+
+La notación que usaremos para la identidad y la constante uno para los distintos niveles de la torre es la siguiente $$id, tp\in NA,\quad Id,Tp\in N^2A,\quad ID, TP\in N^3A.$$
+También se introduce nueva notación para facilitara la escritura de las derivadas en los distintos niveles y la relación que hay entre ellas según el teorema \ref{Teo24}.
+\begin{itemize}
+\item \textbf{$NA:$}\\
+$\delta=Cbd(id)=cbd^\infty$\\
+$\theta=CBD(Id)(id)=Cbd^\infty(id)$\\
+$\xi =\mathbb{CBD}(ID)(Id)(id)=CBD^\infty(Id)(id)$
+
+\item \textbf{$N^2A:$}\\
+$\Delta =CBD(Id)=Cbd^\infty$\\
+$\Theta =\mathbb{CBD}(ID)(Id)=CBD^\infty(Id)$\\
+$\Xi =\mathbb{CBD}^\infty(ID)(Id)$
+
+\item \textbf{$N^3A:$}\\
+$\Delta=\mathbb{CBD}(ID)=CBD^\infty$\\
+$\Theta=\mathbb{CBD}^\infty(ID)$\\
+$\Xi=\ldots$
+\end{itemize}
+
+\begin{thm}
+Para $A\in$\textit{Frm}
+\begin{enumerate}
+\item $A$ es booleano $\Leftrightarrow cbd(0)=1$
+\item $NA$ es booleano $\Leftrightarrow \delta=tp\Leftrightarrow\delta(0)=1$
+\item $N^2A$ es booleano $\Leftrightarrow \theta=tp\Leftrightarrow\theta(0)=1$
+\item $N^3A$ es booleano $\Leftrightarrow \xi=tp\Leftrightarrow\xi(0)=1$
+\item $\ldots$
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{itemize}
+\item[1.] Si $A$ es booleano, por el lema \ref{Lema46} $[0,cbd(0)]$ es el intervalo más grande por arriba de 0 que es booleano, pero el intervalo más grande es $[0,1]$. De aqui que $cbd(0)=1$. Si $cbd(0)=1$, entonces  $[0,cbd(0)]$ es el intervalo booleano mas grande por arriba del 0, pero el intervalo es $[0,1]=A$.
+\item[2.] $\delta=Cbd(id)$, por el lema \ref{Lema46}, $0=id\in NA$, entonces $[id, Cbd(id)]$ es el intervalo más grande por arriba de $id$ que es booleano, pero el intervalo booleano más grande por arriba de $id$ es $[id, tp]$ $\Leftrightarrow$ $\delta=Cbd(id)=tp$, pero eso solo ocurre si y sólo si $Cbd(id)(0)=Cbd(0)=1$ $\Leftrightarrow$ $\delta(0)=1.$
+\item[3.] $N^2A$ es booleano $\Leftrightarrow$ por el lema \ref{Lema46} $[Id, \theta(id)]$ es el intervalo más grande por arriba de $Id$ que es booleano $\Leftrightarrow$ $\theta(id)=Tp$ $\Leftrightarrow$ $\theta=tp$.
+\item[4.] Para este inciso se usa el mismo argumento, pero para $N^3A$, pues $\xi=\mathbb{CBD}(ID)(Id)(id)$ y $\xi=tp\Leftrightarrow \mathbb{CBD}(ID)(Id)(id)=Tp\Leftrightarrow \mathbb{CBD}(ID)=TP$.
+\end{itemize}
+\end{proof}
+
+\begin{thm}
+Para $A\in$ \textit{Frm} y $j\in NA$ son equivalentes las siguientes condiciones:
+\begin{enumerate}
+\item $cbd_j=j$
+\item $Cbd(j)=j$
+\item $\Delta(j)=j$.
+\end{enumerate}
+\end{thm}
+
+\begin{cor}
+Para $A\in$ \textit{Frm} son equivalentes las siguientes condiciones:
+\begin{enumerate}
+\item $cbd=id$
+\item $\delta=id$
+\item $\theta=id$.
+\end{enumerate}
+\end{cor}
+
+\section{El caso espacial}
+El contexto original en que se definió la derivada de
+Cantor-Bendixson fue para espacios topológicos.
+Veremos cómo se relaciona esta construcción con la construcción
+de arriba.
+
+\begin{defn}
+Si $S$ es un espacio topológico y $Y, X\subseteq S$ subconjuntos cerrados del espacio. Decimos que $Y$ es una parte no esencial de $X$, denotado por $Y\sqsubset X$ si 
+$$Y\subseteq X \quad\mbox{ y }\quad X=(X-Y)^-.$$ 
+Además para cualquier $X\subseteq S$ cerrado, $X\in CS$
+$$lim_S(X)=\left(\bigcup\{Y\in CS|Y\sqsubset X\}\right)^-$$
+\end{defn}
+
+\noindent
+Recordemos que $OS$ es un marco y la implicación en $OS$ esta dada por $$(V\succ U)=(V'\cup U)^\circ$$ 
+y la negación $$\neg U=U^-\mbox{'}$$ para cualesquiera $U,V\in OS$.
+
+\noindent
+Además los ínfimos arbitrarios se calculan de la siguiente forma: $\bigvee U=\left(\bigcap U\right)^\circ$.
+
+\begin{lemma}\label{Lema50}
+Para cualquier espacio topológico $S$ se cumple $$Y\sqsubset X\Leftrightarrow X'\lessdot Y',\mbox\quad U\lessdot V\Leftrightarrow V'\sqsubset U',$$
+donde $X, Y\in CS$ y $U, V\in OS$. Además se cumple que $$lim_S(X)'=cbd^{OS}(X'),\quad cbd^{OS}(U)'=lim_S(U').$$
+\end{lemma}
+
+\begin{proof}
+Sean $X, Y\in CS$. Tenemos que $$X'\lessdot Y'\Leftrightarrow (Y'\succ X')=X'\Leftrightarrow (Y'\cup X)^\circ=X'.$$
+Luego $(Y'\cup X)^\circ=(Y'\cap X)'^\circ =(Y'\cap X)^-$ $'$. Así. $$X\lessdot Y'\Leftrightarrow X'=(Y'\cap X)^-\mbox{'}\Leftrightarrow X=(Y'\cap X)^-\Leftrightarrow Y\sqsubset X.$$
+Para la otra equivalencia basta con cambiar $X'$ y $Y'$ por $U$ y $V$ respectivamente.
+
+Ahora sea $X\in CS$, entonces $$cbd(X')=\left(\bigcap\{V\in OS| X'\lessdot V\}\right)^\circ=\left(\bigcap\{V\in OS|V'\sqsubset X\}\right)^\circ.$$
+Luego 
+\begin{equation*}
+\begin{split}
+cbd(X')' &=\left(\bigcap\{V\in OS| X'\lessdot X\}\right)^\circ \mbox{'}\\
+& =\left(\bigcup\{V\in OS|V'\sqsubset X\}\right)'^-\\
+& =\left(\bigcup\{V'\in OS|V'\sqsubset X\}\right)^-\\
+& =\left(\bigcup\{V\in CS|V'\sqsubset X\}\right)^-\\
+& =lim_S(X).
+\end{split}
+\end{equation*}
+Para la otra igualdad basta con cambiar $X'$ por $U$.
+\end{proof}
+
+Ahora tenemos un lema dual al lema \ref{Lema46} que nos da información sobre el espacio topológico. Para este lema solo hay que recordar que los puntos límite de un subconjunto $X\subseteq CS$ con $S$ espacio topológico, son aquellos puntos que no son aislados en $X$. Un punto aislado de $X$, $p\in X$, es aquel para el cual existe un abierto $U\in OS$ tal que $X\cap U=\{p\}$.
+
+\begin{lemma}\label{Lema51}
+Sea $S$ un espacio topológico $T_0$. Para cualquier $X\in CS$ el conjunto $lim_S(X)\subseteq X$ es el conjunto de puntos limite de $X$.
+\end{lemma}
+
+Por la dualidad que se tiene entre $cbd$ y $lim$, podemos traducir un problema de marcos a el espacio topológico correspondiente o viceversa. En particular ocupando los lemas \ref{Lema46}, \ref{Lema50} y \ref{Lema51} podemos concluir que 
+\begin{equation*}
+\begin{split}
+\mathcal{O}\mbox{S es booleano } & \Leftrightarrow cbd^{\mathcal{O}S}(\emptyset)=S\\
+& \Leftrightarrow lim_S(S)=\emptyset\\
+& \Leftrightarrow S \mbox{ no tiene puntos aislados}.
+\end{split}
+\end{equation*}
+
+\begin{exa}
+\begin{enumerate}
+\item El operador cerradura para $cbd$, $cbd^\infty$, puede ser tan grande como queramos.
+
+\item Sea $\Gamma$ un ordinal lo suficientemente grande. Entonces tenemos el marco $\Gamma^+$ pero ahora nos tomamos el orden inverso de tal forma que que $\Gamma$ es el cero del marco y $0=\emptyset$ es el uno del marco. Ahora los supremos serían los mínimos o la intersección y los infimos la unión.\\
+Notemos que para $\alpha\neq 0$, $cbd(\alpha)=\alpha$ si y sólo si $\alpha$ es un ordinal límite 
+$$\bigwedge\{\kappa\leq\Gamma|\alpha\lessdot \kappa\}=cbd(\alpha)=\alpha$$
+$$\Rightarrow \bigcup\{\kappa\leq \Gamma|\alpha\lessdot \kappa\}=\{\kappa\leq \Gamma|\alpha>\kappa\mbox{  y  }(\kappa\succ \alpha)=\alpha\}=\alpha$$
+pues observemos que para cualquier $\kappa$,
+$$(\kappa\succ \alpha)=\bigcap\{\beta\leq \Gamma|\beta\cup\kappa\leq \alpha\}$$
+entonces $(\kappa\succ \alpha)=\alpha\Leftrightarrow \kappa<\alpha$.\\
+Sólo los límites y el cero son puntos fijos de $cbd$.
+Entonces, al obtener $Cbd(id)=cbd^\infty=\delta$, nos quedará que $\Gamma_\delta$ es el conjunto de ordinales límite menores o iguales que $\Gamma$. Si seguimos iterando $Cbd$ tendríamos que 
+
+$$Cbd(id)\mbox{  nos da a los ordinales límites}.$$
+$$Cbd^2(id)\mbox{  nos da a los ordinales límites de los límites}.$$
+$$\ldots$$
+ 
+\item Considera el intervalo $[0,1]$ en los reales con el orden usual. Entonces $[0,1]$ es un marco linealmente ordenado donde los supremos e ínfimos se calculan como siempre. Notemos que aquí $cbd=id$ pues 
+$$cbd(a)=\bigwedge\{0\leq b\leq 1|a\lessdot b\}=\bigwedge\{0\leq b\leq 1|a\leq b\mbox{  y  }b\succ a=a\}, $$
+pero $(b\succ a)=a\Leftrightarrow a<b$. Entonces $cbd(a)=\bigwedge\{0\leq b\leq a\mbox{  y  }a<b\}=a$. Así, $cbd=id\Rightarrow cbd^\infty=id$, por el corolario 3 $\theta=id$. 
+
+\end{enumerate}
+\end{exa}
+

@@ -1,0 +1,336 @@
+\chapter{Gavillas}
+
+Recordaremos las noción de gavilla en el contexto
+de espacios topológicos y veremos cómo generalizar esto
+al contexto de marcos.
+
+%\section*{SESIÓN 24: 7 DIC}
+\section{Gavillas sobre espacios topológicos}
+
+\begin{defn}
+    Sean $E$, $S$ espacios topológicos
+    y $f:E\to S$ una función continua.
+    Una sección local de $f$ es una función continua $\sigma:U\to E$,
+    donde $U$ es un abierto de $S$, tal que $f\sigma=\id_U$.
+    Decimos que una sección $\sigma:U\to E$ de $f$ es global si $U=S$.
+\end{defn}
+
+Las secciones locales de una función continua $f:E\to S$
+nos proporcionan información acerca del espacio $E$
+y la manera en la que éste yace sobre $S$.
+¿En qué condiciones se puede reconstruir $f:E\to S$ si solo
+conocemos sus secciones?
+
+\begin{defn}
+    Sean $E$, $S$ espacios topológicos
+    y $f:E\to S$ una función continua.
+    Decimos que $f$ es étale (o un homeomorfismo local) si,
+    para cada punto $e\in E$ existen vecindades
+    $U_e\in\cal OE$ de $e$ y $V_{f(e)}\in\cal OE$ de $f(e)$,
+    tales que la restricción
+    $f_e:U_e\to V_{f(e)}$ de $f$ es un homeomorfismo.
+\end{defn}
+
+Veremos que la respuesta a la pregunta anterior
+es que una función $f:E\to S$ está completamente determinada
+por su secciones exactamente cuando $f$ es étale.
+Para mostrar esto, pasaremos por el concepto de gavilla.
+
+\begin{defn}
+    Consideremos un espacio topológico $S$.
+    Una pregavilla sobre $S$ es un funtor $(\cal OS)^\op\to\Con$.
+\end{defn}
+
+Por ejemplo, tomemos un espacio ``objetivo'' $Y$ y,
+para cada abierto $U\subseteq S$,
+consideremos los conjuntos
+\begin{align*}
+    CU &= \{f:U\to Y\mid f \text{ es continua }\}, \\
+    KU &= \{f:U\to Y\mid f \text{ es constante }\}.
+\end{align*}
+Dada una inclusión $U\subseteq V$,
+tenemos funciones de restricción $CV\to CU$ y $KV\to KU$
+dadas por $f\mapsto f|_U$.
+Estas asignaciones son funtoriales,
+así que $C$ y $K$ son pregavillas sobre $S$.
+
+Una pregavilla en $S$ asigna información local, abierto por abierto.
+Queremos imponer una condición de tal modo que nos permita
+convertir esa información local en información global.
+
+\begin{defn}
+    Sean $S$ un espacio topológico y $F:(\cal OS)^\op\to\Con$
+    una pregavilla sobre $S$.
+    
+    Además, sean $U\in\cal OS$ un abierto y
+    $\cal U = (U_\alpha\mid\alpha\in \Gamma)$
+    una cubierta abierta de $U$.
+    
+    Decimos que una familia
+    $(f_\alpha\in FU_\alpha\mid\alpha\in\Gamma)$
+    subordinada a la cubierta $\cal U$
+    es una familia compatible si se cumple
+    \[
+        f_\alpha|_{U_\alpha\cap U_\beta}
+        =
+        f_\beta|_{U_\alpha\cap U_\beta}
+    \]
+    para cualesquiera $\alpha,\beta\in\Gamma$.
+    
+    En otras palabras: las inclusiones
+    $U_\alpha\cap U_\beta\to U_\alpha$
+    y $U_\alpha\cap U_\beta\to U_\beta$ inducen
+    dos funciones
+    \[
+        \prod_{\gamma\in\Gamma}FU_\gamma
+        \rightrightarrows
+        \prod_{\alpha,\beta\in\Gamma}F(U_\alpha\cap U_\beta)
+    \]
+    que mandan $(f_\gamma\mid\gamma\in\Gamma)$
+    a $(f_\alpha|_{U_\alpha\cap U_\beta}\mid\alpha,\beta\in\Gamma)$
+    y $(f_\beta|_{U_\alpha\cap U_\beta}\mid\alpha,\beta\in\Gamma)$,
+    respectivamente.
+    Entonces una familia
+    $(f_\gamma\mid\gamma\in\Gamma)\in\prod_{\gamma\in\Gamma}FU_\gamma$
+    es compatible si sus imágenes bajo estas dos funciones coinciden.
+\end{defn}
+
+\begin{defn}
+    Sea $S$ un espacio topológico.
+    Decimos que una pregavilla en $S$
+    \[
+        F:(\cal OS)^\op\to\Con
+    \]
+    es una gavilla si,
+    para cualquier abierto $U\in\cal OS$, cualquier cubierta abierta
+    $\cal U=(U_\alpha\mid \alpha\in\Gamma)$
+    y cualquier familia compatible
+    $(f_\alpha\in FU_\alpha\mid \alpha\in\Gamma)$,
+    existe un único $f\in FU$ tal que
+    \[
+        f|_\alpha = f_\alpha
+    \]
+    para todo $\alpha\in\Gamma$.
+    
+    En otras palabras, $F$ es una gavilla si,
+    para cualquier abierto $U$ de $S$ y
+    cualquier cubierta abierta
+    $(U_\alpha\mid\alpha\in\Gamma)$ de $U$,
+    el diagrama
+    \[
+        FU
+        \to
+        \prod_{\gamma\in\Gamma} FU_\gamma
+        \rightrightarrows
+        \prod_{\alpha,\beta\in\Gamma}F(U_\alpha\cap U_\beta)
+    \]
+    es un igualador.
+\end{defn}
+
+Con estas herramientas,
+podemos demostrar que los morfismos étales
+están completamente determinados por sus secciones.
+
+De hecho, demostraremos un resultado más fuerte,
+y la afirmación anterior será un corolario.
+
+Por un lado, sabemos que los funtores $(\cal OS)^\op\to\Con$
+y las transformaciones naturales entre éstos
+forman una categoría, a la cual denotamos como $\Gav(S)$.
+
+\begin{defn}
+    Dado un espacio topológico $S$, definimos la categoría
+    $\Et(S)$ como sigue:
+    \begin{itemize}
+        \item
+        Los objetos de $\Top/S$ son pares $(E,f)$,
+        donde $E$ es un espacio topológico
+        y $f:E\to S$ es una función étale.
+        \[
+            \begin{tikzcd}
+                E \ar[d,"f"] \\ S
+            \end{tikzcd}
+        \]
+        \item
+        Dados objetos $(E,f)$, $(E',f')$ de $\Et(S)$,
+        un morfismo $g:(E,f)\to(E',f')$ es una función
+        continua $g:E\to E'$ tal que el siguiente diagrama conmuta
+        \[
+            \begin{tikzcd}
+                E \ar[dr,"f"'] \ar[rr,"g"] && E' \ar[dl,"f'"]
+                \\ & S
+            \end{tikzcd}
+        \]
+    \end{itemize}
+    Esta es, en efecto, una categoría,
+    con la composición y la identidad
+    heredadas de $\Top$.
+    
+    Nótese que, si en la definición de $\Et(S)$
+    no pedimos que la función continua $f:E\to S$ sea coherente,
+    seguimos obteniendo una categoría,
+    a la cual denotamos como $\Top/S$.
+\end{defn}
+
+Ahora ¿qué relación hay entre gavillas y morfismos étales?
+
+Notemos que, dado un objeto $(E,f)$ de $\Et(S)$,
+tenemos una pregavilla $\Gamma_f$ en $S$ que,
+a cada abierto $U\subseteq S$, le asigna las secciones locales
+de $f$ con dominio $U$:
+\[
+    \Gamma_f U = \{\sigma:U\to E\mid f\sigma = \id_U\}
+\]
+y, a cada contención $U\subseteq V$, le asigna
+la función de restricción $\Gamma V\to\Gamma U$.
+De hecho, la pregavilla $\Gamma_f$ asociada a $(E,f)$ es una gavilla,
+pues las funciones continuas se pueden pegar a lo largo de abiertos.
+(Nótese que no usamos que $f$ fuera étale, por lo cual esta
+construcción sigue funcionando en $\Top/S$).
+Más aún, dado un morfismo $g:(E,f)\to(E',f')$ en $\Et(S)$,
+obtenemos una transformación natural $g_*:\Gamma_f\to\Gamma_{f'}$
+dada como $g_*(\sigma)=g\sigma$ pues,
+dados abiertos $U\subseteq V$ de $S$, el diagrama
+\[
+    \begin{tikzcd}
+        \Gamma_fV \ar[d,"g_*"'] \ar[r] & \Gamma_fU \ar[d,"g_*"] \\
+        \Gamma_{f'}V \ar[r] & \Gamma_{f'}U
+    \end{tikzcd}
+\]
+es conmutativo.
+
+Luego, obtenemos un funtor $\Gamma:\Et(S)\to\Gav(S)$.
+El resultado principal es el siguiente teorema.
+
+\begin{thm}
+    El funtor $\Gamma:\Et(S)\to\Gav(S)$ es una equivalencia.
+\end{thm}
+\begin{proof}[Bosquejo de la demostración]
+    La demostración se hace construyendo el funtor
+    $\Gav(S)\to\Et(S)$ inverso a $\Gamma$.
+    Es decir, dada una gavilla $F$ en $U$,
+    debemos construir un espacio topológico $E$ y un morfismo
+    étale $f:E\to S$ tal que $\Gamma_f\simeq F$.
+    
+    Primero construiremos $E$ fibra a fibra.
+    Dado $s\in S$, ponemos
+    \[
+        F_s = \Big(\bigsqcup_{U\in\cal OS,s\in U} FU\Big)/\simr_s
+    ,\]
+    donde $\sim_s$ es la relación de equivalencia en
+    $\bigsqcup_{U\in\cal OS,s\in U}FU$ dada,
+    para cualesquiera $\sigma\in FU$, $\sigma'\in F(U')$, como
+    $\sigma\sim_s\sigma'$ si, y solo si, existe un vecindad abierta
+    $U_s\subseteq U\cap U'$ de $s$
+    tal que $\sigma|_{U_s}=\sigma'|_{U_s}$.
+    A la clase de equivalencia de $\sigma\in FU$ bajo la relación
+    $\sim_s$ la denotamos como $[\sigma]_s$.
+    
+    Después ponemos $T(F)=\bigsqcup_{s\in S}F_s$
+    y definimos la proyección $f_F:T(F)\to S$
+    mandando $[\sigma]_s\in T(F)$ a $s\in S$.
+    Equipamos a $T(F)$ con la topología generada por los básicos
+    \[
+        B(\sigma,U) = \{[\sigma]_s\mid s\in U\}
+    \]
+    siempre que $\sigma\in FU$ y $U\in\cal OS$.
+    Finalmente, se muestra que $f_F:T(F)\to S$ es étale
+    y que esta construcción es inversa a $\Gamma$.
+\end{proof}
+
+\section{Gavillas sobre marcos}
+Ahora, ¿cómo hacemos esto sobre un marco?
+En realidad, la teoría se puede usar casi sin modificación.
+
+\begin{defn}
+    \leavevmode
+    \begin{itemize}
+        \item
+        Una pregavilla sobre un marco $A$
+        es un funtor $F:A^\op\to\Con$.
+        Si $x\leq y\in A$, denotamos la función
+        $Fy\to Fx$ inducida por $F$ como $f\mapsto f|_x$.
+        \item
+        Una pregavilla $F:A^\op\to\Con$ es separada si,
+        para cualesquiera $X\subseteq A$ y $f,g\in F(\Sup X)$,
+        se tiene
+        \[
+            (\forall x\in X,\; f|_x=g|_x)\implies f=g
+        .\]
+        \item
+        Sea $F$ una pregavilla sobre $A$.
+        Dado un subconjunto $X\subseteq A$,
+        una familia $(f_x\in Fx\mid x\in X)$
+        es compatible si $f_x|_{x\inf y}=f_y|_{x\inf y}$
+        para cualesquiera $x,y\in X$.
+        \item
+        Una pregavilla $F:A^\op\to\Con$ es cotejada si,
+        para cualquier subconjunto $X\subseteq A$
+        y cualquier familia compatible
+        $(f_x\in Fx\mid x\in X)$
+        existe un $f\in F(\Sup X)$ tal que
+        $f|_x=f_x$ para todo $x\in X$.
+        \item
+        Una pregravilla $F:A^\op\to\Con$ es una gavilla
+        si es separada y cotejada.
+    \end{itemize}
+\end{defn}
+
+\begin{exa}
+    Sea $\Omega$ un marco.
+    Dado $a\in\Omega$, consideremos
+    \begin{align*}
+        \Omega(a)
+            &= \cal L(\down a)
+            \subseteq\cal L\Omega, \\
+        \Omega\<a\>
+            &= \{X\in\cal L(\down a)\mid\Sup X=a\}
+            \subseteq\cal L\Omega, \\
+        \Omega[a]
+            &= \down a
+            \subseteq\Omega.
+    \end{align*}
+    Cada una de estas asignaciones define una pregavilla,
+    donde las restricciones están dadas, para $a\leq b$, como
+    \begin{align*}
+        X &\mapsto \{x\inf b\mid x\in X\}, \\
+        X &\mapsto \{x\inf b\mid x\in X\}, \\
+        x &\mapsto x\inf b,
+    \end{align*}
+    respectivamente.
+    Se verifica que, en general,
+    \begin{itemize}
+        \item $\Omega(\cdot)$ es cotejada pero no separada,
+        \item $\Omega\<\cdot\>$ es separada pero no cotejada y
+        \item $\Omega[\cdot]$ es gavilla.
+    \end{itemize}
+\end{exa}
+
+Dada una pregavilla $F$ en un marco $\Omega$,
+podemos obtener una gavilla $F^+$ en $\Omega$ como sigue.
+
+Para cada $a\in\Omega$, ponemos
+\begin{itemize}
+    \item
+    $\<a\> = \{X\subseteq\Omega\mid\Sup X=a\}$.
+    \item
+    $F\<a\>
+    = \{(f_x\in Fx\mid x\in X)\text{ es compatible}\mid X\in\<a\>\}$
+    \item
+    $F^+(a)=F\<a\>/\simr$,
+    donde $(f_x\in Fx\mid x\in X)\sim(g_y\inf Fy\mid y\in Y)$
+    si existe $Z\in\<a\>$, $Z\subseteq X\cap Y$ tal que
+    $af_z=g_z$ para todo $z\in Z$.
+\end{itemize}
+Se puede demostrar que $F^+$ es una gavilla y, más aún,
+la asignación $F\mapsto F^+$ se extiende a un funtor
+que resulta ser adjunto izquierdo
+de la inclusión $\Gav(\Omega)\to[\Omega^\op,\Con]$
+de las gavillas en las pregavillas.
+
+Sin embargo, estas construcciones son muy largas y complicadas.
+Se puede trabajar con las gavillas en un marco a través
+de una categoría equivalente a $\Gav(\Omega)$ llamada la categoría
+de $\Omega$-conjuntos y denotada como $\Con(\Omega)$,
+pero para desarrollar esta teoría se necesitaría más tiempo.
+

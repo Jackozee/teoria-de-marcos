@@ -1,0 +1,756 @@
+\chapter{El teorema de Tychonoff en marcos}
+
+Un espacio topológico es compacto si cualquier cubierta
+abierta del espacio admite una subcubierta finita.
+En la categoría de espacios topológicos tenemos el
+teorema de Tychonoff, que dice que un producto de espacios
+topológicos es compacto, si, y solo si, cada uno de los
+factores es un compacto.
+
+Del mismo modo, cualquier marco tiene su noción de compacidad.
+\begin{defn}[Compacidad de marcos]
+Un marco $A$ es compacto si, para cualquier $S\in A$
+se satisface lo siguiente:
+\[
+    \Sup S= 1_A
+    \implies
+    \textit{ existe } T\subseteq S\text{ finito, tal que }
+    \Sup T= 1_A
+.\]
+\end{defn}
+El objetivo de esta sección es probar el teorema análogo
+al de Tychonoff, pero en la categoría de marcos:
+\begin{thm}
+    Sea $\{A_\lambda\}_{\lambda\in\scr I}$ una familia de marcos.
+    El coproducto
+    \[
+        \coprod_{\lambda\in\scr I}A_\lambda
+    \]
+    es compacto si, y solo si, cada $A_\lambda$ es compacto.
+\end{thm}
+
+\section{Idea de la demostración}
+
+En la sección anterior probamos que
+$\coprod_{\lambda\in\scr I}A_\lambda$
+es el marco de $C$-ideales de $A$, donde $A$ es el coproducto
+de los $A_\lambda$ como $\inf$-semiretículas y $C$ es cierta
+cobertura en $A$.
+Como $C\Idl$ es un cociente de $\cal LA$,
+los supremos en $C\Idl$ se calculan como
+\[
+    \Sup S = j(\bigcup S)
+,\]
+donde $j:\cal LA\to\cal LA$ es el núcleo asociado a $C\Idl$.
+Por lo tanto, es de esperarse que la demostración de
+nuestra versión del teorema de Tychonoff involucre al núcleo
+$j$ de alguna manera.
+De hecho, toda la demostración consiste
+en dar una construcción de $j$ que facilite convertir
+ciertos supremos arbitrarios en supremos finitos.
+Para llevar a cabo esta idea, primero definiremos una
+cierta subcobertura $C_f\subseteq C$, de tal modo que
+factorizaremos la proyección $\cal LA\to C\Idl$ a través de
+$C_f\Idl$:
+\[
+    \begin{tikzcd}
+        \cal LA \ar[d] \ar[r] & C\Idl \\
+        C_f\Idl \ar[ur]
+    \end{tikzcd}
+\]
+
+Más específicamente, el plan es el siguiente:
+\begin{itemize}
+    \item
+    Definimos una subcobertura $C_f\subseteq C$ en $A$ y
+    construimos la proyección $\cal LA\to C_f\Idl$.
+    Es decir, dado $S\in\cal L(A)$,
+    construimos el $C_f$-ideal $FS$ generado por $S$.
+    \item 
+    Vemos que el conjunto $\cal DS$ de supremos dirigidos
+    de $S$ está contenido en el $C$-ideal generado por $S$.
+    \item
+    Probamos que, si $S$ es un $C_f$-ideal, entonces
+    $\cal DS$ también lo es.
+    Por lo tanto, $\cal D(FS)$ es un $C_f$ ideal que
+    contiene a $S$ y está contenido en el $C$-ideal $j(S)$
+    generado por $S$.
+    \[
+        S\subseteq \cal D(FS) \subseteq j(S)
+    .\]
+    Sin embargo, la última contención puede ser propia.
+    \item
+    Para saltar de $\cal D(FS)$ a $j(S)$,
+    iteramos $\cal D$ para construir una
+    cadena de $C_f$-ideales que contienen a $D(FS)$
+    \[
+        FS\subseteq \cal D(FS) \subseteq \cal D^2(FS)
+        \subseteq \dots
+    \]
+    y probamos que, eventualmente, se alcanza $j(S)$.
+    \item
+    Con nuestra construcción de $j(S)$ veremos
+    que, dada una familia $P\subseteq C\Idl(A)$,
+    la igualdad
+    $j(\bigcup P)=A$ implica $F(\bigcup P)=A$.
+    En otras palabras,
+    $\Sup P = 1_{C\Idl(A)}$ implica $1\in F(\bigcup P)$.
+    \item
+    Con esta última herramienta, podremos demostrar
+    la implicación $\impliedby$ del teorema.
+    \item
+    La implicación $\implies$ es directa.
+\end{itemize}
+
+\section{La cobertura de cubiertas finitas}
+
+\begin{lemma}
+La función $C_f:A\to\cal P(\cal P(A))$
+definida para todo $a\in A$ como
+\[C_f(a)=\{S\subseteq A\mid S\in C(a), S\textit{ finito}\}\]
+es una cobertura sobre $A$.
+\end{lemma}
+
+Nuestra primera tarea será obtener una construcción para
+el núcleo asociado al cociente $\cal LA\to C_f\Idl$.
+Para esto, introduciremos algo de notación.
+
+\begin{defn}
+Sean $\lambda_1,\dots,\lambda_n\in \scr I$ índices distintos y
+$x_1,\dots,x_n$ elementos tales que
+$x_i\in A_{\lambda_i}$ para todo $i$.
+En otras palabras, $x=(x_1,\dots,x_n)$ es un elemento del producto
+$A_{\lambda_1}\times\dots\times A_{\lambda_n}$.
+
+Para cualquier elemento $a\in A$ del coproducto de los $A_\lambda$
+en $\Pos^{\inf}$, denotaremos como
+$a(x)=a(x_1,\dots,x_n)$ al elemento de $A$ que
+es igual a $a$ pero con las entradas $\lambda_1,\dots,\lambda_n$
+reemplazadas por $x_1,\dots,x_n$.
+Es decir,
+\[
+    p_\lambda(a(x_1,\dots,x_n))
+    =
+    a(x_1,\dots,x_n)_\lambda
+    =
+    \begin{cases}
+        x_i, & \lambda = \lambda_i \\
+        a_\lambda & \lambda\not\in\{\lambda_1,\dots\lambda_n\}
+    \end{cases}
+.\]
+En particular, si $x_i\in A_{\lambda_i}$, se cumple que
+\begin{align*}
+  1(x_i)
+    &= q_{\lambda_i}(x_i) \\
+  1(x_1,\dots,x_n)
+    &= \Inf\{q_{\lambda_i}(x_i) \mid i=1,\dots,n\}.
+\end{align*}
+%
+%Estrictamente hablando,
+%habría que denotar no solo los elementos $x_1,\dots,x_n$
+%que van a reemplazar las
+%entradas de $a$, sino también exactamente en qué entradas se
+%está haciendo la sustitución
+%(ya que podría darse el caso que $A_\lambda=A_\mu$ aún cuando
+%$\lambda\neq\mu$).
+%Sin embargo, no lo haremos así, pues todas las
+%sustituciones se harán en un contexto que permita saber
+%el conjunto exacto de índices.
+\end{defn}
+
+\begin{defn}
+  Dado un conjunto $S\subseteq A$, defino el conjunto $FS$
+  especifivando que $a\in FS$ si, y solo si,
+  existe un conjunto finito no vacío de índices
+  $\Gamma=\{\lambda_1,\dots,\lambda_n\}$ que contiene al
+  soporte de $a$ y conjuntos $S_1,\dots,S_n$ con
+  $S_i\subseteq A_{\lambda_i}$ tales que $\Sup S_i =
+  a_{\lambda_i}$ y, para toda tupla
+  $(s_1,\dots,s_n)\in S_1\times\cdots\times S_n$, el elemento
+  \[
+    a(s_1,\dots,s_n)
+  \]
+  está en $S$.
+  En tal caso, decimos que $a$ es $\Gamma$-generado por $S$ y
+  que $(\Gamma,S_1,\dots,S_n)$ es el testigo de $a\in FS$,
+  ya que $(\Gamma,S_1,\dots,S_n)$ atestigua (o prueba) que
+  $a$ pertenece a $FS$.
+\end{defn}
+
+\section{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} también.}
+
+Sea $S$ una sección inferior, $a\in FS$ y $b\leq a$.
+
+Sea $a\in FS$ y sea $(\Gamma,S_1,\dots,S_n)$ su testigo.
+Sin perder generalidad, podemos suponer que $\Gamma$ también
+contiene al soporte de $b$.
+En efecto, si $b_\gamma\neq 1_\gamma$ y $\gamma\not\in\Gamma$,
+podemos agregar $\gamma$ a $\Gamma$ y poner
+$S_\gamma = \{1_\gamma\}$,
+de modo que $a_\gamma = 1_\gamma = \Sup S_\gamma$
+y, para todo
+$(s_1,\dots,s_n,1_\gamma)\in\prod_{i=1}^nS_i\times S_\gamma$
+se tiene
+\[
+  1(s_1,\dots,s_n,1_\gamma) = 1(s_1,\dots,s_n) \in S
+.\]
+
+Supongamos, pues, que $b$ también tiene soporte contenido en
+$\Gamma$.
+Entonces haciendo $T_i=\{b_{\lambda_i}\inf s \mid s\in S_i\}$
+para todo $i=1,\dots,n$, tenemos que
+\begin{align*}
+  \Sup T_i
+  &= b_{\lambda_i}\inf\Sup S_i \\
+  &= b_{\lambda_i}\inf a_{\lambda_i} \\
+  &= b_{\lambda_i}.
+\end{align*}
+
+Más aún, dado $(b_{\lambda_1}\inf s_1,\dots,b_{\lambda_n}\inf
+s_n)\in \prod_{i=1}^n T_\lambda$, tenemos
+\begin{align*}
+  1(b_{\lambda_1}\inf s_1,\dots,b_{\lambda_n}\inf s_n)
+  \leq 1(s_1,\dots,s_n) \in S.
+\end{align*}
+y, como $S$ es sección inferior, tenemos
+\[
+  1(b_{\lambda_1}\inf s_1,\dots,b_{\lambda_n}\inf s_n) \in S
+.\]
+Se sigue que $b$ es finitamente generado por $S$ con testigo
+$(\Gamma,T_1,\dots,T_n)$, es decir: $b\in FS$,
+así que $FS$ es sección inferior.
+
+\section{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} está contenido en todos los \tps{$C_f$}{Cf}-ideales que contienen a \tps{$S$}{S}.}
+
+Sea $J$ un $C_f$-ideal que contiene a $S$.
+Tomemos un elemento $a\in FS$ con testigo $(\Gamma,S)$, donde
+$\Gamma=\{\lambda_1,\dots,\lambda_n\}$.
+
+Probaremos, por inducción sobre $k\leq n$, que, para cada tupla
+$(s_k,\dots,s_n)\in S_k\times\cdots\times S_n$, el elemento
+$a(s_k,\dots,s_n)$ está en $J$.
+
+Para toda tupla
+$(s_1,\dots,s_n)\in S_1\times\cdots\times S_n$, tenemos que
+\[
+  a(s_1,\dots,s_n)\in S\subseteq J
+\]
+ya que $a\in FS$.
+Esto prueba el caso base ($k=1$).
+
+La hipótesis de inducción ($k$) nos dice que, para cada tupla
+$(s_k,\dots,s_n)\in S_k\times\cdots\times S_n$,
+el elemento $a(s_k,\dots,s_n)$ está en $J$.
+
+Ahora (el paso de inducción)
+sea $(s_{k+1},\dots,s_n)\in S_{k+1}\times\cdots\times S_n$
+una tupla arbitraria y consideremos el conjunto
+\[
+  \{a(s,s_{k+1},\dots,s_n) \mid s\in S_k\}
+  =
+  S_k(a(s_{k+1},\dots,s_n),\lambda_k)
+  \in
+  C_f(a(s_{k+1},\dots,s_n))
+.\]
+Esta es, en efecto, una cubierta, ya que la $\lambda_k$-ésima
+coordenada de $a(s_{k+1},\dots,s_n)$ es $a_{\lambda_k}=\Sup S_k$.
+Más aún: por hipótesis de inducción, cada elemento
+de la cubierta está en $J$.
+Como $J$ es un $C_f$-ideal, se sigue que
+\[
+  a(s_{k+1},\dots,a_n) \in J
+.\]
+Esto concluye la inducción para $k\leq n$.
+En particular, tenemos $a(s_n)\in J$ para cada $s_n\in S_n$,
+pero esta es una $C_f$-cubierta de $a$ contenida en $J$,
+así que $a\in J$.
+Por lo tanto, $FS\subseteq J$.
+
+\section{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} es cerrado bajo
+cubiertas y, por lo tanto, es un \tps{$C_f$}{Cf}-ideal.}
+
+Si $a\in A$ tiene una cubierta vacía, entonces tiene una entrada
+cero, digamos $a_{\lambda_1}=0$.
+Sea $\lambda_2,\dots,\lambda_n$ el resto de su soporte.
+Poniendo $S_1=\{\}$ y $S_i=\{a_{\lambda_i}\}$ para $i=2,\dots,n$,
+obtenemos $\Sup S_i = a_{\lambda_i}$.
+Como $S_1\times S_2\times\cdots\times S_n=\emptyset$,
+se cumple que $a\in FS$ por vacuidad.
+
+Luego, basta considerar cubiertas de dos elementos.
+
+Sean $a,b\in FS$ con $a_\gamma=b_\gamma$ para todo
+$\gamma\neq\gamma_0$.
+Debemos mostrar que $a\sup b\in FS$.
+
+Como antes, podemos suponer que tanto $a$ como $b$ tienen soporte
+en el mismo $\Gamma=\{\gamma_0,\gamma_1,\dots,\gamma_n\}$.
+
+Por definición, tenemos $F_\gamma,G_\gamma$ tales que $\Sup
+F_\gamma = a_\gamma$, $\Sup G_\gamma = b_\gamma$ para todo
+$\gamma\in\Gamma$ y
+\begin{align*}
+  1(f_0,\dots,f_n)\in S && 1(g_0,\dots,g_n)\in S.
+\end{align*}
+siempre que $f_i\in F_{\gamma_i}$ y $g_i\in G_{\gamma_i}$.
+
+Definamos $H_{\gamma_0}=F_{\gamma_0}\cup G_{\gamma_0}$ y
+$H_\gamma = \{f\inf g\mid f\in F_\gamma,g\in G_\gamma\}$ para
+todo $\gamma\in\Gamma,\gamma\neq\gamma_0$.
+Entonces
+\begin{align*}
+  \Sup H_{\gamma_0}
+  &= \Sup(F_{\gamma_0}\cup G_{\gamma_0}) \\
+  &= \Sup F_{\gamma_0} \sup \Sup G_{\gamma_0} \\
+  &= a_{\gamma_0} \sup b_{\gamma_0}
+  \\
+  \Sup H_\gamma
+  &= \Sup\{f\inf g \mid f\in F_\gamma, g\in G_\gamma\} \\
+  &= \Sup F_\gamma \inf \Sup G_\gamma \\
+  &= a_\gamma \inf b_\gamma \\
+  &= a_\gamma\sup b_\gamma
+  \text{ para } \gamma\neq\gamma_0,
+\end{align*}
+lo cual son las entradas de $a\sup b$.
+
+Ahora, las tuplas $x=\prod_{i=0}^n H_{\gamma_i}$ son de
+dos formas posibles.
+\begin{itemize}
+  \item Si $x=(f_0,f_1\inf g_1,\dots,f_n\inf g_n)$,
+  entonces
+  \begin{align*}
+    1(f_0,f_1\inf g_1,\dots,f_n\inf g_n)
+    &\leq 1(f_0,f_1,\dots,f_n) \in S.
+  \end{align*}
+  \item de otro modo, $x=(g_0,f_1\inf g_1,\dots,f_n\inf g_n)$,
+  así que
+  \begin{align*}
+    1(g_0,f_1\inf g_1,\dots,f_n\inf g_n)
+    &\leq 1(g_0,g_1,\dots,g_n)\in S.
+  \end{align*}
+\end{itemize}
+Como $S$ es sección inferior, se sigue que $1(x)$ siempre está en
+$S$, así que $a\sup b$ está en $FS$.
+
+\section{El conjunto de supremos dirigidos \tps{$\D S$}{DS} está contenido en todos los \tps{$C$}{C}-ideales que contienen a \tps{$S$}{S}.}
+
+Sea $S$ una sección inferior y $\D S$ su conjunto de supremos
+dirigidos.
+
+Sea $J$ un $C$-ideal que contiene a $S$.
+Como todo $a\in\D S$ es el supremo de un $D\subseteq S$ dirigido
+y $D\subseteq S\subseteq J$, basta ver que $J$ es cerrado bajo
+supremos dirigidos.
+
+Tomemos un subconjunto dirigido $D\subseteq J$.
+Como $D$ es dirigido, para cualquier $d\in D$ tenemos
+\[
+  \Sup D = \Sup(D\cap{\uparrow}d)
+.\]
+($\geq$ es obvia, para $\leq$ basta observar que todo $a\in D$
+está por debajo de un $c\in D$ con $\geq a\sup d$).
+Luego, podemos suponer que $D$ está contenido en una sección
+superior principal.
+En particular podemos suponer que todos los elementos de $D$
+tienen soporte en $\Gamma=\{\lambda_1,\dots,\lambda_n\}$.
+
+Sea $a=\Sup D$.
+Como $D$ es dirigido, entonces sus proyecciones $D_1,\dots,D_n$ a
+los marcos $A_{\lambda_1},\dots,A_{\lambda_2}$ son dirigidas
+(todos los $x_1,y_1\in D_1$ vienen de elementos $x,y\in D$;
+luego, existe $z\in D$ con $x,y\leq z$, por lo cual $x_1,y_1\leq
+z_1$).
+
+Por definición del supremo, tenemos
+\[
+  a = 1(\Sup D_1,\dots,\Sup D_n)
+.\]
+
+Por inducción sobre $k\leq n$, probaremos que, para toda tupla
+$(d_k,\dots,d_n)\in D_k\times\cdots\times D_n$, el elemento
+\[
+  a(d_k,\dots,d_n)
+  =
+  1(\Sup D_1,\dots,\Sup D_{k+1},d_k,\dots,d_n)
+\]
+está en $J$.
+
+Para cualquier tupla $(d_1,\dots,d_n)\in D_1\times\cdots\times
+D_n$, cada entrada $d_i$ es la $\lambda_i$-ésima
+proyección de algún $x_i\in D$.
+Como $D$ es dirigido, existe $z\in D$ con $x_1,\dots,x_n\leq z$.
+Luego,
+\[
+  1(d_1,\dots,d_n)\leq z\in D \subseteq J
+.\]
+Como $J$ es sección inferior, tenemos $1(d_1,\dots,d_n)\in J$.
+Esto prueba el caso base ($k=1$).
+
+La hipótesis de inducción ($k$) dice que, para cada tupla
+$(d_k,\dots,d_n)\in D_k\times\cdots\times D_n$, el elemento
+$a(d_k,\dots,d_n)$ está en $J$.
+
+Ahora (paso de inducción) sea
+$(d_{k+1},\dots,d_n)\in D_{k+1}\times\cdots\times D_n$ una tupla
+arbitraria y consideremos el conjunto
+\
+\[
+  \{a(d,d_{k+1},\dots,d_n) \mid d\in D_k\}
+  =
+  D_k(a(d_{k+1},\dots,d_n),\lambda_k)
+  \in
+  C(a(d_{k+1},\dots,d_n))
+.\]
+Esta es, en efecto, una cubierta, ya que la $\lambda_k$-ésima
+coordenada de $a(d_{k+1},\dots,d_n)$ es $\Sup D_k$.
+Más aún: por hipótesis de inducción, cada elemento de la cubierta
+está en $J$.
+Como $J$ es un $C$-ideal, se sigue que
+$a(d_{k+1},\dots,d_n)\in J$.
+Esto concluye la inducción.
+En particular, para $k=n$, mostramos que $a(d_n)\in J$ para todo
+$d_n\in D_n$, pero este conjunto es una $C$-cubierta de $a$.
+Se sigue que $a\in J$, así que $J$ es cerrado bajo supremos
+dirigidos.
+Por lo tanto, $\D S\subseteq J$.
+
+\section{Si \tps{$S$}{S} es un \tps{$C_f$}{Cf}-ideal,
+entonces \tps{$\D S$}{DS} también.}
+
+Dado $a\in S$, $\{a\}\subseteq S$ es dirigido, así que
+$a=\Sup\{a\}\in \D S$, por lo que $S\subseteq\D S$.
+
+Primero veamos que $\D S$ es sección inferior.
+Sean $a\in \D S$ y $b\leq a$.
+Podemos suponer que $a$ y $b$ tienen soporte en $\Gamma$.
+Tenemos $a=\Sup D$ con $D\subseteq S$ dirigido.
+Es claro que
+\[
+  b = \Sup\{b\inf d\mid d\in D\}
+.\]
+Como $S$ es sección inferior, este último conjunto esta en $S$,
+así que basta probar que es dirigido.
+Sean $b\in d,b\inf d'$ con $d,d'\in D$.
+Entonces existe $d''\in D$ con $d\sup d'\leq d''$, por lo
+cual $b\inf d''$ cumple
+$(b\inf d)\sup(b\inf d')=b\inf(d\sup d')\leq b\inf d''$ y, así,
+el conjunto es dirigido.
+Luego $b\in\D S$ y $\D S$ es sección inferior.
+
+Ahora veamos que $\D S$ es cerrado bajo $C_f$-cubiertas.
+Si $a\in A$ tiene una cubierta vacía, tenemos $a\in S$, así que
+$a\in\D S$ (pues $S$ es $C_f$-ideal),
+por lo cual basta ver que $\D S$ es cerrado
+bajo $C_f$-cubiertas de dos elementos.
+Sean $a,b\in\D S$ con todas sus entradas iguales excepto
+$\gamma_0$.
+Por definición, existen $D,E\subseteq S$ dirigidos con
+$a=\Sup D$ y $b=\Sup E$.
+
+Definimos $*:D\times E\to A$ como
+\begin{align*}
+  (d*e)_{\gamma_0} &= d_{\gamma_0} \sup e_{\gamma_0} \\
+  (d*e)_{\gamma} &= d_{\gamma} \inf e_{\gamma} \text{ para }
+  \gamma\neq\gamma_0
+\end{align*}
+y sea $F=\{d*e \mid d\in D, e\in E\}$.
+
+Ahora veamos que $F$ es dirigido.
+Si $d*e,d'*e'\in F$, entonces existen $d''\in D$ y $e''\in E$ con
+$d\sup d'\leq d''$ y $e\sup e'\leq e''$.
+Luego, $(d*e)\sup(d'*e')\leq d''*e''$, pues la comparación es
+puntual y $*$ es monótono en cada coordenada; en efecto:
+\begin{align*}
+  ((d*e)\sup(d'*e'))_{\gamma_0}
+  &= (d*e)_{\gamma_0} \sup (d'*e')_{\gamma_0} \\
+  &= d_{\gamma_0}\sup e_{\gamma_0}\sup d'_{\gamma_0}\sup
+    e'_{\gamma_0} \\
+  &= (d_{\gamma_0}\sup d'_{\gamma_0})
+    \sup(e_{\gamma_0}\sup e'_{\gamma_0}) \\
+  &\leq d''_{\gamma_0} \sup e''_{\gamma_0}
+  \\
+  ((d*e)\sup(d'*e'))_{\gamma}
+  &= (d*e)_{\gamma} \sup (d'*e')_{\gamma} \\
+  &= (d_\gamma\inf e_\gamma)\sup(d'_\gamma\inf e'_\gamma) \\
+  &\leq d_\gamma \sup e'_\gamma \\
+  &\leq d''_\gamma \sup e''_\gamma.
+\end{align*}
+Se sigue que $F$ es dirigido.
+Mas aún, $\Sup F = a\sup b$, pues
+\begin{align*}
+  (\Sup F)_{\gamma_0}
+  &= \Sup\{(d*e)_{\gamma_0} \mid d\in D,e\in E\} \\
+  &= \Sup\{d_{\gamma_0}\sup e_{\gamma_0} \mid d\in D,e\in E\} \\
+  &= \Sup\{d_{\gamma_0}\mid d\in D\}
+    \sup \Sup\{e_{\gamma_0}\mid e\in E\} \\
+  &= (\Sup D)_{\gamma_0} \sup (\Sup E)_{\gamma_0} \\
+  &= a_{\gamma_0} \sup b_{\gamma_0}
+  \\
+  (\Sup F)_\gamma
+  &= \Sup\{(d*e)_\gamma\mid d\in D,e\in E\} \\
+  &= \Sup\{d_\gamma\inf e_\gamma\mid d\in D,e\in E\} \\
+  &= \Sup\{d_\gamma\mid d\in D\}
+    \inf \Sup\{e_\gamma\mid e\in E\} \\
+  &= (\Sup D)_\gamma \inf (\Sup E)_\gamma \\
+  &= a_\gamma \inf b_\gamma \\
+  &= a_\gamma \sup b_\gamma \text{ para }\gamma\neq\gamma_0,
+\end{align*}
+lo cual son las entradas de $a\sup b$.
+
+Para mostrar que $a\sup b\in\D S$,
+solo queda ver que $F\subseteq S$.
+Para esto, usaremos que $S$ es $C_f$-ideal (nótese que no lo
+habíamos usado excepto en un caso muy simple).
+
+Sea $d*e\in F$; es decir: $d\in D\subseteq S$ y $e\in E\subseteq S$.
+Queremos construir una $C_f$-cubierta de $d*e$ que esté contenida
+en $S$.
+Consideremos  $r,s\in A$ dados por
+\begin{align*}
+  r_\gamma = s_\gamma
+    &= d_\gamma \inf e_\gamma \text{ para } \gamma\neq\gamma_0 \\
+  r_{\gamma_0} &= d_\gamma \\
+  s_{\gamma_0} &= e_\gamma.
+\end{align*}
+Observemos que $r\leq d\in D\subseteq S$ y que $s\leq e\in
+E\subseteq S$.
+Como $S$ es sección inferior, tenemos $r,s\in S$.
+Finalmente, es claro que $r\sup s = d*e$ donde el supremo se
+concentra en una entrada.
+Es decir, $\{r,s\}\in C_f(d*e)$ y $\{r,s\}\subseteq S$.
+Como $S$ es $C_f$-ideal, se sigue que $d*e\in S$.
+Así, $F\subseteq S$, por lo cual $a\sup b\in\D S$.
+Es decir, $\D S$ es cerrado bajo $C_f$-cubiertas, por lo cual
+también es un $C_f$-ideal.
+
+\section{Lema: saltar de \tps{$\D(FS)$}{D(FS)} a \tps{$j(S)$}{j(S)}.}
+    Sea $I$ un $C_f$-ideal de $A$.
+    Como ya vimos, $\D I$ es un $C_f$-ideal contenido
+    entre $I$ y el $C$-ideal $j(I)$ generado por $I$.
+    Aplicando esto a $\D I$, obtenemos
+    \[
+        I\subseteq \D I
+        \subseteq \D(\D I)
+        \subseteq j(\D I)=j(I)
+    .\]
+    Poniendo $I=FS$ (el $C_f$-ideal generado por una sección
+    inferior $S\subseteq A$) e iterando $\D$, obtenemos una
+    cadena de $C_f$-ideales
+    \[
+        FS \subseteq \cal D(FS)
+        \subseteq D^2(FS)
+        \subseteq \dots
+    \]
+    contenidos en $j(FS)=j(S)$.
+
+
+    La extensión de esta cadena a todos los ordinales
+    \begin{align*}
+        I_0 &= FS \\
+        I_{\alpha+1} &= \D(I_\alpha) \\
+        I_\lambda
+        &= \bigcup\{I_\alpha \mid \alpha<\lambda\}
+            && \text{ si $\lambda$ es límite }
+    \end{align*}
+    se estaciona en el $C$-ideal $j(S)$ generado por $S$. \\
+    En efecto, sea $\gamma$ el primer ordinal donde la cadena
+    se detiene.
+    Entonces $I_\gamma=I_{\gamma+1}=\D(I_\alpha)$.
+    Es decir, $I_\gamma$ es cerrado bajo supremos dirigidos.
+    Como también es cerrado bajo supremos finitos
+    (entrada por entrada), se sigue
+    que es cerrado bajo supremos arbitrarios
+    (entrada por entrada), así que es
+    un $C$-ideal.
+    Se sigue que $I_\gamma=j(S)$, como se afirmó.
+
+
+\section{Lema: generar a \tps{$A$}{A} como \tps{$C$}{C}-ideal implica generarlo como \tps{$C_f$}{Cf}-ideal}
+    Tomemos una familia $A_\lambda$ de marcos compactos
+    y sea $A$ su coproducto como $\inf$-semiretículas.
+    Equipémoslo con los cubrientes $C$ y $C_f$.
+    
+    Si $P\subseteq C\Idl(A)$ es tal que $\Sup P=1_{C\Idl(A)}$,
+    entonces $1\in F(\bigcup P)$.
+    En otras palabras, si
+    $j(\bigcup P)=A$, entonces $F(\bigcup P)=A$.
+    \\
+    %\pause
+    \textbf{\emph{Demostración:}} \\
+    Supongamos que $A=j(\bigcup P)$.
+    De la construcción anterior, tenemos
+    $I_\gamma=j(\bigcup P)$ (donde $\gamma$ es el primer
+    ordinal donde se detiene la cadena de iteraciones
+    $\D^\alpha(\bigcup P)$),
+    así que $1\in I_\gamma$. \\
+    Afirmamos que $\gamma$ no puede ser ordinal límite.
+    En efecto, si lo fuera, tendríamos
+    \[
+        1 \in I_\gamma = \bigcup\{I_\alpha \mid \alpha<\gamma\}
+    ,\]
+    por lo cual $1\in I_\alpha$ para algún $\alpha<\gamma$, lo
+    cual no puede suceder por la minimalidad de $\gamma$.
+
+    Más aún, $\gamma$ no puede ser sucesor.
+    Si fuera el caso que $\gamma=\beta+1$, tendríamos
+    $1\in I_\gamma = \D(I_\beta)$;
+    es decir: $1=\Sup D$ para algún conjunto dirigido
+    $D\subseteq I_\beta$.
+    Dado que $D$ es dirigido, podemos tomar cualquier
+    $d\in D$ y obtener
+    \[
+        1
+        = \Sup D
+        = \Sup\{a\in D\mid d\leq a\}
+        = \Sup(D\cap{\uparrow}d)
+    ,\]
+    lo cual nos dice que,
+    reemplazando a $D$ por $D\cap{\uparrow}d$ en
+    caso de ser necesario,
+    podemos suponer que $D$ está contenido en una
+    sección superior principal.
+    En particular, podemos suponer que todos los elementos
+    de $D$ tienen soporte contenido en
+    un conjunto finito de índices $\Gamma$.
+
+    Para cada $\lambda\in\Gamma$, sea $D_\lambda=p_\lambda(D)$.
+    Como $1=\Sup D$, tenemos $1_\lambda=\Sup D_\lambda$ y,
+    por compacidad de los $A_\lambda$, esto nos da familias finitas
+    $E_\lambda\subseteq D_\lambda$ tales que
+    $1_\lambda=\Sup E_\lambda$.
+    
+    Luego, todos los elementos de todos los $E_\lambda$ aparecen
+    como entradas de los elementos de un conjunto finito
+    $E\subseteq D$.
+    Como $D$ es dirigido y $E$ es finito,
+    existe $a\in D$ tal que $\Sup E\leq a$,
+    pero $\Sup E=1$, así que
+    \[
+        1 = a \in D\subseteq I_\beta
+    ,\]
+    lo cual contradice la minimalidad de $\gamma$.
+    
+    Se sigue que $\gamma=0$.
+    Esto es, $A=j(\Sup P) = I_0 = F(\bigcup P)$, como se deseaba.
+
+\section{Una implicación (Tychonoff)}
+    Con toda esta herramienta, podemos demostrar el teorema
+    de Tychonoff.
+    Si $A_\lambda$ es una familia de marcos compactos y $A$
+    es su coproducto como $\inf$-semiretículas,
+    debemos mostrar que $C\Idl(A)$ es compacto.
+    Sea $P\subseteq C\Idl(A)$ una familia de $C$-ideales tal que
+    $\Sup P = 1_{C\Idl(A)}$.
+    En otras palabras: $\bigcup P$ genera a $A$ como $C$-ideal.
+    \[
+        j(\bigcup P) = A
+    .\]
+    
+    Como acabamos de probar, esto implca que $\bigcup P$ también
+    genera a $A$ como $C_f$-ideal:
+    \[
+        F(\bigcup P)=A
+    .\]
+    En particular, $1\in F(\bigcup P)$; esto es:
+    existe algún conjunto finito no vacío de índices $\Gamma$
+    tal que $1\in A$ es $\Gamma$-finitamente generado por
+    $\bigcup P$.
+
+    Es decir: para cada $\lambda\in\Gamma$ existe un conjunto
+    finito $S_\lambda\subseteq A_\lambda$
+    con $\Sup S_\lambda = 1_\lambda$
+    y, siempre que se tenga una tupla
+    $x=(x_\lambda)_{\lambda\in\Gamma}$
+    con $x_\lambda\in A_\lambda$,
+    se cumple
+    \[
+        1(x)
+        =\Inf\{q_\lambda(x_\lambda)\mid\lambda\in\Gamma\}
+        \in\bigcup P
+    .\]
+    Ahora, como $\Gamma$ es finito y cada $S_\lambda$
+    también, solo se puede formar
+    una cantidad finta de tuplas
+    $x=(x_\lambda)_{\lambda\in\Gamma}$.
+    Así, el conjunto de los $1(x)$ es finito y, por lo tanto,
+    está contenido en una cantidad finita de factores
+    $P_1,\dots,P_n\in P$ de $\bigcup P$.
+    
+    Luego, $1\in A$ es $\Gamma$-finitamente generado
+    por $\bigcup_{i=1}^nP_i$.
+    Esto es $F(\bigcup_{i=1}^n P_i)=A$ y, así,
+    \[
+        \Sup\{P_1,\dots,P_n\}
+        = j(\bigcup_{i=1}^nP_i)
+        = A
+        = 1_{C\Idl(A)}
+    .\]
+    Luego, $C\Idl(A)$ es compacto.
+
+%\section*{SESIÓN 22: 30 NOV (Expo Alfredo, dudas tarea)}
+
+\section{La otra implicación}
+
+Necesitamos este pequeño resultado.
+\begin{lemma}
+Dada un elemento $x\in A_\lambda$, entonces
+\[
+    j(\down q_\lambda(x)) = \down q_\lambda(x)
+.\]
+\end{lemma}
+\begin{proof}
+    En efecto, sea $a\in A$ y $S(a,\mu)\subseteq\down q_\lambda(x)$
+    una $C$-cubierta de $a$.
+    Queremos mostrar que $a\leq q_\lambda(x)$.
+    Si $\mu\neq\lambda$, entonces $S(a,\mu)\subseteq \down q_\lambda(x)$
+    nos dice que $a_\lambda\leq x$, así que $a\leq q_\lambda(x)$.
+    Por otro lado, si $\mu=\lambda$, entonces
+    $S(a,\lambda) \subseteq \down q_\lambda(x)$ nos dice que, para todo
+    $s\in S$ tenemos $s\leq x$.
+    Por lo tanto, $a_\lambda=\Sup S\leq x$, así que $a\leq q_\lambda(x)$.
+    Se sigue que $\down q_\lambda(x)$ es un $C$-ideal.
+\end{proof}
+Ahora sí.
+
+\begin{lemma}
+    Si el coproducto $C\Idl(A)$ de una familia de marcos
+    $A_\lambda$ es compacto, entonces cada $A_\lambda$
+    también es compacto.
+\end{lemma}
+\begin{proof}
+    Supongamos que $C\Idl$ es compacto.
+    Si $S\subseteq A_\lambda$ es tal que $\Sup S=1_\lambda$,
+    entonces $S(\lambda,1)\in C(1)$.
+    
+    Para cada $s\in S$, sea $Q_\lambda(s)
+    = j(\down q_\lambda(s))$
+    el $C$-ideal generado por $s$ bajo $q_\lambda$.
+    Luego,
+    \[
+        \Sup\{Q_\lambda(s) \mid s\in S\} = 1_{C\Idl(A)} = A
+    .\]
+    Por la compacidad de $C\Idl(A)$,
+    existen $s_1,\dots,s_n\in S$ tales que
+    \[
+        \Sup\{Q_\lambda(s_i) \mid i=1,\dots,n\} = A
+    .\]
+    Como $Q_\lambda$ es morfismo de marcos, esto es
+    \[
+        Q_\lambda(\Sup\{s_i \mid i=1,\dots,n\}) = A
+    .\]
+    
+    Ahora, dado que $Q_\lambda(x) = \down q_\lambda(x)$, tenemos
+    \[
+        1 \in \down q_\lambda(\Sup\{s_i \mid i=1,\dots,n\})
+    ,\]
+    o bien
+    \[
+        1 = q_\lambda(\Sup\{s_i \mid i=1,\dots,n\})
+    .\]
+    Proyectando a la $\lambda$-ésima coordenada, obtenemos
+    \[
+        1_\lambda = \Sup\{s_i \mid i=1,\dots,n\}
+    .\]
+    Se sigue que $A_\lambda$ es compacto.
+\end{proof}
+

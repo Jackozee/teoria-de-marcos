@@ -1,0 +1,1528 @@
+\chapter{Cocientes}
+\label{ch:cocientes}
+
+%\section*{(SESIÓN 6: 28 SEP)}
+Ahora queremos investigar qué significa que un marco sea cociente
+de otro.
+Para esto, hagamos una comparación rápida de cómo funcionan los
+cocientes en otros contextos:
+
+\begin{itemize}
+  \item
+  Dado un conjunto $S$, un cociente de $S$ es otro conjunto
+  que se construye a partir de una relación de equivalencia
+  $\simr$ en $S$.
+  Los elementos del cociente $S/\simr$ son los bloques de $S$ con
+  respecto a la relación dada y se obtiene una función de
+  proyección $\pi:S\to S/\simr$.
+
+  \item
+  Un cociente de un espacio vectorial $V$ es otro espacio
+  vectorial que se construye a partir de un subespacio
+  $U\leq V$.
+  A partir de $U$, se construye una relación de equivalencia en
+  $V$ y el cociente $V/U$ es el conjunto de bloques de la
+  relación, con lo cual se obtiene una función de
+  proyección $\pi:V\to V/U$.
+
+  \item
+  Un cociente de un grupo $G$ es otro grupo
+  que se forma a partir de un subgrupo normal $H\leq G$.
+  Éste grupo $H$ induce una relación de equivalencia en $G$ y el
+  cociente $G/H$ es el conjunto de bloques de la
+  relación, con lo cual se obtiene una función de proyección
+  $\pi:G\to G/H$.
+
+  \item
+  Dado un anillo $A$, un cociente de $A$ es otro anillo que se
+  forma a partir de un ideal bilateral $I$ de $A$.
+  El ideal $I$ induce una relación de equivalencia en $A$ y el
+  anillo cociente $A/I$ es el conjunto de bloques de la relación,
+  así que obtenemos una función de proyección $\pi:A\to A/I$.
+\end{itemize}
+En cada caso, el cociente es el conjunto
+de bloques con respecto a una relación de equivalencia y la
+función de proyección $\pi$ induce en el cociente
+una estructura similar a la del objeto original (el
+cociente de un grupo es un grupo, el cociente de un anillo es un
+anillo, etc.) de tal manera que $\pi$ es
+un morfismo en la categoría correspondiente.
+
+Para que esto sea posible, es preciso tomar el tipo
+de subestructuras que se mencionaron arriba: si el subgrupo $H\leq
+G$ no es normal, sí obtenemos una relación de equivalencia en
+$G$, pero $\pi:G\to G/H$ no induce una estructura de grupo en $G$
+que convierta a $\pi$ en un morfismo;
+si el ideal bilateral $I$ se reemplaza por un ideal izquierdo,
+derecho o incluso por un subanillo, también obtenemos relaciones
+de equivalencia en $A$, pero no hay estructura de anillo en $A/I$
+tal que $\pi:A\to A/I$ sea un morfismo.
+
+Esta característica depende completamente de la relación de
+equivalencia y, a las relaciones de equivalencia que satisfacen
+esta propiedad se les llama congruencias.
+Es decir, las congruencias de grupos son precisamente las
+relaciones de equivalencia inducidas por subgrupos normales, las
+congruencias de anillos son precisamente las relaciones de
+equivalencia inducidas por ideales bilaterales, etc.
+
+En nuestro estudio de los marcos, también consideraremos
+congruencias de marcos: relaciones de equivalencia
+tales que la proyección sea un morfismo de marcos, pero las
+congruencias de marcos no estarán codificadas por ciertos tipos
+de submarcos (en contraste con el caso de los grupos, espacios
+vectoriales, etc).
+
+Además, en los casos mencionados arriba,
+los cocientes satisfacen otras propiedades que también se
+satisfacen en la categoría de marcos.
+
+La primera es que cualquier morfismo $f:A\to B$ de la categoría
+relevante se factoriza a través de un cociente de $A$.
+
+Los cocientes satisfacen otra propiedad importante.
+Supongamos que $C$ es un cociente de $A$ dado por una
+congruencia. Si un morfismo $f:A\to B$ en la categoría
+respeta la congruencia dada, entonces $f$ se factoriza de manera
+única a través de $C$.
+
+Dado un morfismo de grupos $\phi:G\to H$, existe un subgrupo normal
+$\ker \phi\leq G$ tal que $\phi$ se factoriza a través del cociente
+$G/\ker \phi$.
+
+\[
+    \begin{tikzcd}
+        G \ar[dr] \ar[rr,"\phi"] && H \\
+        &G/\ker \phi \ar[ur,"\tilde\phi"']
+    \end{tikzcd}
+.\]
+Más aún, este cociente es universal en el sentido de que, para cualquier 
+morfismo $\psi:G\to H'$ con $\ker\phi \leq \ker\psi$, existe un único
+morfismo $\phi^\sharp:G/\ker\phi\to H'$ que factoriza a $\psi$ a través
+del cociente:
+\[
+    \begin{tikzcd}
+        G \ar[dr] \ar[rr,"\psi"] && H' \\
+        &G/\ker \phi \ar[ur,"\phi^\sharp"']
+    \end{tikzcd}
+.\]
+Vale la pena notar que la relación de equivalencia
+\[
+    g\sim h \ssi \phi(g) = \phi(h)
+\]
+está codificada en el subgrupo $\ker \phi$ de $G$.
+Esta situación se repite en las categorías de anillos,
+espacios vectoriales, módulos, álgebras, etc.
+Queremos llevar esta situación a un contexto más general,
+donde no tenemos estructura de grupo.
+
+\section{Cocientes de conjuntos}
+Consideremos una función de conjuntos $\phi:A\to B$.
+Queremos definir algo que haga el papel del núcleo de $\phi$.
+Aquí no tenemos estructura de grupo, pero sí podemos definir una relación
+de equivalencia $\sim$ en $A$:
+\[
+    a\sim b \ssi \phi(a) = \phi(b)
+.\]
+Como es usual, denotando al conjunto de bloques de la relación como
+$A/\simr$, tenemos la función $\eta: A\to A/\simr$ que manda un elemento
+$a\in A$ a su bloque $[a]$ correspondiente.
+Es decir:
+\begin{align*}
+    \eta:A&\to A/\simr \\
+    a&\mapsto [a] = \{x\in A \mid x\sim a\}.
+\end{align*}
+En particular, se tiene que
+\[
+    \eta(x) = \eta(y) \ssi x\sim y
+.\]
+Una consecuencia es que tenemos una función
+$\phi^\sharp:A/\simr \to B$ que cierra el triángulo:
+\[
+\begin{tikzcd}
+    A\ar[rr,"\phi"] \ar[dr,"\eta"'] && B \\
+    & A/\simr \ar[ur,"\phi^\sharp"']
+\end{tikzcd}
+\]
+dada como $\phi^\sharp([a]) = \phi(a)$.
+El hecho de que $\phi^\sharp$ esté bien definida como función se debe,
+precisamente, a la definición de la relación de equivalencia:
+si $[a]=[b]$, entonces $a\sim b$, por lo cual $\phi(a)=\phi(b)$, i.e.,
+$\phi^\sharp([a])=\phi^\sharp([b])$.
+Más aún, tenemos $A/\simr\simeq \img \phi$.
+En particular, si $\phi$ es suprayectiva, entonces $A/\simr \simeq B$.
+
+También aquí sucede que $\eta$ es universal con respecto a esta
+propiedad: si $\psi:A\to B'$ es una función tal que
+$\phi(a)=\phi(b)\implies \psi(a)=\psi(b)$,
+entonces existe una única $\psi^\sharp:A/\simr\to B'$
+que factoriza a $\psi$ a través de $\eta$.
+Nos gustaría decir que el ``núcleo'' de $\phi$ es la relación de
+equivalencia $\sim$ inducida por $\phi$.
+
+\section{Cocientes en \tps{$\SupLat$}{SupLat}}
+Nuestro objetivo es estudiar los cocientes en la categoría de
+marcos.
+Para esto, estudiaremos primero los cocientes en un caso más
+sencillo: la categoría de $\Sup$-semiretículas.
+(recordemos que tenemos un funtor de inclusión $\Frm\to\SupLat$).
+
+Primero veremos que todo morfismo induce una congruencia.
+Luego, veremos que toda congruencia produce un morfismo cociente y
+que este morfismo induce la congruencia original.
+
+En la categoría de conjuntos, todo morfismo $\phi:A\to B$
+induce una relación de equivalencia $\simr$ en $A$  y,
+recíprocamente, toda relación de equivalencia $\simr$ en $A$ está
+inducida por un morfismo (porque podemos formar el cociente
+$A/\simr$).
+Queremos obtener un resultado análogo en $\SupLat$.
+
+Un $\Sup$-morfismo $f:A\to B$ es, en particular,
+una función, así que induce una relación de equivalencia en $A$.
+Sin embargo, no todas las relaciones de equivalencia son
+interesantes. Nos enfocaremos en las relaciones de equivalencia
+que respeten la estructura de $\Sup$-semiretícula, las cuales
+llamaremos $\Sup$-congruencias.
+
+Supongamos que tenemos una relación de equivalencia
+$\simr$ en una $\Sup$-semirre\-tícula $A$.
+Si $X,Y\subseteq A$ son dos subconjuntos 
+indicados por un conjunto $I$
+\begin{align*}
+    X &= \{x_i \mid i\in I\} &
+    Y &= \{y_i \mid i\in I\}
+\end{align*}
+tales que para cada índice $i\in I$ se tiene $x_i\sim y_i$,
+entonces usaremos la notación $X\sim Y$.
+
+Decimos que una relación de equivalencia $\simr\subseteq A\times
+A$ es una $\Sup$-congruencia si, para todo par de subconjuntos
+$X,Y\subseteq A$ con $X\sim Y$, se tiene $\Sup X\sim \Sup Y$.
+
+El primer resultado es
+\begin{lemma}[Todo morfismo induce una congruencia]
+  Sea $\phi:A\to B$ un $\Sup$-morfismo.
+  Entonces la relación de equivalencia en $A$ inducida por
+  $\phi$:
+  \[
+      a\sim b \ssi \phi(a) = \phi(b)
+  \]
+  es una $\Sup$-congruencia.
+\end{lemma}
+\begin{proof}
+  Tomemos subconjuntos $X\sim Y\subseteq A$ indicados por $I$.
+  Esto es, para todo $i\in I$ tenemos $x_i\sim y_i$,
+  por lo cual $\phi(x_i)=\phi(y_i)$.
+  Luego,
+  \begin{align*}
+      \phi(\Sup X)
+      &= \Sup\{\phi(x_i)\mid i\in I\} \\
+      &= \Sup\{\phi(y_i)\mid i\in I\} \\
+      &= \phi(\Sup Y).
+  \end{align*}
+  Luego, $\Sup X \sim \Sup Y$, por lo cual $\sim$ es una
+  $\Sup$-congruencia.
+\end{proof}
+
+%  Si $X,Y\subseteq A$ son dos subconjuntos con la misma
+%  imagen $f(X)=f(Y)$, entonces $X\sim Y$.
+%  La condición $f(X)=f(Y)$ implica que,
+%  para cada $x\in X$, existe $y(x)\in Y$
+%  tal que $x\sim y(x)$ y, recíprocamente,
+%  para cada $y\in Y$ existe $x(y)\in X$ tal que $y\sim x(y)$.
+%  Ahora tomemos $I=X\cup Y$ y definamos
+%  \begin{align*}
+%      x_i &=
+%          \begin{cases}
+%              i & i\in X \\
+%              x(i) & i\nin X
+%          \end{cases}
+%      &
+%      y_i &=
+%          \begin{cases}
+%              y(i) & i\in X \\
+%              i & x\nin X
+%          \end{cases}
+%  \end{align*}
+%  para todo $i\in I$.
+%  Notemos que $X=\{x_i\mid i\in I\}$, $Y=\{y_i\mid i\in I\}$ y
+%  $X\sim Y$.
+
+\begin{lemma}[Toda congruencia produce un cociente]
+  \label{lemma:congruencia-produce-cociente}
+  %[Alfredo $\checkmark$]
+  Dada una $\Sup$-semiretícula $A$ y una $\Sup$-congruencia
+  $\simr$ sobre $A$, la estructura de semirretícula superior en
+  $A/\simr$ inducida por $\eta:A\to A/\simr$ es el único orden
+  que convierte a $A/\simr$ en una $\Sup$-semirretícula y
+  a $\eta:A\to A/\simr$ en un $\Sup$-morfismo.
+\end{lemma}
+\begin{proof}
+  Sean $[a],[b]\in A/\simr$.
+  Como $\simr$ es una $\Sup$-congruencia, el bloque de
+  $[a\sup b]$ no depende de los representantes,
+  ya que $a\sim a'$ y $b\sim b'$ implica
+  que $a\sup b\sim a'\sim b'$.
+  Luego, podemos definir una operación en $A/\simr$ como
+  \begin{align*}
+      [a]\sup[b]
+      &= \Sup\{[a],[b]\} \\
+      &= \Sup\eta(\{a,b\}) \\
+      &= \eta(a\sup b) \\
+      &= [a\sup b].
+  \end{align*}
+  para cualesquiera $[a],[b]\in A/\simr$.
+  Como $A$ es un monoide conmutativo idempotente, entonces esta
+  operación en $A/\simr$ también lo convierte en uno,
+  por lo cual la relación
+  \[
+      [a]\leq[b] \ssi [a\sup b]=[b]
+  \]
+  es un orden parcial en $A/\simr$ cuyo supremo (binario) es
+  $\sup$. (Ver \ref{ss:semireticulas}).
+  Más aún, la igualdad $[a]\sup[b]=[a\sup b]$ nos dice que $\eta$
+  es un morfismo de semirretículas superiores y, de hecho, esta
+  es la única estructura de semirretícula superior en $A/\simr$
+  que lo logra, ya que si $\sup'$ es otra estructura en $A/\simr$
+  compatible con $\eta$, entonces tenemos
+  \begin{align*}
+    [a]\sup'[b]
+    &= \eta(a)\sup'\eta(b) \\
+    &= \eta(a\sup b) \\
+    &= [a\sup b] \\
+    &= [a]\sup[b].
+  \end{align*}
+  
+  Ahora nos falta ver que $A/\simr$ es superiormente completo
+  y que $\eta$ preserva los supremos arbitrarios.
+  Notemos que cualquier subconjunto $Y\subseteq A/\simr$ es de la
+  forma $Y=\eta(X)$ para algún $X\subseteq A$: por ejemplo,
+  $Y=\eta(\eta^{-1}(Y))$.
+
+  Si probamos que el supremo de $\eta(X)$ es $\eta(\Sup X)$,
+  esto mostrará, al mismo tiempo, que $A/\simr$ tiene supremos
+  arbitrarios y que la función $\eta:A\to A/\simr$ es un
+  $\Sup$-morfismo.
+  
+  Tomemos $\eta(X)\subseteq A/\simr$.
+  Como $\eta$ preserva supremos binarios,
+  se sigue que $\eta$ es monótona.
+  Luego, $\eta(\Sup X)$ es cota superior de $\eta(X)$.
+  Ahora sea $[a]\in A/\simr$ una cota superior de $\eta(X)$;
+  esto es: $[x]\leq[a]$
+  (o bien, $[x\sup a]=[a]$, o bien, $x\sup a\sim a$)
+  para todo $x\in X$.
+  Luego, poniendo
+  \begin{align*}
+      Y &= \{x\sup a\mid x\in X\}
+      &
+      Z &=\{a\mid x\in X\},
+  \end{align*}
+  (los cuales son conjuntos indicados por $X$)
+  tenemos $Y\sim Z$.
+  Como $\simr$ es una $\Sup$-congruencia, tenemos
+  $\Sup Y\sim\Sup Z$, pero esto es
+  \[
+      \Sup X\sup a\sim a
+  .\]
+  Se sigue que $[\Sup X\sup a]=[a]$. Es decir, $[\Sup
+  X]\sup[a]=[a]$ o, equivalentemente $[\Sup X]\leq[a]$.
+  Así,
+  \[
+      \eta(\Sup X)\leq [a]
+  .\]
+  Esto muestra que $\eta(\Sup X)$ es el supremo de $\eta(X)$
+  en $A/\simr$:
+  \[
+    \eta(\Sup X) = \Sup \eta(X)
+  .\]
+  Así, $A/\simr$ es superiormente completa y
+  $\eta$ es un $\Sup$-morfismo.
+\end{proof}
+
+El resultado anterior nos dice que en la
+categoría de $\Sup$-semirretículas también existe la noción de
+cociente, al igual que en las categorías más familiares de
+anillos, grupos, etc. Una $\Sup$-semirretícula $B$ es cociente de
+$A$ si es de la forma $A/\simr$ para alguna $\Sup$-congruencia
+$\simr$ en $A$. Más formalmente, hacemos la siguiente definición:
+\begin{defn}
+  Decimos que un morfismo $f:A\to B$ es un morfismo cociente de
+  $A$, o que exhibe a $B$ como cociente de $A$, si hay una
+  congruencia $\simr$ en $A$ y un isomorfismo $A/\simr\simeq B$
+  de forma que el triángulo
+  \[
+    \begin{tikzcd}
+      A \ar[d,"\eta"'] \ar[r,"f"] & B \\
+      A/\simr \ar[ur,"\simeq"']
+    \end{tikzcd}
+  \]
+  es conmutativo.
+  En este caso, decimos que $B$ es el cociente de $A$ por
+  $\simr$.
+\end{defn}
+Con esta definición se entiende el título del lema anterior:
+``toda congruencia produce un cociente''.
+
+\begin{obs}[Correspondencia entre congruencias y cocientes]
+\leavevmode
+  \begin{itemize}
+    \item
+    Toda $\Sup$-congruencia $\simr$ es la $\Sup$-congruencia
+    inducida por su morfismo cociente $\eta:A\to A/\simr$.
+    \item
+    Todo morfismo cociente $f:A\to B$ es el cociente de $A$ por la
+    congruencia $\simr$ inducida por $f$.
+  \end{itemize}
+\end{obs}
+Así, los morfismos cociente son exactamente los
+morfismos suprayectivos.
+
+\begin{prop}[Teorema del factor, versión 1]
+  Sea $A$ una $\Sup$-semirretícula y $\simr$ una
+  $\Sup$-congruencia en $A$.
+  Si $f:A\to B$ un $\Sup$-morfismo que respeta a $\simr$,
+  entonces $f$ se factoriza de manera única
+  a través de $\eta:A\to A/\simr$.
+\end{prop}
+\begin{proof}
+  Como $f$ respeta a $\simr$ como relación de equivalencia,
+  entonces se factoriza de manera única a través de $A/\simr$ en
+  la categoría de conjuntos:
+  \[
+    \begin{tikzcd}
+      A \ar[rr,"f"] \ar[dr,"\eta"'] & & B \\
+      & A/\simr \ar[ur,"f^\sharp"']
+    \end{tikzcd}
+  \]
+  Notemos que tanto $f$ como $\eta$ son $\Sup$-morfismos, así
+  que basta ver que $f^\sharp$ también es un $\Sup$-morfismo,
+  pero esto es fácil: cualquier subconjunto de $A/\simr$ tiene la
+  forma $\eta(X)$ para algún $X\subseteq A$, así que
+  \begin{align*}
+    f^\sharp(\Sup \eta(X))
+    &= f^\sharp(\eta(\Sup X)) \\
+    &= f(\Sup X) \\
+    &= \Sup f(X) \\
+    &= \Sup f^\sharp(\eta(X)).
+  \end{align*}
+\end{proof}
+Además, si $\simr$ es la congruencia inducida por $f$,
+entonces $f$ se factoriza como $f=f^\sharp\eta$, con $f^\sharp$
+inyectivo y $\eta$ suprayectivo.
+
+\subsection{Operadores cerradura}
+
+El apartado anterior vimos que las $\Sup$-semirretículas tienen
+muchos paralelismos con los grupos, anillos, módulos, etc.
+Sin embargo, en éstas últimos casos, las congruencias tienen
+representaciones alternativas: las congruencias de un grupo están
+en correspondencia con sus subgrupos normales,
+las congruencias de un módulo están en correspondencia con sus
+submódulos, las congruencias de un anillo están en
+correspondencia con sus ideales bilaterales, etc.
+
+En vista de esto, queremos encontrar una representación
+alternativa de las congruencias de una $\Sup$-semirretícula.
+De hecho, encontraremos no una, sino dos de estas
+representaciones: los operadores cerradura y los
+subconjuntos $\Inf$-cerrados.
+
+Dada una $\Sup$-congruencia $\simr$ en $A$, sabemos construir la
+$\Sup$-semirretícula cociente $A/\simr$.
+Sin embargo, los elementos de $A/\simr$ son los bloques $[x]$ de
+$A$ con respecto a $\simr$ y a veces es molesto trabajar con
+clases de equivalencia. En otro tipo de estructuras como espacios
+vectoriales y anillos, podríamos pensar en tomar un representante
+de cada bloque y trabajar con ellos en vez de trabajar con los
+bloques, pero no hay una eleccción canónica de representantes.
+Sin embargo, en el caso de las $\Sup$-semirretículas cada bloque
+tiene un representante natural: su supremo.
+Para que esta idea funcione bien, lo primero que hay que
+verificar es que el supremo de cada bloque sigue estando en el
+bloque:
+\begin{lemma}
+  Si $\sim$ es una $\Sup$-congruencia en $A$, entonces cada
+  bloque de $\simr$ tiene un mayor elemento.
+  Es decir, para cada $[a]\in A/\simr$, tenemos $\Sup[a]\in [a]$.
+\end{lemma}
+\begin{proof}
+  Tomemos $[a]\in A/\simr$ y definamos nuestro conjunto de
+  índices como $I=[a]$.
+  Sean
+  \begin{align*}
+      X &= \{x_i \mid i\in I\} \\
+      Y &= \{y_i \mid i\in I\}
+  \end{align*}
+  donde $x_i=i$ y $y_i=a$ para cada $i\in I=[a]$.
+  Por construcción, tenemos $x_i\sim y_i$ para cada $i\in I$:
+  esto es, $X\sim Y$.
+  Luego, como $\sim$ es una $\Sup$-congruencia, se sigue que
+  $\Sup X\sim\Sup Y$.
+  Esto es,
+  \[
+      \Sup[a] = \Sup X \sim \Sup Y = a
+  .\]
+  Por lo tanto, $\Sup [a]\in [a]$.
+\end{proof}
+Este resultado dice que, si tomamos un bloque $[a]\in A/\simr$,
+nos fijamos en su supremo y luego volvemos a bajar con $\eta:A\to
+A/\simr$, caemos en el bloque en el que empezamos.
+Es decir:
+\[
+    \eta(\Sup [a]) = [a]
+.\]
+Ahora consideramos la otra composición:
+\begin{defn}
+    Sea $\simr$ una $\Sup$-congruencia en $A$.
+    El \emph{selector} de $\simr$ es la función $j:A\to A$ dada por
+    \[
+        j(a) = \Sup\eta(a) = \Sup[a] = \Sup\{x\in A \mid x\sim a\}
+    .\]
+\end{defn}
+El selector tiene algunas propiedades interesantes.
+\begin{itemize}
+    \item 
+    Si $x\sim a$, entonces $x\leq j(a)$.
+    En particular, $a\leq j(a)$, ya que $a\sim a$.
+    Decimos que $j$ infla.
+    \item
+    Supongamos que $a\leq b$.
+    Dado que $a\sim j(a)$ y $b\sim j(b)$, entonces
+    \[
+        b = a\sup b \sim j(a) \sup j(b)
+    \]
+    porque $\simr$ es $\Sup$-congruencia.
+    Luego, $j(a) \sup j(b) \leq j(b)$.
+    Entonces
+    \[
+        j(a)\leq j(a)\sup j(b) \leq j(b)
+    .\]
+    Es decir, $j$ es monótona.
+    \item
+    Ahora tomemos $a\in A$.
+    Sabemos que $a\sim j(a)$ y que $j(a)\sim j(j(a))$,
+    por lo cual $a\sim j(j(a))$.
+    Luego, $j(j(a))\leq j(a)$.
+    Por otro lado, también tenemos $j(a)\leq j(j(a))$ (porque $j$ infla) así que
+    $j(a)=j(j(a))$.
+    En otras palabras, $j$ es idempotente.
+\end{itemize}
+\begin{defn}[Operador cerradura]
+  \label{def:operador-cerradura}
+  Si $A$ es un copo, un operador cerradura en $A$ es una función
+  $j:A\to A$ tal que
+  \begin{itemize}
+    \item Infla: $a\leq j(a)$ para todo $a\in A$
+    \item Es monótona: $a\leq b$ implica que $j(a)\leq j(b)$.
+    \item Es idempotente: $j(j(a))=a$.
+  \end{itemize}
+\end{defn}
+Así, lo que acabamos de mostrar es que, si $j$ es el selector de
+una $\Sup$-congruencia $\simr$, entonces $j$ es un operador
+cerradura.
+Ahora queremos ver el camino de regreso: dado un operador
+cerradura $j$ en $A$, ¿podemos obtener una $\Sup$-congruencia de
+manera natural? La respuesta es sí y, de hecho, estas
+construcciones son inversas una de la otra.
+\begin{lemma}%[Juan $\checkmark$ ]
+  Sea $A$ una $\Sup$-retícula. Los selectores de $A$ son
+  precisamente los operadores cerradura. Además cada operador
+  cerradura es selector para una única $\Sup$-congruencia. Es
+  decir, hay una relación biyectiva entre $\Sup$-congruencias y
+  operadores cerradura en $A$.
+\end{lemma}
+\begin{proof}
+  Ya sabemos que el selector de una $\Sup$-congruencia es un
+  operador cerradura.
+
+  Ahora tomemos un operador cerradura $j:A\to A$.
+  Como $j$ es una función, sabemos que la relación
+  \[
+    x\sim y\ssi j(x)=j(y)
+  \]
+  es de equivalencia.
+  Veamos que es una $\Sup$-congruencia.
+  Supongamos que $X,Y\subseteq A$ son subconjuntos indicados por
+  un conjunto $I$ y que $X\simr Y$.
+  Entonces para cualquier $y_i\in Y$ tenemos $y_i\sim x_i$ con
+  $x_i\in X$. Como $j$ infla y es monótono, tenemos
+  \[
+    y_i\leq j(y_i)=j(x_i)\leq j(\Sup X)
+  \]
+  Así, $\Sup Y\leq j(\Sup X)$.
+  Aplicando $j$ obtenemos $j(\Sup Y)\leq j(\Sup X)$, pues $j$ es
+  idempotente.
+  Análogamente, tenemos $j(\Sup X)\leq j(\Sup Y)$, por lo cual
+  $j(\Sup X)=j(\Sup Y)$ y así $\Sup X\sim\Sup Y$, así que
+  $\simr$ es una $\Sup$-congruencia.
+
+  Ahora veamos que estas correspondencias son inversas una de la
+  otra.
+  
+  Sea $j$ un operador cerradura y $\simr$ su $\Sup$-congruencia
+  asociada.
+  Para ver que $j$ es el selector de $\simr$, basta ver que
+  $j(y)$ es el supremo del bloque de $y$ con respecto a $\simr$.
+  Notemos que, si $x\sim y$, entonces $x\leq j(x)=j(y)$ porque
+  $j$ infla, así que $j(y)$ es cota superior del bloque de $y$.
+  Además, tenemos $y\sim j(y)$, ya que $j(y)=j(j(y))$. Por lo
+  tanto, si $z$ es una cota superior del bloque de $y$, entonces
+  en particular $j(y)\leq z$.
+
+  Ahora sea $\simr$ una $\Sup$-congruencia y $j$ su selector.
+  Debemos ver que $\simr$ es la congruencia de $j$. Es decir,
+  mostraremos que
+  \[
+    x\sim y \ssi j(x)=j(y)
+  .\]
+  Por un lado $x\sim y$ significa que $[x]=[y]$, por lo cual sus
+  supremos $j(x)$ y $j(y)$ son iguales.
+  Por otro lado, dado que $x\simr j(x)$ para todo $x\in A$, si
+  $j(x)=j(y)$ entonces tenemos $x\sim j(x)=j(y)\sim y$, con lo
+  cual terminamos.
+\end{proof}
+
+\subsubsection{Conjuntos \tps{$\Inf$}{Inf}-cerrados}
+
+Vimos que, en una $\Sup$-semirretícula, hay una correspondencia
+entre operadores cerradura y $\Sup$-congruencias.
+De hecho, ahora veremos que la correspondencia es triple:
+los operadores cerradura también están en correspondencia con los
+subconjuntos de $A$ que son cerrados bajo ínfimos arbitrarios.
+
+\begin{defn}
+    Si $A$ es una $\Sup$-semirretícula,
+    un subconjunto $F\subseteq A$ se dice que es $\Inf$-cerrado si,
+    para todo subconjunto $X\subseteq F$, se tiene $\Sup X\in F$.
+\end{defn}
+
+Ahora mostraremos que hay una correspondencia entre operadores
+cerradura y conjuntos $\Inf$-cerrados.
+
+\begin{lemma}\leavevmode
+  \begin{enumerate}
+    \item
+    Dado un operador cerradura $j$ en $A$, el conjunto de sus
+    puntos fijos
+    \[
+        A_j = \{x\in A \mid j(x) = x\}
+    \]
+    es $\Inf$-cerrado.
+    \item
+    Dado un conjunto $\Inf$-cerrado $F\subseteq A$, la función
+    $j_F:A\to A$ dada por
+    \[
+        j_F(a) = \Inf\{x\in F \mid a\leq x\}
+    \]
+    es un operador cerradura.
+    \item
+    Las construcciones $F\mapsto j_F$
+    y $j\mapsto A_j$ son inversas una de la otra y, por lo tanto,
+    establecen una biyección entre operadores
+    cerradura en $A$ y los conjuntos $\Inf$-cerrados de $A$, que,
+    además, están en biyección con las $\Sup$-congruencias de
+    $A$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \begin{enumerate}
+    \item
+    Tomemos un subconjunto $X\subseteq A_j$.
+    Para cualquier $x\in X$ tenemos $\Inf X\leq x$, por lo cual
+    \[
+        j(\Inf X) \leq j(x) = x
+    \]
+    ya que $j$ es monótona y $x\in A_j$.
+    Esto significa que $j(\Inf X)$ es cota inferior de $X$, por
+    lo cual
+    \[
+        j(\Inf X)\leq \Inf X
+    \]
+    y, además, la otra desigualdad $\Inf X\leq j(\Inf X)$ se da
+    porque $j$ infla.
+    Luego, $j(\Inf X) = \Inf X$, pero esto es $\Inf X \in A_j$.
+    \item
+    En efecto, dado que cualquier $a\in A$ es cota inferior de
+    $\{x\in F \mid a\leq x\}$, se sigue que $a\leq j_F(a)$.
+
+    Ahora, dados $a\leq b\in A$, tenemos
+    \[
+        \{x\in F \mid a\leq x\} \supseteq \{x\in F \mid b\leq x\}
+    \]
+    lo cual, tomando ínfimos, nos da $j_F(a) \leq j_F(b)$.
+
+    Finalmente, como $F$ es $\Inf$-cerrado, para cualquier $a\in A$
+    tenemos $j_F(a)\in F$ (por definición de $j_F$),
+    de modo que $j_F(a) \in\{x\in F \mid j_F(a) \leq x\}$.
+    Una vez más, por la definición de $j_F$ se sigue que
+    $j_F(j_F(a)) \leq j_F(a)$
+    y la otra desigualdad $j_f(a)\leq j_F(j_F(a))$ es porque
+    $j_F$ infla.
+    \item
+    Sea $F\subseteq A$ un conjunto $\Inf$-cerrado.
+    Entonces
+    \begin{align*}
+        j_F(a) &= \Inf\{x\in F \mid a\leq x\} \\
+        A_{j_F} &= \{a\in A \mid j_F(a)=a\}.
+    \end{align*}
+    Observemos que $F\subseteq A_{j_F}$, ya que
+    $a=\Inf\{x\in F\mid a\leq x\}$ para todo $a\in F$.
+    Por otro lado,
+    como $F$ es $\Inf$-cerrado, tenemos $j_F[A]\subseteq F$.
+    Luego, $A_{j_F}=j_F[A_{j_F}] \subseteq F$ y, así, $F=A_{j_F}$.
+    
+    Recíprocamente, sea $j:A\to A$ un operador cerradura.
+    Entonces
+    \begin{align*}
+        A_j &= \{a\in A \mid j(a)=a \} \\
+        j_{A_j}(a) &= \Inf\{x\in A_j \mid a\leq x\}.
+    \end{align*}
+    Como $j$ infla y es idempotente, todo $a\in A$ satisface
+    \[
+        j(a) \in \{x\in A_j \mid a\leq x\}
+    .\]
+    Además, $j(a)$ es una cota inferior del conjunto,
+    pues para todo
+    $x\in A_j$ con $a\leq x$ tenemos $j(a)\leq j(x)=x$.
+    Por lo tanto,
+    \[
+        j(a) = \Inf\{x\in A_j \mid a\leq x\} = j_{A_j}(a)
+    .\]
+    Esto muestra que $j=j_{A_j}$.
+    Luego, las construcciones $F\mapsto j_F$ y $j\mapsto A_j$
+    son inversas, lo cual establece la biyección deseada.
+  \end{enumerate}
+\end{proof}
+
+\subsubsection{La correspondencia entre operadores cerradura y cocientes}
+
+Al principio de esta sección,
+vimos que todo $\Sup$-morfismo $f:A\to B$ induce una
+$\Sup$-congruencia en $A$. Por lo tanto, también induce un
+operador cerradura $k:A\to A$
+
+\begin{defn}
+    Para cada $\Sup$-morfismo $f:A\to B$, el núcleo de $\phi$
+    es el operador cerradura $k:A\to A$ que le corresponde a
+    la $\Sup$-congruencia inducida por $f$.
+    Es decir $k$ está determinado por la condición
+    \[
+        k(x) = k(y) \ssi f(x) = f(y)
+    .\]
+\end{defn}
+
+También vimos que toda $\Sup$-congruencia en $A$ produce un
+cociente de $A$. Por lo tanto, todo operador cerradura $k:A\to A$
+produce un cociente de $A$.
+
+Como estas correspondencias son biyecciones,
+cualquier cociente $f:A\to B$ es el cociente producido por
+su núcleo, mientras que todo operador cerradura es el
+núcleo del cociente que produce.
+
+Ahora veremos que estas correspondencias tienen descripciones más
+directas.
+
+Si $f:A\to B$ es un $\Sup$-morfismo, entonces preserva supremos,
+por lo cual tiene un adjunto derecho $f_*:B\to A$.
+(Ver \ref{ss:adj-copos}).
+Es decir, $f_*$ es un morfismo de copos determinado por la
+condición
+\[
+    a\leq f_*(b) \ssi f(a) \leq b
+\]
+y está dado por la fórmula
+\[
+    f_*(b) = \Sup\{x\in A \mid f(x) \leq b\}
+.\]
+\begin{prop}[El operador cerradura de un morfismo]
+  Si $f:A\to B$ es un $\Sup$-morfismo y $f_*:B\to A$ es su adjunto
+  derecho, entonces la función $k=f_*f:A\to A$ es un operador
+  cerradura y, de hecho es el núcleo de $f$.
+\end{prop}
+\begin{proof}
+  Primero veremos que $k=f_*f$ es un operador cerradura.
+  \begin{itemize}
+    \item
+    $k$ es monótona porque $f$ y $f_*$ lo son.
+    \item 
+    Usando la fórmula para $f_*$, tenemos
+    \[
+        k(a) = f_*f(a) = \Sup\{x\in A \mid f(x) \leq f(a)\} \geq
+        a
+    ,\]
+    pues $a\in\{x\in A\mid f(x)\leq f(a)\}$.
+    Así, $k$ infla.
+    \item
+    Para ver la idempotencia de $k$, calculemos $ff_*f:A\to B$.
+    \begin{align*}
+        ff_*f(a)
+        &= f(k(a)) \\
+        &= f(\Sup\{x\in A \mid f(x) \leq f(a) \}) \\
+        &= \Sup\{f(x) \mid f(x) \leq f(b) \} \\
+        &= f(a)
+    \end{align*}
+    Es decir, $ff_*f=f$. Por lo tanto, $k^2 = f_*ff_*f=f_*f=k$,
+    como se quería
+\end{itemize}
+
+Ahora veamos que $k=f_*f$ cumple la propiedad de ser el núcleo de
+$f$; es decir:
+\[
+  k(x)=k(y) \ssi f(x)=f(y)
+.\]
+Tomemos $x,y\in A$ tales que $k(x)=k(y)$,
+esto es, $f_*f(x) = f_*f(y)$, o bien
+\begin{align*}
+  f_*f(x) &\leq f_*f(y)
+  &
+  f_*f(y) &\leq f_*f(x).
+\end{align*}
+Como $f_*$ es adjunto derecho de $f$, esto sucede si, y solo si,
+\begin{align*}
+  ff_*f(x) &\leq f(y)
+  &
+  ff_*f(y) &\leq f(x).
+\end{align*}
+Recordando que $ff_*f=f$ (de la demostración de idempotencia),
+esto es equivalente a
+\begin{align*}
+  f(x) &\leq f(y)
+  &
+  f(y) &\leq f(x),
+\end{align*}
+es decir, $f(x)=f(y)$. Esto prueba que $k=f_*f$ es el núcleo de
+$f$, como se quería.
+\end{proof}
+
+Esto nos permite probar otra caracterización del nucleo de un
+$\Sup$-morfismo:
+
+\begin{cor}
+  Dado un $\Sup$-morfismo $f:A\to B$, el núcleo de $f$
+  es el operador cerradura $k:A\to A$ determinado por la condición
+  \[
+      x\leq k(a) \ssi f(x) \leq f(a)
+  .\]
+\end{cor}
+\begin{proof}
+  Recordemos que la adjunción nos da la equivalencia
+  \[
+      x\leq f_*(y) \ssi f(x) \leq y
+  .\]
+  Tomando $y=f(a)$, tenemos la equivalencia deseada.
+\end{proof}
+
+Ahora veamos el regreso. Dado un operador cerradura $j$, podemos
+obtener una descripción sencilla del morfismo cociente asociado.
+Sabemos que el conjunto de puntos fijos $A_j$
+de $j$ es $\Inf$-cerrado y, por lo tanto, es una retícula
+completa con el orden inducido de $A$, aunque los supremos,
+en general, no coinciden con lo supremos en $A$.
+
+Por otro lado, notemos que la función $j^*:A\to A_j$ definida
+como $j^*(a)=j(a)$ es suprayectiva e induce en $A$ la relación de
+equivalencia
+\[
+  a\sim b \ssi j(a)=j(b)
+,\]
+que es, precisamente, la congruencia en $A$ inducida por $j$.
+Por lo tanto, se sigue que el orden en $A_j$ inducido por $j^*$
+es el únco orden que hace que $j^*$ sea un $\Sup$-morfismo.
+
+\begin{lemma}
+  Sean $j:A\to A$ un operador cerradura y $j^*:A\to A_j$ la
+  restricción de $j$ a su imagen.
+  Entonces el orden en $A_j$ heredado de $A$, que convierte a
+  $A_j$ en una $\Sup$-semirretícula, concide con el
+  orden inducido por $j^*$ que convierte a $j^*$ en un
+  $\Sup$-morfismo.
+\end{lemma}
+\begin{proof}
+  Gracias al lema \ref{lemma:congruencia-produce-cociente},
+  basta ver que el orden en $A_j$ heredado de $A$ convierte
+  a $j^*$ en un morfismo de semirretículas superiores.
+  Es decir, denotando como $\sup_j$ al supremo calculado en $A_j$
+  con el orden inducido de $A$, basta ver que, para cualesquiera
+  $a,b\in A_j$, tenemos $a\sup_j b=j(a\sup b)$.
+
+  Por un lado, como $j$ infla, tenemos
+  $a,b\leq a\sup b\leq j(a\sup b)$.
+  Así, $j(a\sup b)\in A_j$ es cota superior de $a$ y $b$.
+  Además, si $z\in A_j$ está por encima de $a$ y $b$, tenemos
+  $a\sup b\leq z$, por lo cual $j(a\sup b)\leq j(z)=z$.
+  Se sigue que $j(a\sup b)$ es el supremo de $a$ y $b$ en $A_j$.
+\end{proof}
+\begin{cor}
+  Para cualquier subconjunto $Y\subseteq A_j$, se tiene
+  \[
+      \Sup_j Y = j(\Sup Y)
+  ,\]
+  donde $\Sup_j$ denota como al supremo calculado en $A_j$.
+\end{cor}
+\begin{proof}
+  Considerando a $Y$ como subconjunto de $A$, tenemos
+  \[
+    j(\Sup Y)=\Sup_j j(Y) =\Sup_j Y
+  \]
+  porque $j^*$ es $\Sup$-morfismo y $j(Y)=Y$.
+\end{proof}
+
+Con toda la información que tenemos,
+podemos probar el teorema del factor
+en la categoría de $\Sup$-semiretículas.
+\begin{thm}[Teorema del factor en $\SupLat$]
+    Sea $A$ una $\Sup$-semiretícula y $k$ un operador cerradura en $A$.
+    Si $f:A\to B$ es un morfismo cuyo núcleo $k$ satisface $j\leq k$,
+    entonces existe un único morfismo $f^\sharp:A_j\to B$ tal que
+    el siguiente triángulo conmuta.
+    \[
+        \begin{tikzcd}
+            A \ar[rr,"f"] \ar[dr,"j^*"'] &&  B \\
+            &A_j \ar[ur,"f^\sharp"']
+        \end{tikzcd}
+    .\]
+\end{thm}
+    
+%\section*{(SESIÓN 7: 30 SEP)}
+
+\section{Cocientes en \tps{$\Frm$}{Frm}: núcleos}
+En el caso de $\Sup$-semiretículas, teníamos la correspondencia
+entre operadores cerradura, conjuntos $\Inf$-cerrados
+y $\Sup$-congruencias.
+Cuando trabajamos en un marco, esta correspondencia se puede refinar
+más.
+
+\begin{defn}[Núcleo en un marco]
+\label{def:nucleo}
+Un núcleo en un marco $A$ es un operador cerradura $j:A \to A$ que cumple con $j(a\wedge b)=j(a)\wedge j(b) \ \forall \ a,b \ \in \ A$.
+Al conjunto de núcleos de $A$ lo denotamos como $NA$.
+Nótese que, para un morfismo de marcos $f: A\to B$,
+el operador cerradura $k$
+inducido por $f$ (visto como morfismo de $\Sup$-retículas)
+también es un núcleo de marcos, ya que
+\begin{align*}
+x\leq k(a\wedge b)&\iff f(x)\leq f(a\wedge b)=f(a)\wedge f(b)\\
+&\iff f(x)\leq f(a) , f(x)\leq f(b) \\
+&\iff x\leq k(a), x\leq k(b)\\
+& \iff x\leq k(a)\wedge k(b)
+\end{align*}
+\end{defn}
+\begin{defn}[Conjunto implicativo]
+Decimos que un subconjunto $F$ de un marco $A$ es un conjunto
+implicativo si es $\Inf$-cerrado y
+$a\in F \implies  \forall x \in A,\; (x\succ a)\in F$.
+\end{defn}
+\begin{lemma}
+Sea $k$ un operador cerradura en un marco $A$.
+Entonces $k$ es un núcleo si  y sólo si $A_k$ es implicativo.
+\end{lemma}
+\begin{proof}
+$\Leftarrow$\\
+Sean $x,y \in A$ y sea $a=k(x\inf y)$, y nótese que $a\in A_k$. Así, se cumple que 
+\begin{align*}
+    x\inf y\leq a
+    & \iff y\leq (x\succ a)\in A_k\\
+    &\implies k(y)\leq (x\succ a)\\
+    &\iff k(y)\inf x\leq a
+\end{align*}
+Similarmente, $k(x)\inf y\leq a$, por lo que 
+$$ k(x)\inf k(y)\leq a$$
+También, $a\leq k(x)\inf k(y)$, ya que $k$ es monótona.
+Por lo tanto, $k(x\inf y)=k(x)\inf k(y)$ y $k\in NA$.
+\vspace{5mm}
+$\Rightarrow$\\
+Sea $y=(x\succ a)$, donde $a\in A_k, x\in A$.Así, $x\inf y\leq a$, y se cumple que 
+$$x\inf k(y)\leq k(x)\inf k(y) =k(x\inf y)\leq k(a)$$
+por lo que $x\inf k(y)\leq k(a)=a$, lo que implica que $k(y)\leq (x\succ a)=y$. Por lo tanto, $k(y)=y$ y $y\in A_k$.
+\end{proof}
+Recordemos que, si $j\in CA$, entonces $A_j$ es una $\Sup$-semiretícula
+y $j^*:A\to A_j$ dada como $j^*(a)=j(a)$
+es un morfismo de $\Sup$-semiretículas; esto es:
+$$j(\Sup X)=\Sup_jX$$
+para cualesquiera $j\in NA, X\subset A_j$, donde $\Sup_j$ denota
+al supremo en $A_j$.
+Nótese que, si $j\in NA$, entonces $A_j$ es una retícula completa
+que, por el lema anterior, tiene implicación, así que $A_j$ es un
+marco y $j$ es un morfismo de marcos, ya que $j$ preserva
+ínfimos.
+Poniendo juntas estas observaciones, obtenemos el siguiente
+resultado.
+\begin{lemma}
+    Sea $j\in CA$.
+    Entonces $j\in NA$ si, y solo si,
+    $A_j$ es un marco (con el orden heredado de $A$)
+    y $j^*:A\to A_j$ es un morfismo de marcos suprayectivo.
+\end{lemma}
+\begin{defn}
+  Un cociente de un marco $A$ es un morfismo suprayectivo $f:A\to
+  B$.
+  Equivalentemente, $B$ es un cociente de $A$ si existe un
+  morfismo suprayectivo $f:A\to B$.
+\end{defn}
+
+\begin{exe}%[Dante $\checkmark$ ]
+Para cualquier marco $A$, existe una biyección entre el conjunto de cocientes de $A$ y $NA$.
+\end{exe}
+\begin{sol}
+    Defínase $\mathcal{C}=\{\text{Cocientes de } \ A\}$. Sea $f:A\to B\in \mathcal{C}$. Así, $F=f_*\circ f\in NA$, y si $g:A\to B\in\mathcal{C}$ es tal que $G=g_*\circ g=f_*\circ f=F$, entonces $A_F=A_G$, y $F^*=G^*$, donde $F^*:A\to A_F$ se define como $F^*(a)=F(a)$. Sabemos entonces que existe un único morfismo $f^\sharp:A_F\to B$ tal que el diagrama
+    \[
+        \begin{tikzcd}
+            A \ar[rr,"f"] \ar[dr,"F^*"'] &&  B \\
+            &A_j \ar[ur,"f^\sharp"']
+        \end{tikzcd}
+    \]
+    conmuta, así como $g^\sharp$ que cumple lo mismo para $g$ y $A_G$. Sin embargo, como $G=F$, $A_F=A_G$ y $F^*=G^*$, entonces $f=F^\sharp\circ F^*=G^\sharp\circ G^*=G$, y por lo tanto la función $\phi:\mathcal{C}\to NA$ definida como $\phi(f)=F=f_*\circ f$ es inyectiva. También, si $j\in NA$, claramente $j^*:A\to A_j$ es un cociente de $A$, con $j_*\circ j =j$. Por lo tanto, $\phi$ es una biyección entre $\mathcal{C}$ y $NA$.
+\end{sol}
+
+El teorema del factor en $\Frm$ se deja como ejercicio:
+
+\begin{thm}%[Dante $\checkmark$]
+\label{thm:factor-frm}
+Sean $A\in \Frm$ y $j\in NA$, y considérese $f:A\to B$ morfismo de marcos con núcleo $k\geq j$. Entonces existe un único morfismo $f^{\sharp}:A_j \to B$ tal que el diagrama
+    \[
+        \begin{tikzcd}
+            A \ar[rr,"f"] \ar[dr,"j^*"'] &&  B \\
+            &A_j \ar[ur,"f^\sharp"']
+        \end{tikzcd}
+    \]
+conmuta.
+\end{thm}
+\begin{proof}
+    Dado que $j$ es núcleo, $A_j$ es un marco, con $A_j=j(A)$, y $j^*$ es un morfismo de marcos suprayectivo. Tomando en cuenta lo anterior, defínase $f^\sharp:A_j\to B$ como
+    $$f^\sharp(j(a))=f(a)$$
+    Como $A_j$ es un marco, es cerrado bajo supremos e ínfimos arbitrarios, por lo que 
+    \begin{itemize}
+    \item Sean $a,b\in A$ tales que $j(a)=j(b)$. Nótese que como $j\in NA$, entonces $a\leq j(a)$ y $b\leq j(b)$, por lo que a su vez $f(a)\leq f(j(a))$ y $f(b)\leq f(j(b))$. También, dado que $k\geq j$, se tiene que
+    \begin{align*}
+        j(a)=j(b)\leq k(b) \ & \text{de donde, por la definición de} \ k\\
+         j(a)\leq k(b) & \iff f(j(a))\leq f(b) \ \text{y}\\
+        j(b)\leq k(a)&\iff f(j(b))\leq f(a)
+    \end{align*}
+    Por lo anterior, se cumplen las desigualdades 
+    $f(a)\leq f(b)$ y $f(b)\leq f(a)$, por lo que $f(a)=f(b)$ y $f^\sharp$ está bien definida.
+    \item Para $j(a), j(b) \in A_j$ cualesquiera, 
+    \begin{align*}
+    f^\sharp(j(a)\inf j(b))&=f^\sharp(j^*(a\inf b))\\
+    &=f(a\inf b)\\
+    &=f(a)\inf f(b)\\
+    &=f^\sharp(j^*(a))\inf f^\sharp(j^*(b))
+    \end{align*}
+    \item Sea $X\subset A_j$. Así, 
+    \begin{align*}
+        f^\sharp(\Sup X)&=f^\sharp(\Sup j^*(X^\prime))\\
+        &=f^\sharp(j^*(\Sup X^\prime))\\
+        &=f(\Sup X^\prime)\\
+        &=\Sup f(X^\prime)\\
+        &=\Sup f^\sharp(X)
+    \end{align*}
+    Por lo anterior, $f^\sharp$ es morfismo de marcos. Claramente, $f^\sharp\circ j^*=f$, y si $g:A_j\to B$ es tal que $g\circ j^*=f$, entonces $g(j(a))=f(a)$ $\forall j(a)\in A_J$, por lo que $g=f^\sharp$. Así, $f^\sharp$ es único.
+\end{itemize}
+\end{proof}
+
+Esto termina de establecer las correspondencias que queríamos.
+
+\subsection{Algunos núcleos particulares}
+
+En cualquier marco $A$, es fácil encontrar núcleos.
+Por ejemplo, los lemas \ref{lemma:w-cerradura}
+y \ref{lemma:modalidad-w} implican que, para cualquier elemento
+$a\in A$ de un marco $A$, la función $((-\succ a)\succ a):A\to A$
+es un núcleo.
+Además hay, al menos, otras dos maneras de obtener núcleos
+a partir de $a$.
+
+\begin{defn}[Núcleos cerrado, abierto y regular]
+Sea $a\in A$ fijo, y considérense los operadores siguientes.
+  \begin{itemize}
+    \item $\unuc a:A\to A$, definido como $\unuc a(x)= a\sup x$.
+    \item $\vnuc a:A\to A$, definido como $\vnuc a(x)=(a\succ
+    x)$.
+    \item $\wnuc a:A\to A$, definido como
+      $\wnuc a(x)=((x\succ a)\succ a)$.
+  \end{itemize}
+  Los operadores $\unuc a$, $\vnuc a$ y $\wnuc a$ son llamados
+  los núcleos cerrado, abierto y regular de $a$, respectivamente.
+\end{defn}
+\begin{prop}
+  Los operadores $\unuc a$, $\vnuc a$ y $\wnuc a$ son núcleos, para
+  cualquier $a\in A$.
+\end{prop}
+\begin{proof}
+  En efecto, $\unuc a$ infla, es idempotente
+  y monótono. Además, la afirmación de que preserva ínfimos es
+  precisamente la ley distributiva.
+
+  Para $\vnuc a$,...
+  \todo{termi\-nar}
+
+  Finalmente, la demostración para $\wnuc a$ está
+  dada por los lemas \ref{lemma:w-cerradura} y
+  \ref{lemma:modalidad-w}.
+\end{proof}
+
+\begin{exa}%[Alfredo $\checkmark$ ]
+  Encontremos todos los núcleos del marco
+  \[
+    A\hspace{10mm} = \hspace{10mm}
+    \begin{tikzcd}
+      & 1 \\
+      a \ar[ur,no head] && b\ar[ul,no head] \\
+      & 0 \ar[ur,no head] \ar[ul,no head]
+    \end{tikzcd}
+  .\]
+  Dado que todos los núcleos mandan el $1$ al $1$ y
+  también preservan ínfimos, cada núcleo está determinado por
+  sus valores en $a$ y en $b$, pues $0=a\inf b$.
+  Como los núcleos inflan, cada núcleo solo puede mandar $a$ a sí
+  misma o al $1$, y $b$ a sí misma o al $1$, así que hay, a lo
+  más, $4$ núcleos.
+  Los núcleos cerrados, abiertos y regulares
+  asociados a $a$ y a $b$ son
+  \[ 
+      \begin{array}{|c|}
+          \hline
+          \unuc a \\
+          a\mapsto a\sup a = a \\
+          b\mapsto a\sup b = 1 \\ \hline
+          \unuc b \\
+          a\mapsto b\sup a = 1 \\
+          b\mapsto b\sup b = b \\
+          \hline
+      \end{array}
+      \begin{array}{c|}
+          \hline
+          \vnuc a \\
+          a\mapsto (a\succ a) = 1 \\
+          b\mapsto (a\succ b) = b \\ \hline
+          \vnuc b \\
+          a\mapsto (b\succ a) = a \\
+          b\mapsto (b\succ b) = 1 \\
+          \hline
+      \end{array}
+      \begin{array}{c|}
+          \hline
+          \wnuc a \\
+          a\mapsto ((a\succ a)\succ a) = (1\succ a) = a \\
+          b\mapsto ((b\succ a)\succ a) = (a\succ a) = 1 \\
+          \hline
+          \wnuc b \\
+          a\mapsto ((a\succ b)\succ b) = (b\succ b) = 1 \\
+          b\mapsto ((b\succ b)\succ b) = (1\succ b) = b \\
+          \hline
+      \end{array}
+  \]
+  así,
+  \begin{align*}
+      \unuc a = \vnuc b = \wnuc a \\
+      \unuc b = \vnuc a = \wnuc b
+  \end{align*}
+  son dos núcleos diferentes, mientras que
+  los otros dos núcleos son la identidad $\id=\unuc 0=\wnuc
+  0=\vnuc 1$ y la función constante $1$, denotada como $\tp$.
+  Notemos que $\tp=\unuc 1=\wnuc 1=\vnuc 0$.
+  Para ver la estructura ordenada de $NA$, notemos que
+  $\unuc a$ y $\unuc b$ no son comparables, por lo cual
+  \[
+    NA\hspace{10mm} = \hspace{10mm}
+    \begin{tikzcd}
+      & \tp \\
+      \unuc a \ar[ur,no head] && \unuc b \ar[ul,no head] \\
+      & \id \ar[ur,no head] \ar[ul,no head]
+    \end{tikzcd}
+    \hspace{10mm} \simeq \hspace{10mm} A
+  .\]
+\end{exa}
+
+\begin{exa}%[Juan $\checkmark$ ]
+Sea $S$ un espacio topológico y considemos el marco $\cal O S$.
+Para cualesquiera abiertos $A,X\in \cal OS$, tenemos
+  \begin{itemize}
+    \item $\unuc A(X)=A\cup X$
+    \item $\vnuc A(X)=(A\succ X)=(A'\cup X)^\circ$
+    \item
+      $\wnuc A(X)
+      =((X\succ A)\succ A)
+      =(((X'\cup A)^\circ)'\cup A)^\circ
+      =(\ol{X\cap A'}\cup A)^\circ$
+  \end{itemize}
+\end{exa}
+
+La razón de la nomenclatura para los núcleos cerrado y abierto se
+ilustra en el siguiente ejemplo.
+
+\begin{exa}%[Alfredo $\checkmark$ ]
+    \label{exe:cociente-abierto-cerrado}
+    Sea $S$ un espacio topológico y $U\in\cal OS$ un abierto.
+    Observemos que
+    \[
+        V \in(\cal OS_{\unuc U}) \iff U\cup V=V \iff U\subset V
+    .\]
+    Luego,
+    \[
+        (\cal OS)_{\unuc U} = \{V\in \cal OS \mid U\subset V\}
+    .\]
+    Es decir, los puntos fijos de $\unuc U$ son los abiertos
+    que contienen a $U$.
+    Ahora consideremos el cerrado $U^c$ de $S$ y su topología
+    como subespacio:
+    \[
+      \cal OU^c = \{W\cap U^c \mid W\in\cal OS\}
+    .\]
+    Las funciones
+    $\cal OU^c\rightleftarrows(\cal OS)_{\unuc U}$
+    dadas como
+    \begin{align*}
+      V\cap U^c &\mapsto (V\cap U^c)\cup U = V\cup U \\
+      W\cap U^c &\mapsfrom W
+    \end{align*}
+    constituyen un isomorfismo de marcos.
+    En efecto, para cualesquiera $V\cap U^c\in\cal OU^c$ y
+    $W\in(\cal OS)_{\unuc U}$, tenemos
+    \begin{align*}
+      ((V\cap U^c)\cup U)\cap U^c
+      &= (V\cup U)\cap U^c \\
+      &= V\cap U^c, \\
+      (W\cap U^c)\cup U
+      &= W\cup U \\
+      &= W.
+    \end{align*}
+    Como estas funciones son monótonas, son un isomorfismo de
+    copos y, por lo tanto, un isomorfismo de marcos.
+
+    Similarmente, $\vnuc U$ se relaciona con la topología de
+    subespacio de $U$:
+    \[
+      \cal OU
+      =
+      \{V\in \cal OS : V\subseteq U\}
+    .\]
+    Las funciones dadas por
+    $\cal OU\rightleftarrows(\cal OS)_{\vnuc U}$
+    \begin{align*}
+         V &\mapsto (U\succ V) \\
+         W\cap U &\mapsfrom W.
+    \end{align*}
+    son un isomorfismo de marcos.
+    En efecto, para cualesquiera $V\in \cal OU$
+    y $W\in (\cal OS)_{\vnuc U}$, tenemos
+    \begin{align*}
+        (U\succ V)\cap U
+        &= U\cap V \\
+        &= V \\
+        (U\succ (W\cap U))
+        &= (U\succ W)\cap(U\succ U) \\
+        &= U\succ W \\
+        &= W
+    \end{align*}
+    Como estas funciones son monótonas,
+    son un isomorfismo de copos y, por lo tanto,
+    un isomorfismo de marcos.
+\end{exa}
+
+\begin{exa}
+En general, dado un marco $A$ y un elemento $a\in A$,
+los mismos argumentos del ejemplo anterior demuestran que
+\begin{align*}
+    A_{\unuc a}
+    &= \{x\in A\mid a\leq x\} = [a,1]\\
+    A_{\vnuc a}
+    &\simeq \{x\in A\mid x\leq a\} = [0,a],
+\end{align*}
+donde el último isomorfismo está dado como $y\mapsto y\inf a$
+y $(a\succ x)\mapsfrom x$.
+\end{exa}
+
+Por otro lado, los $\wnuc a$ se llaman núcleos regulares por el
+caso $a=0$ de un núcleo espacial:
+
+\begin{exa}
+  Considerando $\wnuc {\emptyset}:\cal O S\to \cal O S$, definido
+  como
+  \[
+    \wnuc {\emptyset}(U)
+    =((U\succ\emptyset)\succ\emptyset)
+    =(\overline{U})^{\circ}
+  \]
+  se tiene que los puntos fijos son 
+  $$(\cal OS)_{\wnuc {\emptyset}}
+  =\{U\in \cal O S : (\overline{U})^{\circ}=U\}
+  =\{\text{Abiertos regulares de }S\}.$$
+\end{exa}
+
+Ahora estudiaremos más sobre los núcleos regulares de un marco.
+El ejemplo anterior nos mostró que, en un espacio topológico $S$,
+los puntos fijos $(\cal OS)_{\wnuc \emptyset}$ son el marco de
+abiertos regulares de $S$.
+Del siguiente lema se sigue, en particular, que
+$(\cal OS)_{\wnuc\emptyset}$ es un álgebra booleana completa.
+
+\begin{lemma}
+  \label{lemma:cocientes-w-bool}
+  Si $a\in A \in \Frm$, entonces $A_{\wnuc a} \in \CBA$.
+\end{lemma}
+\begin{proof}
+$$\wnuc a (0)=((0\succ a)\succ a)=(1\succ a)=a$$
+por lo tanto, $a \in A_{\wnuc a}$ es el menor elemento de $A_{\wnuc a}$.
+Mostraremos que todo $x\in A_{\wnuc a}$ es complementado.
+Dado $x \in A_{\wnuc a}$, considérese $y=(x\succ a)$.
+Por un lado, 
+\begin{align*}
+    \wnuc a(y) & =\wnuc a(x\succ a)\\
+    &=(\wnuc a(x)\succ a)\\
+    &=(x\succ a)\\
+    &=y
+\end{align*}
+por lo que $y \in A_{\wnuc a}$. Ahora bien, 
+\begin{align*}
+    x\inf y&=x\inf(x\succ a)\\
+    &=x\inf a\\
+    &=a
+\end{align*}
+y también, 
+\begin{align*}
+    \wnuc a(x\sup y)&=((x\sup y)\succ a)\succ a)\\
+    &=(((x\succ a)\inf(y\succ a))\succ a)\\
+    &=((y\inf(y\succ a))\succ a)\\
+    &=((y\inf a)\succ a)\\
+    &=1.
+\end{align*}
+Luego, $y$ es el complemento de $x$ en $A_{\wnuc a}$.
+Se sigue que $A_{\wnuc a} \in \CBA$.
+\end{proof}
+Un caso particular del resultado anterior es cuando $a=0$.
+En este caso, el álgebra booleana completa $A_{\wnuc 0}$ se
+denota como $A_{\neg \neg}$. Como se mencionó antes del lema,
+en el caso espacial, esto nos dice que los abiertos regulares de
+un espacio topológico forman un álgebra booleana completa.
+
+%\section*{(SESIÓN 8: 5 OCT)}
+
+\begin{lemma}%[Juan $\checkmark$ ]
+  \label{lemma:nucleos-densos}
+  Para cualquier núcleo $j\in NA$ se tiene la equivalencia
+  \[
+    j(0)=0 \ssi j\leq \wnuc 0
+  .\]
+  (C.f. con el lema \ref{lemma:tres-equivalencias}).
+  Si un núcleo $j\in NA$ cumple $j\leq\wnuc 0$,
+  decimos que $j$ es un núcleo denso.
+  Así, $\wnuc 0$ es el mayor núcleo denso en $A$.
+\end{lemma}
+\begin{proof}
+    Supongamos que $j\leq \wnuc 0$.
+    Entonces $0\leq j(0)\leq \wnuc 0(0)=((0\succ 0)\succ 0)=0$. Así, $j(0)=0$.
+
+    Supongamos ahora que $j(0)=0$.
+    Dado cualquier $x\in A$, queremos mostrar que $j(x)\leq\wnuc
+    0 x=((x\succ 0)\succ 0)$ o, equivalentemente, que
+    $j(x)\inf(x\succ 0)\leq 0$.
+    Como $j$ infla, tenemos
+    \begin{align*}
+      j(x)\inf(x\succ 0)
+      &\leq j(x)\inf j(x\succ 0) \\
+      &= j(x\inf (x\succ 0)) \\
+      &= j(x\inf 0) \\
+      &= j(0) \\
+      &= 0,
+    \end{align*}
+    que es lo que se quería.
+\end{proof}
+
+El lema \ref{lemma:cocientes-w-bool} nos dice que los núcleos
+regulares producen cocientes booleanos.
+Ahora tenemos el recíproco.
+\begin{thm}
+  Sean $A$ un marco y $j\in NA$.
+  Si el cociente $A_j$ es booleano, entonces
+  $j=\wnuc a$, donde $a=j(0)$.
+  Así, los cocientes booleanos de $A$ están dados, precisamente,
+  por los núcleos regulares $\wnuc a$.
+\end{thm}
+\begin{proof}
+    Sea $x\in A$. Como $B$ es booleano, $f(x)$ es complementado.
+    Basta mostrar que $f(x\succ a)$ es el complemento $\neg f(x)$
+    de $f(x)$, ya que, en este caso, tenemos
+    \begin{align*}
+        y\leq j(x)
+        &\iff f(y) \leq f(x) \\
+        &\iff f(y) \inf f(x\succ a) \leq 0
+            & \text{caballo de batalla} \\
+        &\iff f(y\inf(x\succ a)) \leq 0 = f(0) \\
+        &\iff y\inf(x\succ a) \leq j(0) = a \\
+        &\iff y\leq ((x\succ a)\succ a) = \wnuc a(x)
+    \end{align*}
+    y, así, $j(x)=\wnuc a(x)$.
+    
+    Ahora bien, como $a=j(0)=f_*(f(0))$, se sigue que $f(a)=0$.
+    Luego,
+    \begin{align*}
+        f(x)\inf f(x\succ a)
+        &= f(x\inf(x\succ a)) \\
+        &= f(x\inf a) \\
+        &\leq f(a) \\
+        &= 0.
+    \end{align*}
+    Además, como $f$ es suprayectiva, podemos tomar
+    $\tilde x\in A$ con $f(\tilde x)=\neg f(x)$.
+    Luego,
+    \begin{align*}
+        f(x\inf \tilde x)
+        &= f(x)\inf\neg f(x) \\
+        &= 0 \\
+        &= f(0),
+    \end{align*}
+    lo cual sucede si, y solo si, $x\inf \tilde x\leq j(0)=a$.
+    Esto es, $\tilde x\leq(x\succ a)$, así que
+    $f(\tilde x)\leq f(x\succ a)$.
+    Aplicando supremo con $f(x)$, tenemos
+    \[
+        1\leq f(x)\sup f(x\succ a)
+    .\]
+    Concluimos que $f(x\succ a)=\neg f(x)$, lo cual finaliza la prueba.
+\end{proof}
+
+\begin{thm}
+  Sea $A$ un marco.
+  Si $A$ es un álgebra booleana completa y $j\in NA$,
+  entonces $j=\unuc a$, donde $a=j(0)$.
+  
+  Dado que $A$ es booleano, entonces $A_j$ también lo es,
+  así que el resultado anterior también nos da $j=\wnuc a$.
+\end{thm}
+\begin{proof}
+    Dado $x\in A$, debemos mostrar que $j(x)=\unuc a(x)=x\sup a$.
+    Por un lado, tenemos $0\leq x$, así que $a=j(0)\leq j(x)$.
+    Como $x\leq j(x)$, se sigue que $x\sup a\leq j(x)$.
+    Por nuestro caballo de batalla, la otra desigualdad
+    ($j(x)\leq x\sup a$) es equivalente a $j(x)\inf \neg x\leq a$
+    (ya que $x$ es complementado), pero esto es sencillo:
+    \begin{align*}
+        j(x)\inf\neg x
+        &\leq j(x)\inf j(\neg x) \\
+        &= j(x\inf\neg x) \\
+        &= j(0) \\
+        &= a.
+    \end{align*}
+\end{proof}
+
+\subsection{Núcleos espacialmente inducidos en una topología}
+
+Sea $\phi:T\to S$ un morfismo de espacios topológicos.
+El morfismo de marcos $\phi^*=\cal O\phi:\cal OS\to\cal OT$
+tiene adjunto derecho dado por
+\[
+  \phi_*(W)
+  = \bigcup\{U\in\cal OS \mid \phi^*(U) \leq W\}
+.\]
+En el ejemplo \ref{exa:adjunto-derecho-top}, vimos que
+$\phi_*:\cal OT\to\cal OS$ se puede calcular como
+\[
+  \phi_*(W) = \ol{\phi[W']}' = (\phi[W']')^\circ
+.\]
+De todos modos, aquí repetimos una demostración alternativa.
+\begin{proof}
+  Recordemos que tenemos la adjunción $\phi[-]\dashv\phi^{-1}$
+  entre la imagen directa $\phi[-]:\cal PS\to\cal PT$ y la imagen
+  inversa $\phi^{-1}:\cal PT\to\cal PS$.
+  Sea $U\in\cal OS$.
+  Dado que $\phi^*:\cal OS\to\cal OT$ es la restricción de
+  $\phi^{-1}:\cal PS\to\cal PT$, para todo $W\in\cal OT$, tenemos
+  \begin{align*}
+      \phi^*(U)\leq W
+      &\iff \phi^{-1}(U)\leq W \\
+      &\iff W'\leq \phi^{-1}(U)' \\
+      &\iff W'\leq \phi^{-1}(U') \\
+      &\iff \phi[W'] \leq U' \\
+      &\iff U\leq \phi[W']' \\
+      &\iff U\leq (\phi[W']')^\circ = \ol{\phi[W']}',
+  \end{align*}
+  como se quería.
+\end{proof}
+
+\begin{thm}
+  Si $\phi:T\to S$ es un morfismo de espacios topológicos,
+  el núcleo $k:\cal OS\to\cal OS$ del morfismo de marcos
+  $\phi^*:\cal OS\to\cal OT$ tiene la descripción
+  \[
+    k(U) = (\phi[T]' \cup U)^\circ
+  .\]
+\end{thm}
+\begin{proof}
+    Sabemos que $k=\phi_*\phi^*$.
+    Observando que $\phi[\phi^*(U)]=U\cap\phi[T]$, tenemos
+    \begin{align*}
+        U\leq k(V)
+        &\iff U \leq \phi_*(\phi^*(V)) \\
+        &\iff \phi^*(U)\leq\phi^*(V) \\
+        &\iff \phi[\phi^*(U)] \leq V \\
+        &\iff U\cap \phi[T] \leq V \\
+        &\iff U\leq \phi[T]'\cup V
+            &\text{caballo de batalla en $\cal PS$} \\
+        &\iff U\leq {(\phi[T]'\cup V)}^\circ.
+    \end{align*}
+    Luego, $k(V)={(\phi[T]'\cup V)}^\circ$.
+\end{proof}
+
+Sea $S$ un espacio topológico. Para cualquier subconjunto
+$E\subset S$, definimos el operador $[E]:\cal O S\to \cal O S$
+como $[E](U)={(E\cup U)}^{\circ}$.
+Nótese que, si $U \in \cal OS$, entonces $[U]=\unuc U$
+y $[U']=\vnuc U$.
+Además, dada una función continua $\phi:T\to S$,
+el teorema anterior dice que el núcleo
+$k:\cal OS\to\cal OS$ de $\phi^*:\cal OS\to\cal OT$ es
+$k=[\phi[T]']$. En general, $[E]$ siempre es un núcleo.
+
+\begin{prop}
+  Si $S$ es un espacio topológico y $E\subseteq S$ un
+  subconjunto, entonces $[E]:\cal OS\to\cal OS$ es un núcleo.
+\end{prop}
+\begin{proof}
+  Sean $U,V\in\cal OS$.
+  Primero, $[E]$ es inflacionario, pues
+  \begin{align*}
+    [E](U)
+    &= (E\cup U)^\circ \\
+    &\geq (U)^\circ \\
+    &= U.
+  \end{align*}
+  Además, es idempotente: por un lado, por el punto anterior
+  tenemos $[E](U)\leq[E]([E](U))$, mientras que
+  \begin{align*}
+    [E]([E](U))
+    &= (E\cup (E\cup U)^\circ)\circ \\
+    &\leq (E\cup E\cup U)^\circ \\
+    &= (E\cup U)^\circ \\
+    &= [E](U).
+  \end{align*}
+  Además, preserva ínfimos binarios, pues
+  \begin{align*}
+    [E](U\cap V)
+    &= (E\cup(U\cap V))^\circ \\
+    &= ((E\cup U)\cap(E\cap V))^\circ \\
+    &= ((E\cup U)^\circ\cap(E\cap V))^\circ \\
+    &= [E](U)\cap[E](V).
+  \end{align*}
+  Finalmente, $[E]$ es monótono, ya que, si $U\leq V$, entonces
+  \begin{align*}
+    [E](U)
+    &= (E\cup U)^\circ \\
+    &\leq (E\cup V)^\circ \\
+    &= [E](V).
+  \end{align*}
+\end{proof}
+
+\begin{defn}
+  Sea $S$ un espacio topológico.
+  Un núcleo $j\in N\cal O S$ es \emph{espacialmente
+  inducido} si es de la forma $j=[E]$ para algún
+  $E\subseteq S$.
+\end{defn}
+
+
+\part{El ensamble}
+\label{part:ensamble}
+

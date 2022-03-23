@@ -1,0 +1,339 @@
+%\section*{(SESIÓN 9: 7 OCT)}
+\chapter{Marcos en teoría de anillos y módulos}
+
+Ahora trataremos de dar una motivación algebraica para
+estudiar los núcleos de un marco.
+En realidad, el estudio de los núcleos se puede realizar
+en un contexto más general que el de marcos.
+A continuación damos un ejemplo de cómo se pueden usar
+los núcleos para estudiar anillos y módulos.
+
+\paragraph{Localizaciones}
+Recordemos que, en teoría de anillos,
+podemos localizar un anillo $A$ con respecto a un conjunto
+multiplicativo $S\subseteq A$.
+Por ejemplo, tomando $A=\Z$ y $S=\Z-\{0\}$,
+obtenemos la localización $i:\Z\to\Q$.
+
+El morfismo $i:\Z\to\Q$ induce dos funtores
+\[
+    \Mod_\Z\leftrightarrows\Mod_\Q
+\]
+llamados restricción y extensión de escalares.
+Las categorías, al igual que los anillos,
+tienen su propio concepto de localización.
+La definición (que no haremos aquí) es tal que
+los funtores $\Mod_\Z\leftrightarrows\Mod_\Q$
+exhiben que $\Mod_\Q$ es una localización de $\Mod_\Z$.
+
+\paragraph{Teorías de torsión}
+La clase de los $\Z$-módulos (es decir, grupos abelianos)
+contiene las clases $\scr T_t$ y $\scr F_t$
+formadas por los $\Z$-módulos de torsión y los $\Z$-módulos
+libres de torsión, respectivamente.
+Notemos que $\scr T_t$ y $\scr F_t$ satisfacen:
+\begin{itemize}
+    \item
+    $\Mod_\Z(M,N)=0$ para cualesquiera $M\in\scr T_t$
+    y $N\in\scr F_t$.
+    \item
+    Si $\Mod_\Z(P,N)=0$ para todo $N\in\scr F_t$,
+    entonces $P\in\scr T_t$.
+    \item
+    Si $\Mod_\Z(M,P)=0$ para todo $M\in\scr T_t$,
+    entonces $P\in\scr F_t$.
+\end{itemize}
+Debido a que la pareja $(\scr T_t,\scr F_t)$ satisface estos
+axiomas, decimos que es una teoría de torsión.
+Además, como $\scr T_t$ es cerrada bajo submódulos,
+decimos que $(\scr T_t,\scr F_t)$ es una teoría de torsión hereditaria.
+
+\paragraph{Los ideales de $\Z$ y un colímite}
+Consideremos el conjunto $\Lambda(\Z)$ de los ideales de $\Z$.
+Como todos los ideales de $\Z$ son principales, tenemos
+\[
+    \Lambda(\Z)=\{\<n\>\mid n\in \Z\}
+.\]
+También consideraremos el conjunto $\nti\Z$
+de los ideales de $\Z$ distintos de $0$.
+
+Notemos que $\Lambda(\Z)$ es una retícula, con ínfimo $\inf=\cap$
+y supremo $\sup=+$.
+Además, el subconjunto $\nti\Z\subseteq\Lambda(\Z)$
+satisface las siguientes propiedades:
+\begin{itemize}
+    \item es no vacío,
+    \item cerrado bajo intersecciones y
+    \item absorbe hacia arriba
+    (es decir, si $I\in\nti\Z$ y $I\leq J$,
+    entonces $J\in\nti\Z$).
+\end{itemize}
+Si un subconjunto de una retícula tiene estas propiedades,
+decimos que es un filtro de la retícula.
+En otras palabras, $\nti\Z$ es un filtro de $\Lambda(\Z)$.
+
+Cada ideal $I$ de $\Z$ es, en particular, un $\Z$-módulo,
+por lo cual podemos considerar el $\Z$-módulo $\Mod_\Z(I,\Z)$.
+Además, dados ideales $I\leq J$ de $\Z$,
+tenemos un morfismo de $\Z$-módulos
+\[
+    \phi^I_J:\Mod_\Z(J,\Z)\to\Mod_\Z(I,\Z)
+\]
+dado por la restricción: $\phi^I_J(f)=f|_I$.
+
+Notemos que los morfismos $(\phi^I_J\mid I\leq J\in\Lambda(\Z))$
+satisfacen
+\begin{itemize}
+    \item para todo $I$, tenemos $\phi^I_I=\id_{\Mod_\Z(I,\Z)}$ y
+    \item siempre que $I\leq J\leq K$, tenemos
+    $\phi^J_I\phi^K_J=\phi^K_I$. Esto es: $f|_J|_I=f|_I$.
+\end{itemize}
+
+En otras palabras: viendo al copo $\nti\Z$
+como una categoría, tenemos un funtor
+\[
+    \Mod_\Z(-,\Z):(\nti\Z)^\op\to\Mod_\Z
+.\]
+
+En general, dado un conjunto dirigido $\scr I$
+y una categoría $\cal C$,
+un sistema dirigido en $\cal C$ indicado por $\scr I$
+es un funtor $F:\scr I\to\cal C$.
+Como $\nti\Z$ es codirigido (ya que es cerrado bajo ínfimos),
+se sigue que $(\nti\Z)^\op$ es dirigido.
+Es decir: el funtor
+\[
+    \Mod_\Z(-,\Z):(\nti\Z)^\op\to\Mod_\Z
+\]
+es un sistema dirigido en $\cal C=\Mod_\Z$,
+indicado por $\scr I = (\nti\Z)^\op$.
+
+Sean $\scr I$ un conjunto dirigido
+y $F:\scr I\to\cal C$ un sistema dirigido.
+Denotemos como $\sqsubseteq$ al orden en $\scr I$ y,
+para cada morfismo $\alpha:i\to j$ en $\scr I$
+(es decir, $i\sqsubseteq j$) usaremos la notación
+$\phi_i^j=F(\alpha):F(i)\to F(j)$.
+El límite directo de $F$ es un objeto $\cal C$,
+comúnmente denotado $\varinjlim F$ o $\varinjlim_{i\in\scr I}F(i)$,
+junto con una familia de morfismos
+$(\eta_i:F(i)\to\varinjlim F \mid i\in\cal I)$
+que satisfacen las siguientes condiciones:
+\begin{itemize}
+    \item Para cada $i\sqsubseteq j\in\scr I$,
+    el siguiente diagrama es conmutativo:
+    \[
+        \begin{tikzcd}
+            F(i) \ar[rr,"\phi_i^j"] \ar[dr,"\eta_i"']
+            && F(j) \ar[dl,"\eta_j"] \\
+                & \varinjlim F
+        \end{tikzcd}
+    \]
+    Es decir, $\eta_j\phi_i^j=\eta_i$.
+    \item Dado un objeto $X$ de $\cal C$
+    y una familia de morfismos $(\mu_i:F(i)\to X\mid i\in\cal I)$
+    tales que $\mu_j\phi_i^j=\mu_i$ (siempre que $i\sqsubseteq j$),
+    entonces existe un único morfismo $\mu:\varinjlim F\to X$
+    tal que el siguiente diagrama conmuta:
+    \[
+        \begin{tikzcd}
+            F(i) \ar[rr,"\phi_i^j"] \ar[dr,"\eta_i"']
+            \ar[ddr,"\mu_i"',bend right] 
+            && F(j) \ar[dl,"\eta_j"] \ar[ddl,"\mu",bend left] \\
+                & \varinjlim F \ar[d,"\mu"] \\
+                & X
+        \end{tikzcd}
+    \]
+    (siempre que $i\sqsubseteq j\in\scr I$).
+\end{itemize}
+
+Se puede demostrar que, para la categoría $\cal C=\Mod_\Z$,
+los límites directos siempre existen
+y están dados por
+\[
+    \varinjlim F = \Big(\bigsqcup_{i\in\scr I}F(i)\Big)/\simr
+\]
+donde $\simr$ es la relación de equivalencia en
+$\bigsqcup_{i\in\scr I}F(i)$ definida, para $f\in F(i)$ y $g\in F(j)$,
+como
+\[
+    f\sim g
+    \ssi
+    \exists k\geq i,j,\; \phi_i^k(f)=\phi_j^k(g)
+\]
+y donde los morfismos $\eta_i:F(i)\to\varinjlim_{i\in\scr I}F(i)$
+son las proyecciones $f\mapsto [f]$ de $f\in F(i)$ a su clase
+de equivalencia.
+
+Ahora consideremos el conjunto dirigido $\scr I=(\nti\Z)^\op$
+y el sistema dirigido
+\begin{align*}
+    \Mod_\Z(-,\Z):(\nti\Z)^\op&\to\Mod_\Z \\
+    I&\mapsto \Mod_\Z(I,\Z).
+\end{align*}
+Para cada ideal $\<n\>\in\nti\Z$, definamos el morfismo
+$\mu_n:\Mod_\Z(\<n\>,\Z)\to\Q$ dado por $\mu_n(f)=f(n)/n$.
+
+Entonces, si $\<n\>\sqsubseteq \<m\>$ (es decir, $\<m\>\leq\<n\>$),
+el diagrama
+\[
+    \begin{tikzcd}
+      \Mod_\Z(\<n\>,\Z) \ar[rr,"{\phi_n^m}"] \ar[dr,"\mu_n"']
+      && \Mod_\Z(\<m\>,\Z) \ar[dl,"\mu_m"] \\
+      & \Q
+    \end{tikzcd}
+\]
+es conmutativo.
+
+\begin{exe}%[Alfredo $\checkmark$ ]
+  Mostrar que el morfismo inducido en el límite directo
+  \begin{align*}
+      \mu : \varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)
+        &\to \Q \\
+      [f] &\mapsto \frac{f(n)}{n}
+  \end{align*}
+  es un isomorfismo.
+\end{exe}
+\begin{sol}
+    Primero veamos que $\mu$ está bien definida.
+    Tomemos morfismos relacionados
+    $f\sim g\in\bigsqcup_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)$.
+    Es decir, $f:\<m\>\to\Z$ y $g:\<n\>\to\Z$ satisfacen
+    \[
+        f|_{\<k\>} = g|_{\<k\>}
+    \]
+    para alguna $k\in\Z$ con $m\mid k$, $n\mid k$.
+    Es decir, $k=rm$, $k=sn$ para algunos $r,s\in\Z$.
+    Luego, tenemos
+    \begin{align*}
+        \mu([g])
+        &= \frac {g(n)} n
+        = \frac {sg(n)}{sn} 
+        = \frac {g(sn)}{sn} 
+        = \frac {g(k)}{k} \\
+        &= \frac {f(k)}{k} 
+        = \frac {f(rm)}{rm} 
+        = \frac {rf(m)}{rm} 
+        = \frac {f(m)}{m} 
+        = \mu([f]).
+    \end{align*}
+    Se sigue que $\mu$ está bien definida
+    en las clases de equivalencia;
+    es decir: no depende del representante.
+
+    Ahora, dado $r/m\in\Q$, consideremos la función
+    $f:\<m\>\to\Z$ dada por $am\mapsto ar$.
+    En efecto, $f$ respeta sumas y productos por enteros,
+    así que podemos considerar $[f]$.
+    
+    Queremos ver que la asignación $r/m\mapsto [f]$ no
+    depende de $r$ y de $m$, sino solo del cociente $r/m$.
+    
+    Para esto, tomamos $s/n=r/m$ y
+    debemos mostrar que $g:\<n\>\to\Z$
+    dada como $an\mapsto as$ cumple $[f]=[g]$.
+    Como $s/n=r/m$, entonces $sm=rn$, así que $mn$ cumple
+    \begin{align*}
+        f|_{\<mn\>}(amn)
+        &= f(amn)
+        = arn
+        = asm
+        = g(anm)
+        = g|_{\<mn\>}(amn),
+    \end{align*}
+    por lo cual $f|_{\<mn\>}=g|_{\<mn\>}$ y $[f]=[g]$.
+    
+    Luego, la asignación $r/m\mapsto [(am\mapsto ar)]$
+    es una función
+    \[
+        \xi:\Q\to\varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)
+    .\]
+    Notemos que $\xi$ es $\Z$-lineal, ya que
+    \begin{align*}
+        \xi\left(a\frac r m + \frac s n\right)
+        &= \xi\left(\frac{arn + ms}{mn}\right) \\
+        &= \left( xmn \mapsto x(arn+ms) \right) \\
+        &= (xmn \mapsto xarn+xms) \\
+        &= (xmn \mapsto xarn) + (xmn \mapsto xms) \\
+        &= a(xmn \mapsto xrn) + (xmn \mapsto xms) \\
+        &= a\xi\left(\frac{rn}{mn}\right)
+            + \xi\left(\frac{ms}{mn}\right) \\
+        &= a\xi\left(\frac{r}{m}\right)
+            + \xi\left(\frac{s}{n}\right).
+    \end{align*}
+    Finalmente, observemos que
+    \begin{align*}
+        \xi(\mu(r/m))
+        &= \xi(am\mapsto ar) \\
+        &= \frac{(am\mapsto ar)(m)}{m} \\
+        &= \frac{r}{m} \\
+        \mu(\xi([f]))
+        &= \mu\left(\frac{f(n)} n \right) \\
+        &= [an\mapsto af(n)] \\
+        &= [an\mapsto f(an)] \\
+        &= [f]
+    .\end{align*}
+    Esto muestra que $\xi$ es la inversa de $\mu$,
+    así que tenemos un isomorfismo
+    \[
+        \begin{tikzcd}
+        \mathbb Q \ar[r,shift left,"\mu"] &
+        \displaystyle
+        \varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z),
+        \ar[l,shift left,"\xi"]
+       \end{tikzcd} 
+    \]
+    Esto es lo que se quería.
+\end{sol}
+
+Ahora, ¿qué tiene que ver esto con núcleos?
+
+\paragraph{Filtros de Gabriel}
+Recordemos que $\nti\Z$ es un filtro de $\Lambda(\Z)$.
+De hecho, tiene otras propiedades interesantes:
+Dado cualquier ideal $I\in\nti\Z$, tenemos
+\[
+    (n:I)=\{k\in\Z\mid nk\in I\}\in\nti\Z
+\]
+para todo $n\in\Z$.
+Además, si $J\in\nti\Z$, entonces
+\[
+    (\forall n\in J,\; (n:I)\in\nti\Z)\implies I\in\nti\Z
+.\]
+A un filtro con estas dos propiedades se le llama filtro de Gabriel.
+
+\paragraph{Núcleos deferentes}
+Se puede demostrar que el operador $j:\Lambda(\Z)\to\Lambda(\Z)$
+dado como
+\[
+    j(I) = \{n\in\Z\mid(n:I)\in\nti\Z\}
+\]
+es un núcleo en $\Lambda(\Z)$, en el sentido de que es monótono,
+infla, es idempotente y preserva ínfimos.
+Más aún, el conjunto $N(\Lambda(\Z))$ de los núcleos en $\Z$
+es un marco.
+Adicionalmente, el núcleo $j$ satisface
+\[
+    j(n:I) = (n:j(I))
+.\]
+A un núcleo con esta propiedad se le llama núcleo deferente.
+
+En particular, tomando el núcleo $j$ definido arriba,
+se puede demostrar que su conjunto de puntos fijos es
+\[
+    \Lambda(\Z)_j = \{0\leq \Z\}
+,\]
+el cual es isomorfo a la retícula $\Lambda(\Q)$ de ideales de $\Q$.
+
+En términos generales, hay una correspondencia
+(que no desarrollaremos aquí)
+entre los núcleos deferentes de $\Lambda(\Z)$,
+los filtros de Gabriel en $\Lambda(\Z)$,
+las teorías de torsión hereditaria de $\Mod_\Z$
+y las localizaciones de $\Mod_\Z$.
+
+Por ejemplo, al núcleo $j$ le corresponden
+el filtro $\nti\Z$, la teoría de torsión
+$(\scr T_t,\scr F_t)$ y la localización
+$\Mod_\Z\to\Mod_\Q$.
+

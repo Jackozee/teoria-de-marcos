@@ -1,0 +1,1235 @@
+%\section*{SESIÓN 14: 28 OCT}
+\chapter{Espacios sobrios y marcos espaciales}
+
+Recordemos que, por definición, un marco $A$ es espacial si
+su reflexión espacial $U_A:A\to\cal O\pt A$ es un isomorfismo
+(o, equivalentemente, si $U_A$ es inyectiva).
+Los marcos espaciales, junto con los morfismos de marcos,
+forman la subcategoría $\Sp$ de $\Top$.
+
+Ahora nuestro objetivo es ver que $\Top$ tiene una subcategoría
+dual a $\Sp$, de tal modo que la dualidad
+está dada por la restricción de la adjunción.
+La categoría que queremos es la de los espacios sobrios,
+a la cual denotaremos como $\Sob$.
+También veremos que, análogamente a lo que pasa
+con los marcos espaciales, un espacio topológico $S$ es sobrio
+si, y solo si, $\Phi_S:S\to\pt\cal OS$ es un isomorfimso.
+
+\section{Espacios sobrios}
+Comenzaremos por definir los espacios topológicos sobrios.
+
+Recordemos que, dado un espacio topológico $S$,
+$\pt\cal OS$ es el conjunto de elementos
+$\inf$-irreducibles del marco $\cal OS$.
+Además, $\pt\cal OS$ tiene una topología canónica,
+donde los abiertos son los conjuntos de la forma
+\[
+    U_{\cal OS}(u) = \{p\in\pt\cal OS \mid u\nleq p\}
+.\]
+También recordemos que, dotando a $\pt A$ con esta topología,
+la función $\Phi_S:S\to\pt\cal OS$ dada como
+\[
+    \Phi_S(x) = \ol{x}' = S-\ol{\{x\}}.
+\]
+es continua.
+A $\Phi_S(x):S\to\pt\cal OS$ le llamamos
+la reflexión sobria de $S$, debido a la siguiente definición.
+
+\begin{defn}
+    Decimos que un espacio topológico $S$ es sobrio si
+    cada abierto $\inf$-irreducibles es de la forma
+    $\Phi_S(x)$ para un único punto $x\in S$.
+    En otras palabras, un espacio $S$ es sobrio
+    si su reflexión sobria $\Phi_S:S\to\cal OS$ es biyectiva.
+    
+    Puede parecer extraño definir la sobriedad en términos de
+    la biyectividad de $\Phi_S$, en lugar de pedir que $\Phi_S$
+    sea un homeomorfismo.
+    Más adelante, veremos que estas condiciones son equivalentes.
+    
+    Denotamos como $\Sob$ a la categoría formada por
+    los espacios topológicos sobrios y sus funciones continuas.
+\end{defn}
+
+\begin{lemma}
+    Sea $S$ un espacio topológico.
+    Si $S$ es de Hausdorff, entonces $S$ es sobrio.
+    Si $S$ es sobrio, entonces es de Kolmogorov.
+    Esto es
+    \[
+        T_2 \implies \text{sobrio}\implies T_0.
+    \]
+\end{lemma}
+\begin{proof}
+    Supongamos que $S$ es Hausdorff y sea $u\in\pt\cal OS$.
+    Es decir, $u$ es un elemento $\inf$-irreducible de $\cal OS$.
+    Queremos ver que $u=\ol{x}'$ (i.e.: $u'=\ol x$) para un único
+    punto $x\in S$.
+    Como $S$ es Hausdorff, esto sucede si, y solo si, $u'=\{x\}$
+    para algún $x\in S$.
+    Por definición, $u\neq S$, así que existe,
+    al menos, un punto en $u'$.
+    Supongamos que hay dos puntos $x,y\in u'$ distintos.
+    Como $S$ es Hausdorff, existen abiertos $v_1,v_2\in\cal OS$
+    con $x\in v_1$, $y\in v_2$ y $v_1\inf v_2=\emptyset$.
+    Luego,
+    \begin{align*}
+        u
+        &= u\sup(v_1\inf v_2) \\
+        &= (u\sup v_1)\inf (u\sup v_2).
+    \end{align*}
+    Como $u$ es $\inf$-irreducible, esto implica que $v_1\leq u$
+    o que $v_2\leq v$, pero esto implicaría que $x\in u$ o que $y\in u$,
+    lo cual es una contradicción.
+    Se sigue que $u'=\{x\}$, que es lo que se quería demostrar.
+    
+    Ahora supongamos que $S$ es sobrio.
+    Si $x,y\in S$ son puntos distintos, entonces
+    Dados $x,y\in S$, tenemos
+    \begin{align*}
+        \Phi_S(x) = \Phi_S(y)
+        &\iff \ol{x}' = \ol{y}' \\
+        &\iff \ol x = \ol y \\
+        &\iff \cal U(x) = \cal U(y),
+    \end{align*}
+    donde $\cal U(x)$ y $\cal U(y)$ son los filtros
+    de vecindades abiertas de $x$ y $y$, respectivamente.
+    Como $\Phi_S$ es inyectiva, dados $x,y\in S$ distintos, tenemos
+    \[
+        \cal U(x)\neq\cal U(y),
+    \]
+    así que existe una vecindad abierta de $x$ que no contiene a $y$
+    o una vecindad abierta de $y$ que no contiene a $x$.
+    Esto es, $S$ es $T_0$.
+\end{proof}
+
+Reformulando un poco la definición de sobriedad,
+obtenemos el siguiente resultado.
+\begin{lemma}
+    Un espacio $S$ es sobrio si, y solo si,
+    todo cerrado irreducible de $S$
+    (esto es, todo elemento $\sup$-irreducible de $\cal CS$)
+    tiene un único punto genérico.
+\end{lemma}
+\begin{proof}
+    Los cerrados $\sup$-irreducibles son exactamente
+    los de la forma $c=u'$ para $u$ un abierto $\inf$-irreducible.
+    Tomando complementos, vemos que las siguientes afirmaciones
+    son equivalentes:
+    \begin{itemize}
+         \item Todo abierto $\inf$-irreducible es de
+         la forma $u=\ol{x}'$ para un único $x\in S$.
+         \item Todo cerrado $\sup$-irreducible es de
+         la forma $c=\ol x$ para un único $x\in S$.
+    \end{itemize}
+    La primera afirmación es la sobriedad de $S$,
+    mientras que la segunda dice que todo cerrado
+    irreducible de $S$ tiene un único punto genérico.
+\end{proof}
+
+\begin{exa}
+    Dado un anillo conmutativo $R$,
+    el espectro primo $\mathrm{Spec}R$ es un espacio sobrio.
+    
+    Por ejemplo, los cerrados irreducibles de $\mathrm{Spec}\Z$ son
+    de la forma $c=\{p\}$ (para un primo $p\in\Z$) o $c=\mathrm{Spec}\Z$.
+    En el primer caso, el punto genérico es $p$.
+    De otro modo, tenemos $\ol{\{0\}}=\mathrm{Spec}\Z$.
+\end{exa}
+
+%\section*{SESIÓN 15: 4 NOV}
+
+\section{La topología de Skula}
+
+Recordemos que, dado un marco $A$, el ensamble $NA$ viene equipado con
+un morfismo $\eta_A:A\to NA$ que resuelve el problema de complementación
+(de hecho, $\eta_A$ es la solución universal).
+
+Ahora queremos explorar una situación parecida, para una topología
+$\cal OS$, aunque solo consideraremos topologías en el conjunto $S$.
+
+\begin{defn}
+    Sea $S$ un espacio topológico y $\cal OS$ su topología.
+    Definimos $\cal O\prs f{}S$ como la topología más pequeña
+    en $S$ tal que todo $u\in\cal OS$ es abierto y cerrado.
+    Es decir, $\cal O\prs f{}S$ es la topología generada por la subbase
+    \[
+        \cal OS\cup\{u'\mid u\in\cal OS\}
+    .\]
+    En otras palabras, $\cal O\prs f{}S$
+    es la topología más pequeña sobre $S$
+    tal que la inclusión $\cal OS\to\cal O\prs f{}S$ resuelve
+    el problema de complementación.
+    $\cal O\prs f{}S$ se llama la \emph{topología de Skula}
+    de $S$, y al conjunto $S$ equipado con $\cal O\prs f{}S$
+    lo denotamos $\prs f{}S$.
+\end{defn}
+
+\begin{exa}
+    Sea $\R$ el conjunto de los números reales.
+    Consideraremos los espacios topológicos
+    Además, sean $\prs l{}\R$, $\prs{}m\R$
+    y $\prs r{}\R$ los espacios topológicos dados por $\R$
+    equipado con la topologías generadas por
+    \begin{align*}
+        \{(-\infty,a)\mid a\in\R\}, \\
+        \{(a,b)\mid a,b\in\R\}, \\
+        \{[a,b)\mid a,b\in\R\},
+    \end{align*}
+    respectivamente.
+    Nótese que $\cal O\prs{}m\R$ es la topología estandar.
+    Además, tenemos
+    \[
+        \cal O\prs l{}\R
+        \subseteq
+        \cal O\prs{}m\R
+        \subseteq
+        \cal O\prs r{}\R.
+    \]
+    No es difícil ver que $\prs l{}\R$ es $T_0$,
+    aunque no es $T_0$.
+    
+    Entonces $\cal O\prs r{}\R$ es la topología de Skula
+    en $\cal O\prs l{}\R$:
+    \[
+        \cal O\prs f{}(\prs l{}\R)
+        = \cal O\prs r{}\R
+    .\]
+\end{exa}
+
+Dado que la inclusión $\iota:\cal OS\to\cal O\prs f{}S$
+es un morfismo de marcos que resuelve el problema de complementación,
+se factoriza de manera única a través de $\eta_{\cal OS}$:
+\[
+    \begin{tikzcd}
+        \cal OS \ar[d,"\eta_{\cal OS}"'] \ar[r,"\iota"]
+        & \cal O\prs f{}S \\
+        N\cal OS \ar[ur,"\iota^!"']
+    \end{tikzcd}
+\]
+Por la adjunción entre $\cal O$ y $\pt$,
+el morfismo $\iota^!:N\cal OS\to\cal O\prs f{}S$ corresponde
+a un único morfismo $\phi:\prs f{}S\to\pt N\cal OS$.
+Reemplazando a $\cal OS$ por un marco arbitrario $A$
+y a $S$ por $\pt A$,
+se puede demostrar que $\phi$ es un isomorfismo.
+
+\section{Las distintas encarnaciones del espacio de puntos}
+
+Recordemos que definimos el espacio de puntos de un marco
+como el conjunto de sus elementos $\inf$-irreducibles.
+Ahora veremos otras dos construcciones equivalentes.
+
+\begin{defn}
+    Sea $A$ es una retícula.
+    Un subconjunto $F\subseteq A$ es un filtro si
+    \begin{itemize}
+        \item es sección superior (absorbe hacia arriba),
+        \item es no vacío y
+        \item es cerrado bajo ínfimos de dos elementos.
+    \end{itemize}
+    Además, un filtro $F$ es propio si $0\nin F$.
+    Nótese que
+    \[
+        0\in F \ssi F=A
+    .\]
+    
+    Decimos que un filtro $F\subseteq A$ es primo si,
+    \begin{itemize}
+        \item es propio y
+        \item siempre que $a\sup b\in F$, entonces $a\in F$ o $b\in F$.
+    \end{itemize}
+    
+    Si $A$ es una retícula completa (por ejemplo, un marco),
+    entonces decimos que un filtro $F\subseteq A$ es completamente
+    primo si,
+    \begin{itemize}
+        \item es propio y
+        \item siempre que $\Sup X\in F$, entonces existe $x\in X\cap F$.
+    \end{itemize}
+\end{defn}
+
+\begin{exa}
+    Sean $S$ un espacio topológico y $x\in S$.
+    Entonces el conjunto de vecindades abiertas de $x$
+    \[
+        \cal U(x) = \{u\in \cal OS\mid x\in u\}
+    \]
+    es un filtro completamente primo.
+    
+    En efecto, $\cal U(x)$ es un filtro:
+    \begin{itemize}
+        \item si $x\in u\leq v$, entonces $x\in v$;
+        \item $x\in S$;
+        \item si $x\in u$ y $x\in v$, entonces $x\in u\inf v$.
+    \end{itemize}
+    Además,  $\cal U(x)$ es propio, ya que $\emptyset\nin\cal U(x)$.
+    Finalmente, si $X\subseteq \cal OS$ es tal que $x\in \Sup X$,
+    entonces existe $u\in X$ tal que $x\in u$.
+\end{exa}
+
+%\section*{SESIÓN 16: 9 NOV}
+
+\begin{defn}
+    Un caracter en un marco $A$ es un morfismo
+    \[
+        \chi:A\to 2
+    .\]
+\end{defn}
+
+\begin{thm}
+    Las funciones
+    \[
+        \begin{aligned}
+            (\pt A,\sqsubseteq)
+            =(\pt A,\leq)^\op &\rightleftarrows \Cp(A) \\
+            p &\mapsto F_p=\{a\in A\mid a\nleq p\} \\
+            \Sup\{a\in A\mid a\nin F\} = p_F &\mapsfrom F
+        \end{aligned}
+        \hspace{20mm}
+        \begin{aligned}
+            \Cp(A) &\rightleftarrows \Frm(A,2) \\
+            F &\mapsto \chi_F \\
+            \chi^{-1}(1) = F_\chi &\mapsfrom \chi
+        \end{aligned}
+    \]
+    son isomorfismos de copos.
+\end{thm}
+\begin{proof}
+    \textbf{Primera parte.}
+    Veamos que las funciones
+    \begin{align*}
+        \pt A &\rightleftarrows \Cp(A) \\
+        p &\mapsto F_p = \{a\in A\mid a\nleq p\} \\
+        \Sup\{a\in A\mid a\nin F\} = p_F &\mapsfrom F
+    \end{align*}
+    están bien definidas.
+    \begin{itemize}
+        \item
+        Dado un $p\in\pt A$, sea $F_p=\{a\in A\mid a\nleq p\}$.
+        Como $p\neq 1$, tenemos $1\nleq p$, por lo cual
+        $1\in F_p$.
+        Además, $F_p$ es cerrado hacia arriba:
+        Si $a\geq b$, entonces $a\leq p\implies b\leq p$,
+        o bien $b\nleq p\implies a\nleq p$;
+        es decir: $b\in F_p$ implica que $a\in F_p$.
+        Si $a,b\in A$, la irreducibilidad de $p$ implica que
+        $a\inf b\leq p \implies a\leq p \text{ o } b\leq p$.
+        Tomando contrapuesta, tenemos
+        $a,b\in F_p \implies a\inf b\in F_p$.
+        Luego, $F_p$ es un ideal.
+        
+        Notemos que $F_p$ es propio, pues $0\leq p$
+        implica $0\nin F_p$.
+        Finalmente, si $X\subseteq A$ tenemos
+        \[
+            (\forall x\in X,\; x\leq p)\implies\Sup X\leq p
+        \]
+        o, tomando contrapuesta:
+        \[
+            \Sup X\nleq p \implies \exists x\in X,\; x\nleq p
+        .\]
+        Luego, $F_p$ es completamente primo.
+        \item
+        Dado un filtro completamente primo $F$,
+        consideremos $p_F=\Sup\{x\in A\mid x\nin F\}$.
+        Como $F$ es completamente primo, tenemos $p_F\nin F$.
+        Además, todo $x\leq p$ cumple $x\nin F$
+        (de otro modo, tendríamos $p\in F$,
+        pues $F$ es sección superior).
+        Es decir:
+        \[
+            x\nin F\iff x\leq p_F
+        .\]
+        Notemos que $p_F\neq 1$, pues $1\in F$.
+        Como $F$ es filtro, tenemos que
+        $a,b\in F\implies a\inf b\in F$.
+        Tomando contrapuesta, obtenemos
+        $a\inf b\leq p\implies a\leq p_F$ o $b\leq p_F$.
+        Ahora sean $a,b\in A$ tales que $a\nleq p_F$, $b\nleq p_F$.
+        Como $F$ es sección superior, se sigue que $a\in F$,
+        por lo cual $a\nleq p_F$.
+        Es decir, $p_F$ es $\inf$-irreducible,
+        o bien $p_F\in\pt A$.
+    \end{itemize}
+    Ahora veamos que estas funciones son inversas mutuas.
+    Dado $p\in\pt A$, tenemos $F_p=\{x\in A\mid x\nleq p\}$.
+    Entonces para todo $y\in A$ tenemos
+    \begin{align*}
+        p_{F_p} \leq y
+        &\iff \Sup\{x\in A\mid x\nin F_p\}\leq y \\
+        &\iff (\forall x\in A,\; x\nin F_p\implies x\leq y) \\
+        &\iff (\forall x\in A,\; x\leq p\implies x\leq y) \\
+        &\iff p\leq y.
+    \end{align*}
+    Se sigue que $p_{F_p}=p$.
+    Ahora sea $F\in\Cp(A)$ y consideremos
+    $p_F=\Sup\{x\in A\mid x\nin F\}$.
+    Arriba ya mostramos que, para todo $x\in A$, tenemos
+    \[
+        x\leq p \iff x\nin F_p
+    ,\]
+    de modo que $F_{p_F}=\{x\in A\mid x\nleq p\}=F$.
+    Luego, las funciones forman una biyección.
+    
+    Finalmente, notemos que, dados $p,q\in\pt A$, tenemos
+    \[
+        p\leq q
+        \implies
+        F_q=\{x\in A\mid x\nleq q\}
+        \subseteq
+        \{x\in A\mid x\nleq p\}=F_p,
+    \]
+    por lo cual obtenemos un isomorfismo de copos
+    \[
+        (\pt A,\sqsubseteq)=(\pt A,\leq)^\op \simeq \Cp(A)
+    .\]
+    \textbf{Segunda parte.}
+    Veamos que las otras dos funciones
+    \begin{align*}
+        \Cp(A) &\rightleftarrows \Frm(A,2) \\
+        F &\mapsto \chi_F \\
+        \chi^{-1}(1) = F_\chi &\mapsfrom \chi
+    \end{align*}
+    están bien definidas.
+    \begin{itemize}
+        \item
+        Si $F$ es un filtro completamente primo de un marco $A$, entonces
+        la función característica $\chi_F:A\to 2$ de $F$, dada como
+        \[
+            \chi_F(a)=
+            \begin{cases}
+                1 & a\in F \\
+                0 & a\nin F,
+            \end{cases}
+        \]
+        es un morfismo de marcos y, por lo tanto, es un caracter de $A$.
+        
+        En efecto, dados $x,y\in A$, tenemos
+        \begin{align*}
+            \chi_F(x\inf y) = 1
+            &\iff x\inf y\in F \\
+            &\iff x\in F, y\in F & \text{ya que $F$ es filtro} \\
+            &\iff \chi_F(x)=1, \chi_F(y)=1 \\
+            &\iff \chi_F(x)\inf\chi_F(y)=1.
+        \end{align*}
+        Como $\chi_F$ toma valores en $2$, esto muestra que
+        $\chi_F$ preserva ínfimos de dos elementos.
+        Además, $1\in F$, por lo cual $\chi_F(1)=1$.
+        
+        Más aún, dado $X\subseteq A$, tenemos
+        \begin{align*}
+            \chi_F(\Sup X) = 1
+            &\iff \Sup X\in F \\
+            &\iff \exists x\in X, x\in F
+                & \text{ya que $F$ es comp. primo} \\
+            &\iff \exists x\in X, \chi_F(x) = 1 \\
+            &\iff \Sup\{\chi_F(x)\mid x\in X\} = 1
+                & \text{ya que $\chi_F$ es $2$-valuado.}
+        \end{align*}
+        Luego, $\chi_F$ preserva supremos.
+        Esto prueba que $\chi_F\in\Frm(A,2)$.
+        \item
+        Tomemos $\chi\in\Frm(A,2)$ y sea $F_\chi=\chi^{-1}(1)$.
+        $F_\chi$ es no vacío, pues $1\in F_\chi$.
+        $F_\chi$ es cerrado hacia arriba: si $a\geq b\in F_\chi$,
+        entonces $\chi(a)\geq\chi(b)=1$, por lo cual $a\in F_\chi$.
+        Ahora, dados $a,b\in F_\chi$ tenemos
+        $\chi(a\inf b)=\chi(a)\inf\chi(b)=1\inf 1=1$, así que
+        $a\inf b\in F_\chi$.
+        Se sigue que $F_\chi$ es un ideal.
+        
+        Además $F_\chi$ es propio, pues $0\nin F_\chi$.
+        Finalmente, si $X\subseteq A$ es tal que
+        $\Sup X\in F_\chi$,
+        tenemos $1=\chi(\Sup X)=\Sup\{\chi(x)\mid x\in X\}$,
+        lo cual solo puede suceder si hay $x\in X$ con $\chi(x)=1$,
+        así que $x\in X\cap F_\chi$.
+        Por lo tanto, $F_\chi$ es completamente primo.
+    \end{itemize}
+    Ahora veamos que estas funciones son inversas mutuas.
+    Si $\chi:A\to 2$, consideremos $F_\chi=\chi^{-1}(1)$.
+    Tenemos
+    \begin{align*}
+        \chi_{F_\chi}(x) = 1
+        &\iff x\in F_\chi \\
+        &\iff \chi(x),
+    \end{align*}
+    por lo cual $\chi_{F_\chi}=\chi$.
+    Dado un filtro completamente primo $F$, consideremos
+    $\chi_F$.
+    Entonces
+    \begin{align*}
+        F_{\chi_F}
+        &= \chi_F^{-1}(1) \\
+        &= \{x\in A\mid \chi_F(x)=1 \} \\
+        &= \{x\in A\mid x\in F\} \\
+        &= F.
+    \end{align*}
+    Luego, las funciones son inversas mutuas.
+    Además, si $\chi\leq\xi$ son caracteres de $A$,
+    tenemos que
+    \begin{align*}
+        F_\chi
+        &= \{x\in A\mid \chi(x)=1\} \\
+        &\subseteq \{x\in A\mid \xi(x)=1\} \\
+        &= F_\xi,
+    \end{align*}
+    de modo que tenemos un isomorfismo de copos
+    \[
+        \Cp(A) \simeq \Frm(A,2).
+    \]
+    Esto concluye la demostración.
+\end{proof}
+
+Recordemos que los elementos de la topología en $\pt A$
+se definen como los de la forma
+\[
+    U_A(a) = \{p\in\pt A\mid a\nleq p\}.
+\]
+El teorema anterior nos dice que, en vez de tomar
+al espacio de puntos $\pt A$ formado por los elementos
+$\inf$-irreducibles de $A$, a un marco le podemos asignar
+su espacio de puntos formado por sus filtros completamente primos
+\[
+    \pt^{\cal F} A = \Cp A
+\]
+o su espacio de puntos formado por sus caracteres
+\[
+    \pt^\chi A = \Frm(A,2).
+\]
+cuyas topologías están dadas por la imagen de $\cal O\pt A$
+bajo las biyecciones.\\
+Explícitamente, las topologías en $\pt^{\cal F}A$
+y en $\pt^\chi A$ están dadas por los conjuntos de la forma
+\[
+    U^{\cal F}_A(a) = \{F\in\Cp(A) \mid a\in F\}
+\]
+y
+\[
+    U^\chi_A(a) = \{\chi\in\Frm(A,2)\mid\chi(a)=1\},
+\]
+respectivamente.
+
+En particular, dado un espacio topológico $S$, podemos formar
+los tres espacios homeomorfos
+$\pt\cal OS$, $\pt^{\cal F}\cal OS$ y $\pt^\chi \cal OS$,
+y cada uno viene equipado con las reflexiones sobrias
+que se obtienen al componer con los homeomorfismos.
+Explícitamente, tenemos
+\begin{align*}
+    \Phi_S:S&\to \pt\cal OS \\
+    x&\mapsto \ol{x}' \\
+    \Phi^{\cal F}_S:S&\to\pt^{\cal F}\cal OS \\
+    x&\mapsto \{u\in\cal OS \mid x\in u\} = \cal U(x) \\
+    \Phi^\chi_S:S&\to\pt^\chi\cal OS \\
+    x&\mapsto \chi_{\cal U(x)}.
+\end{align*}
+Dado que estas tres funciones tienen las mismas
+propiedades, podemos ver que un espacio $S$ es sobrio si,
+y solo si, todo filtro completamente primo de $\cal OS$
+es de la forma $\cal U(x)$ para un único $x\in X$,
+lo cual sucede si, y solo si, todo morfismo de marcos
+$\cal OS\to 2$ es de la forma $\chi_{\cal U(x)}$ para un único
+$x\in S$.
+
+%\section*{SESIÓN 17: 11 NOV}
+
+\section{La dualidad entre \tps{$\Sob$}{Sob} y \tps{$\Sp$}{Sp}}
+
+Recordemos que un marco $A$ es espacial si su reflexión espacial
+\[
+    U_A:A\to\cal O\pt A
+\]
+es un isomorfismo, y que un espacio topológico $S$ es sobrio
+si su reflexión sobria
+\[
+    \Phi_S:S\to\pt\cal OS
+\]
+es biyectiva (después veremos que este es equivalente a que
+$\Phi_S$ sea un homeomorfismo).
+
+\begin{lemma}
+    \leavevmode
+    \begin{itemize}
+        \item Para todo espacio $S$,
+            el marco $\cal OS$ es espacial.
+        \item Para todo marco $A$,
+            el espacio $\pt A$ es sobrio.
+    \end{itemize}
+    En otras palabras, los funtores
+    $\cal O:\Top\to\Frm$ y $\pt:\Frm\to\Top$ se factorizan
+    a través de $\Sp$ y $\Sob$, respectivamente:
+    \[
+        \begin{tikzcd}
+            \Top \ar[rr,"\cal O"] \ar[dr] && \Frm \\
+            & \Sp \ar[ur]
+        \end{tikzcd}
+        \hspace{10mm}
+        \begin{tikzcd}
+            \Frm \ar[rr,"\pt"] \ar[dr] && \Top \\
+            & \Sob \ar[ur]
+        \end{tikzcd}
+    \]
+\end{lemma}
+\begin{proof}
+    En \ref{ssec:adjuncion} probamos que
+    las identidades triangulares
+    \[
+        \begin{tikzcd}[row sep=15mm]
+            & \cal OS \ar[d,"U_{\cal OS}"] \ar[dl,"\id_{\cal OS}"']
+            \\
+            \cal OS
+            & \cal O\pt\cal OS \ar[l,"\cal O\Phi_S"]
+        \end{tikzcd}
+        \hspace{10mm}
+        \begin{tikzcd}[row sep=15mm]
+            & \pt A \ar[d,"\Phi_{\pt A}"] \ar[dl,"\id_{\pt A}"']
+            \\
+            \pt A
+            & \pt \cal O\pt A \ar[l,"\pt U_A"]
+        \end{tikzcd}
+    \]
+    siempre se satisfacen.
+    Como queremos probar que $U_{\cal OS}$ es un isomorfismo
+    y que $\Phi_{\pt A}$ es biyectiva,
+    basta probar que las otras composiciones también son
+    las identidades en $\cal OS$ y en $\pt A$, respectivamente.
+    Esto es:
+    \begin{align*}
+        (U_{\cal OS})(\cal O\Phi_S) &= \id_{\cal OS} \\
+        (\Phi_{\pt A})(\pt U_A) &= \id_{\pt A}.
+    \end{align*}
+    Lo primero es fácil:
+    todo abierto $U\in\cal O\pt\cal OS$ es de la forma
+    $U=U_{\cal OS}(u)$ para algún $u\in\cal OS$.
+    Luego,
+    \begin{align*}
+        U_{\cal OS}(\cal O\Phi_S(U))
+        &= U_{\cal OS}(\cal O\Phi_S(U_{\cal OS}(u))) \\
+        &= U_{\cal OS}(u) \\
+        &= U.
+    \end{align*}
+    
+    Por otro lado, todo punto $z\in\pt\cal O\pt A$,
+    es elemento de $\cal O\pt A$ y, por lo tanto,
+    es de la forma $z=U_A(x)$ para algún $x\in A$.
+    Poniendo $y=(\pt U_A)(z)$, tenemos
+    \begin{align*}
+        y
+        &= (\pt U_A)(z) \\
+        &= (U_A)_*(z) \\
+        &= \Sup\{a\in A\mid U_A(a)\leq z\} \\
+        &= \Sup\{a\in A\mid U_A(a)\leq U_A(x)\},
+    \end{align*}
+    de modo que
+    \begin{align*}
+        U_A(y)
+        &= \Sup\{U_A(a)\in A\mid U_A(a)\leq U_A(x)\} \\
+        &= U_A(x) \\
+        &= z.
+    \end{align*}
+    Luego, para todo $p\in\pt A$ tenemos
+    \begin{align*}
+        p\in\Phi_{\pt A}((\pt U_A)(z))
+        &\iff p\in \Phi_{\pt A}(y) \\
+        &\iff p\in \ol{y}' \\
+        &\iff y\nleq p \\
+        &\iff p\in U_A(y) = z.
+    \end{align*}
+\end{proof}
+
+Esta prueba también muestra que, si $\Phi_S:S\to\pt\cal OS$
+es biyectiva, entonces es un homeomorfismo,
+pues $\cal O\Phi_S:\cal O\pt\cal OS\to\cal OS$
+siempre es un isomorfismo de marcos.
+Luego, un espacio $S$ es sobrio si, y solo si,
+$\Phi_S:S\to\pt\cal OS$ es un isomorfismo.
+
+Una consecuencia inmediata es que las composiciones
+\begin{align*}
+    \Sob \to \Frm \to \Sp \\
+    \Sp \to \Top \to \Sob
+\end{align*}
+son esencialmente suprayectivas.
+En efecto: para cualquier marco espacial $A$ tenemos
+$A\simeq\cal O\pt A$ con $\pt A$ sobrio, mientras que,
+para cualquier espacio sobrio $S$, tenemos $S\simeq\pt\cal OS$
+con $\cal OS$ espacial.
+
+Además, estos funtores son fielmente plenos, pues dados marcos
+espaciales $A,B$ y espacios $S,T$ sobrios, tenemos
+\begin{align*}
+    \Sp(A,B)
+    &= \Frm(A,B) \\
+    &\simeq \Frm(A,\cal O\pt B) \\
+    &\simeq \Frm(\pt B,\pt A) \\
+    &\simeq \Sob(\pt B,\pt A),
+    \\
+    \Sob(S,T)
+    &= \Top(S,T) \\
+    &\simeq \Top(S,\pt\cal OT) \\
+    &\simeq \Frm(\cal OT,\cal OS) \\
+    &\simeq \Sp(\cal OT,\cal OS).
+\end{align*}
+Por lo tanto, tenemos el resultado
+\begin{thm}
+    La adjunción contravariante
+    \[
+        \begin{tikzcd}
+            \Frm \ar[r,"\cal O",shift left]
+            & \Top \ar[l,"\pt",shift left]
+        \end{tikzcd}
+    \]
+    se restringe a una equivalencia dual entre $\Sp$ y $\Sob$.
+    Esto es:
+    \[
+        \Sp^\op \simeq \Sob.
+    \]
+\end{thm}
+
+\section{\tps{$\Sp$}{Sp} y \tps{$\Sob$}{Sob} son reflexivas.}
+Ahora veremos que las subcategorías $\Sp$ de $\Frm$ y
+$\Sob$ de $\Top$ son reflexivas.
+Esto es: los funtores de inclusión
+\begin{align*}
+    \Sp&\to\Frm \\
+    \Sob&\to\Top
+\end{align*}
+tienen adjuntos izquierdos.
+De hecho, veremos que los adjuntos son (las restricciones de)
+$\cal O\pt$ y $\pt\cal O$, respectivamente.
+En realidad la demostración es bastante fácil.
+Usaremos la adjunción
+\[
+    \Frm(A,\cal OS) \simeq \Top(S,\pt A).
+\]
+Denotemos, por un momento, como $i:\Sp\to\Frm$ al funtor
+de inclusión.
+Entonces, para todo marco $A$ y todo marco espacial $B$, tenemos
+$\pt\cal O\pt A\simeq\pt A$ y $\cal O\pt B\simeq B$, por lo cual
+tenemos isomorfismos
+\begin{align*}
+    \Frm(A,iB)
+    &=\Frm(A,B) \\
+    &\simeq \Frm(A,\cal O\pt B) \\
+    &\simeq \Top(\pt B,\pt A) \\
+    &\simeq \Top(\pt B,\pt\cal O\pt A) \\
+    &\simeq \Frm(\cal O\pt A,\cal O\pt B) \\
+    &\simeq \Frm(\cal O\pt A,B) \\
+    &\simeq \Sp(\cal O\pt A,B)
+\end{align*}
+naturales en $A$ y en $B$.
+Se sigue que $\cal O\pt\dashv i$.
+
+Ahora denotemos como $i:\Sob\to\Top$ al funtor de inclusión.
+Para todo espacio $S$ y todo espacio sobrio $T$,
+tenemos $\cal O\pt\cal OS\simeq\cal OS$ y $\pt\cal O T\simeq T$,
+por lo cual tenemos isomorfismos
+\begin{align*}
+    \Top(S,iT)
+    &= \Top(S,T) \\
+    &\simeq \Top(S,\pt\cal OT) \\
+    &\simeq \Frm(\cal OT,\cal OS) \\
+    &\simeq \Frm(\cal OT,\cal O\pt\cal OS) \\
+    &\simeq \Top(\pt\cal OS,\pt\cal OT) \\
+    &\simeq \Top(\pt\cal OS,T) \\
+    &\simeq \Sob(\pt\cal OS,T)
+\end{align*}
+naturales en $S$ y en $T$.
+Se sigue que $\pt\cal O\dashv i$.
+
+\section{Dualidad de Stone}
+
+\begin{defn}
+    Sea $A$ una retícula completa.
+    Decimos que un elemento $a\in A$ es compacto si,
+    para todo $S\subseteq A$ tal que $a\leq\Sup S$,
+    existe un subconjunto finito $T\subseteq S$ tal que
+    $a\leq\Sup T$.
+    
+    Al conjunto de elementos compactos
+    de $A$ lo denotamos como $\cal KA$.
+\end{defn}
+
+Nótese que $\cal KA$ es cerrado bajo supremos finitos.
+En efecto, sean $a,b\in\cal KA$.
+Si $X\subseteq A$ es tal que $a\sup b\leq\Sup X$,
+entonces $a\leq\Sup X$ y $b\leq\Sup X$, por lo cual
+existen subconjuntos finitos $S,T\subseteq X$
+tales que $a\leq\Sup S$ y $b\leq\Sup T$.
+Luego, $a\sup b\leq\Sup\{S\cup T\}$ con $S\cup T\subseteq X$ finito.
+Claramente, $0\in\cal KA$.
+
+\begin{defn}
+    Decimos que un marco $A$ es coherente si
+    \begin{itemize}
+        \item Todo elemento de $A$ es supremo de elementos
+        en $\cal KA$.
+        \item $\cal KA$ es cerrado bajo ínfimos finitos
+        y $1\in\cal KA$.
+        Es decir, $\cal KA$ es una subretícula de $A$.
+    \end{itemize}
+    En particular, dado un marco coherente $A$, la retícula
+    $\cal KA$ es distributiva.
+\end{defn}
+
+\begin{defn}
+    Sea $D$ una retícula distributiva.
+    Un ideal de $D$ es un subconjunto $I\subseteq D$ tal que
+    \begin{itemize}
+        \item Absorbe hacia abajo (esto es, $I\in\cal LA$).
+        \item Es no vacío.
+        \item Es cerrado bajo supremos finitos.
+    \end{itemize}
+    Al conjunto de ideales de $D$ lo denotamos como $\cal ID$.
+\end{defn}
+
+\begin{lemma}
+    Sea $D$ una retícula distributiva.
+    El conjunto $\cal ID$ de ideales de $D$ es un marco,
+    con el orden de contención (el heredado de $\cal PD$).
+    
+    Nótese que $\cal ID$ no es un submarco de $\cal PD$
+    ni de $\cal LD$, pues $\emptyset\nin\cal ID$.
+\end{lemma}
+\begin{proof}
+    Nótese que $D$ y $\{0\}$ son el mayor y menor elemento
+    de $\cal ID$, respectivamente.
+    
+    Sea $X\subseteq\cal ID$ y notemos que $\bigcap X$
+    es una sección inferior no vacía.
+    Además, dados $a,b\in \bigcap X$, tenemos
+    $a,b\in I$ para todo $I\in X$.
+    Como cada $I$ es ideal, se sigue que
+    $a\inf b\in I$ para todo $I\in X$; esto es:
+    $a\inf b\in\bigcap X$.
+    Luego, $\bigcap X$ es ideal de $D$ y, por lo tanto,
+    es el ínfimo de $X$ en $\cal ID$
+    \[
+        \Inf X = \bigcap X,
+    \]
+    Es decir, $\cal ID$ es una sub-$\Inf$-semiretícula
+    de $\cal PD$ (y de $\cal LD$).
+    En particular, $\cal ID$ es una retícula completa.
+    Sin embargo, los supremos en $\cal ID$ no se calculan
+    como en $\cal PD$.
+    
+    Como $\cal ID$ es un conjunto $\Inf$-cerrado de $\cal PD$,
+    le corresponde un operador cerradura $j:\cal PD\to\cal PD$.
+    Afirmamos que $j$ está dado como
+    \[
+        j(S) = \{\Sup T\mid T\subseteq\down S\text{ finito}\},
+    \]
+    donde $\down:\cal PD\to\cal PD$ es la sección inferior
+    generada por $S$ (el operador
+    cerradura que le corresponde a $\cal LD$).
+    En efecto, si $I$ es un ideal que contiene a $S$,
+    entonces $\down S\subseteq I$ (porque $I$ es sección inferior)
+    así que, para todo $T\subseteq\down S$ finito tenemos
+    $\Sup T\in I$.
+    Además, $\{\Sup T\mid T\subseteq\down S\text{ finito}\}$
+    es ideal, ya que $D$ es distributiva.
+    En particular, para un ideal $I$ y una sección inferior $L$,
+    tenemos
+    \begin{align*}
+        I\cap j(L)
+        &= I\cap\{\Sup T\mid T\subseteq\down L\text{ finito}\} \\
+        &= I\cap\{\Sup T\mid T\subseteq L\text{ finito}\} \\
+        &= \{\Sup T\mid\Sup T\in I,T\subseteq L\text{ finito}\}
+        \\
+        &= \{\Sup T\mid T\subseteq I,T\subseteq L\text{ finito}\}
+            & \text{(}\Sup T\in I \iff T\subseteq I\text{)} \\
+        &= \{\Sup T\mid T\subseteq(I\cap L)\text{ finito}\} \\
+        &= j(I\cap L).
+    \end{align*}
+    Ahora recordemos que los supremos en $\cal ID$ se calculan como
+    \[
+        \Sup X = j(\bigcup X)
+    \]
+    para $X\subseteq\cal ID$.
+    Luego, dado $I\in\cal ID$, tenemos
+    \begin{align*}
+        I\inf\Sup X
+        &= I\cap j(\bigcup X) \\
+        &= j(I\cap\bigcup X)
+            &\text{pues $\bigcup X$ es sección inferior} \\
+        &= j(\bigcup\{I\cap J\mid J\in X\}) \\
+        &= \Sup\{I\inf J\mid J\in X\}.
+    \end{align*}
+    Se sigue que $\cal ID$ es marco.
+\end{proof}
+
+\begin{thm}
+    \begin{itemize}
+        \item Si $A$ es un marco coherente, entonces
+        \[
+            A\simeq \cal I\cal KA
+        .\]
+        (Recordemos que $\cal KA$ es una retícula distributiva).
+        \item Si $D$ es una retícula distributiva, entonces
+        \[
+            D \simeq \cal K\cal ID
+        ,\]
+        donde $\cal ID$ es un marco coherente.
+    \end{itemize}
+    Nótese: este teorema implica que los marcos coherentes
+    son exactamente los marcos de ideales de las retículas
+    distributivas.
+\end{thm}
+\begin{proof}
+    \begin{itemize}
+        \item
+        Sea $A$ un marco coherente.
+        Entonces la función $\iota_A:A\to\cal I\cal KA$ dada como
+        \[
+            \iota_A(a) = \{c\in\cal KA\mid c\leq a\}
+            =\down a\cap\cal KA
+        \]
+        es monótona y, para cualesquiera $a\in A, I\in\cal I\cal KA$,
+        tenemos
+        \begin{align*}
+            \Sup\iota_A(a)
+            &= \Sup\{c\in\cal KA\mid c\leq a\} \\
+            &= a & \text{porque $A$ es coherente} \\
+            \iota_A(\Sup I)
+            &= \{c\in\cal KA\mid c\leq \Sup I\} \\
+            &= I.
+        \end{align*}
+        Se sigue que $\iota_A:A\to\cal I\cal KA$ tiene inversa
+        dada por
+        \[
+            \iota_A^{-1}(I) = \Sup I
+        .\]
+        
+        \item
+        Ahora sea $D$ una retícula distributiva.
+        Por un lado, notemos que toda sección inferior
+        principal $\down d$ es un ideal.
+        Afirmamos que $\down d$ es compacto:
+        \begin{quote}
+            Supongamos que $X$ es una familia de ideales de $D$
+            con $\down d\leq \Sup X$; es decir: $d\in j(\bigcup X)$,
+            de modo que tenemos $d=\Sup\{d_1,\dots,d_n\}$,
+            donde $d_i\in I_i\in X$ para $i=1,\dots,n$.
+            Luego, $d\in j(\bigcup_{i=1}^n I_i)$,
+            por lo cual $\down d\leq\Sup\{I_i\mid i=1,\dots,n\}$.
+            Esto muestra la compacidad de $\down d$.
+        \end{quote}
+        Recíprocamente, todo ideal compacto $I$ es principal:
+        \begin{quote}
+            Observemos que $I\leq\Sup\{\down d\mid d\in I\}$,
+            lo cual implica que existen $d_1,\dots,d_n\in I$
+            tales que $I\leq\Sup\{\down d_1,\dots,\down d_n\}$,
+            pero
+            \[
+                I
+                \leq \Sup\{\down d_1,\dots,\down d_n\}
+                = \down(d_1\sup\cdots\sup d_n),
+            \]
+            con $d_1\sup\dots\sup d_n\in I$, pues $I$ es ideal.
+            Luego, $I=\down(d_1\sup\cdots\sup d_n)$,
+            de modo que $I$ es principal.
+       \end{quote} 
+        Luego, la función $\kappa_D:D\to\cal K\cal ID$ dada como
+        \[
+            \kappa_D(d) = \down d
+        \]
+        es un isomorfismo.
+        Nótese que, como todo ideal compacto $I$ es principal,
+        el elemento $d\in D$ que lo genera es su mayor elemento,
+        por lo cual $I$ tiene supremo $\Sup I=d$.
+        
+        Solo falta verificar que $\cal ID$ es coherente,
+        pero esto es sencillo:
+        Primero, todo ideal $I\in\cal ID$ es supremo
+        de ideales coherentes:
+        \[
+            I = \Sup\{\down d\mid d\in I\}.
+        \]
+        Además, el ideal total
+        \[
+            1_{\cal ID}=D=\down 1_D
+        \]
+        es compacto y, dados ideales compactos
+        $\down d,\down e\in\cal K\cal ID$, tenemos que su ínfimo
+        $\down d\inf\down e=\down(d\inf e)$ es compacto.
+    \end{itemize}
+\end{proof}
+
+\begin{defn}
+    Sean $A$ y $B$ marcos coherentes.
+    Decimos que un morfismo de marcos $f:A\to B$ es coherente
+    si $f(\cal KA)\subseteq\cal KB$.
+    
+    Los marcos coherentes, junto con los morfismos coherentes,
+    forman una categoría, a la cual denotamos como $\CohFrm$.
+    Nótese que tenemos un funtor de inclusión $\CohFrm\to\Frm$.
+\end{defn}
+
+Por definición, un morfismo de marcos coherentes $f:A\to B$
+se restringe a un morfismo de retículas (distributivas)
+$\cal Kf:\cal KA\to\cal KB$.
+Además, dado un morfismo de retículas distributivas $g:D\to E$,
+definimos $\cal Ig:\cal ID\to\cal IE$ como
+\[
+    \cal Ig(I)
+    = \Sup\{\down g(d)\mid d\in I\},
+\]
+lo cual respeta supremos (ya que $I=\Sup\{\down d\mid d\in I\}$)
+y respeta ínfimos, pues
+\begin{align*}
+    \cal Ig(I)\inf\cal Ig(J)
+    &= \Sup\{\down g(d)\mid d\in I\}
+        \inf \Sup\{\down g(e)\mid e\in J\} \\
+    &= \Sup\{\down g(d\inf e)\mid d\in I, e\in J\} \\
+    &\leq \Sup\{\down g(x)\mid x\in I\cap J\}.
+\end{align*}
+(La otra comparación se sigue de la monotonía).
+
+También es claro que las asignaciones $f\mapsto\cal Kf$
+y $g\mapsto\cal Ig$ respetan la identidad y la composición
+de morfismos, por lo cual obtenemos funtores
+$\cal I:\DLat\to\CohFrm$ y $\cal K:\CohFrm\to\DLat$.
+
+\begin{thm}
+    Los funtores
+    \[
+        \begin{tikzcd}
+            \DLat \ar[r,"\cal I",shift left] &
+            \CohFrm \ar[l,"\cal K",shift left]
+        \end{tikzcd}
+    \]
+    constituyen una equivalencia.
+\end{thm}
+\begin{proof}
+    Dado que, para toda retícula distributiva $D$
+    y todo marco coherente $A$,  $\kappa_D$ y $\iota_A$
+    son isomorfismos, basta demostrar que las familias
+    de morfismos
+    \begin{align*}
+        \kappa_\bullet &= (\kappa_D\mid D\in\DLat) \\
+        \iota_\bullet &= (\iota_A\mid A\in\CohFrm)
+    \end{align*}
+    son transformaciones naturales
+    \begin{align*}
+        \kappa_\bullet:\id_\DLat &\to\cal K\cal I \\
+        \iota_\bullet:\id_\CohFrm &\to\cal I\cal K.
+    \end{align*}
+    
+    Dado un morfismo de retículas distributivas
+    $g:D\to E$, debemos verificar la conmutatividad de
+    \[
+        \begin{tikzcd}
+            \cal K\cal ID \ar[d,"\cal K\cal I g"']
+                & D \ar[l,"\kappa_D"'] \ar[d,"g"] \\
+            \cal K\cal IE
+                & E \ar[l,"\kappa_E"]
+        \end{tikzcd}
+    \]
+    En efecto, tenemos
+    \begin{align*}
+        \cal K\cal Ig(\kappa_D(d))
+        &= \cal Ig(\down d) \\
+        &= \Sup\{\down g(x)\mid x\in\down d\} \\
+        &= \Sup\{\down g(x)\mid x\leq d\} \\
+        &= \down g(d) \\
+        &= \kappa_E(g(d)).
+    \end{align*}
+    Esto muestra la naturalidad de $\kappa_\bullet$.
+    
+    Por otro lado, dado un morfismo de marcos coherentes
+    $f:A\to B$ debemos verificar la conmutatividad de
+    \[
+        \begin{tikzcd}
+            \cal I\cal KA
+                \ar[d,"\cal I\cal Kf"']
+            & A \ar[d,"f"]
+                \ar[l,"\iota_A"'] \\
+            \cal I\cal KB & B \ar[l,"\iota_B"] 
+        \end{tikzcd}
+    \]
+    Primero notemos que, para $c\in A$ compacto, tenemos
+    \begin{align*}
+        \cal I\cal Kf(\iota_A(c))
+        &= \Sup\{\down f(x)\cap\cal KB\mid x\in\iota_A(c)\} \\
+        &= \Sup\{\down f(x)\cap\cal KB\mid x\leq c,x\in\cal KA\} \\
+        &= \down f(c)\cap\cal KB \\
+        &= \iota_B(f(c)).
+    \end{align*}
+    Como todo elemento de $A$ es supremo de compactos,
+    podemos tomar $a\in A$ y encontrar $X\subseteq A$
+    con $a=\Sup X$.
+    Luego, como $\cal I\cal Kf$, $\iota_A$, $\iota_B$ y $f$
+    son morfismos de marcos, tenemos
+    \begin{align*}
+        \cal I\cal Kf(\iota_A(a))
+        &= \cal I\cal Kf(\iota_A(\Sup X)) \\
+        &= \Sup\{\cal I\cal Kf(\iota_A(c))\mid c\in X\} \\
+        &= \Sup\{\iota_B(f(c))\mid c\in X\} \\
+        &= \iota_B(f(\Sup X)) \\
+        &= \iota_B(f(a)).
+    \end{align*}
+    Esto muestra la naturalidad de $\iota_\bullet$.
+\end{proof}
+
+El siguiente lema, junto con el lema de Zorn,
+nos servirán para mostrar
+que todo marco coherente es espacial.
+
+\begin{lemma}
+    Sean $A$ un marco y $d\in A$.
+    Denotemos como $Z(d)$ al conjunto de los ideales de $A$
+    que no contienen a $d$.
+    Entonces
+    \begin{enumerate}
+        \item el copo $Z(d)$ es cerrado bajo uniones de familias
+        dirigidas,
+        \item cada elemento máximo de $Z(d)$ es un ideal primo de $A$ y,
+        \item si $d$ es compacto, entonces cada máximo de $Z(d)$
+        es principal.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item Basta observar que $\cal IA$ es cerrado
+        bajo uniones dirigidas.
+        \item Sea $M$ un elemento máximo de $Z(d)$.
+        Notemos que $M\neq A$, pues $d\nin M$.
+        Para mostrar que es primo, veremos que $x,y\nin M$ implica
+        $x\inf y\nin M$.
+        En efecto, si $x,y\nin M$,
+        entonces tenemos
+        \begin{align*}
+            M&<M\sup \down x=j(M\cup\{x\}), \\
+            M&<M\sup\down y = j(M\cup\{y\}),
+        \end{align*}
+        donde $j(S)$ es el ideal de $A$ generado por $S\subseteq A$.
+        Por la maximalidad de $M$, tenemos que $d\in j(M\cup\{x\})$
+        y $d\in j(M\cup\{y\})$.
+        Luego, $d\leq m_1\sup x$ y $d\leq m_2\sup y$, para algunos
+        $m_1,m_2\in M$, por la construcción de $j$.
+        Poniendo $m=m_1\sup m_2$, tenemos $m\in M$, por lo cual
+        \begin{align*}
+            d   &\leq (m_1\sup x)\inf(m_2\sup y) \\
+                &\leq (m\sup x)\inf(m\sup y) \\
+                &=m\sup (x\inf y)
+                \in j(M\cup\{x\inf y\})
+                = M\sup\down(x\inf y).
+        \end{align*}
+        Luego, $x\inf y\nin M$ pues,
+        de otro modo, tendríamos $d\in M\sup\down(x\inf y)=M$,
+        lo cual no sucede porque $M\in Z(d)$.
+        
+        \item 
+        Supongamos que $d\in A$ es compacto y sea $M$ un elemento
+        máximo de $Z(d)$.
+        Si $p=\Sup M$, entonces tenemos $M\subseteq\down p$,
+        por lo cual basta mostrar que $p\in M$.
+        Si fuera el caso que $p\nin M$,
+        entonces $M$ estaría propiamente contenido
+        en el ideal $\down p$.
+        Por la maximalidad de $M$, tendríamos $d\leq p=\Sup M$
+        y la compacidad de $d$ implicaría que $d\in M$.
+    \end{enumerate}
+\end{proof}
+
+Nótese que, si $d\in A$ es un elemento compacto,
+entonces por el lema de Zorn y el punto 1,
+todo elemento de $Z(d)$ está contenido en un elemento máximo de
+$Z(d)$, el cual es un ideal primo principal de $A$,
+por los puntos 2 y 3.
+
+
+\begin{lemma}
+    Todo marco coherente es espacial.
+\end{lemma}
+\begin{proof}
+    Sea $A$ un marco coherente.
+    Debemos ver que $U_A:A\to\cal O\pt A$ es inyectiva.
+    Tomemos elementos $a,b\in A$ distintos (digamos $a\nleq b$).
+    Entonces mostraremos que $U_A(a)\neq U_A(b)$
+    probando que existe $p\in U_A(a)$ con $p\nin U_A(b)$;
+    es decir: un elemento irreducible $p\in A$
+    tal que $a\nleq p$ y $b\leq p$.
+    
+    Dado que $A$ es coherente, existe un compacto $d\in\cal KA$
+    tal que $d\leq a$ y $d\nleq b$
+    (de otro modo, tendríamos $a\leq b$, por la coherencia de $A$).
+    Por el lema anterior, podemos tomar un ideal primo
+    $I=\down p$ que es máximo en $Z(d)$
+    y contiene a $\down b\in Z(d)$.
+    Notemos que
+    \begin{itemize}
+        \item $p\in\pt A$, pues $I$ es primo,
+        \item $a\nleq p$ pues, de otro modo,
+        tendríamos $d\leq a\leq p$,
+        \item $b\leq p$, pues $I$ contiene a $\down b$.
+    \end{itemize}
+    Luego, $p$ es el elemento primo que buscábamos.
+\end{proof}
+
+\begin{defn}
+    Sea $S$ un espacio sobrio.
+    Decimos que $S$ es coherente
+    si $\cal OS$ es un marco coherente.
+    
+    Sea $f:S\to T$ una función continua entre espacios coherentes.
+    Decimos que $f$ es coherente si $\cal Of:\cal OT\to\cal OS$
+    es un morfismo coherente.
+    Es decir, si todo abierto compacto de $T$ tiene preimagen
+    compacta en $S$.
+    
+    Los espacios coherentes con sus funciones continuas
+    coherentes forman una categoría llamada $\CohTop$.
+\end{defn}
+
+De la definición anterior,
+es claro que la equivalencia $\Sob\simeq(\Sp)^\op$
+se restringe a una equivalencia $\CohTop\simeq(\CohFrm)^\op$.
+(Nota: en algunos lugares de la literatura, a los espacios
+coherentes se les llama espacios espectrales).
+
+\begin{thm}[Dualidad de Stone generalizada]
+    La categoría de espacios coherentes es dual
+    a la categoría de retículas distributivas:
+    \[
+        \CohTop \simeq (\DLat)^\op
+    .\]
+\end{thm}
+\begin{proof}
+    Se sigue de lo anterior:
+    \[
+        \CohTop \simeq (\CohFrm)^\op \simeq (\DLat)^\op
+    .\]
+\end{proof}
+
+Un caso especial del teorema anterior es
+la dualidad de Stone clásica.
+
+\begin{defn}
+    Decimos que un espacio topológico es cero dimensional
+    si existe una base de la topología que consiste en
+    conjuntos cerrados-abiertos.
+    
+    Un espacio cero dimensional, compacto y Hausdorff es llamado
+    un espacio de Stone.
+    
+    Los espacios de Stone y las funciones continuas forman
+    una categoría que denotamos como $\Stone$.
+\end{defn}
+
+Se puede probar que un espacio topológico es de Stone
+si, y solo si, es Hausdorff y coherente,
+y que todas las funciones continuas entre espacios de Stone
+son coherentes, de modo que la dualidad anterior
+se restringe como sigue.
+
+\begin{thm}[Dualidad de Stone]
+    \[
+        \Stone \simeq (\Bool)^\op.
+    \]
+\end{thm}
+
+\section*{Fin de la sesión 23 (2 de diciembre)}

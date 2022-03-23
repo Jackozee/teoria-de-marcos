@@ -1,0 +1,646 @@
+\chapter{Existencia de productos y coproductos}
+%\section*{SESIÓN 20: 23 NOV (Expo Armando 1)}
+\section{Productos de marcos}
+
+\begin{thm}[Producto de marcos]
+    Sea $\{A_\lambda\}_{\lambda\in\mathscr{I}}$ de marcos arbitraria
+    y sea $L$ el producto cartesiano de los $A_\lambda$
+    (vistos como conjuntos).
+    Entonces $L$, dotado con los operadores puntuales $\inf,\Sup$,
+    es un marco y, equipado con las proyecciones canónicas
+    \begin{align*}
+        p_\lambda: L&\to A_\lambda \\
+        a &\mapsto p_\lambda(a)=a_\lambda
+    \end{align*}
+    satisface la propiedad universal del producto de los $A_\lambda$.
+\end{thm}
+
+\begin{lemma}
+    $(L,\leq,\wedge, 0, \bigvee, 1)$, con
+    $0:=(0_\lambda)_{\lambda\in\scr{I}}$ y
+    $1:=(1_\lambda)_{\lambda\in\scr{I}}$ es un marco.
+\end{lemma}
+\begin{proof}
+    $\leq$ es orden parcial ya que:
+    \begin{align*}
+        x \leq x
+            & \iff x_\lambda \leq x_\lambda \forall \lambda\in\scr I. \\
+        x \leq y, y \leq x
+            &\implies x_\lambda \leq y_\lambda,
+            y_\lambda \leq x_\lambda, \forall  \lambda\in\scr{I}\\
+            &\implies x_\lambda = y_\lambda
+            \forall\lambda\in\scr{I}\\
+            &\implies x = y.\\
+        x \leq y, y \leq z
+            &\implies x_\lambda \leq y_\lambda,
+            y_\lambda \leq z_\lambda
+            \forall\lambda\in\scr{I}\\
+            &\implies x_\lambda  \leq z_\lambda
+            \forall  \lambda\in\scr{I}\\
+            &\implies x \leq z.
+    \end{align*}
+\end{proof}
+Para $x,y\in A$, ya que $x_\lambda\wedge_\lambda y_\lambda\in A_\lambda$ para todo $\lambda\in\mathscr{I}$, entonces $x\wedge_\mathscr{I}y\in A$.\\
+Luego, ya que $0_\lambda\leq_\lambda x_\lambda$ para todo $x_\lambda\in A_\lambda$ y para cada $\lambda\in\mathscr{I}$, entonces $0_\mathscr{I}\leq_\mathscr{I}x$ para todo $x\in A$.\\
+Similarmente, para $X\subseteq A$ arbitrario, consideramos los subconjuntos $X_\lambda\subseteq A_\lambda$ formados por los $x_\lambda$ componentes, y tomamos $\bigvee X_\lambda=:s_\lambda\in A_\lambda$,  para cada $\lambda\in\mathscr{I}$.\\
+Entonces $\bigvee_\mathscr{I}X=(s_\lambda)_{\lambda\in\mathscr{I}}\in A$.\\
+Además, como $1_\lambda\geq_\lambda x_\lambda$ para todo $x_\lambda\in A_\lambda$, para cada $\lambda\in\mathscr{I}$, entonces $1_\mathscr{I}\geq_\mathscr{I} x\ \forall x\in A$.
+Por útlimo, se cumple que:
+\begin{align*}
+    a\wedge_\mathscr{I}\left(\bigvee_\mathscr{I} X\right) & = (a_\lambda\wedge_\lambda s_\lambda)_{\lambda\in\mathscr{I}}\\
+    & = \left(\bigvee_\lambda\{a_\lambda\wedge_\lambda x_\lambda\mid x_\lambda\in X_\lambda\}\right)_{\lambda\in\mathscr{I}}\\
+    & = \bigvee_\mathscr{I} \{a\wedge_\mathscr{I}x\mid x\in X\}
+\end{align*}
+Y con esto, se cumple que $A$ es un marco.
+    Para cada $\lambda\in\mathscr{I}$, se define $p^*_\lambda:A\to A_\lambda$ la proyección de $A$ sobre el respectivo componente $A_\lambda$, nótese el siguiente resultado:
+    \begin{lemma}
+        $p^*_\lambda$ es morfismo de marcos, para cada $\lambda\in\mathscr{I}$.
+    \end{lemma}
+        \begin{proof}
+            \begin{align*}
+                x\leq y & \Longleftrightarrow x_\lambda\leq y_\lambda \ \forall\lambda\in\mathscr{I}\\
+                & \Rightarrow p^*_\lambda(x)\leq p^*_\lambda(y)\ \forall\lambda\in\mathscr{I} 
+            \end{align*}
+            Además se cumple que $p^*_\lambda(1_\mathscr{I})=1_\lambda$ y $p^*_\lambda(0_\mathscr{I})$.\\
+            Finalmente:
+            \begin{align*}
+                p^*_\lambda(x\wedge y) & = p^*_\lambda[(x_\mu\wedge y_\mu)_{\mu\in\mathscr{I}}]\\
+                & = x_\lambda\wedge y_\lambda\\
+                & = p^*_\lambda(x)\wedge p^*_\lambda(y).
+            \end{align*}
+        \end{proof}
+\begin{align*}
+    p^*_\lambda(\bigvee X) & = p^*_\lambda[(s_\mu)_{\mu\in\mathscr{I}}] \\
+                           & = s_\lambda \\
+                           & = \bigvee X_\lambda \\
+                           & = \bigvee p^*_\lambda[X].
+\end{align*}
+\begin{proof}
+    Sea $B\in\Frm$, y considere una familia arbitraria de morfismos:
+    \begin{equation*}
+        \{r^*_\lambda:B\to A_\lambda\mid\lambda\in\mathscr{I}\}.
+    \end{equation*}
+    Definimos $p^*:B\to A$, de manera que, para $b\in B$:
+    \begin{equation*}
+        p^*(b) = (r^*_\lambda(b))_{\lambda\in\mathscr{I}}.
+    \end{equation*}
+\end{proof}
+Se sigue que $p^*$ es morfismo de marcos, ya que la familia de $r^*_\lambda$ son morfismos de marcos, y por la construcción de los operadores de $A$.\\
+Luego, para todo $b\in B$ y todo $\lambda\in\mathscr{I}$, se cumple que:
+\begin{equation*}
+    (p^*_\lambda\circ p^*)(b) = p^*_\lambda[(r_\mu(b))_{\mu\in\mathscr{I}}] = r_\lambda(b),
+\end{equation*}
+y nótese que $p^*$ es único por construcción. Así, se concluye que $A$ satisface la propiedad universal del producto en $\Frm$.
+
+\section{Sitios}
+
+Ya probamos que la categoría de marcos tiene productos.
+Para probar que también tiene coproductos,
+usaremos una técnica distinta, para la cual necesitamos
+algunos resultados concernientes a sitios.
+
+\begin{defn}
+    Sea $A$ una semíretícula inferior.
+    Una función $C:A\to\mathcal{P}[\mathcal{P(A)}]$
+    es una \textit{cobertura} o \textit{función de cubiertas}
+    sobre $A$ si,
+    para cualesquiera $a,b\in A$, se cumple que:
+    \begin{enumerate}
+        \item $S\in C(a) \implies S\subseteq\down(a)$
+        \item $S\in C(a), b\leq a \implies \{b\wedge s\mid s\in S\}\in C(b)$.
+    \end{enumerate}
+    Al par $(A,C)$ se le llama sitio.
+\end{defn}
+\begin{defn}[$C$-ideales]
+    Dado un sitio $(A,C)$, un subconjunto
+    $I\subset A$ es un $C$-ideal de $A$ si
+    \begin{enumerate}
+        \item $I\in\mathcal{L}(A)$
+        \item Siempre que $a\in A$ y $S\in C(a)$, entonces
+        $S\subseteq I\Rightarrow a\in I$.
+    \end{enumerate}
+    Al conjunto de todos los $C$-ideales del sitio $(A,C)$
+    se le denota por $C\Idl$.
+\end{defn}
+\begin{exa}[Ejemplos de sitios]
+    Sea $A$ una $\inf$-retícula.
+    Consideremos las funciones cubrientes 
+    $C_\emptyset$ y $C_T$ definidas como:
+    \begin{align*}
+        C_\emptyset(a) &= \emptyset \\
+        C_T(a) &= \{\emptyset\}
+    \end{align*}
+    para todo $a\in A$.
+    \begin{itemize}
+        \item
+        En el primer caso,
+        ninguna famila cubre a ningún elemento.
+        Entonces, por vacuidad,
+        toda sección inferior $F\subseteq A$ es
+        un $C_\emptyset$-ideal.
+        Es decir, $C_\emptyset\Idl(A)=\cal L(A)$.
+        \item
+        En el segundo caso,
+        la familia vacía cubre a todos los elementos,
+        así que el único $C_T$-ideal $F\subseteq A$
+        es la sección total $F=A$.
+        Es decir, $C_T\Idl(A)=\{A\}$.
+    \end{itemize}
+\end{exa}
+
+\begin{exa}[Más ejemplos de sitios]
+    Sea $A$ un marco y consideremos las funciones cubrientes
+    $C_\sup$ y $C_{\Sup}$ definidas como
+    \begin{align*}
+        X\in C_\sup(a)
+        &\ssi
+        \text{$X$ es finito y } a=\Sup X \\
+        X\in C_{\Sup}(a)
+        &\ssi
+        a=\Sup X 
+    \end{align*}
+    para todo $a\in A$ y todo $X\subseteq A$.
+    Entonces
+    \begin{itemize}
+        \item
+        una sección inferior $F\subseteq A$ es un
+        $C_\sup$-ideal si, y solo si es cerrada bajo supremos
+        finitos.
+        Por lo tanto, los $C_\sup$-ideales de $A$
+        son los ideales de $A$ en el sentido de retículas
+        distributivas:
+        \[
+            C_\sup\Idl(A) = \cal I A.
+        \]
+        \item
+        una sección inferior $F\subseteq A$ es un
+        $C_{\Sup}$-ideal si, y solo si es cerrada bajo supremos
+        arbitrarios.
+    \end{itemize}
+\end{exa}
+
+\begin{defn}[Marcos generado por un sitio]
+    Sea $(A,C)$ un sitio.
+    Decimos que un marco $B$ es generado por $(A,C)$
+    si existe un morfismo de semiretículas inferiores
+    $f:A\to B$ tal que, para todo $a\in A$, se cumple
+    que $f$ manda $C$-cubiertas en $A$ a $C_{\Sup}$-cubiertas
+    de $B$:
+    \begin{equation*}
+        S\in C(a) \implies f(a) = \Sup\{f(s)\mid s\in S\}
+    \end{equation*}
+    y $f$ es universal con respecto a esta propiedad.
+    Explícitamente, la universalidad significa que,
+    si $B'$ es un marco y $f':A\to B'$ es un morfismo
+    de $\inf$-semiretículas
+    que convierte cubiertas en supremos,
+    entonces existe un único morfismo de marcos
+    $\ol{f}:B\to B'$ tal que el siguiente diagrama conmuta:
+    \[
+        \begin{tikzcd}[ampersand replacement=\&]
+            \& B \arrow[dd, "\exists!\overline{f}", dashed] \\
+            A \arrow[ru, "f"] \arrow[rd, "f'"'] \& \\
+            \& B'                                          
+        \end{tikzcd}
+    \]
+    Por el argumento usual, entre cualesquiera dos
+    marcos generados por $(A,C)$ existe un único isomorfismo,
+    de modo que podemos hablar de \emph{el} marco generado
+    por $(A,C)$.
+\end{defn}
+
+\begin{thm}[$C\Idl$ es un marco]
+    Sea $(A,C)$ un cubriente, entonces, su conjunto de $C$-ideales $C\Idl$ es un marco con la contención, y es generado por $(A,C)$.
+\end{thm}
+
+Recordemos que $\mathcal{L}A$ es un marco bajo la contención
+y que, si $B$ es un marco y $\nu\in NA$ es cualquier núcleo,
+entonces $\nu[A]=A_\nu$ es marco con el orden heredado de $A$.
+
+\begin{lemma}[Previo]
+    La intersección arbitraria de $C-$ideales es un $C-$ideal.
+\end{lemma}
+\begin{proof}
+    Sean $\{I_\alpha\}_{\alpha\in\Gamma}$ una familia arbitraria de $C-$ideales, y $I=\bigcap_{\alpha\in\Gamma}I_\alpha$ su intersección. Primero, sean $x\leq y\ \in A$ arbitrarios, con $y\in I$. Entonces $y\in I_\alpha\forall\alpha\in\Gamma$, y así, como cada $I_\alpha$ es sección inferior, entonces $x\in I_\alpha\forall\alpha\in\Gamma$, y esto implica que $x\in I$. Por tanto, cómo $x,y$ son arbitrarios, se cumple que $I$ es sección inferior de $A$.\\
+    Ahora, sean $a\in A, S\in C(a)$ arbitrarios, y supongáse que $S\subseteq I$, entonces, se cumple que $S\subset I_\alpha$ para todo $\alpha\in\Gamma$. Por tanto, ya que cada $I_\alpha$ es $C-$ideal, se sigue que $a\in I_\alpha\ \forall\alpha\in\Gamma$, y se sigue que $a\in I$.\\
+    Con esto, concluimos que $I$ es un $C-$ideal.
+\end{proof}
+
+\begin{lemma}[Parte 1]
+    Existe un núcleo $j:\cal LA\to\cal LA$ tal que
+    $C\Idl=(\cal LA)_j$, de modo que $C\Idl$ es un cociente
+    de $\cal LA$.
+    En particular, $C\Idl$ es un marco.
+\end{lemma}
+\begin{proof}
+    Considere el marco de secciones inferiores de $A$, $\mathcal{L}A$, y considere la función $j:\mathcal{L}A\to\mathcal{L}A$ tal que
+    \begin{equation*}
+        j(S)=\bigcap\{I\in C\Idl\mid S\subseteq I\}\quad S\in\mathcal{L}A.
+    \end{equation*}
+    Primero, para cualquier $S\in\mathcal{L}A$, por la definición de $j$, se tiene que $S\subseteq j(S)$, por tanto $j$ infla. Luego, por el lema anterior, se tiene que $j(S)$ es $C-$ideal, y cómo $j(S)\subseteq j(S)$ trivialmente, y $j(j(S))$ debe ser el menor $C-$ideal que contiene a $j(S)$, obtenemos que $j(j(S))=j(S)$, i.e. $j$ es idempotente.
+    
+    Ahora, sean $R,T\in\mathcal{L}A, I:=j(R\cap T)$. Por definición de $j$, se tiene que $R\subseteq j(R)$ y $T\subseteq j(T)$, entonces $R\cap T\subseteq j(R)\cap j(T)$, y cómo $j$ es idempotente, se sigue que $j(R\cap T)\subseteq j(R)\cap j(T)$.\\
+    Defináse ahora el conjunto
+    \begin{equation*}
+        R' := \{d\in A\mid \forall t\in T,d\wedge t\in I\}.
+    \end{equation*}
+    Por la definición de $I$ y ya que $j$ infla, se cumple que $R\subseteq R'$, $T\cap R'\subset I$. Por otro lado, cómo $I\in\mathcal{L}(A)$, obtenemos que $R'\in\mathcal{L}(A)$. Luego, consideremos $U\in C(A)$ tal que $U\subseteq R'$, entonces, para todo $t\in T$, se cumple que $\{u\wedge t\mid u\in U\}\subseteq I$, y además, utilizando la propiedad $(ii)$ de $C$, se cumple que $\{u\wedge t\mid u\in U\}\in C(a\wedge t)$ , y en consecuencia $a\wedge t\in I$, ya que $I$ es $C-$ideal. Luego, cómo $t\in T$ es arbitrario, tenemos que $a\in R'$ y por tanto $R'$ es un $C-$ideal.
+    
+    Análogamente, se construye el $C-$ideal
+    \begin{equation*}
+         T' := \{e\in A\mid \forall r\in R',e\wedge r\in I\},
+    \end{equation*}
+    y se cumple que $T\subseteq T'$, $T'\cap R\subseteq I$ y $T'$ es $C-$ideal. Así, se sigue que $j(R)\subseteq R',j(T)\subseteq T'$ y por tanto
+    \begin{equation*}
+        j(R)\cap j(T)\subseteq R'\cap T' \subseteq  I = j(R\cap T)
+    \end{equation*}
+    y en conclusion, $j$ es núcleo cuyo conjunto de puntos fijos
+    es $C\Idl$.
+\end{proof}
+
+%\section*{SESIÓN 21: 25 NOV (Expo Armando 2, Yareli, Dante, Alfredo)}
+
+\begin{lemma}[Parte 2]
+    La función $f:A\to C\Idl$ definida como
+    \begin{equation*}
+        f(a)=j(\down(a))
+    \end{equation*}
+    es un morfismo de $\inf$-semiretículas que
+    manda $C$-cubiertas en supremos de $C\Idl$.
+    Más aún, $f$ es universal con respecto a esta propiedad,
+    de modo que $C\Idl$ es el marco generado por $(A,C)$.
+\end{lemma}
+
+\begin{proof}
+    Cómo $j$ es núcleo y $\down$ es morfismo
+    de $\inf$-semiretículas,
+    se cumple que $f$ es morfismo de $\inf-$retículas.
+    Sean $a\in A,S\in C(a)$ arbitrarios. Entonces, cómo $j(\bigcup\{j(\down(s))\mid s\in S\})=:\mathcal{J}$ es un $C-$ideal que contiene a $S$, se sigue que $a\in\mathcal{J}$, luego 
+    \begin{equation*}
+        j(\down(a))\subseteq \mathcal{J}.
+    \end{equation*}
+    Por otro lado, se tiene $a\geq s$ para todo $s\in S$, por lo cuál $j(\down(a))\supseteq j(\down(s))$. Luego, se sigue que
+    \begin{equation*}
+        j(\down(a))\supseteq \bigcup\{j(\down(s))\mid s\in S\}
+    \end{equation*}
+    y con esto, cómo $j$ es mónotona e idempotente, obtenemos que
+    \begin{equation*}
+        f(a)\supseteq\mathcal{J}.
+    \end{equation*}
+
+    Por otra parte, sean $B\in\Frm$, $g:A\to B$ un morfismo de $\wedge-$semiretículas que convierte cubiertas de $C$ en supremos. Entonces, la función 
+    \begin{align*}
+        \overline{g}: &\mathcal{L}A\to B \\
+                      & S\to \bigvee_B\{g(s)\mid s\in S\}
+    \end{align*}
+    es el único morfismo de marcos que factoriza a $g$ a tráves del marco libre de $A$, $\mathcal{L}A$, y además existe su adjunto derecho $g_*:B\to\mathcal{L}A$, que, por definición del adjunto derecho, para $b\in B:$
+
+    \begin{align*}
+        g_*(b) & = \bigcup\{L\in\mathcal{L}A\mid\overline{g}(L)\leq b\} \\
+               & = \bigcup\left\{L\in\mathcal{L}A\mid \bigvee_B\{g(a)\mid a\in L\}\leq b\right\} \\
+               & = \bigcup\{L\in\mathcal{L}A\mid g(a)\leq b (\forall a \in L)\} \\
+               & = \{a\in A\mid g(a)\leq b\} 
+    \end{align*}
+
+    Y nótese que, si $S\in C(a)$ y $S\subseteq g_*(b)$, entonces se cumple que
+    \begin{equation*}
+        g(a)= \bigvee_B\{g(s)\mid s\in S\}\leq b
+    \end{equation*}
+    y esto implica que $a\in g_*(b)$, por tanto $g_*(b)$ es un $C-$ideal. 
+
+    Sea $a\in A$ arbitrario. Cómo $\overline{g}$ y $g_*$ son adjuntos, se tiene que
+    \begin{equation*}
+        (\overline{g}\circ g_*)(g(a))\leq g(a).
+    \end{equation*}
+    Además, cómo $g_*(g(a))$ es un $C-$ideal que contiene a $\down(a)$, tenemos que $$f(a)=j(\down(a))\subseteq g_*(g(a))$$, y en consecuencia, se cumple la cadena de desigualdades:
+    \begin{equation*}
+        g(a)\leq\overline{g}(f(a))\leq(\overline{g}\circ g_*)(g(a))\leq g(a)
+    \end{equation*}
+
+    Es decir, que $(\overline{g}\circ f)(a)=g(a)$
+    con $a$ arbitrario,
+    por tanto $\overline{g}\circ f = g$,
+    con $\overline{g}$ único, así que $f$ es universal.
+\end{proof}
+
+\section{Coproductos de marcos}
+
+Ya probamos que la categoría de marcos tiene productos.
+Ahora queremos demostrar el siguiente teorema.
+
+\begin{thm}
+Para una familia de marcos $\{A_\lambda\}_{\lambda\in\scr I}$,
+existe el coproducto
+\[\coprod_{\lambda\in\scr I} A_\lambda.\]
+\end{thm}
+
+Construiremos el coproducto como sigue:
+Tomaremos el coproducto $A$ de la familia
+en la categoría $\Pos^{\inf}$ de $\inf$-semiretículas.
+Le daremos a $A$ una estructura de sitio, equipándole una
+cobertura $C$.
+Finalmente, veremos que el marco $C\Idl$ generado por $(A,C)$
+viene equipado con morfismos que lo convierten en el coproducto
+de nuestra familia en la categoría de marcos.
+
+\begin{lemma}
+    Consideremos el conjunto
+    \[
+    A=
+    \left\{ a\in\prod_{\lambda\in\scr I} A_\lambda
+    \mid a_\lambda\neq 1_{A_\lambda}
+    \text{ para una cantidad finita de índices} \right\}.
+    \]
+    Notemos que $A$ es una subsemiretícula inferior del producto,
+    ya que $1\in A$ y, si $a,b\in A$, entonces
+    $c=a\inf b\in \prod_{\lambda\in\scr I} A_\lambda$
+    satisface
+    \[c_\lambda=
+    \begin{cases}
+        1_\lambda, & \textit{si }a_\lambda=b_\lambda=1_\lambda\\
+        a_\lambda\wedge b_\lambda, & \textit{ en otro caso}
+    \end{cases}
+    \]
+    Como hay una cantidad finita de
+    $a_\lambda\neq 1_\lambda$ y $b_\lambda\neq 1_\lambda$,
+    entonces los $a_\lambda\wedge b_\lambda$ son finitos,
+    por lo que $c\in A$.
+    
+    Definimos las funciones
+    $q_\lambda\colon A_\lambda\to A$,
+    para cada $\lambda\in \scr I$, dadas por 
+    \[q_\lambda(x)=a,\]
+    donde $a_\lambda=x$ y $a_\mu =1_{\mu}$
+    para $\mu\in \scr I\setminus \{\lambda\}$.
+    
+    Claramente, $q_\lambda$ es monótona y $q_\lambda(1_\lambda)=1$.
+    Además, si $x,y\in A_\lambda$, entonces
+    $q_\lambda(x\wedge y)=q_\lambda(x)\wedge q_\lambda(y)$,
+    ya que las operaciones son puntuales.
+    Así, cada $q_\lambda$ es un morfismo de semiretículas
+    inferiores.
+    
+    Afirmamos que $A$, junto con sus funciones
+    \[
+        q_\lambda:A_\lambda\to A
+    \]
+    es el coproducto de la familia
+    $\{A_\lambda\}_{\lambda\in\scr I}$
+    en la categoría de $\inf$-semiretículas.
+\end{lemma}
+\begin{proof}
+    Para este resultado, los $\{A_\lambda\}_{\lambda\in\scr I}$
+    solo necesitan ser $\inf$-semiretículas.
+    Sean $B$ una $\inf$-semiretícula y
+    $r_\lambda:A_\lambda\to B$ una familia de morfismos
+    indicada por $\lambda\in\scr I$.
+    Definimos $R:A\to B$ como
+    \[
+        R(a) = \Inf\{r_\lambda(a_\lambda) \mid \lambda \in \scr I\}
+    .\]
+    Este ínfimo existe en $B$, ya que todo $a\in A$ tiene soporte
+    finito.
+    Claramente, $R$ preserva ínfimos y hace conmutar el diagrama
+    \[
+        \begin{tikzcd}
+            A_\lambda \ar[r,"r_\lambda"] \ar[d,"q_\lambda"']
+            & B \\
+            A \ar[ur,"R"']
+        \end{tikzcd}
+    \]
+    para todo $\lambda\in \scr I$.
+    Finalmente, si $R':A\to B$ es cualquier morfismo
+    que hace conmutar el diagrama, tenemos
+    \begin{align*}
+        R'(a)
+        &= R'(\Inf\{q_\lambda(a_\lambda)\mid a\in \scr I\}) \\
+        &= (\Inf\{R'(q_\lambda(a_\lambda))\mid a\in \scr I\}) \\
+        &= (\Inf\{r_\lambda(a_\lambda)\mid a\in \scr I\}) \\
+        &= R(a).
+    \end{align*}
+    De este modo, la semiretícula $A$, equipada con $R$,
+    es el coproducto de las $A_\lambda$ en $\Pos^{\inf}$.
+\end{proof}
+
+\begin{defn}
+Sean $a=(a_\lambda)\in A$, $\mu\in\scr I$ y $S\subseteq A_\mu$, definimos el reemplazo de $a$ por $S$ en la entrada $\mu-$ésima como
+\[S(a,\mu)=\{(b_\lambda)\in A\mid b_\lambda=a_\lambda\textit{ para }\lambda\in\scr I\setminus \{\mu\}\textit{ y }b_\mu\in S\}\]
+\end{defn}
+\begin{exa}
+Si $a=(a_1,a_2,a_3,a_4)\in\prod_{\lambda=1}^4A_\lambda$, $\mu=2$ y $S=\{x,y,z\}\subseteq A_2$, entonces
+    \[
+      S(a,\mu) = \left\{
+      \begin{array}{c}
+        (a_1,x,a_3,a_4), \\
+        (a_1,y,a_3,a_4), \\
+        (a_1,z,a_3,a_4)
+      \end{array}
+      \right\}
+    .\]
+\end{exa}
+
+
+\begin{lemma}[La estructura de sitio en $A$]
+    La función $C:A\to\cal P(\cal P(A))$
+    definida como
+    \[
+        C(a)
+        =\left\{ S(a,\mu)
+        \mid \mu\in\scr I, S\subseteq A_\mu
+        \text{ tal que }\Sup S=a_\mu\right \}.
+    \]
+    para cada $a\in A$, es una cobertura en $A$.
+\end{lemma}
+\begin{proof}
+    Sean $a=(a_\lambda),b=(b_\lambda)\in A$ con $b\leq a$ y $W=S(a,\mu)\in C(a)$.
+    \begin{itemize}
+    \item Sea $c=(c_\lambda)\in W$. Por definición, $c_\lambda=a_\lambda$ para $\lambda\in \scr I\setminus\{\mu\}$ y $c_\mu \in S$, entonces $c_\mu\leq a_\mu$. Esto implica que $c\leq a$, es decir, $c\in \down(a)$.
+    \end{itemize}
+    
+    \begin{itemize}
+    \item Probaremos que $\{b\inf w\mid w\in W\}=\{b_\mu \inf w_\mu\mid w_\mu\in S\}(b,\mu)$.\par 
+    \begin{itemize}
+    \item[$\subseteq)$] Sea $b\inf w\in\{b\inf w\mid w\in W\}$. Observamos que 
+    \begin{itemize}
+    \item $b\inf w\in A$.
+    \item $b_\lambda\inf w_\lambda=b_\lambda\inf a_\lambda=b_\lambda$ para $\lambda\in\scr I\setminus \{\mu\}$.
+    \item $b_\mu\inf w_\mu\in\{b_\mu\in w_\mu\mid w_\mu\in S\}$.
+    \end{itemize}
+    Por lo que $b\inf w\in \{b_\mu \inf w_\mu\mid w_\mu\in S\}(b,\mu)$.
+    \item[$\supseteq)$] Sea $c=(c_\lambda) \in \{b_\mu \inf w_\mu\mid w_\mu\in S\}(b,\mu)$. Entonces $c_\lambda=b_\lambda$ para $\lambda\in\scr I\setminus\{\mu\}$ y $c_\mu\in \{b_\mu \inf w_\mu\mid w_\mu\in S\}$.\par 
+    Notemos que $c=b\inf m$, donde $m_\lambda=a_\lambda$ para $\lambda\in\scr I\setminus \{\mu\}$ y $m_\mu=w_\mu$. Así, $m\in W$, es decir, $c\in\{b\in w\mid w\in W\}$.
+    \end{itemize}
+    Además, $\{b_\mu \inf w_\mu\mid w_\mu\in S\}\subseteq A_\mu$ y
+    \[\Sup\{b_\mu \inf w_\mu\mid w_\mu\in S\}=b_\mu\inf \left(\Sup S\right)=b_\mu\inf a_\mu=b_\mu\]
+    Por lo tanto $\{b\inf w\mid w\in W\}\in C(b)$.
+    \end{itemize}
+\end{proof}
+
+La estructura de los $C$-ideales en $A$ no es tan sencilla
+de entender a primera vista.
+Incluimos un ejemplo de un cálculo en $C\Idl(A)$.
+
+\begin{exa}[El menor elemento de $C\Idl(A)$.]
+    Supongamos que $a\in A$ tiene
+    alguna entrada cero.
+    Es decir, $a_\lambda=0\in A_\lambda$ para algún $\lambda$.
+    
+    Al fijarnos en la entrada $a_\lambda=0\in A_\lambda$,
+    tenemos $\Sup\emptyset 0\in A_\lambda$.
+    Como $\emptyset(a,\lambda)=\emptyset\subseteq A$,
+    de la definición de las $C$-cubiertas
+    se sigue que $\emptyset\in C(a)$;
+    es decir: la familia vacía cubre a $a$.
+    
+    En particular, para cualquier $C$-ideal $F\subseteq A_\scr I$,
+    tenemos
+    \[
+        \emptyset \in C(a)
+        \hspace{10mm} \text{y} \hspace{10mm}
+        \emptyset\subseteq F
+    ,\]
+    y, por la definición de $C$-ideal, se sigue que $a\in F$.
+    
+    Esto nos dice que el conjunto $G$ de los elementos que tienen
+    alguna entrada nula
+    \[
+        G=\{a\in A \mid a_\lambda = 0\in A_\lambda
+        \text{ para algún } \lambda\in \scr I\}
+    \]
+    está contenido en todos los $C$-ideales.
+    De hecho, probaremos que $G$ es un $C$-ideal.
+    Luego, es el menor elemento en el marco de $C$-ideales.
+
+    Claramente, $G$ es sección inferior, por lo cual resta
+    probar que es cerrado bajo $C$-cubiertas.
+    En efecto, tomemos una cubierta
+    \[
+        Y(a,\lambda) \in C(a)
+        \hspace{10mm} \text{con} \hspace{10mm}
+        Y(a,\lambda) \subseteq G
+    .\]
+    Es decir, $a$ tiene una entrada $a_\lambda$ tal que
+    $Y\subseteq A_\lambda$ y $\Sup Y=a_\lambda$.
+    
+    Si $\Sup Y=0$, entonces $0=\Sup Y=a_\lambda$, así que $a\in G$.
+    De otro modo, existe un $y\in Y$, $y\neq 0$.
+    Sea $b\in Y(a,\lambda)$ el único elemento de
+    $\{y\}(a,\lambda)$.
+    Entonces $b$ tiene $\lambda$-ésima entrada
+    $b_\lambda=y\neq 0$, pero como $b\in Y(a,\lambda)\subseteq G$,
+    existe un índice $\mu\neq\lambda$ tal que $b_\mu = 0$.
+    Como $b$ es igual a $a$ en todas las entradas
+    que no son $\lambda$ (pues $b\in Y(a,\lambda)$),
+    en particular tenemos $b_\mu=a_\mu=0$, así que $a\in G$.
+    
+    Se sigue que $G$ es un $C$-ideal y, como está contenido
+    en todos los $C$-ideales, concluimos que $G$ es el
+    menor elemento de $C\Idl(A)$.
+\end{exa}
+
+
+\begin{lemma}[Parte 2]
+    Consideremos $C\Idl$ y los morfismos
+    $Q_\lambda\colon A_\lambda\to C\Idl$
+    definidos como
+    \[
+        Q_\lambda=j(\down(q_\lambda(\_)))
+    .\]
+    Entonces $C\Idl$, equipado con los morfismos $Q_\lambda$,
+    es el coproducto de la famila de los $A_\lambda$
+    en la categoría de marcos.
+\end{lemma}
+\begin{proof}
+Para cualquier marco $Y$ y morfismos
+$f_\lambda\colon A_\lambda\to Y$ indicados por $\scr I$,
+queremos encontrar un único morfismo
+$f\colon C\Idl\to Y$ tal que el siguiente diagrama
+\[
+    \begin{tikzcd}
+        A_\lambda
+            \ar[d,"Q_\lambda"']
+            \ar[r,"f_\lambda"]
+        & Y \\
+        C\Idl \ar[ru,"f"']
+    \end{tikzcd}
+\]
+conmuta.
+
+Sean $X$ un marco y una familia de morfismos
+\[\{r_\lambda\colon A_\lambda\to X\mid \lambda\in \scr I\}.\]
+Dado que $A$, junto con los $q_\lambda:A_\lambda\to A$,
+es el coproducto de los $A_\lambda$ como $\inf$-semiretículas,
+obtenemos el morfismo de $\inf$-semiretículas
+$R\colon A\to X$ dado por
+\begin{align*}
+    R(a)
+    &=\Inf_X \{r_\lambda(a_\lambda)\mid \lambda\in\scr I\} \\
+    &= 1_X\inf r_{\lambda_1}(a_{\lambda_1})\inf\cdots\inf r_{\lambda_n}(a_{\lambda_n})
+\end{align*}
+donde $\{\lambda_1,\dots,\lambda_n\}$ es el conjunto
+de las coordenadas de $a$ distintas de $1$.
+Este es el único morfismo de $\inf$-semiretículas que
+factoriza a todos los $r_\lambda$ a través de $A$.
+Probaremos que $R$ convierte cubiertas de $C$ en supremos.
+
+Consideremos $\mu\in\scr I$, $S\subseteq A_\mu$ y $a=(a_\lambda)\in A$ tal que $a_\mu=\Sup_{A_\mu} S$.
+Hay que probar que $\Sup R(S(a,\mu)) = R(a)$.
+Si $a_\mu= 1_{A_\mu}$, tenemos
+\begin{align*}
+    \Sup R(S(a,\mu))
+    &= \Sup\{R(b) \mid b\in S(a,\mu)\} \\
+    &= \Sup\{ 1_X\inf r_{\lambda_1}(a_{\lambda_1})\inf
+        \cdots\inf r_{\lambda_n}(a_{\lambda_n}) \inf r_\mu(s) \mid s\in S\} \\
+    &= 1_X\inf r_{\lambda_1}(a_{\lambda_1})\inf
+        \cdots\inf r_{\lambda_n}(a_{\lambda_n}) \inf
+        \Sup\{ r_\mu(s) \mid s\in S\} \\
+    &= 1_X\inf r_{\lambda_1}(a_{\lambda_1})\inf
+        \cdots\inf r_{\lambda_n}(a_{\lambda_n}) \inf
+        r_\mu(a_\mu) \\
+    &= R(a).
+\end{align*}
+
+Por otro lado, si $a_\mu\neq 1_{A_\mu}$, tenemos $\mu=\lambda_i$.
+Entonces
+\begin{align*}
+    &\hspace{-10mm}\Sup R(S(a,\mu)) \\
+    &= \Sup R(S(a,\lambda_i)) \\
+    &= \Sup\{R(b) \mid b\in S(a,\lambda_i)\} \\
+    &= \Sup\{ 1_X\inf r_{\lambda_1}(a_{\lambda_1})\inf
+        \cdots \inf r_{\lambda_i}(s)\inf\cdots\inf r_{\lambda_n}(a_{\lambda_n}) \mid s\in S\} \\
+    &= 1_X\inf r_{\lambda_1}(a_{\lambda_1})\inf \cdots
+        \inf\Sup\{ r_{\lambda_i}(s) \mid s\in S\} \inf
+        \cdots\inf r_{\lambda_n}(a_{\lambda_n}) \\
+    &= 1_X\inf r_{\lambda_1}(a_{\lambda_1})\inf \cdots
+        \inf r_{\lambda_i}(a_{\lambda_i}) \inf
+        \cdots\inf r_{\lambda_n}(a_{\lambda_n})
+        \\
+    &= R(a).
+\end{align*}
+
+Como $R:A\to X$ manda $C$-cubiertas a supremos de $X$,
+la propiedad universal del marco $C\Idl$ generado por $(A,C)$
+asegura que existe un único morfismo de marcos
+$g\colon C\Idl\to X$ tal que el diagrama
+\[
+    \begin{tikzcd}[ampersand replacement=\&]
+        \& X  \\
+        C\Idl \ar[ru,"g"] \& A \ar[u,"R"'] \ar[l,"{j(\down({\_}))}"]
+    \end{tikzcd}
+\]
+conmuta.
+
+Notemos que
+\[r_\lambda=R\circ q_\lambda=g\circ j(\down(q_\lambda(\_)))=g\circ Q_\lambda.\]
+Por lo que el diagrama
+\[
+    \begin{tikzcd}[ampersand replacement=\&]
+        A_\lambda \arrow[d, "Q_\lambda"'] \arrow[r, "r_\lambda"]
+        \& X \\
+        C\Idl \arrow[ru, "g"']
+        \& A \arrow[l, "j(\down(\_))"] \arrow[u, "R"']
+    \end{tikzcd}
+\]
+conmuta.
+\end{proof}
+

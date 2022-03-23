@@ -1,0 +1,1669 @@
+\chapter{Derivadas, estables, prenúcleos y núcleos}
+
+%\section*{(SESIÓN 10: 14 OCT)}
+
+En el capítulo anterior definimos los núcleos de un marco y vimos
+éstos están en correspondencia con los cocientes del marco.
+Ahora veremos que los núcleos de un marco tienen una importancia
+central en la estructura del marco base.
+El teorema principal es que el conjunto $NA$ de los núcleos de un
+marco $A$ es, de nuevo, un marco, llamado el
+ensamble de $A$ y, de hecho $A$ es un submarco de $NA$.
+
+Además de los núcleos, arriba definimos los operadores cerradura
+y vimos que los núcleos son algunos operadores cerradura.
+En nuestro estudio sistemático del ensamble, usaremos otras
+familias de operadores monótonos.
+
+\section{Derivadas, derivadas estables, prenúcleos, operadores cerradura y núcleos}
+
+\begin{defn}[Derivadas]
+  Una inflación o derivada en $A$ es una función $f:A\to A$ que
+  es monótona e infla.
+  Es decir:
+  \begin{itemize}
+    \item $a\leq b$ implica $f(a) \leq f(b)$.
+    \item $a\leq f(a)$.
+  \end{itemize}
+  Usaremos la notación $DA$ para el conjunto de todas las
+  derivadas en $A$.
+\end{defn}
+Notemos que un operador cerradura (definición
+\ref{def:operador-cerradura}) es una derivada idempotente, y
+recordemos que usamos la notación $CA$ para el conjunto de los 
+operadores cerradura en $A$.
+
+\begin{defn}[Derivadas estables]
+  Una derivada $f\in DA$ es \emph{estable} si
+  \[
+    f(x)\inf y \leq f(x\inf y)
+  \]
+  para cualesquiera $x,y\in A$.
+  Denotamos como $SA$ al conjunto de derivadas estables en $A$.
+\end{defn}
+
+\begin{defn}[Prenúcleos]
+  Un prenúcleo sobre $A$ es una derivada $f\in DA$ tal que
+  \[
+    f(x)\inf f(y) \leq f(x\inf y)
+  .\]
+  Notemos que la otra desigualdad se cumple para cualquier
+  función monótona, de modo que los prenúcleos separan ínfimos
+  binarios.
+  Usaremos la notación $PA$ para referirnos al conjunto de
+  prenúcleos de $A$.
+  Además, cualquier prenúcleo es estable, ya que $y\leq f(y)$ implica
+  \begin{align*}
+    f(x) \inf y
+    &\leq f(x) \inf f(y) \\
+    &\leq f(x\inf y) & \text{ pues $f\in PA$}
+  \end{align*}
+\end{defn}
+
+En resumen tenemos las contenciones
+\begin{align*}
+  NA \subseteq PA \subseteq SA \subseteq DA \\
+  NA \subseteq CA \subseteq DA.
+\end{align*}
+También es claro que $NA=PA\cap CA$. Es decir, un núcleo es
+exactamente un prenúcleo idempotente.
+De hecho, tenemos $NA=SA\cap CA$.
+Estos conjuntos son, en sí mismos, conjuntos parcialmente
+ordenados, donde el orden está dado puntualmente.
+Esto es, dadas dos funciones $f,g:A\to A$, decimos que $f\leq g$
+si, y solo si,
+\[
+  \forall x\in A,\; f(x)\leq g(x)
+.\]
+
+Notemos que las derivadas $DA$, las estables $SA$ y los
+prenúcleos $PA$ son cerrados bajo composición.
+Es decir:
+\begin{itemize}
+  \item si $f,g\in DA$, entonces $fg,gf\in DA$,
+  \item si $f,g\in SA$, entonces $fg,gf\in SA$,
+  \item si $f,g\in PA$, entonces $fg,gf\in PA$.
+\end{itemize}
+Por otro lado, las cerraduras $CA$ y los núcleos $NA$
+no lo son, en general.
+
+Veremos que cada uno de estos conjuntos tiene más
+estructura que la de conjunto parcialmente ordenado.
+
+\section{Ínfimos en familias de derivadas}
+
+Sea $J\subseteq DA$.
+Definimos la función $\Inf J:A\to A$ como
+\[
+  (\Inf J)(a) = \Inf\{f(a) \mid f\in J\}
+.\]
+Afirmamos que $\Inf J$ es una derivada y, de hecho, es el ínfimo
+de $J$ en $DA$:
+\begin{itemize}
+  \item
+  Si $a\leq b\in A$, entonces $f(a)\leq f(b)$ para cada $f\in J$.
+  Luego, cada elemento de $\{f(b)\mid f\in J\}$ está acotado
+  inferiormente por un elemento de $\{f(a)\mid f\in J\}$, por lo
+  cual
+  \[
+    \Inf\{f(a)\mid f\in J\} \leq \Inf\{f(b)\mid f\in J\}
+  .\]
+  \item
+  Similarmente $\Inf J$ infla.
+  \item
+  Si $h\in DA$ es una derivada que está por debajo de cada
+  elemento $f\in J$.
+  Esto es, para cualesquiera $a\in A$ y $f\in J$ se tiene
+  $h(a)\leq f(a)$.
+  Luego, $h(a)$ es cota inferior de $\{f(a) \mid f\in J\}$, por
+  lo cual $h(a)\leq (\Inf J)(a)$.
+\end{itemize}
+
+De hecho, se puede probar lo siguiente:
+\begin{exe}%[Dante $\checkmark$ ]
+    \leavevmode
+  \begin{enumerate}
+    \item si $J\subseteq SA$, entonces $\Inf J\in SA$,
+    \item si $J\subseteq PA$, entonces $\Inf J\in PA$,
+    \item si $J\subseteq CA$, entonces $\Inf J\in CA$,
+    \item si $J\subseteq NA$, entonces $\Inf J\in NA$.
+  \end{enumerate}
+\end{exe}
+\begin{sol}
+    \begin{enumerate}
+        \item Sean $x,y \ \in A$.  Así, 
+        \begin{align*}
+            \Inf J(x)\inf y&=\Inf\{j(x):j\in J\}\inf y\\
+            &\leq j(x)\inf y\\
+            &\leq j(x\inf y) \ \forall j \ \in J
+        \end{align*}
+        Por lo que $\Inf J(x)\inf y$ es una cota inferior del conjunto $\{j(x\inf y) : j \ \in J\}$. Así, como $\Inf J(x\inf y)$ es el ínfimo de $\{j(x\inf y) : j \ \in J\}$, se cumple que $\Inf J(x)\inf y\leq \Inf J(x\inf y)$, y $\inf J \ \in SA$.
+        \item Sean $x, y \ \in A$. 
+        \begin{align*}
+            \Inf J(x)\inf \Inf J(y)&=\Inf\{j(x):j \ \in J\} \inf \Inf \{j(y) : j \ \in J\}\\
+            &\leq j(x) \ \inf j(y) \\
+            &\leq j(x\inf y) \ \forall j \ \in J
+        \end{align*}
+        por lo que $J(x)\inf \Inf J(y)$ es una cota inferior del conjunto $\{j(x\inf y): j \in J\}$. Así, se cumple que $\Inf J(x) \inf \Inf J(y)\leq \Inf J(x\inf y)$, y entonces $\Inf J \ \in PA$.
+        \item Nótese que si $j\in J$, $j$ infla, y se cumple que 
+        $$f(x)\leq j(f(x)) \ \forall j,f \in J$$
+        Por lo tanto, 
+        $$\Inf J(x)\leq f(\Inf J(x)) \ \forall x\in A, f\in J$$
+        y $\Inf J$ es cota inferior del conjunto $\{f(\Inf J(x)):f\in J\}$.
+        \\
+        Ahora bien, sea $f\in DA$ tal que $f(x) \leq j(\Inf J(x)) \ \forall x\in A, j\in J$. Entonces, como $j(j(x))=j(x) \ \forall j\in J$, ocurre que 
+        $$f(x)\leq j(x) \ \forall j\in J$$
+        $$\Rightarrow f(x)\leq \Inf J(x) ' \forall x\in A$$
+        Por lo anterior, $\Inf J(\Inf J(x))=\Inf J(x)$, y $\Inf J \in CA$.
+        \item sean $x,y\in A$. Así, 
+        \begin{align*}
+            \Inf J(x\inf y)&=\Inf\{j(x\inf y):j\in J\}\\
+            &=\Inf\{j(x)\inf j(y):j\in J\}\\
+            &=\big(\Inf\{j(x):j\in J\}\big)
+            \inf\big( \Inf\{j(y):j\in J\}\big)\\
+            &=\Inf J(x)\inf J(y)
+        \end{align*}
+        Por lo tanto, $\Inf J \in NA$
+    \end{enumerate}
+\end{sol}
+
+\section{Supremos en familias de derivadas}
+
+\subsubsection{Supremos de derivadas \tps{($DA$)}{(DA)}}
+
+\begin{defn}
+  Si $J\subseteq DA$ es un conjunto de derivadas,
+  definimos el supremo puntual $\pSup J:A\to A$ de $J$ como la
+  función dada por
+  \[
+    (\pSup J)(a) = \Sup\{f(a) \mid f\in J\}
+  \]
+  para todo $a\in A$.
+\end{defn}
+Notemos que, si $J=\emptyset\subseteq DA$, entonces
+\begin{align*}
+  (\pSup\emptyset)(a)
+  &= \Sup\{f(a) \mid f\in\emptyset\} \\
+  &= \Sup\emptyset \\
+  &= 0 \in A
+\end{align*}
+lo cual ya no es una derivada (a menos que $A$ sea trivial).
+Sin embargo, si $J\neq\emptyset$ es una familia de derivadas,
+entonces $\pSup J$ es una derivada y es el supremo de $J$ en
+$DA$.
+Es decir, los supremos (no vacíos) en $DA$ se calculan
+puntualmente.
+
+Observemos que, en $DA$, el menor elemento es la identidad
+$\id:A\to A$ y el mayor elemento es $\tp:A\to A$ dada como
+$\tp(a)=1$.
+
+\subsubsection{Supremos de estables \tps{($SA$)}{(SA)}}
+
+Supongamos que $J$ es un conjunto no vacío de derivadas estables
+($\emptyset\neq J\subseteq SA$).
+Entonces, para cualesquiera $a,b\in A$, la derivada $\pSup J$ satisface
+\begin{align*}
+  (\pSup J)(a)\inf b
+  &= \Sup\{f(a) \mid f\in J\} \inf b \\
+  &= \Sup\{f(a)\inf b \mid f\in J\}
+    & \text{por la ley distributiva de marcos} \\
+  &\leq \Sup\{f(a\inf b) \mid f\in J \}
+    & \text{cada $f\in SA$} \\
+  &= (\pSup J)(a\inf b),
+\end{align*}
+de modo que $\pSup J\in SA$.
+Es decir, los supremos (no vacíos) en $SA$ se calculan
+puntualmente.
+
+\subsubsection{Supremos de prenúcleos \tps{($PA$)}{(PA)}}
+
+En contraste con lo que sucede con derivadas y estables, el supremo
+de una familia de prenúcleos no se calcula puntualmente, en general.
+
+\begin{exa}
+  Tomemos el marco $A$ dado como
+  \[
+    \begin{tikzcd}
+      & 1 \\
+      & c \ar[u,no head] \\
+      a \ar[ur,no head] & & b \ar[ul,no head] \\
+      & 0 \ar[ur, no head] \ar[ul, no head]
+    \end{tikzcd}
+  \]
+  Después de algunos cálculos obtenemos la siguiente tabla de
+  los valores de los núcleos abiertos, cerrados y regulares.
+  Nótese que, como todo núcleo $j$ fija al $1$ y preserva ínfimos,
+  es suficiente conocer los valores de $j$ en $a,c$ y $b$
+  (ya que $0=a\inf b$).
+    \[ 
+        \begin{array}{|c|c|c|c|}
+            \hline
+            j & j(a) & j(c) & j(b) \\
+            \hline
+            \vnuc a = \wnuc b & 1 & 1 & b \\
+            \vnuc b = \wnuc a & a & 1 & 1 \\
+            \vnuc c & a & 1 & b \\
+            \unuc a & a & c & c \\
+            \unuc b & c & c & b \\
+            \unuc c = \wnuc c & c & c & c \\
+            \hline
+        \end{array}
+    \]
+    En particular, todos estos son prenúcleos.
+    Sin embargo, afirmamos que $\vnuc a \psup \vnuc b$ no es prenúcleo.
+    En efecto, tenemos
+    \begin{align*}
+        (\vnuc a \psup \vnuc b)(a\inf b)
+        &= (\vnuc a \psup \vnuc b)(0) \\
+        &= \vnuc a(0) \sup \vnuc b(0) \\
+        &= b \sup a \\
+        &= c,
+        \\
+        (\vnuc a \psup \vnuc b)(a)
+        \inf (\vnuc a \psup \vnuc b)(b)
+        &= (\vnuc a(a)\sup\vnuc b(a))
+            \inf
+            (\vnuc a(b)\sup\vnuc b(b)) \\
+        &= (1\sup a)\inf(b\sup 1) \\
+        &= 1,
+    \end{align*}
+    así que $\vnuc a\psup\vnuc b$ no es un prenúcleo.
+\end{exa}
+
+Sin embargo, hasta cierto punto, esto se puede enmendar:
+aunque el supremo puntual de un subconjunto arbitrario $J\subseteq PA$
+puede no ser prenúcleo, la situación es mejor cuando $J$ es dirigido.
+\begin{lemma}
+    Si $J\subseteq PA$ es un conjunto dirigido,
+    entonces la derivada estable $\pSup J$ sí es un prenúcleo.
+    Recordemos que un conjunto $J$ es dirigido si todo subconjunto
+    finito $X\subseteq J$ tiene una cota superior en $J$.
+    En particular, $J\neq\emptyset$, pues $\emptyset\subseteq J$ tiene
+    una cota superior en $J$.
+\end{lemma}
+\begin{proof}
+    Si $J$ es dirigido, entonces $\pSup J$ es,
+    en efecto, una derivada, pues $J\neq\emptyset$.
+    Además,
+    \begin{align*}
+      (\pSup J)(a) \inf (\pSup J)(b)
+      &= \Sup\{f(a)\inf g(b) \mid f,g\in J\}
+        & \text{ ley distributiva de marcos} \\
+      &= \Sup\{h(a) \inf h(b)  \mid h\in J \}
+        & \text{ $J$ es dirigido} \\
+      &\leq \Sup\{h(a \inf b)  \mid h\in J \}
+        & \text{ cada $h\in J$ es prenúcleo} \\
+      &= (\pSup J)(a\inf b),
+    \end{align*}
+    por lo cual $\pSup J\in PA$.
+\end{proof}
+
+\subsubsection{Más sobre conjuntos dirigidos}
+
+Tomemos dos derivadas (estables, prenúcleos) $f$ y $g$ en $A$.
+Como $g$ infla, para todo $a\in A$ tenemos $a\leq g(a)$ y,
+aplicando $f$, se sigue que $f(a)\leq f(g(a))$.
+Como $f$ también infla, tenemos $g(a)\leq f(g(a))$.
+Luego, $f(a)\sup g(a) \leq f(g(a))$.
+Esto es:
+\[
+  f\psup g \leq fg
+.\]
+Análogamente, obtenemos $f\psup g\leq gf$, por lo cual
+\[
+  f\psup g \leq fg\inf gf
+.\]
+
+En particular, si un conjunto $J$ de derivadas (estables,
+prenúcleos) es cerrado bajo composición, entonces $J$ es dirigido.
+
+\section{El teorema fundamental de la teoría de marcos}
+\subsubsection{Las derivadas estables forman un marco}
+
+Ya vimos que, en $DA$ y en $SA$, todos los ínfimos
+y los supremos no vacíos se calculan puntualmente,
+mientras que $\Sup\emptyset=\id$.
+
+
+Ahora veremos cómo interactúan los ínfimos finitos
+y los supremos en $SA$.
+Tomemos un subconjunto $J\subseteq SA$.
+Si $J=\emptyset$, entonces la igualdad
+\[
+  f\inf \Sup J = \Sup\{f\inf g \mid g\in J\}
+\]
+se cumple, pues ambos lados son $\id:A\to A$.
+Por otro lado, si $J\neq\emptyset$, entonces para todo $x\in A$
+se tiene
+\begin{align*}
+  (f\inf \pSup J)(x)
+  &= f(x)\inf (\pSup J)(x) \\
+  &= f(x)\inf \Sup\{g(x) \mid g\in J\} \\
+  &= \Sup\{f(x)\inf g(x) \mid g\in J\}
+    & \text{ley distributiva de marcos} \\
+  &= \Sup\{(f\inf g)(x) \mid g\in J\} \\
+  &= (\pSup\{f\inf g \mid g\in J\})(x).
+\end{align*}
+de modo que $f\inf\Sup J = \Sup\{f\inf g\mid g\in J\}$.
+Esto muestra que $SA$ es un marco.
+En particular, $SA$ tiene una implicación.
+
+\subsubsection{Los núcleos forman un marco}
+
+La afirmación es que $NA$ es un subconjunto implicativo de $SA$.
+Es decir: $NA$ es cerrado bajo ínfimo (lo cual ya sabemos) y,
+para cualquier estable $f\in SA$ y cualquier núcleo $k\in NA$, la
+derivada estable $(f\succ k)$ es un núcleo.
+Como toda derivada estable e idempotente es núcleo,
+basta demostrar que $(f\succ k)$ es idempotente.
+
+Sea $G=\{g\in SA \mid f\inf g\leq k\}$.
+Como $G$ no es vacío (por ejemplo, $\id\in G$), tenemos
+\[
+  (f\succ k) = \pSup\{g\in SA \mid f\inf g\leq k\}
+.\]
+
+Primero mostraremos que $G$ es cerrado bajo composiciones.
+Observemos que, para cualesquiera $g,h\in G$ y $x\in A$, tenemos
+\begin{align*}
+  (f\inf gh)(x)
+  &= f(x)\inf g(h(x)) \\
+  &= f(x)\inf f(x) \inf g(h(x)) \\
+  &\leq f(x) \inf g(f(x)\inf h(x))
+    & g\in SA \\
+  &\leq f(x) \inf g(k(x))
+    & f\inf h \leq k, \text{ pues } h\in G \\
+  &\leq f(k(x)) \inf g(k(x)) \\
+  &\leq k(k(x))
+    & f\inf g \leq k, \text{ pues } g\in G \\
+  &= k(x).
+\end{align*}
+Esto prueba que $f\inf gh \leq k$ y, así, $gh\in G$, como se
+quería.
+
+Ahora mostraremos que $j=(f\succ k)\in G$.
+En efecto, para todo $x\in A$ se tiene
+\begin{align*}
+  (f\inf j)(x)
+  &= f(x) \inf (\pSup G)(x) \\
+  &= f(x) \inf \Sup\{g(x) \mid g\in G\} \\
+  &= \Sup\{f(x) \inf g(x) \mid g\in G\} \\
+  &= k(x),
+\end{align*}
+como se quería.
+Luego, $j^2=jj\in G$, así que $j^2\leq\pSup G = j$.
+Concluimos que $j^2=j$.
+Como $j$ es una derivada estable e idempotente,
+se sigue que es un núcleo.
+
+Esto muestra lo que queríamos probar: que $NA$ es un subconjunto
+implicativo de $SA$.
+Una consecuencia inmediata es
+
+\begin{thm}[Isbell-Simmons-Johnstone]
+  Para cada marco $A$, el ensamble $NA$ es un marco.
+\end{thm}
+\begin{proof}
+    $NA$ es $\Inf$-cerrado y, $(j\in k)\in NA$ para cualesquiera
+    $k\in SA$, $k\in NA$.
+    Es decir, $NA$ es un subconjunto implicativo del marco $SA$,
+    por lo cual es un marco.
+\end{proof}
+Sin embargo, el hecho de que $NA$ sea un subconjunto
+implicativo de $SA$ nos dice aún más.
+Todo subconjunto implicativo de un marco es un cociente de éste,
+así que $NA$ es de la forma $NA=(SA)_j$ para algún núcleo
+$j:SA\to SA$.
+La pregunta es, ¿qué núcleo?
+
+\section{Las iteraciones de una derivada}
+\subsubsection{Iteraciones en \tps{$DA$}{DA}.}
+
+Denotaremos como $\Ord$ a la clase de ordinales y, para cada
+ordinal, definimos
+\begin{align*}
+  f^0 &= \id \\
+  f^{\alpha+1} &= ff^\alpha \\
+  f^\lambda &= \Sup\{f^\alpha \mid \alpha<\lambda\}
+    & \text{ si $\lambda$ es límite.}
+\end{align*}
+De este modo, obtenemos una cadena de derivadas
+\[
+  f^0\leq f^1\leq f^2\leq\dots\leq f^\alpha\leq f^{\alpha+1}
+  \leq\dots
+.\]
+Como $\Ord$ no es cardinable, la cadena
+$(f^\alpha \mid \alpha\in \Ord )$ se detiene, por fuerza, en
+algún ordinal $\gamma$, es decir: $f^{\gamma+1}=f^\gamma$.
+Además, dado que la clase de ordinales es bien ordenada,
+existe un primer ordinal
+$\infty\in\Ord$ tal que $f^\infty=f^{\infty+1}$.
+Dado que $f^{\infty+1}=f^\infty$, se sigue que $f^\alpha
+f^\infty=f^\infty$ para todo $\alpha\in\Ord$, por inducción en
+$\alpha$. En particular,
+$f^\infty$ es idempotente, así que es un operador cerradura en $A$.
+Más aún, $f^\infty$ es el menor operador cerradura en $A$
+que está por encima de $f$.
+Para ver esto, mostraremos que, si $k$ es un operador cerradura
+que está por encima de $f$, entonces también está por encima de
+toda la cadena de iteraciones de $f$.
+Tomemos $k\in CA$ con $f\leq k$ y hagamos inducción.
+\begin{itemize}
+  \item Para $\alpha=0$, tenemos $f^0=\id\leq k$.
+  \item Supongamos que $f^\alpha\leq k$.
+  Entonces
+  \begin{align*}
+    f^{\alpha+1}
+    &= ff^\alpha \\
+    &\leq kk \\
+    &= k.
+  \end{align*}
+  \item Finalmente, si $\lambda$ es un ordinal límite, supongamos
+  que $f^\alpha\leq k$ para todo $\alpha<\lambda$.
+  Entonces
+  $f^\lambda=\Sup\{f^\alpha\mid \alpha<\lambda\}\leq k$.
+\end{itemize}
+Como esto es válido para todo ordinal, en particular tenemos
+$f^\infty\leq k$.
+Luego, $f^\infty$ es el menor operador cerradura que está por
+arriba de $f$.
+
+\subsubsection{\tps{$CA$}{CA} como un conjunto fijo}
+Luego, tenemos el siguiente resultado:
+\begin{thm}
+    La construcción $({-})^\infty$ es un operador cerradura en $DA$
+    cuyos puntos fijos son los operadores cerradura en $A$:
+    \begin{align*}
+      ({-})^\infty &\in CDA \\
+      (DA)_\infty &= CA.
+    \end{align*}
+\end{thm}
+\begin{proof}
+  Claramente, $f\leq f^\infty$, así que $(-)^\infty$ infla.
+  Como $f^\infty$ es idempotente, tenemos $(f^\infty)^\alpha=f^\infty$
+  para todo ordinal $\alpha$.
+  En particular, $(f^\infty)^\infty=f^\infty$, así que
+  $(-)^\infty$ es idempotente.
+  Finalmente, si $f\leq g$ son derivadas, veamos que
+  $f^\alpha\leq g^\alpha$ para todo ordinal $\alpha$.
+  \begin{itemize}
+    \item El caso $\alpha=0$ es obvio.
+    \item Supongamos que $f^\alpha\leq g^\alpha$.
+    Entonces
+    \begin{align*}
+        f^{\alpha+1}
+        &= ff^\alpha \\
+        &\leq gg^\alpha \\
+        &= g^{\alpha+1}
+    \end{align*}
+    \item Supongamos que $\lambda$ es un ordinal límite y que
+    $f^\alpha\leq g^\alpha$ para todo $\alpha<\lambda$.
+    Entonces
+    \begin{align*}
+        f^\lambda(x)
+        &= \Sup\{f^\alpha(x)\mid \alpha<\lambda\} \\
+        &\leq \Sup\{g^\alpha(x) \mid \alpha<\lambda\} \\
+        &= g^\lambda(x)
+    \end{align*}
+    para todo $x\in A$, así que $f^\lambda\leq g^\alpha$.
+  \end{itemize}
+  En particular, $f^\infty\leq g^\infty$, así que $(-)^\infty$ es
+  monótono.
+  Finalmente, la igualdad $(DA)_\infty=CA$ se obtiene al observar
+  que todo operador cerradura es un punto fijo de $(-)^\infty$.
+\end{proof}
+
+%\section*{(SESIÓN 11: 19 OCT)}
+
+\subsubsection{Iteraciones en \tps{$SA$}{SA}.}
+
+\begin{lemma}
+  Si $f$ es un prenúcleo en $A$, entonces cada iteración
+  $f^\alpha$ es un prenúcleo, $f^\infty$ es un núcleo y, más aún,
+  $f^\infty$ es el menor núcleo por encima de $A$.
+\end{lemma}
+\begin{proof}
+  Sea $f\in PA$.
+  Mostraremos, usando inducción, que $f^\alpha\in PA$ para cada
+  ordinal $\alpha$.
+  \begin{itemize}
+    \item Si $\alpha=0$, entonces $f^0=\id\in PA$.
+    \item Supongamos que $f^\alpha$ es prenúcleo.
+    Como los prenúcleos son cerrados bajo composición,
+    $f^{\alpha+1}=ff^\alpha$ es prenúcleo.
+    \item Si $\lambda$ es un ordinal límite, supongamos que
+    $f^\alpha\in PA$ para cada ordinal $\alpha<\lambda$.
+    Recordemos que
+    $f^\lambda=\pSup\{f^\alpha\mid\alpha<\lambda\}$.
+    Hay que probar que $f^\lambda$ es prenúcleo.
+    Para cada $x,y\in A$ tenemos
+    \begin{align*}
+      &f^\lambda(x) \inf f^\lambda(y) \\
+      &\hspace{10mm}
+      = \Sup\{f^\alpha(x) \inf f^\beta(y) \mid
+        \alpha,\beta<\lambda\}
+        && \text{ley distributiva para marcos} \\
+      &\hspace{10mm}
+      = \Sup\{f^\gamma(x)\inf f^\gamma(y)
+        \mid \gamma<\lambda\} \\
+      &\hspace{10mm}
+      \leq \Sup\{f^\gamma(x\inf y) \mid \gamma<\lambda\}
+        && f^\gamma\in PA \text{ por hipótesis}\\
+      &\hspace{10mm}
+      = f^\lambda(x\inf y).
+    \end{align*}
+  \end{itemize}
+  En particular, $f^\infty$ es un prenúcleo y, como también es
+  idempotente, se sigue que $f^\infty$ es un núcleo.
+
+  Finalmente, recordemos que $f^\infty$ es el menor operador
+  cerradura por encima de $f$.
+  Luego, para cualquier núcleo $j\in NA$ que esté por encima de
+  $f$, se tiene $f^\infty\leq j$, así que $f^\infty$ es el menor
+  núcleo por encima del prenúcleo $f$.
+\end{proof}
+
+Este resultado se puede refinar un poco más:
+\begin{lemma}
+  Si $f\in SA$ es cualquier estable, entonces $f^\alpha$ es
+  estable para todo ordinal $\alpha$.
+  Más aún, $f^\lambda$ es un prenúcleo, para cada ordinal límite
+  $\lambda$ y, finalmente, $f^\infty$ es el menor núcleo por
+  encima de $f$.
+\end{lemma}
+\begin{proof}
+  Sea $f$ una derivada estable.
+  Por inducción, probamos que $f^\alpha$ es estable para cada
+  ordinal $\alpha$.
+  El caso $\alpha=0$ y el paso inductivo de $\alpha$ a $\alpha+1$
+  es exactamente igual a la demostración anterior (porque $SA$ es
+  cerrado bajo composición).
+  Ahora, si $\lambda$ es un ordinal límite, tenemos
+  $f^\lambda = \pSup\{f^\alpha \mid \alpha < \lambda\}$, de modo
+  que, para cualesquiera $x,y\in A$ se tiene
+  \begin{align*}
+    f^\lambda(x)\inf y
+    &= \Sup\{f^\alpha(x) \mid \alpha <\lambda\} \inf y \\
+    &= \Sup\{f^\alpha(x)\inf y\mid \alpha <\lambda\}
+      & \text{ley distributiva para marcos} \\
+    &\leq \Sup\{f^\alpha(x\inf y)\mid \alpha <\lambda\} \\
+    &= f^\lambda(x\inf y),
+  \end{align*}
+  como se quería.
+
+  Más aún, debemos probar que $f^\lambda$ es prenúcleo, siempre
+  que $\lambda$ es un ordinal límite.
+  Para cualesquiera $x,y\in A$ tenemos
+  \begin{align*}
+    &f^\lambda(x)\inf f^\lambda(y) \\
+    &\hspace{10mm}
+    = \Sup\{f^\alpha(x)\inf f^\beta(y) \mid \alpha,\beta <\lambda\}
+      & \text{ley distributiva de marcos} \\
+    &\hspace{10mm}
+    \leq \Sup\{f^\alpha(x\inf f^\beta(y)) \mid \alpha,\beta <\lambda\}
+      & f^\alpha \in SA \\
+    &\hspace{10mm}
+    \leq \Sup\{f^\alpha(f^\beta(x\inf y)) \mid \alpha,\beta <\lambda\}
+      & f^\beta \in SA \\
+    &\hspace{10mm}
+    \leq \Sup\{f^\gamma(x\inf y) \mid \gamma<\lambda\}
+      & (?) \\
+    &\hspace{10mm}
+    = f^\lambda(x\inf y),
+  \end{align*}
+  como se quería.
+\end{proof}
+
+\subsubsection{\tps{$NA$}{NA} como un conjunto fijo}
+Con estas observaciones, tenemos el siguiente teorema.
+\begin{thm}
+  Para cada marco $A$, el operador cerradura $({-})^\infty:SA\to
+  SA$ es un núcleo cuyo conjunto de puntos fijos es el ensamble
+  de $A$:
+  \[
+    (SA)_\infty = NA
+  .\]
+\end{thm}
+\begin{proof}
+  Como $({-})^\infty:SA\to SA$ es un operador cerradura,
+  solo queda demostrar que $(-)^\infty$ es prenúcleo.
+  Es decir, que la desigualdad
+  \[
+    f^\infty \inf g^\infty \leq (f\inf g)^\infty
+  \]
+  se cumple para cualesquiera estables $f,g\in SA$.
+
+  Sea $l=(f \inf g)^\infty$.
+  Por inducción, mostraremos que $f^\alpha\inf g\leq l$ para todo
+  ordinal $\alpha$.
+  \begin{itemize}
+    \item Para $\alpha=0$, tenemos $f^0\inf g=\id \leq l$.
+    \item Supongamos que $f^\alpha\inf g\leq l$.
+    Entonces, para todo $x\in A$ tenemos
+    \begin{align*}
+      (f^{\alpha+1}\inf g)(x)
+      &= f(f^\alpha(x)) \inf g(x) \\
+      &= f(f^\alpha(x)) \inf g(x) \inf g(x) \\
+      &\leq f(f^\alpha(x)) \inf g(f^\alpha(x)) \inf g(x)
+        && \text{pues } x\leq f^\alpha(x) \\
+      &\leq l(f^\alpha(x)) \inf g(x) && f\inf g\leq (f\inf
+      g)^\infty =l \\
+      &\leq l(f^\alpha(x) \inf g(x)) && l\in SA \\
+      &\leq l(l(x)) && f^\alpha\inf g\leq l \\
+      &= l(x) && l\in CA.
+    \end{align*}
+    \item
+    Si $\lambda$ es límite, supongamos que $f^\alpha\inf g\leq l$
+    para todo ordinal $\alpha <\lambda$.
+    Entonces, para todo $x\in A$, tenemos
+    \begin{align*}
+      (f^\lambda\inf g)(x)
+      &= f^\lambda(x) \inf g(x) \\
+      &= \Sup\{f^\alpha(x) \mid \alpha<\lambda\} \inf g(x) \\
+      &= \Sup\{f^\alpha(x)\inf g(x) \mid \alpha<\lambda\} \\
+      &\leq l(x) && \text{ pues } f^\alpha\inf g\leq l.
+    \end{align*}
+  \end{itemize}
+  Esto muestra que $f^\infty \inf g\leq l$.
+  De manera similar, podemos probar que $f^\infty \inf
+  g^\alpha\leq l$ para todo $\alpha$.
+  Luego, $f^\infty \inf g^\infty \leq l$, como se quería.
+
+  Como $f^\infty$ es un núcleo para cada $f\in SA$, la
+  igualdad $(SA)_\infty=NA$ se obtiene de observar que todo
+  núcleo $k$ es un punto fijo de $({-})^\infty:SA\to SA$.
+\end{proof}
+
+\section{Cálculos en el ensamble}
+\subsubsection{Supremos de núcleos \tps{($NA$)}{NA}.}
+
+Ya probamos que los supremos no vacíos en $DA$ y en $SA$ se
+calculan puntualmente, y que los supremos dirigidos en $PA$
+también.
+Sin embargo, aún queda encontrar una descripción para, al menos,
+algunos supremos en $NA$.
+
+Sea $J\subseteq NA$ un conjunto no vacío de núcleos.
+Como $J\subseteq SA$, entonces $\pSup J$ es el supremo de $J$ en
+$SA$.
+Por otro lado, consideremos la familia $J^\circ$
+de composiciones (finitas) de elementos de $J$:
+\[
+  J^\circ = \{j_1\cdots j_m \mid j_i\in J \text{ para } 1\leq
+  i\leq m\}
+.\]
+Dado que $J^\circ$ es una familia dirigida de prenúcleos
+(pues $J^\circ$ es cerrado bajo composiciones), $\pSup J^\circ$
+es el supremo de $J^\circ$ en $PA$.
+
+\begin{lemma}
+  Si $J\subseteq NA$ es una familia no vacía de núcleos sobre un
+  marco $A$, entonces el núcleo
+  \[
+    \left(\pSup J\right)^\infty = \left(\pSup J^\circ\right)^\infty
+  \]
+  es el supremo de $J$ en $NA$.
+\end{lemma}
+\begin{proof}
+  Sean
+  \begin{align*}
+    j &= \left(\pSup J\right)^\infty &
+    k &= \left(\pSup J^\circ\right)^\infty.
+  \end{align*}
+  Es claro que $j$ y $k$ son núcleos que acotan superiormente a
+  $J$.
+  Si $l\in NA$ es un núcleo que acota superiormente a $J$, entonces
+  también acota superiormente a $J^\circ$, ya que
+  \[
+    j_1\cdots j_m \leq l^m = l
+  \]
+  para cualquier $j_1\cdots j_m\in J$.
+  Luego, $\pSup J\leq l$ y $\pSup J^\circ \leq l$,
+  pues $\pSup J,\pSup J^\circ\in SA$ son los supremos de $J$ y $J^\circ$
+  (respectivamente) en $SA$ y $l\in SA$.
+  Se sigue que $j,k\leq l$, pues $j$ y $k$ son el menor núcleo por
+  encima de $\pSup J$ y $\pSup J^\circ$, respectivamente.
+\end{proof}
+
+Uno de los pasos de la demostración anterior
+nos permite mostrar un resultado bastante útil.
+\begin{cor}
+    Sea $J$ una familia de núcleos.
+    Si $j\in J^\circ$ es una cota superior de $J$
+    y es idempotente, entonces $j=\Sup J$ en $NA$.
+    
+    En particular, esto sucede cuando $J$ es finito y todos los
+    elementos de $J$ aparecen en $j=j_1\cdots j_n\in J^\circ$.
+\end{cor}
+\begin{proof}
+    Nótese que $j=j_1\cdots j_n\in J^\circ$
+    es un prenúcleo porque es composición de prenúcleos.
+    Como también es idempotente, se sigue que $j\in NA$.
+    Ahora, para cualquier núcleo $k\in NA$ que acote a $J$ por arriba,
+    tenemos
+    \[
+        j = j_1\cdots j_n \leq k^n = k
+    .\]
+    Luego, $j=\Sup J$ en $NA$.
+\end{proof}
+
+\subsubsection{Los núcleos abiertos y cerrados son complementarios}
+
+Recordemos que cualquier elemento $a$ de un marco $A$ tiene
+asociados los núcleos $\unuc a$ y $\vnuc a$ dados por
+\begin{align*}
+  \unuc a(x) &= a\sup x
+  &
+  \vnuc a(x) &= (a\succ x).
+\end{align*}
+No es difícil ver que
+\begin{align*}
+  \unuc 1 &= \tp = \vnuc 0 \\
+  \unuc 0 &= \id = \vnuc 1.
+\end{align*}
+
+Esto se puede generalizar para cualquier elemento $a\in A$.
+
+\begin{lemma}
+  Sea $A$ un marco.
+  Para cualquier $a\in A$ se tiene
+  \begin{align*}
+    \vnuc a\inf\unuc a &= \id
+    &
+    \vnuc a\sup\unuc a &= \tp
+  \end{align*}
+  en $NA$.
+  Es decir, $\unuc a$ y $\vnuc a$ son complementos uno del otro.
+\end{lemma}
+\begin{proof}
+Sabemos que $\unuc a\vee \vnuc a=(\vnuc a\circ \unuc a)^\infty$, pero $(\vnuc a\circ \unuc a)(x)=(a\succ (a\vee x))=1$, para toda $x\in A$. Entonces $\vnuc a\vee \unuc a=(\vnuc a\circ \unuc a)^\infty=\tp$.\\
+Además, $(\vnuc a\wedge \unuc a)(x)=\vnuc a(x)\wedge \unuc a(x)=(a\succ x)\wedge (a\vee x)=x\vee (a\wedge x)=x$. Es decir, $\vnuc a\wedge \unuc a=\id$.\\
+Por lo tanto $\unuc a$ y $\vnuc a$ son complementados.
+\end{proof}
+
+\subsubsection{La representación en núcleos abiertos y cerrados}
+
+\begin{lemma}
+    \label{lemma:sup-nuc-cerrado}
+  Sea $A$ un marco.
+  Para cualesquiera $j\in NA$ y $a\in A$, se tiene
+  \begin{enumerate}%[label=(\roman*)]
+    \item\label{item:1} $j\unuc a$ es idempotente y, por lo tanto, un núcleo,
+    \item\label{item:2} $j\sup\unuc a = j\unuc a$ (el supremo en $NA$),
+    \item\label{item:3} $\unuc{j(a)}\inf\vnuc a\leq j$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \ref{item:1}. Como $PA$ es cerrado bajo composición, al menos tenemos
+  $j\unuc a\in PA$.
+  Luego, para ver que $j\unuc a$ es un núcleo,
+  basta demostrar que es idempotente.
+  Para todo $x\in A$, tenemos
+  \begin{align*}
+    j\unuc a j\unuc a (x)
+    &= j\unuc a j(a\sup x) \\
+    &= j(a\sup j(a\sup x)) \\
+    &= j(j(a\sup x))
+      & \text{ pues } a\leq j(a\sup x) \\
+    &= j(a\sup x) \\
+    &= j\unuc a (x),
+  \end{align*}
+  como se quería.
+
+  \ref{item:2}. Por \ref{item:1}, $j\unuc a$ es un núcleo que acota
+  superiormente a $j$ y a $\unuc a$.
+  Por otro lado, si $k$ es cualquier núcleo con $j\leq k$ y
+  $\unuc a\leq k$, tenemos $j\unuc a \leq kk=k$.
+
+  \ref{item:3}. Para cualquier $x\in A$, tenemos
+  \begin{align*}
+    \unuc{j(a)}(x)
+    &= j(a)\sup x \\
+    &\leq j(a \sup x) \\
+    &= j\unuc a(x).
+  \end{align*}
+  Luego,
+  \begin{align*}
+    \unuc{j(a)}
+    &\leq j\unuc a \\
+    &= j\sup \unuc a && \text{ por \ref{item:2}} \\
+    &= \neg \vnuc a \sup j
+      && \text{ pues } \neg\vnuc a = \unuc a \\
+    &= (\vnuc a \succ j)
+  \end{align*}
+  Luego, $\unuc{j(a)} \inf \vnuc a \leq j$.
+\end{proof}
+
+\begin{thm}[La representación en núcleos abiertos y cerrados]
+  Sea $A$ un marco y $j$ un núcleo en $A$.
+  Entonces
+  \[
+    j = \Sup\{ \unuc{j(a)}\inf\vnuc a \mid a\in A\}
+  \]
+  en $NA$.
+\end{thm}
+\begin{proof}
+Sea $k=\bigvee\{\unuc {j(a)}\wedge \vnuc a\mid a\in A\}$.
+Por el lema anterior tenemos que $k\leq j$.
+Para la otra desigualdad, tomemos $a\in A$.
+Entonces $(\unuc {j(a)}\wedge \vnuc a)(a)=j(a)\wedge (a\succ a)=j(a)\wedge 1=j(a)$;
+es decir: $j(a)=(\unuc {j(a)}\wedge \vnuc a)(a)\leq k(a)$,
+por lo cual $j\leq k$.
+\end{proof}
+
+\begin{cor}
+  Si $A$ es un marco finito, entonces su ensamble $NA$ es un
+  álgebra booleana completa.
+\end{cor}
+\begin{proof}
+Por el teorema anterior cualquier $j\in NA$ tiene complemento, pues $j$ se puede expresar como un supremo finito de elementos complementados. Por lo tanto $NA$ es un álgebra booleana completa.
+\end{proof}
+
+\section{El encaje de un marco en su ensamble}
+
+\begin{defn}
+  Si $A$ es un marco, la función $\eta_A:A\to NA$ está dada como
+  \[
+    \eta_A(a) = \unuc a
+  .\]
+\end{defn}
+
+\begin{thm}
+  Si $A$ es un marco, $\eta_A$ es un morfismo de marcos inyectivo
+  y es un epimorfismo.
+\end{thm}
+\begin{proof}
+Para ver que $\eta_A$ es un morfismo de marcos primero notemos que $\eta_A(0)=\unuc 0=\id$ y $\eta_A(1)=\unuc 1=\tp$. También es una función monótona pues si consideramos $a\leq b$, con $a,b\in A$, $\eta_A(a)=\unuc a\leq \unuc b=\eta_A(b)$.\\
+Además, $\eta_A(a)\wedge\eta_A(b)=\unuc a\wedge \unuc b$, entonces $$(\unuc a\wedge \unuc b)(x)=\unuc a(x)\wedge \unuc b(x)=(a\wedge b)\vee x=\unuc {a\wedge b}(x)$$
+Así $\eta_A(a)\wedge \eta_A(b)=\eta_A(a\wedge b).$\\
+Ahora consideremos $X\subseteq A$, queremos ver que $\bigvee\eta_A(X)=\eta_A(\bigvee X)$. Como $\eta_A$ es monótona, se cumple que $\eta_A(x)\leq \eta_A(\bigvee X)$ para todo $x\in A$, es decir, $\bigvee\eta_A (X)\leq \eta_A(\bigvee X).$ Resta ver la otra desigualdad.\\
+Consideremos $c=\bigvee X$ y $j=\bigvee \eta_A(X)=\bigvee\{ \unuc x\mid x\in X\}.$ Queremos ver que $\unuc c\leq j$. Sea $a\in A$, entonces $$\unuc c(a)=c\vee a=\bigvee X\vee a=\bigvee\{x\vee a\mid x\in X\}=\left(\dot{\bigvee}\{\unuc x\mid x\in X\}\right)(a)\leq j(a)$$
+pues el supremo puntual es menor que el supremo en $NA.$\\
+Veamos ahora que $\eta_A$ es inyectiva. Consideremos $a,b\in A$ tales que $\eta_A(a)=\eta_A(b)$, entonces $\unuc a=\unuc b$. Evaluando en $x=0$, obtenemos que $a=a\vee 0=b\vee 0=b$. Así, $\eta_A$ es inyectiva.\\
+Por último veamos que $\eta_A$ es un epimorfismo. Para ello consideremos dos morfismos 
+\[\begin{tikzcd}
+	{NA} \ar[r,"f",shift left] \ar[r,"g"',shift right] & {B},
+\end{tikzcd}\]
+donde $B$ es un marco y $f\circ\eta_A=g\circ\eta_A$,es decir, $f(\unuc a)=g(\unuc a)$ para todo $a\in A$. Por el teorema anterior tenemos que 
+\begin{align*}
+    f(j)
+    &= f\left(\bigvee\{\unuc {j(a)}\wedge \vnuc a\mid a\in A\}\right)
+    =\Sup\{f(\unuc {j(a)})\wedge f(\vnuc a)\mid a\in A\} & \mbox{ y } \\
+    g(j)
+    &= g\left(\bigvee\{\unuc {j(a)}\wedge \vnuc a\mid a\in A\}\right)
+    = \Sup\{g(\unuc {j(a)})\wedge g(\vnuc a)\mid a\in A\} & 
+\end{align*}
+Ahora usemos que $f(\unuc {j(a)})=g(\unuc {j(a)})$ y,
+tomando complementos, $f(\vnuc a)=g(\vnuc a)$, pues $\vnuc a$ y $\unuc a$
+son complementarios en $A$ y los morfismos de marcos $f,g$
+preservan complementos.
+Por lo tanto, para todo $j\in NA$, tenemos $f(j)=g(j)$.
+Así, $\eta_A$ es un epimorfismo.
+\end{proof}
+
+%\section*{(SESIÓN 12: 21 OCT)}
+
+\subsubsection{El ensamble como solución a un problema universal}
+\label{ssec:complementacion}
+
+Vimos que, para cada marco $A$, el ensamble $NA$ es un marco y
+tenemos un morfismo
+\begin{align*}
+  \eta_A: A&\to NA \\
+  a &\mapsto \unuc a
+\end{align*}
+el cual es mono y epi, aunque en general no es suprayectivo.
+En particular, $\Frm$ no es una categoría balanceada.
+
+\begin{cor}[Adjunción del ensamble]
+  Sea $A$ un marco.
+  El adjunto derecho del morfismo $\eta_A:A\to NA$ está dado por
+  $\bot:NA\to A$, $\bot(j)=j(0)$.
+  Es decir, tenemos
+  \[
+    \unuc a \leq j \ssi a\leq j(0) 
+  .\]
+\end{cor}
+\begin{proof}
+  Si $\unuc a \leq j$, entonces
+  $a=\unuc a(0) \leq j(0)$.
+  Por otro lado, si $a\leq j(0)$, entonces para todo $x\in A$
+  tenemos
+  \begin{align*}
+    \unuc a (x)
+    &= a\sup x \\
+    &\leq j(0) \sup x \\
+    &\leq j(0) \sup j(x) \\
+    &= j(x).
+  \end{align*}
+  Luego, $\unuc a \leq j$.
+\end{proof}
+
+\begin{defn}
+  Sea $f:A\to B$ un morfismo de marcos.
+  Diremos que $f$ resuelve el problema de complementación para
+  $A$ si, para todo $a\in A$, $f(a)\in B$ es complementado en
+  $B$.
+\end{defn}
+\begin{exa}
+  Para todo $a\in A$, el núcleo $\unuc a$ es complementado en
+  $NA$ (su complemento es $\vnuc a$).
+  Es decir, $\eta_A:A\to NA$ resuelve el problema de
+  complementación para $A$.
+\end{exa}
+
+\begin{thm}
+  Sea $A$ un marco.
+  El morfismo $\eta_A:A\to NA$ resuelve el problema de
+  complementación de manera universal.
+  Es decir, para cualquier morfismo $f:A\to B$ que resuelve el
+  problema de complementación, existe un único morfismo
+  $f^\sharp:NA\to B$ tal que el diagrama
+  \[
+    \begin{tikzcd}
+      A \ar[dr,"\eta_A"'] \ar[rr,"f"] && B \\
+      & NA \ar[ur,"f^\sharp"',dotted]
+    \end{tikzcd}
+  \]
+  es conmutativo.
+
+  Más aún, si $f_*:B\to A$ es el adjunto derecho de $f=f^*:A\to
+  B$, el adjunto derecho $f_\flat:B\to NA$ de $f^\sharp:NA\to B$
+  se calcula como
+  \[
+    f_\flat(b) = f_*\unuc b f^* \in NA
+  .\]
+\end{thm}
+\begin{proof}
+  Para empezar, como $\eta_A$ es epi, la factorización de $f$ a
+  través de $\eta_A$ es única, en caso de existir.
+  Es decir, si $f^\sharp,f^!:NA\to B$ son tales que
+  $f^\sharp\eta_A=f=f^!\eta_A$, entonces $f^\sharp=f^!$.
+  \[
+    \begin{tikzcd}
+      A \ar[dr,"\eta_A"'] \ar[rr,"f"] && B \\[5mm]
+      & NA \ar[ur,shift right,"f^!"'] \ar[ur,shift left,"f^\sharp"]
+    \end{tikzcd}
+  \]
+  Por lo tanto, basta con mostrar la existencia de $f^\sharp$.
+  
+  Recordemos que queremos definir $f^\sharp:NA\to B$ tal que el
+  diagrama 
+  \[
+    \begin{tikzcd}
+      A \ar[dr,"\eta_A"'] \ar[rr,"f"] && B \\
+      & NA \ar[ur,"f^\sharp"',dotted]
+    \end{tikzcd}
+  \]
+  conmute.
+  Es decir, tal que $f^\sharp(\unuc a) = f(a)$.
+  Recordemos que cada núcleo $j\in NA$ se puede representar como
+  \[
+    j = \Sup\{\unuc{j(a)} \inf \neg \unuc a \mid a\in A\}
+  ,\]
+  pues $\neg\unuc a = \vnuc a$.
+  Dado que los morfismos de marcos respetan complementos,
+  si existiese un morfismo $f^\sharp:NA\to B$ con las propiedades
+  deseadas, necesariamente debería cumplirse que
+  \begin{align*}
+    f^\sharp(j)
+    &= f^\sharp\left(
+      \Sup\{\unuc{j(a)}\inf\neg\unuc a\mid a\in A\}
+      \right) \\
+    &= \Sup\{f^\sharp(\unuc{j(a)}\inf\neg\unuc a)\mid a\in A\} \\
+    &= \Sup\{f^\sharp(\unuc{j(a)})\inf f^\sharp(\neg\unuc a)
+       \mid a\in A\} \\
+    &= \Sup\{f^\sharp(\unuc{j(a)})\inf \neg f^\sharp(\unuc a)
+       \mid a\in A\} \\
+    &= \Sup\{f(j(a))\inf \neg f(a) \mid a\in A\}.
+  \end{align*}
+  Con esta motivación, definimos $f^\sharp$ como
+  \[
+    f^\sharp(j) = \Sup\{f(j(a))\inf\neg f(a) \mid a\in A\}
+  .\]
+  
+  Hay que probar que esta definición nos da un morfismo de marcos
+  con las propiedades deseadas.
+  Verificamos la monotonicidad.
+  Si $k\leq j$ son núcleos en $A$, entonces $k(x)\leq j(x)$ para
+  todo $x\in A$.
+  Aplicando $f$ tenemos $f(k(x))\leq f(j(x))$, y así $f(k(x))\inf
+  f(x)\leq f(j(x))\inf f(x)$.
+  Esto nos dice que $f^\sharp$ es monótono.
+
+  Por otro lado $f_\flat:B\to NA$ también es monótona,
+  pues si $b\leq c\in B$, entonces $\unuc b\leq\unuc c \in NB$.
+  Luego, $f_*\unuc bf^*\leq f_*\unuc cf^*$, pero
+  esto es $f_\flat(b)\leq f_\flat(c)$.
+
+  Ahora veamos que $f^\sharp \dashv f_\flat$.
+  Dados $j\in NA$ y $b\in B$ arbitrarios, debemos mostrar la
+  equivalencia
+  \[
+    f^\sharp(j)\leq b \ssi j\leq f_\flat(b)
+  .\]
+  Por definición
+  $f^\sharp(j)=\Sup\{f^*(j(x))\inf\neg f^*(x) \mid x\in A\}$.
+  Luego, tenemos las equivalencias
+  \begin{align*}
+    f^\sharp(j) \leq b
+    &\iff \forall(x\in A)\;f^*(j(x))\inf\neg f^*(x)\leq b \\
+    &\iff \forall(x\in A)\;f^*(j(x))\leq (\neg f^*(x)\succ b) \\
+    &\iff \forall(x\in A)\;f^*(j(x)) \leq f^*(x)\sup b
+      & \text{caballo de batalla} \\
+    &\iff \forall(x\in A)\;j(x) \leq f_*(b\sup f^*(x))
+      & \text{adjunción } f^*\dashv f_* \\
+    &\iff \forall(x\in A)\;j(x) \leq f_*(\unuc b(f^*(x))) \\
+    &\iff j\leq f_*\unuc b f^* = f_\flat(b).
+  \end{align*}
+  Esto muestra que $f^\sharp\dashv f_*$.
+  En particular, $f^\sharp$ preserva supremos arbitrarios.
+  Ahora hay que ver que $f^\sharp$ preserva ínfimos finitos.
+  Como $f^\sharp$ es monótona, tenemos
+  $f^\sharp(j\inf k)\leq f^\sharp(j)\inf f^\sharp(k)$,
+  así que falta probar la otra comparación.
+  Tenemos
+  \begin{align*}
+    f^\sharp(j)\inf f^\sharp(k)
+    &= \Sup\Big\{[f(j(x))\inf\neg f(x)]
+        \inf[f(j(y))\inf\neg f(y)] \mid x,y\in A\Big\} \\
+    &= \Sup\Big\{f(j(x)\inf k(y))\inf\neg f(x\sup y)
+        \mid x,y\in A\Big\} \\
+    &\leq \Sup\Big\{f(j(x\sup y)\inf k(x\sup y))
+        \inf\neg f(x\sup y) \mid x,y\in A\Big\} \\
+    &= \Sup\Big\{f(j(z)\inf k(z))
+        \inf\neg f(z) \mid z\in A\Big\} \\
+    &= \Sup\Big\{f((j\inf k)(z))
+        \inf\neg f(z) \mid z\in A\Big\} \\
+    &= f^\sharp(j\inf k).
+  \end{align*}
+  Finalmente, hay que ver que $f=f^\sharp \eta_A$.
+  En efecto: para cualquier $a\in A$, tenemos
+  \begin{align*}
+    f^\sharp(\eta_A(a))
+    &= f^\sharp(\unuc a) \\
+    &= \Sup\{f(\unuc a(x))\inf\neg f(x)\mid x\in A\} \\
+    &= \Sup\{f(a\sup x)\inf\neg f(x)\mid x\in A\} \\
+    &= \Sup\{(f(a)\sup f(x))\inf\neg f(x)\mid x\in A\} \\
+    &= \Sup\{f(a)\inf\neg f(x)\mid x\in A\} \\
+    &= f(a)\inf\Sup\{\neg f(x)\mid x\in A\} \\
+    &= f(a)\inf 1 \\
+    &= f(a),
+  \end{align*}
+  lo cual concluye la prueba.
+\end{proof}
+
+\begin{thm}[El ensamble como indicador de booleanidad]
+  Sea $A$ un marco.
+  Entonces el encaje $\eta_A:A\to NA$ es suprayectivo (y, por lo
+  tanto, un isomorfismo) si, y solo
+  si, $A$ es un álgebra booleana completa.
+\end{thm}
+\begin{proof}
+    Supongamos que $\eta_A$ es suprayectiva.
+    Entonces, para todo elemento $a\in A$,
+    $\eta_A(a)=\unuc a$ tiene complemento $\vnuc a$ en $NA$.
+    Como $\eta_A$ es isomorfismo, entonces
+    $a$ tiene complemento en $A$.
+    Luego, $A$ es booleana.
+    
+    Por otro lado, supongamos que $A$ es booleana.
+    Dado $j\in NA$, mostraremos que $\eta_A(a)=j$,
+    donde $a=j(0)$.
+    Como $a\leq j(0)$, tenemos que $\unuc a\leq j$
+    (por la adjunción $\eta_A\dashv\bot$).
+    Queda demostrar la comparación $j\leq\unuc a$;
+    esto es: $j(x)\leq x\sup a$ para todo $x\in A$.
+    Como $A$ es booleana, podemos usar nuestro
+    caballo de batalla, que nos dice que esto es equivalente
+    a mostrar que $j(x)\inf\neg x\leq a$ para todo $x\in A$.
+    En efecto, tenemos
+    \begin{align*}
+        j(x)\inf\neg x
+        &\leq j(x)\inf j(\neg x) \\
+        &= j(x\inf\neg x) \\
+        &= j(0) \\
+        &= a.
+    \end{align*}
+    Esto muestra que $\unuc a=j$,
+    así que $\eta_A$ es suprayectiva y,
+    por lo tanto, un isomorfismo.
+\end{proof}
+
+\section{Más cálculos en el ensamble}
+\label{ssec:calculos}
+
+\begin{lemma}[Tres equivalencias]
+  \label{lemma:tres-equivalencias}
+  Sea $A$ un marco.
+  Entonces
+  \begin{align*}
+    \unuc a\leq j &\iff a\leq j(0) &
+    \vnuc a\leq j &\iff 1=j(a) &
+    j\leq \wnuc a &\iff j(a)=a.
+  \end{align*}
+  Nótese que la primera equivalencia es la adjunción $\eta_A\dashv\bot$
+  que demostramos en \ref{ssec:complementacion}.
+  También demostramos, en el lema \ref{lemma:nucleos-densos},
+  el caso $a=0$ de la tercera equivalencia.
+\end{lemma}
+\begin{proof}
+    Mostraremos la segunda y tercera equivalencias.
+    
+    Supongamos que $\vnuc a\leq j$.
+    Evaluando en $a$, obtenemos $1=(a\succ a)\leq j(a)$,
+    así que $1=j(a)$.
+    Por otro lado, supongamos que $1=j(a)$.
+    Para todo $x\in A$, tenemos $\vnuc a(x)=a\succ x$,
+    por lo cual $\vnuc a(x)\inf a\leq x$.
+    Aplicando $j$, obtenemos
+    \begin{align*}
+        j(x)
+        &\geq j(\vnuc a(x)\inf a) \\
+        &= j(\vnuc a(x))\inf j(a) \\
+        &= j(\vnuc a(x))\inf 1 \\
+        &\geq j(\vnuc a(x)) \\
+        &\geq \vnuc a(x).
+    \end{align*}
+    Luego, $\vnuc a\leq j$.
+    
+    Ahora supongamos que $j\leq\wnuc a$.
+    Evaluando en $a$, obtenemos $j(a)\leq a$.
+    Como $j$ infla, esto es equivalente a $j(a)=a$.
+    Por otro lado, supongamos que $j(a)=a$.
+    Debemos mostrar que $j\leq\wnuc a$;
+    esto es: que $j(x)\leq((x\succ a)\succ a)$
+    para todo $x\in A$.
+    Recordando que siempre tenemos $x\inf(x\succ a)=x\inf a$,
+    se sigue que
+    \begin{align*}
+        j(x)\inf(x\succ a)
+        &\leq j(x)\inf j(x\succ a) \\
+        &= j(x\inf (x\succ a)) \\
+        &= j(a) \\
+        &= a.
+    \end{align*}
+    Luego, $j(x)\leq((x\succ a)\succ a)=\wnuc a(x)$,
+    como se quería mostrar.
+\end{proof}
+
+\begin{lemma}
+  Sea $A$ un marco y $j,k\in NA$ núcleos.
+  Si $jk\leq kj$, entonces $k\sup j = kj$.
+\end{lemma}
+\begin{proof}
+  Supongamos que $jk\leq kj$.
+  Sea $g=kj$.
+  Entonces
+  \begin{align*}
+    g^2
+    &= kjkj \\
+    &\leq kkjj \\
+    &= k^2j^2 \\
+    &= kj \\
+    &= g.
+  \end{align*}
+  Es decir, $g$ es un prenúcleo idempotente, y así $g\in NA$
+  es un núcleo por encima de $k$ y de $j$.
+
+  Ahora, si $h\in NA$ es cualquier núcleo con $j\leq h$ y $k\leq
+  h$, entonces $g=kj\leq h^2=h$.
+  Se sigue que $g=k\sup j$.
+\end{proof}
+
+\begin{lemma}[Supremos con núcleos abiertos y cerrados]
+    \label{lem:sup-ab-cerr}
+  Sea $A$ un marco.
+  Dado cualquier núcleo $j\in NA$ y elementos $a,b\in A$, tenemos
+  \[
+    \vnuc b \sup j \sup \unuc a = \vnuc b j \unuc a
+  .\]
+\end{lemma}
+\begin{proof}
+    Antes probamos que $j\sup\unuc a = j\unuc a$,
+    por lo cual basta demostrar $\vnuc b \sup j = \vnuc b j$.
+  Por el lema anterior, es suficiente con probar la desigualdad
+  $j\vnuc b \leq \vnuc b j$.
+  Es decir, hay que probar que $j(b\succ x) \leq (b\succ j(x))$
+  para todo $x\in A$.
+  Para esto, observemos que
+  \begin{align*}
+    j\vnuc b (x) \inf b
+    &= j(b\succ x) \inf b \\
+    &\leq j((b\succ x)\inf b) \\
+    &= j(b\inf x) \\
+    &\leq j(x).
+  \end{align*}
+  Usando la definición de la implicación, esto nos da $j\vnuc
+  b(x) \leq (b\succ j(x))$, que es lo que queríamos.
+\end{proof}
+
+%\section*{(SESIÓN 13: 26 OCT)}
+
+\subsubsection{La representación de un núcleo generado por una derivada}
+
+Ya probamos que todo núcleo $j\in NA$ se puede representar como
+\[
+    j = \Sup\{\unuc{j(a)}\inf \vnuc a \mid a\in A \}
+.\]
+Si existe una derivada $f\in DA$ tal que $j=f^\infty$,
+esta construcción se puede mejorar.
+En esta sección, fijamos una derivada $f\in DA$ y suponemos que
+$j=f^\infty\in NA$.
+Usando la cadena de iteraciones de $f$, construiremos una cadena
+en $A$, y luego una cadena en $NA$.
+\begin{itemize}
+  \item
+  Para cada $a\in A$ y cada ordinal $\alpha$, definimos
+  $a(\alpha)=f^\alpha(a)$.
+  Esto nos da una cadena en $A$
+  \[
+    (a(\alpha) \mid \alpha\in\Ord)
+  \]
+  la cual, por cardinalidad, se estaciona en algún ordinal.
+  En particular, por la definición de $a(\alpha)$, se tiene
+  $a(\infty+1)=a(\infty)$ (recordemos que la cadena de los
+  $f^\alpha$ se estaciona en el ordinal $\infty$).
+  \item
+  Usando la cadena anterior, construimos una nueva cadena en $NA$.
+  \begin{align*}
+    j_{a,0}
+    &= \id_A \\
+    j_{a,\alpha+1}
+    &= (\unuc {a(\alpha+1)}\inf \vnuc {a(\alpha)})\sup j_{a,\alpha}
+    \\
+    j_{a,\lambda}
+    &= \Sup\{j_{a,\alpha} \mid \alpha < \lambda\}
+      & \text{(si $\lambda$ es límite).}
+  \end{align*}
+  Dado que los $a(\alpha)$ se estacionan, los $j_{a,\alpha}$ también.
+  En efecto, si $a(\alpha) = a(\alpha+1)$, entonces
+  \begin{align*}
+    j_{a,\alpha+1}
+    &= (\unuc {a(\alpha)}\inf \vnuc {a(\alpha)})
+      \sup j_{a,\alpha} \\
+    &= \id_A\sup j_{a,\alpha} \\
+    &= j_{a,\alpha}.
+  \end{align*}
+  Sea $j_a$ el mayor de los $j_{a,\alpha}$.
+  Es decir,
+  \begin{align*}
+    j_a
+    &= \Sup\{j_{a,\alpha} \mid \alpha\in\Ord\} \\
+    &= \Sup\{(\unuc {a(\alpha+1)}\inf\vnuc {a(\alpha)})
+      \sup j_{a,\alpha} \mid \alpha\in\Ord\} \\
+    &= \Sup\{\unuc {a(\alpha+1)}\inf\vnuc {a(\alpha)}
+    \mid \alpha\in\Ord\}
+  \end{align*}
+  En particular, observemos que $j_a=j_{a,\infty}$.
+\end{itemize}
+El siguiente resultado nos dice que los núcleos
+$j_{a,\alpha}$ tienen una descripción más simple.
+
+\begin{lemma}
+  Para cada ordinal $\alpha$, el núcleo $j_{a,\alpha}$ se puede
+  expresar como
+  \[
+    j_{a,\alpha} = \unuc{a(\alpha)} \inf \vnuc a
+  .\]
+  En particular, para $\alpha=\infty$, tenemos
+  \[
+    j_a = j_{a,\infty} = \unuc{f^\infty(a)}\inf\vnuc a
+  .\]
+  Una consecuencia inmediata es que
+  \[
+    f^\infty = \Sup\{j_a \mid a\in A\}
+  ,\]
+  pues
+  $f^\infty = \Sup\{\unuc{f^\infty(a)}\inf\vnuc a \mid a\in A\}$.
+\end{lemma}
+\begin{proof}
+  Probamos la afirmación por inducción
+  \begin{itemize}
+    \item Para $\alpha=0$, tenemos $j_{a,0}=\id$, mientras que
+    $\unuc{a(0)}\inf \vnuc a = \unuc a \inf \vnuc a = \id$.
+    \item Supongamos que
+    $j_{a,\alpha} = \unuc{a(\alpha)} \inf \vnuc a$.
+    Entonces
+    \begin{align*}
+      j_{a,\alpha+1}
+      &= (\unuc {a(\alpha+1)}\inf \vnuc {a(\alpha)})
+        \sup j_{a,\alpha} \\
+      &= (\unuc {a(\alpha+1)}\inf \vnuc {a(\alpha)})
+        \sup (\unuc{a(\alpha)} \inf \vnuc a) \\
+      &=
+      (\unuc {a(\alpha+1)}\sup (\unuc{a(\alpha)} \inf \vnuc a))
+      \inf(\vnuc {a(\alpha)}\sup (\unuc{a(\alpha)} \inf \vnuc a)) \\
+      &= \unuc {a(\alpha+1)}
+      \inf(\vnuc {a(\alpha)}\sup (\unuc{a(\alpha)} \inf \vnuc a)) \\
+      &= \unuc {a(\alpha+1)}
+      \inf(\vnuc {a(\alpha)}\sup\unuc{a(\alpha)})
+      \inf(\vnuc {a(\alpha)}\sup \vnuc a) \\
+      &= \unuc {a(\alpha+1)} \inf \tp \inf \vnuc a \\
+      &= \unuc {a(\alpha+1)}\inf \vnuc a,
+    \end{align*}
+    como se quería.
+    \item Si $\lambda$ es un ordinal límite, supongamos que 
+    $j_{a,\alpha} = \unuc{a(\alpha)} \inf \vnuc a$ para todo
+    ordinal $\alpha <\lambda$.
+    Entonces
+    \begin{align*}
+      j_{a,\lambda}
+      &= \Sup\{j_{a,\alpha} \mid \alpha<\lambda\} \\
+      &= \Sup\{\unuc{a(\alpha)}\inf\vnuc a \mid\alpha<\lambda\}
+      \\
+      &= \Sup\{\unuc{a(\alpha)}\mid\alpha<\lambda\}\inf\vnuc a \\
+      &= \unuc{\Sup\{a(\alpha)\mid\alpha<\lambda\}}\inf\vnuc a \\
+      &= \unuc{a(\lambda)}\inf\vnuc a,
+    \end{align*}
+    como se deseaba.
+  \end{itemize}
+\end{proof}
+
+
+Con este resultado, podemos probar que el núcleo $j=f^\infty$
+tiene una descripción más simple que la canónica.
+
+\begin{lemma}
+  Si $f\in DA$ es una derivada tal que $f^\infty$ es un núcleo,
+  entonces
+  \[
+    f^\infty = \Sup\{\unuc{f(a)}\inf\vnuc a \mid a\in A\}
+  .\]
+\end{lemma}
+\begin{proof}
+  Dado que
+  \[
+    \unuc{f(a)}\inf\vnuc a\leq \unuc{f^\infty(a)}\inf\vnuc a
+  \]
+  para todo $a\in A$, se sigue que
+  \[
+    \Sup\{\unuc{f(a)}\inf\vnuc a \mid a\in A\}
+    \leq
+    \Sup\{\unuc{f^\infty(a)}\inf\vnuc a \mid a\in A\}
+    = f^\infty
+  .\]
+
+  Por otro lado, para cada $a\in A$ y cada ordinal $\alpha$, tenemos
+  \[
+    a(\alpha+1)=f^{\alpha+1}(a)=f(f^\alpha(a))=f(\alpha(a))
+  ,\]
+  por lo cual
+  \[
+     \unuc{a(\alpha+1)}\inf\vnuc{a(\alpha)}
+     \in
+     \{\unuc{f(b)}\inf\vnuc b \mid b\in A\}
+  \]
+  (poniendo $b=a(\alpha)$).
+  Se sigue que
+  \[
+     \unuc{a(\alpha+1)}\inf\vnuc{a(\alpha)}
+     \leq
+     \Sup\{\unuc{f(b)}\inf\vnuc b \mid b\in A\}
+  .\]
+  Como esto es válido para todos los ordinales, tenemos
+  \[
+     j_a\leq \Sup\{\unuc{f(b)}\inf\vnuc b \mid b\in A\}
+  ,\]
+  pues $j_a = \Sup\{\unuc{a(\alpha+1)}\inf\vnuc{a(\alpha)}
+   \mid\alpha\in\Ord\}$.
+  De nuevo, como esto es válido para cualquier $a\in A$, concluimos
+  que
+  \[
+     f^\infty\leq \Sup\{\unuc{f(b)}\inf\vnuc b \mid b\in A\}
+  ,\]
+  pues $f^\infty = \Sup\{j_a\mid a\in A\}$ (aquí es donde usamos
+  el lema anterior).
+\end{proof}
+
+\subsubsection{Los núcleos regulares}
+
+Recordemos que los núcleos regulares de un marco
+(esto es, los de la forma $\wnuc a$) son exactamente
+los que corresponden a sus cocientes booleanos.
+Ahora probaremos que todo núcleo se puede descomponer en
+núcleos regulares.
+
+\begin{thm}[La representación en núcleos regulares]
+    Sea $A$ un marco y $j:A\to A$ un núcleo.
+    Entonces
+    \[
+        j
+        = \Inf\{\wnuc{j(a)}\mid a\in A\}
+        = \Inf\{\wnuc a\mid a\in A_j\}
+    .\]
+    Como $\{\wnuc{j(a)}\mid a\in A\}=\{\wnuc a \mid a\in A_j\}$,
+    basta probar la primera igualdad.
+\end{thm}
+\begin{proof}
+    Sea $l = \Inf\{\wnuc{j(a)}\mid a\in A\}$.
+    En \ref{ssec:calculos} probamos que
+    \[
+        j\leq\wnuc a \ssi j(a) = a
+    ,\]
+    por lo cual $j\leq \wnuc{j(a)}$ para todo $a\in A$.
+    Luego, $j\leq l$.
+    Para la otra desigualdad,
+    observemos que siempre tenemos $l\leq\wnuc{j(a)}$.
+    Luego,
+    \begin{align*}
+        l(a)
+        &\leq l(j(a)) \\
+        &\leq \wnuc{j(a)}(j(a)) \\
+        &= j(a),
+    \end{align*}
+    así que $l\leq j$, como se quería.
+\end{proof}
+
+\begin{lemma}
+    Sean $A$ un marco y $a\in A$.
+    Si $j\in NA$ es un núcleo tal que $\wnuc a\leq j$, entonces
+    \[
+        j = \wnuc a \sup\unuc b = \wnuc b
+    ,\]
+    donde $b=j(0)$.
+    Nótese que, en particular, este resultado implica que los núcleos
+    regulares forman una sección superior.
+    
+    También nótese que, por el lema
+    [\nameref{lem:sup-ab-cerr}],
+    el miembro central es igual a $\wnuc a\unuc b$.
+\end{lemma}
+\begin{proof}
+    Como $b\leq j(0)$, tenemos
+    $\unuc b\leq j$ (por la adjunción $\eta_A\dashv \bot$).
+    Luego,
+    \[
+        \wnuc a\sup\unuc b\leq j
+    .\]
+    Notemos, además, que $j(b)=j(j(0))=j(0)=b$,
+    lo cual sucede si, y solo si,
+    \[
+        j \leq \wnuc b
+    .\]
+    Finalmente, resta probar que
+    $\wnuc b\leq \wnuc a\sup\unuc b$.
+    Por nuestro caballo de batalla,
+    esto es equivalente a $\wnuc b\inf\vnuc b\leq \wnuc a$
+    lo cual sucede si, y solo si, $(\wnuc b\inf\vnuc b)(a)=a$.
+    Dado que $\wnuc a\leq j$, tenemos
+    $a=\wnuc a(0)\leq j(0)=b$.
+    Luego, $(a\succ b)=1$, por lo cual
+    \begin{align*}
+        (\wnuc b\inf\vnuc b)(a)
+        &= \wnuc b(a)\inf \vnuc b(a) \\
+        &= ((a\succ b)\succ b)\inf (b\succ a) \\
+        &= (1\succ b) \inf (b\succ a)\\
+        &= b \inf (b\succ a) \\
+        &= b\inf a \\
+        &= a.
+    \end{align*}
+    Esto es lo que se quería mostrar.
+\end{proof}
+
+%\section*{SESIÓN 14: 28 OCT}
+
+\begin{lemma}
+    Sean $d\in DA$ y $j\in CA$.
+    Entonces
+    \[
+        dj=j \ssi d\leq j \ssi jd=j
+    .\]
+\end{lemma}
+\begin{proof}
+    Probaremos la primera equivalencia,
+    pues la segunda es completamente análoga.
+    Supongamos que $jd=j$.
+    Como $x\leq j(x)$, tenemos que $d(x)\leq d(j(x))=j(x)$.
+    Luego, $d\leq j$.
+    Por otro lado, si $d\leq j$, entonces tenemos
+    $dj\leq jj=j$.
+    La otra desigualdad ($j\leq dj$) se sigue porque $d$ infla.
+\end{proof}
+
+\begin{thm}
+    Sean $A$ un marco y $a\in A$.
+    Si $k\in NA$ es un núcleo tal que $\unuc a\leq k\leq\wnuc a$,
+    entonces, para todo $j\in NA$ se tiene
+    \[
+        \wnuc a\sup j = \wnuc a j k = \wnuc b
+    ,\]
+    donde $b=\wnuc a(j(a))$.
+\end{thm}
+\begin{proof}
+    Para la primera igualdad,
+    basta ver que el prenúcleo $h=\wnuc ajk$ es idempotente
+    y, por lo tanto, un núcleo.
+    (En efecto, una vez probado esto, tendremos que
+    cualquier núcleo $l$ que esté sobre $\wnuc a$ y $j$ queda
+    por debajo de $h$, pues
+    $h=\wnuc ajk\leq\wnuc aj\wnuc a\leq l^3=l$).
+    
+    Ahora, para probar la idempotencia de $h$,
+    basta ver que $jh=h$ pues,
+    por el resultado anterior,
+    $k\leq\wnuc a$ implica $k\wnuc a=\wnuc a$,
+    lo cual nos da
+    \begin{align*}
+        h^2
+        &= \wnuc ajk\wnuc ajk \\ 
+        &= \wnuc aj\wnuc ajk
+            && (k\wnuc a=\wnuc a) \\ 
+        &= \wnuc a\wnuc ajk
+            && (jh=h)\\ 
+        &= \wnuc ajk \\ 
+        &= h.
+    \end{align*}
+    
+    Probemos, pues, que $jh=h$.
+    Sea $x\in A$ y definamos $y=jk(x)$,
+    de modo que $jh(x)=h(x)$ es lo mismo que
+    $j(\wnuc a(y))=\wnuc a(y)$.
+    Una desigualdad es porque $j$ infla,
+    así que queda probar la otra desigualdad:
+    $j(\wnuc a(y))\leq\wnuc a(y)$,
+    la cual equivale a $j(\wnuc a(y))\inf(y\succ a)\leq a$.
+    Como $\unuc a\leq k$, tenemos $a\leq k(0)$, así que
+    \begin{align*}
+        j\wnuc a(y)\inf(y\succ a)
+        &\leq j\wnuc a(y)\inf j(y\succ a) \\
+        &= j(\wnuc a(y)\inf (y\succ a)) \\
+        &= j(((y\succ a)\succ a)\inf (y\succ a)) \\
+        &= j((y\succ a)\inf a) \\
+        &= j(a) \\
+        &\leq j(k(0)) && (a\leq k(0)) \\
+        &\leq j(k(x)) \\
+        &= y.
+    \end{align*}
+    Haciendo ínfimo con $(y\succ a)$, obtenemos
+    \begin{align*}
+        j(\wnuc a(y))\inf (y\succ a)
+        &\leq y\inf (y\succ a) \\
+        &= y\inf a \\
+        &\leq a,
+    \end{align*}
+    que es lo que queríamos.
+    
+    Ahora veamos la otra igualdad.
+    Evaluando las desigualdades $\wnuc a\leq k\leq \wnuc a$
+    en $0$, obtenemos $k(0)=a$.
+    Como $h=\wnuc ajk$ está por encima de $\wnuc a$,
+    hace dos lemas vimos que $h=\wnuc b$, donde
+    \begin{align*}
+        b
+        &= h(0) \\
+        &= \wnuc ajk(0) \\
+        &= \wnuc aj(a),
+    \end{align*}
+    como se quería.
+\end{proof}
+
+\begin{cor}
+    Tomando $a=0$ en el resultado anterior,
+    vemos que todo $j\in NA$ satisface
+    \[
+        j\sup\wnuc 0 = \wnuc{\neg\neg j(0)}
+    .\]
+\end{cor}
+
+\begin{exe}%[Alfredo $\checkmark$]
+    Obtén los núcleos regulares del marco
+    \[
+        9 \hspace{10mm} = \hspace{10mm} 
+        \begin{tikzcd}[row sep=3mm, column sep=3mm]
+            & & 1 \\
+            & p \ar[ur,no head] && q \ar[ul,no head] \\
+            l \ar[ur,no head]
+                && m \ar[ul,no head] \ar[ur,no head]
+                && r \ar[ul,no head] \\
+            & a \ar[ul,no head]\ar[ur,no head]
+                && b\ar[ul,no head]\ar[ur,no head] \\
+            & & 0 \ar[ul,no head]\ar[ur,no head]
+        \end{tikzcd}
+    \]
+\end{exe}
+\begin{sol}
+    Como los núcleos preservan los ínfimos y el $1$,
+    basta conocer su acción sobre $\{l,p,q,r\}$.
+    \[ 
+        \begin{array}{|c|c|c|c|c|}
+            \hline
+        j = \wnuc x & j(l) & j(p) & j(q) & j(r) \\
+            \hline
+      \wnuc 1 = \tp &  1   & 1    & 1    & 1 \\
+            \wnuc p &  p   & p    & 1    & 1 \\
+            \wnuc q &  1   & 1    & q    & q \\
+            \wnuc l &  l   & 1    & 1    & 1 \\
+            \wnuc m &  p   & p    & q    & q \\
+            \wnuc r &  1   & 1    & 1    & r \\
+            \wnuc a &  l   & 1    & q    & q \\
+            \wnuc b &  p   & p    & 1    & r \\
+            \wnuc 0 &  l   & 1    & 1    & r \\
+            \hline
+        \end{array}
+    \]
+%    \[ 
+%        \begin{array}{|c|c|c|c|c|}
+%            \hline
+%                 j=\vnuc x 
+%                 & j(l)=(x\succ l) & j(p)=(x\succ p)
+%                 & j(q)=(x\succ q) & j(r)=(x\succ r) \\
+%            \hline
+%      \vnuc 1 = \id &  l   & p    & q    & r \\
+%            \vnuc p &  l   & 1    & q    & r \\
+%            \vnuc q &  l   & p    & 1    & r \\
+%            \vnuc l &  1   & 1    & q    & r \\
+%            \vnuc m &  l   & 1    & 1    & r \\
+%            \vnuc r &  l   & p    & 1    & 1 \\
+%            \vnuc a &  1   & 1    & 1    & 1 \\
+%            \vnuc b &  1   & 1    & 1    & 1 \\
+%      \vnuc 0 = \tp &  1   & 1    & 1    & 1 \\
+%            \hline
+%        \end{array}
+%    \]
+\end{sol}
+
+\part{El espacio de puntos}
+\label{part:espacio-de-puntos}
+

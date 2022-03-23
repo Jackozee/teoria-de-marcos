@@ -1,0 +1,87 @@
+La idea de la teoría de marcos no es nueva.
+A fines de la década de 1950, en un seminario de Ehresmann,
+en París \cite{Gattungen}, Bénabou
+presentó la idea de estudiar un espacio topológico a partir
+de las propiedades de su topología, vista como un conjunto ordenado.
+Más adelante, Dowker y Papert Strauss escribieron un famoso artículo
+\cite{Quotients}
+en el que retoman la idea de Bénabou, introducen el término ``marco''
+y desarrollan muchas ideas modernas.
+Posteriormente, Isbell publica un artículo \cite{atomless-parts}
+donde introduce
+la categoría de locales como la categoría opuesta a la de marcos.
+Observa que muchas nociones topológicas se pueden entender
+a través de las propiedades del marco asociado,
+y estudia la adjunción entre la categoría de locales y la categoría
+de espacios topológicos
+\[
+    \begin{tikzcd}
+        \Top \ar[d,"\cal O"'{name=izq},shift right=2] \\
+        \Frm^\op \ar[u,"\pt"'{name=der},shift right=2]
+        \adj{izq}{der}
+    \end{tikzcd}
+\]
+la cual no es una equivalencia,
+aunque sí induce una equivalencia (dual) entre las subcategorías
+$\Sp\hookrightarrow\Frm$ y $\Sob\hookrightarrow\Top$,
+donde los objetos de $\Sob$ y $\Sp$ son los llamados espacios sobrios
+y marcos espaciales, respectivamente.
+Esta equivalencia constituye una generalización de la dualidad
+de Stone clásica.
+
+También veremos que la categoría de marcos incluye,
+como subcategoría plena, a la categoría $\CBA$ de álgebras booleanas
+completas y morfismos completos y, sin embargo, $\CBA$ no es reflexiva
+en $\Frm$.
+Un problema interesante es determinar qué marcos tienen reflexión booleana.
+
+El estudio de los marcos también se relaciona con la teoría de toposes
+y el estudio de retículas más generales que se encuentran
+al estudiar anillos y sus categorías de módulos.
+
+Otro atractivo de la teoría de marcos es que se puede hablar
+de propiedades topológicas en términos puramente reticulares y,
+en este caso, se comportan de manera un poco distinta:
+Peter Johnstone demostró, en 1982, que el teorema de Tychonoff
+para marcos no requiere el uso del axioma de elección,
+en contraste con el caso de espacios topológicos.
+Más adelante, Johnstone publicó su monografía Stone spaces,
+donde expuso de manera sistemática todo lo que se sabía en ese momento
+al respecto del tema.
+
+Finalmente, mencionaremos que una herramienta central
+en la teoría es el concepto de núcleo en un marco,
+cuyo estudio sistemático fue introducido por Harold Simmons
+y su estudiante Macnab.
+
+Existen, principalmente, dos libros que tratan este tema.
+El libro Stone spaces, de Johnstone,
+y el libro Frames and locales, de Picado y Pultr.
+En teoría iba a haber un tercer libro, escrito por Harold Simmons,
+aunque este proyecto no se pudo completar, debido a su
+lamentable fallecimiento en 2018.
+Parte de estas notas se basan en el libro inconcluso de Simmons.
+
+%\subsubsection*{Temario: La interacción sin puntos del álgebra y la topología.}
+%\begin{enumerate}[label=\Roman*.]
+%  \item Preliminares de la teoría de marcos. Aspectos básicos.
+%  \begin{itemize}
+%      \item Cocientes.
+%      \item Completaciones ordenadas (si hay tiempo).
+%  \end{itemize}
+%  \item El ensamble de un marco.
+%  \begin{itemize}
+%      \item Derivadas, prenúcleos, estables y núcleos.
+%      \item Funtorialidad de $N:\Frm\to\Frm$.
+%      \item Representaciones: cálculos en $NA$.
+%  \end{itemize}
+%  \item El espacio de puntos de un marco.
+%  \item Lo que gusten y lo que alcance.
+%\end{enumerate}
+%
+%En la parte IV podemos ver un poco de el problema de reflexión
+%booleana, los axiomas de
+%separación en $\Frm$, espacios espectrales, gavillas en un marco,
+%etc. según lo que se desee y el tiempo que haya.
+%
+%\newpage

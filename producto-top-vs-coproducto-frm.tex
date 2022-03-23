@@ -1,0 +1,100 @@
+\chapter{Producto en \tps{$\Top$}{Top} vs coproducto en \tps{$\Frm$}{Frm}}
+%\section*{SESIÓN 23: 2 DIC}
+\begin{defn}[Morfismo denso]
+    Un morfismo de marcos $f:A\to B$ es denso si $\forall \ a\in A$se cumple que
+    $$f(a)=0\implies a=0$$
+\end{defn}
+Sea $\{S_i\}_{i\in I}$ una familia de espacios topológicos, y considérense el marco de abiertos de su producto $\mathcal{O}(\prod\limits_{i\in I}S_i)$ y su coproducto $\bigoplus\limits_{i}\mathcal{O}(S_i)$. Dado que para cualquier $i\in I$ la proyección $p_i:\prod\limits_{i\in I}\to S_i$ es continua, entonces la preimagen $p_i^{-1}:\mathcal{O}S_i$
+es un morfismo de marcos. Por la propiedad universal del coproducto, existe un único morfismo $p^\sharp:\bigoplus\limits_{i}\mathcal{O}S_i\to\mathcal{O}(\prod\limits_{i\in I}S_i)$ tal que el siguiente diagrama conmuta para todo $i\in I$:
+ \[
+            \begin{tikzcd}
+                \mathcal{O}S_i \ar[dr,"p_i^{-1}"'] \ar[rr,"k_i"] && \bigoplus\limits_{i\in I}\mathcal{O}S_i \ar[dl,"p_i^\sharp"]
+                \\ & \mathcal{O}(\prod\limits_{i\in I}S_i)
+            \end{tikzcd}
+        \]
+donde $k_i$ es la inclusión de $\mathcal{O}S_i$ en $\bigoplus\limits_{i\in I}\mathcal{O}S_i$
+Se cumple que $p_i^\sharp$ siempre es suprayectivo y denso; sin embargo, rara vez es un isomorfismo.
+\begin{exa}
+Considérese el conjunto 
+$$\mathbb{D}=\{\frac{a}{2^n}:a\in\mathbb{Z},n\in\mathbb{N}\}\subset\mathbb{Q}$$
+y nótese que con la topología usual de subespacio de $\mathbb{R}$ es un espacio topológico isomorfo a $\mathbb{Q}$. Sea $S=\mathbb{D}\times\mathbb{D}$, y para $(x,y)=(\frac{a}{2^m},\frac{b}{2^n})$, defínase $S_{x,y}$ como el cuadrado abierto con centro en $(x,y)$ y lado $2^{-(\mid m-n\mid+1)}$. Por ejemplo, $S_{0,0}=(-\tfrac{1}{4},\tfrac{1}{4})\times (-\tfrac{1}{4},\tfrac{1}{4})$.
+Nótese ahora que $A=\{S_{x,y}:(x,y)\in\mathbb{D}\times\mathbb{D}\}$ es un marco, y sea $\mathcal{C}$ la cubierta de coproducto de marcos definida en la sección 9.3. Así, defínase $R_{x,y}$ como el $\mathcal{C}$-ideal generado por $S_{x,y}$, y nótese que $\mathbb{D}\times\mathbb{D}=\bigcup\limits_{x,y\in\mathbb{D}\times\mathbb{D}}R_{x,y}$.
+
+Para $\alpha\in\Ord$, defínase la sucesión $(R_\alpha)$ de $\mathcal{C}$-ideales como 
+$$R_{\alpha+1}=\{a\in A : \exists S\in \mathcal{C}(a) \ \text{con} \ S\subseteq R_\alpha\}$$
+$$ R_\lambda =\bigcup\{R_\alpha : \alpha<\lambda\} \ \text{para } \ \lambda \ \text{ordinal límite}$$
+Dado que $A$ es un conjunto, existe un $\alpha\in\Ord$ tal que $R_\alpha=R_\gamma \ \forall \ \gamma>\alpha$; sea $R_\infty$ el primer término de la sucesión donde esto sucede, y nótese que es el $\mathcal{C}$-ideal generado por $\{S_{x,y}:(x,y)\in\mathbb{D}\times\mathbb{D}\}$.
+
+Supóngase que $(a,b)\times(c,d)\in R_\infty \ \forall a,b,c,d\in \mathbb{R}$. Así para un $\delta_0>0$, existe $\alpha_0\in\Ord$, el menor ordinal tal que $(-\tfrac{1}{3},\tfrac{1}{3})\times(-\delta_0,\delta_0)\in R_{\alpha_0}$, y nótese que $\alpha_0$ debe ser un ordinal sucesor, supóngase $\alpha_0=\beta_0+1$. Sean $u,v\in\mathbb{R}$ tales que $(u,v)\times(-\delta_0,\delta_0)\in R_{\beta_0}$. Considérese $n_0\in\mathbb{N}$ tal que $\frac{1}{3\cdot 2^{n_0}}<\delta_0$, y sea 
+$$x_0=\sum\limits_{i=1}^{n_0}\frac{1}{2^{2i}}$$
+y nótese que $x_0\in\mathbb{Q}$ tiene denominador $2^{n_0}$. Así, el rectángulo $R_0=R_{x_0,0}$ tiene lado $\delta_1=\tfrac{1}{2^{2n_0+1}}<2\delta_0$. Por otro lado, $x_0<\tfrac{1}{3}$, y por lo tanto el rectángulo $(x_0-\delta_1,x_0+\delta_1)\times(-\delta_0,\delta_0)\in R_{\beta_0}$.
+Sea $\alpha_1$ un ordinal tal que 
+$$(x_0-\delta_1,x_0+\delta_1)\times(-\delta_0,\delta_0)\in R_{\alpha_1}$$
+y nótese qe también es ordinal sucesor. También,  Sean $n_1>n_0$ y   
+$$x_1=\sum\limits_{i=1}^{n_1-n_0}\frac{1}{2^{2i}}$$
+Se puede probar que el rectángulo
+$$(x_0-\delta_1,x_0+\delta_1)\times(x_1\delta_1,x_1+\delta_1)$$
+no está en $R_0$, ya que $x_1<\frac{1}{3\cdots 2^{2n_0}}$.Siguiendo el proceso inductivamente, se obtienen tres sucesiones: $(\alpha_i), (\delta_i)$ y $(x_i)$, donde $i\in \Ord$. Sin embargo, la sucesión $(\delta_i)$ es estrictamente decreciente, por lo que $\delta_\alpha\neq\delta_{\gamma} \ \forall \ \gamma>\delta,  \ \forall \ \alpha\in\Ord$. Lo anterior es absurdo, ya quela sucesión $(\delta_i)$ es subconjunto de $\mathbb{R}$, y es cardinable. Por lo tanto, $(-\frac{1}{3}, \frac{1}{3})\times (-\delta_0,\delta_0)\notin R$, y el marco $\mathcal{O}(\mathbb{D})\times\mathcal{O}(\mathbb{D})$ no es espacial; esto es, 
+$\mathcal{O}(\mathbb{D}\times\mathbb{D})\not\simeq\mathcal{O}(\mathbb{D})\times\mathcal{O}(\mathbb{D})$.
+\end{exa}
+
+Sin embargo, sí es posible que $\bigoplus\limits_{i}\mathcal{O}S_i\simeq\mathcal{O}(\prod\limits_{i\in I}S_i)$. Es más:
+
+\begin{prop}
+Si $\{S_i\}_{i\in I}$ es una familia de espacios sobrios y el marco $\bigoplus\limits_{i\in I}\mathcal{O}(S_i)$ es espacial, entonces el morfismo $p_i^{\sharp}$ es un isomorfismo de marcos $\forall \ i \in I$.
+\end{prop}
+\begin{proof}
+Como $\bigoplus\limits_{i\in I}\mathcal{O}(S_i)$ es sobrio, los espacios $\bigoplus\limits_{i\in I}\mathcal{O}(S_i)$ y $\mathcal{O}(Y)$ son isomorfos, bajo un isomorfismo $\varphi:\bigoplus\limits_{i\in I}\mathcal{O}(S_i)\to\mathcal{O}(Y)$ donde  $Y$ es el espacio de puntos de $\bigoplus\limits_{i\in I}\mathcal{O}(S_i)$, que es sobrio.\\
+Sean $\iota_i: \mathcal{O}(S_i)\to \bigoplus\limits_{i\in I}\mathcal{O}(S_i)$ las inclusiones canónicas. Sean $q_i=\varphi\circ\iota_i$. Sean $f_i:2\to S_i$ funciones continuas, donce $2$ es el espacio de Sierpi\'nski. Considérese el morfismo $h:\bigoplus\mathcal{O}(S_i)\to\mathcal{O}(2)$ que factoriza los morfismos inducidos por el funtor de abiertos, $\{\mathcal{O}(f_i)\}$, y sea $f:2\to Y$ el morfismo único que se factoriza como $\mathcal{O}(f)=h\circ\varphi^{-1}$, ya que los marcos $2$ y $\mathcal{O}(Y)$ son espaciales.
+
+Entonces, \begin{align*}
+    \mathcal{O}(q_i\circ f)&=f_i\\
+    &=h\circ\varphi^{-1}\circ\varphi\circ\iota_i\\
+    &=h\circ\iota_i\\
+    &=\mathcal{O}(f_i)
+\end{align*}
+Por lo que $q_i\circ f=f_i$. Por la propiedad universal del coproducto, existe un único isomorfismo $g:\bigoplus\limits_{i\in I}S_i\to Y$ tal que $q_i\circ g=p_i$. Así, se cumple que 
+\begin{align*}
+    \mathcal{O}(g)\circ\varphi\circ\iota_i&=\mathcal{O}(q_i\circ g)\\
+    &=\mathcal{O}(p_i)\\
+    &=p^\sharp\circ\iota_i
+\end{align*}
+Por lo anterior, $\mathcal{O}(g)\circ\varphi=p^\sharp$. Como $g$ es un isomorfismo, $\mathcal{O}(g)$ también lo es, y como $\varphi$ es isomorfismo, entonces $\mathcal{O}(g)\circ\varphi=p^\sharp$ es un isomorfismo.
+\end{proof}
+\begin{defn}
+    Sean $A$ un marco y $a,b\in A$. Se dice que $a$ está muy por debajo de $b$, o $a\prec b$, si 
+    $$\neg a\sup b=1$$
+\end{defn}
+\begin{defn}[Marco regular]
+Un marco $A$ es regular si para todo $a\in A$ se cumple que
+$$a=\Sup\{x\in A \mid x\prec a\}$$
+\end{defn}
+La definición anterior se relaciona con la de un espacio topológico regular:
+\begin{defn}
+    Un espacio $S\in\Top$ es regular si para todo $F\subset S$ cerrado y cualquier $x\S\setminus F$ existen abiertos idsjuntos $V_1, V_2$ tales que $s\in V_1$ y $F\subset V_2$.
+    Nótese que lo anterior es equivalente a que para todo abierto $U\subset S$ se cumple que
+    $$U=\bigcup \{V \in \mathcal{O}(S) \mid \overline{V}\subset U\}$$
+\end{defn}
+Gracias a la definición de la negación en el marco $\mathcal{O}(S)$, se cumple que $S$ es regular si y sólo si $\mathcal{O}(S)$ lo es.
+\begin{defn}[Marco continuo]
+    Sean $A$ un marco y $a,b\in A$. Se dice que $a$ está bien por debajo de $b$, o $a<<b$, si para todo $X\subset A$ se cumple que
+    $$b\leq \Sup X\implies \exists F\subset X \ \text{finito tal que} \ a\leq \Sup F$$
+    $A$ es un marco continuo si para todo $a\in A$ se cumple
+    $$a=\Sup\{x\in A\mid x<<a\}$$
+\end{defn}
+Es fácil probar que se cumplen los siguientes dos resultados.
+\begin{lemma}
+\begin{itemize}
+    \item $S\in\Top$ es localmente compacto si y sólo si el marco $\mathcal{O}(S)$ es continuo.
+    \item Para cualesquiera $a,b$ en un marco $A$ se cumple que $a<<b\implies a\prec b$.
+    \item Todo marco continuo es espacial.
+    \item Todo maco compacto regular es espacial.
+\end{itemize}
+\end{lemma}
+Gracias a lo anterior, ocurre que las categorías de marcos continuos (ContFrm) y espacios topológicos localmente compactos (LKTop) son isomorfas. Así, la categoría de marcos regulares compactos (KRFrm) es isomorfa a la de espacios compactos Hausdorff (KHaus); este resultado es llamado Dualidad de Isbell.
+Gracias a estos resultados se cumple la siguiente proposición.
+\begin{prop}
+Sean $S,T\in\Top$, con $T$ localmente compacto. Así, los marcos $\mathcal{O}(S)\times \mathcal{O}(T)$ y $\mathcal{O}(S\times T)$ son isomorfos.
+\end{prop}
+Las proposiciones de esta sección muestran algunos casos en los que el teorema de Tychonoff es equivalente en las categorías de marcos y espacios topológicos.
+
