@@ -2,135 +2,70 @@
 \label{ch:cocientes}
 
 %\section*{(SESIÓN 6: 28 SEP)}
-Ahora queremos investigar qué significa que un marco sea cociente
-de otro.
-Para esto, hagamos una comparación rápida de cómo funcionan los
-cocientes en otros contextos:
+En este capítulo estudiaremos los cocientes de un marco.
 
-\begin{itemize}
-  \item
-  Dado un conjunto $S$, un cociente de $S$ es otro conjunto
-  que se construye a partir de una relación de equivalencia
-  $\simr$ en $S$.
-  Los elementos del cociente $S/\simr$ son los bloques de $S$ con
-  respecto a la relación dada y se obtiene una función de
-  proyección $\pi:S\to S/\simr$.
+Si $A$ es un conjunto, grupo, anillo, módulo (o alguna estructura
+algebraica similar) un cociente de $A$ está dado por una relación de
+equivalencia $(\simr)\subseteq A\times A$ que respeta las operaciones.
+Esto resulta ser equivalente a que $A/\simr$ tiene una estructura del
+mismo tipo que $A$ (grupo, anillo, etc) tal que la proyección
+$\pi:A\to A/\simr$ es un homomorfismo.
+Estas relaciones de
+equivalencia se llaman congruencias. En el caso de conjuntos, donde no
+hay estructura adicional, cualquier relación de equivalencia es una
+congruencia.
 
-  \item
-  Un cociente de un espacio vectorial $V$ es otro espacio
-  vectorial que se construye a partir de un subespacio
-  $U\leq V$.
-  A partir de $U$, se construye una relación de equivalencia en
-  $V$ y el cociente $V/U$ es el conjunto de bloques de la
-  relación, con lo cual se obtiene una función de
-  proyección $\pi:V\to V/U$.
+Las congruencias de $A$, siendo subconjuntos de $A\times A$, suelen ser
+difíciles de manejar directamente. En los casos de grupos, anillos y
+módulos, la situación se puede mejorar, pues las congruencias quedan
+codificadas en algunos subconjuntos distinguidos de $A$:
+grupos normales, ideales bilaterales y submódulos, respectivamente.
+En cada caso, el subconjunto distinguido es el ``núcleo'' (en el
+sentido adecuado) del morfismo proyección $\pi:A\to A/\simr$.
 
-  \item
-  Un cociente de un grupo $G$ es otro grupo
-  que se forma a partir de un subgrupo normal $H\leq G$.
-  Éste grupo $H$ induce una relación de equivalencia en $G$ y el
-  cociente $G/H$ es el conjunto de bloques de la
-  relación, con lo cual se obtiene una función de proyección
-  $\pi:G\to G/H$.
+La situación para marcos es aún mejor. Las congruencias de un marco
+$A$ corresponden a algunos subconjuntos de $A$ (llamados subconjuntos
+implicativos), pero hay otra correspondencia más conveniente:
+tanto las congruencias como los subconjuntos implicativos están
+codificados en ciertos operadores $A\to A$ que llamamos núcleos.
 
-  \item
-  Dado un anillo $A$, un cociente de $A$ es otro anillo que se
-  forma a partir de un ideal bilateral $I$ de $A$.
-  El ideal $I$ induce una relación de equivalencia en $A$ y el
-  anillo cociente $A/I$ es el conjunto de bloques de la relación,
-  así que obtenemos una función de proyección $\pi:A\to A/I$.
-\end{itemize}
-En cada caso, el cociente es el conjunto
-de bloques con respecto a una relación de equivalencia y la
-función de proyección $\pi$ induce en el cociente
-una estructura similar a la del objeto original (el
-cociente de un grupo es un grupo, el cociente de un anillo es un
-anillo, etc.) de tal manera que $\pi$ es
-un morfismo en la categoría correspondiente.
-
-Para que esto sea posible, es preciso tomar el tipo
-de subestructuras que se mencionaron arriba: si el subgrupo $H\leq
-G$ no es normal, sí obtenemos una relación de equivalencia en
-$G$, pero $\pi:G\to G/H$ no induce una estructura de grupo en $G$
-que convierta a $\pi$ en un morfismo;
-si el ideal bilateral $I$ se reemplaza por un ideal izquierdo,
-derecho o incluso por un subanillo, también obtenemos relaciones
-de equivalencia en $A$, pero no hay estructura de anillo en $A/I$
-tal que $\pi:A\to A/I$ sea un morfismo.
-
-Esta característica depende completamente de la relación de
-equivalencia y, a las relaciones de equivalencia que satisfacen
-esta propiedad se les llama congruencias.
-Es decir, las congruencias de grupos son precisamente las
-relaciones de equivalencia inducidas por subgrupos normales, las
-congruencias de anillos son precisamente las relaciones de
-equivalencia inducidas por ideales bilaterales, etc.
-
-En nuestro estudio de los marcos, también consideraremos
-congruencias de marcos: relaciones de equivalencia
-tales que la proyección sea un morfismo de marcos, pero las
-congruencias de marcos no estarán codificadas por ciertos tipos
-de submarcos (en contraste con el caso de los grupos, espacios
-vectoriales, etc).
-
-Además, en los casos mencionados arriba,
-los cocientes satisfacen otras propiedades que también se
-satisfacen en la categoría de marcos.
-
-La primera es que cualquier morfismo $f:A\to B$ de la categoría
-relevante se factoriza a través de un cociente de $A$.
-
-Los cocientes satisfacen otra propiedad importante.
-Supongamos que $C$ es un cociente de $A$ dado por una
-congruencia. Si un morfismo $f:A\to B$ en la categoría
-respeta la congruencia dada, entonces $f$ se factoriza de manera
-única a través de $C$.
-
-Dado un morfismo de grupos $\phi:G\to H$, existe un subgrupo normal
-$\ker \phi\leq G$ tal que $\phi$ se factoriza a través del cociente
-$G/\ker \phi$.
-
-\[
-    \begin{tikzcd}
-        G \ar[dr] \ar[rr,"\phi"] && H \\
-        &G/\ker \phi \ar[ur,"\tilde\phi"']
-    \end{tikzcd}
-.\]
-Más aún, este cociente es universal en el sentido de que, para cualquier 
-morfismo $\psi:G\to H'$ con $\ker\phi \leq \ker\psi$, existe un único
-morfismo $\phi^\sharp:G/\ker\phi\to H'$ que factoriza a $\psi$ a través
-del cociente:
-\[
-    \begin{tikzcd}
-        G \ar[dr] \ar[rr,"\psi"] && H' \\
-        &G/\ker \phi \ar[ur,"\phi^\sharp"']
-    \end{tikzcd}
-.\]
-Vale la pena notar que la relación de equivalencia
-\[
-    g\sim h \ssi \phi(g) = \phi(h)
-\]
-está codificada en el subgrupo $\ker \phi$ de $G$.
-Esta situación se repite en las categorías de anillos,
-espacios vectoriales, módulos, álgebras, etc.
-Queremos llevar esta situación a un contexto más general,
-donde no tenemos estructura de grupo.
+Además, como en otras categorías, los cocientes de marcos satisfacen
+el llamado ``teorema del cociente'': si un morfismo $f$ respeta
+una congruencia $\simr$:
+\begin{equation}
+  a\sim b \implies fa = fb,
+\end{equation}
+entonces $f$ se factoriza a través del cociente $\pi:A\to A/\simr$.
+Más aún, cualquier morfismo $f:A\to B$ induce una congruencia
+$(\simr)$ en $A$ con la fórmula
+\begin{equation}
+  a\sim_f b \iff fa = fb.
+\end{equation}
+En particular, $f$ respeta la congruencia $(\simr_f)$, así que se
+factoriza a través de $\pi:A\to A/\simr_f$, donde el marco cociente
+$A/\simr_f$ eses isomorfo a la imagen de $f$.
 
 \section{Cocientes de conjuntos}
-Consideremos una función de conjuntos $\phi:A\to B$.
-Queremos definir algo que haga el papel del núcleo de $\phi$.
-Aquí no tenemos estructura de grupo, pero sí podemos definir una relación
-de equivalencia $\sim$ en $A$:
+Cualquier función de conjuntos $\phi:A\to B$ induce una relación de
+equivalencia en $A$ como sigue:
 \[
     a\sim b \ssi \phi(a) = \phi(b)
 .\]
-Como es usual, denotando al conjunto de bloques de la relación como
-$A/\simr$, tenemos la función $\eta: A\to A/\simr$ que manda un elemento
-$a\in A$ a su bloque $[a]$ correspondiente.
-Es decir:
+Como es usual, denotamos al bloque de un elemento $x\in A$ como
+\begin{equation}
+  [a]=\{x\in A\mid x\sim a\}
+\end{equation}
+y al conjunto de bloques como
+\begin{equation}
+  A/\simr
+  =
+  \{[x] \mid x\in A\}
+.\end{equation}
+Entonces tenemos la función $\eta: A\to A/\simr$ que manda un
+elemento $a\in A$ a su bloque correspondiente:
 \begin{align*}
     \eta:A&\to A/\simr \\
-    a&\mapsto [a] = \{x\in A \mid x\sim a\}.
+    a&\mapsto [a]
 \end{align*}
 En particular, se tiene que
 \[
@@ -161,11 +96,9 @@ Nos gustaría decir que el ``núcleo'' de $\phi$ es la relación de
 equivalencia $\sim$ inducida por $\phi$.
 
 \section{Cocientes en \tps{$\SupLat$}{SupLat}}
-Nuestro objetivo es estudiar los cocientes en la categoría de
-marcos.
-Para esto, estudiaremos primero los cocientes en un caso más
-sencillo: la categoría de $\Sup$-semiretículas.
-(recordemos que tenemos un funtor de inclusión $\Frm\to\SupLat$).
+Antes de estudiar los cocientes de marcos, veremos que es más fácil
+comenzar estudiando los cocientes de $\Sup$-semiretículas.
+(Recordemos que tenemos un funtor fiel $\Frm\to\SupLat$).
 
 Primero veremos que todo morfismo induce una congruencia.
 Luego, veremos que toda congruencia produce un morfismo cociente y
@@ -899,45 +832,62 @@ más.
 \label{def:nucleo}
 Un núcleo en un marco $A$ es un operador cerradura $j:A \to A$ que cumple con $j(a\wedge b)=j(a)\wedge j(b) \ \forall \ a,b \ \in \ A$.
 Al conjunto de núcleos de $A$ lo denotamos como $NA$.
-Nótese que, para un morfismo de marcos $f: A\to B$,
-el operador cerradura $k$
-inducido por $f$ (visto como morfismo de $\Sup$-retículas)
-también es un núcleo de marcos, ya que
+\end{defn}
+
+Nótese que, para un morfismo de marcos $f: A\to B$, el operador
+cerradura $k$ inducido por $f$ (el núcleo de $f$, visto como morfismo
+de $\Sup$-retículas) también es un núcleo de marcos, ya que
 \begin{align*}
 x\leq k(a\wedge b)&\iff f(x)\leq f(a\wedge b)=f(a)\wedge f(b)\\
 &\iff f(x)\leq f(a) , f(x)\leq f(b) \\
 &\iff x\leq k(a), x\leq k(b)\\
 & \iff x\leq k(a)\wedge k(b)
 \end{align*}
-\end{defn}
+Siendo $k$ un operador cerradura, el conjunto de puntos fijos $A_k$ es
+un conjunto $\Inf$-cerrado, así que es una retícula completa. Sin
+embargo, como $k$ es un núcleo (de marcos), entonces $A_k$ tiene
+una propiedad extra: se comporta bien con respecto a la implicación.
+Esto queda capturado en la siguiente definición y el lema que la
+acompaña.
+
 \begin{defn}[Conjunto implicativo]
 Decimos que un subconjunto $F$ de un marco $A$ es un conjunto
 implicativo si es $\Inf$-cerrado y
 $a\in F \implies  \forall x \in A,\; (x\succ a)\in F$.
 \end{defn}
 \begin{lemma}
-Sea $k$ un operador cerradura en un marco $A$.
-Entonces $k$ es un núcleo si  y sólo si $A_k$ es implicativo.
+  Sea $A$ un marco. Entonces un operador cerradura $k:A\to A$
+  preserva ínfimos (es un núcleo de marcos) si, y
+  sólo si, su conjunto de puntos fijos $A_k$ es implicativo.
 \end{lemma}
 \begin{proof}
-$\Leftarrow$\\
-Sean $x,y \in A$ y sea $a=k(x\inf y)$, y nótese que $a\in A_k$. Así, se cumple que 
+Sea $k:A\to A$ un operador cerradura.
+
+($\Leftarrow$). Supongamos que $A_k$ es implicativo.
+Sean $x,y \in A$.
+Por un lado, $k(x\inf y)\leq k(x)\inf k(y)$ por la monotonía de $k$:
+Para ver la otra comparación, sea $a=k(x\inf y)\in A_k$. Entonces
 \begin{align*}
     x\inf y\leq a
     & \iff y\leq (x\succ a)\in A_k\\
-    &\implies k(y)\leq (x\succ a)\\
-    &\iff k(y)\inf x\leq a
+    &\iff k(y)\leq (x\succ a)\\
+    &\iff k(y)\inf x\leq a \\
+    &\iff x\leq (k(y)\succ a) \\
+    &\iff k(x)\leq (k(y)\succ a)\in A_k \\
+    &\iff k(x)\inf k(y) \leq a.
 \end{align*}
-Similarmente, $k(x)\inf y\leq a$, por lo que 
-$$ k(x)\inf k(y)\leq a$$
-También, $a\leq k(x)\inf k(y)$, ya que $k$ es monótona.
-Por lo tanto, $k(x\inf y)=k(x)\inf k(y)$ y $k\in NA$.
-\vspace{5mm}
-$\Rightarrow$\\
-Sea $y=(x\succ a)$, donde $a\in A_k, x\in A$.Así, $x\inf y\leq a$, y se cumple que 
-$$x\inf k(y)\leq k(x)\inf k(y) =k(x\inf y)\leq k(a)$$
-por lo que $x\inf k(y)\leq k(a)=a$, lo que implica que $k(y)\leq (x\succ a)=y$. Por lo tanto, $k(y)=y$ y $y\in A_k$.
+Esto es $k(x\inf y)=k(x)\inf k(y)$. Así, $k\in NA$.
+
+($\Rightarrow$). Supongamos que $k$ es un núcleo. Tomemos $a\in A_k$ y
+$x\in A$.
+Por un lado, $(x\succ a)\leq k(x\succ a)$. Para ver la otra
+comparación, sea $y=(x\succ a)$.
+Así, $x\inf y\leq a$, y se cumple que 
+$$x\inf k(y)\leq k(x)\inf k(y) =k(x\inf y)\leq k(a)=a$$
+lo cual implica que $k(y)\leq (x\succ a)=y$. Por lo tanto, $k(y)=y$ y
+$y\in A_k$.
 \end{proof}
+
 Recordemos que, si $j\in CA$, entonces $A_j$ es una $\Sup$-semiretícula
 y $j^*:A\to A_j$ dada como $j^*(a)=j(a)$
 es un morfismo de $\Sup$-semiretículas; esto es:
@@ -957,10 +907,8 @@ resultado.
     y $j^*:A\to A_j$ es un morfismo de marcos suprayectivo.
 \end{lemma}
 \begin{defn}
-  Un cociente de un marco $A$ es un morfismo suprayectivo $f:A\to
-  B$.
-  Equivalentemente, $B$ es un cociente de $A$ si existe un
-  morfismo suprayectivo $f:A\to B$.
+  Un cociente de un marco $A$ es un marco $B$ equipado con un morfismo
+  suprayectivo $f:A\to B$.
 \end{defn}
 
 \begin{exe}%[Dante $\checkmark$ ]
@@ -977,9 +925,7 @@ Para cualquier marco $A$, existe una biyección entre el conjunto de cocientes d
     conmuta, así como $g^\sharp$ que cumple lo mismo para $g$ y $A_G$. Sin embargo, como $G=F$, $A_F=A_G$ y $F^*=G^*$, entonces $f=F^\sharp\circ F^*=G^\sharp\circ G^*=G$, y por lo tanto la función $\phi:\mathcal{C}\to NA$ definida como $\phi(f)=F=f_*\circ f$ es inyectiva. También, si $j\in NA$, claramente $j^*:A\to A_j$ es un cociente de $A$, con $j_*\circ j =j$. Por lo tanto, $\phi$ es una biyección entre $\mathcal{C}$ y $NA$.
 \end{sol}
 
-El teorema del factor en $\Frm$ se deja como ejercicio:
-
-\begin{thm}%[Dante $\checkmark$]
+\begin{thm}[Teorema del factor]%[Dante $\checkmark$]
 \label{thm:factor-frm}
 Sean $A\in \Frm$ y $j\in NA$, y considérese $f:A\to B$ morfismo de marcos con núcleo $k\geq j$. Entonces existe un único morfismo $f^{\sharp}:A_j \to B$ tal que el diagrama
     \[
@@ -1306,7 +1252,7 @@ un espacio topológico forman un álgebra booleana completa.
   \[
     j(0)=0 \ssi j\leq \wnuc 0
   .\]
-  (C.f. con el lema \ref{lemma:tres-equivalencias}).
+  (C.f. con el lema \ref{lemma:equivalencias}).
   Si un núcleo $j\in NA$ cumple $j\leq\wnuc 0$,
   decimos que $j$ es un núcleo denso.
   Así, $\wnuc 0$ es el mayor núcleo denso en $A$.
@@ -1521,8 +1467,4 @@ $k=[\phi[T]']$. En general, $[E]$ siempre es un núcleo.
   inducido} si es de la forma $j=[E]$ para algún
   $E\subseteq S$.
 \end{defn}
-
-
-\part{El ensamble}
-\label{part:ensamble}
 

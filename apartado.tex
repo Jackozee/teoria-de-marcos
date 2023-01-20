@@ -1,0 +1,403 @@
+\section{Apartado técnico}
+
+En esta sección veremos que los conceptos de negación e implicación se
+pueden trabajar en contextos más generales.
+
+\subsection{Negaciones}
+\label{ss:negaciones}
+
+En \ref{ss:heyting} vimos que toda álgebra booleana tiene una
+implicación dada por $(x\succ y)=\neg x\succ y$. Este es nuestro
+caballo de batalla. También vimos que el complemento de un elemento se
+puede recuperar de la implicación como $\neg x = (x\succ 0)$.
+De hecho esta última operación se puede hacer en cualquier álgebra de
+Heyting $A$. En este caso, $b=(x\succ 0)$ no es, necesariamente, un
+complemento de $A$, pero sí tiene la propiedad de ser el mayor
+$b$ que cumple $x\inf b=0$.
+
+La siguiente definición nos permite trabajar con esta noción en una
+retícula que puede ni siquiera ser álgebra de Heyting.
+
+\begin{defn}[Negaciones]
+  Si $A$ es una retícula y $a\in A$,
+  entonces una negación de $a$ es un elemento $b\in A$ tal que
+  \[
+      x\leq a \ssi x\inf b=0
+  \]
+  para todo $x\in A$.
+\end{defn}
+Así, $b,b'$ son negaciones de $a$,
+entonces $b\inf a=b'\inf a=0$ (porque $b\leq b$ y $b'\leq b'$).
+Así, $b\leq b'$ y $b'\leq b$, por lo cual $b=b$.
+Es decir, las negaciones son únicas en caso de existir, así que,
+si un elemento $a\in A$ tiene negación,
+ésta se denota como $\neg a$.
+Nótese que, en este caso, para demostrar la unicidad
+no se requirió que $A$ fuera distributiva.
+
+Sin embargo, si $A$ es distributiva
+y $a\in A$ tiene complemento $a'$ (único, por distributividad),
+entonces $a'$ también es la negación de $a$, es decir, $\neg a=a'$.
+En efecto, es claro que $x\leq a'\implies x\inf a=0$;
+mientras que, si $x\inf a=0$, entonces
+\begin{align*}
+    x
+    &= x\inf(a'\sup a) \\
+    &= (x\inf a')\sup (x\inf a) \\
+    &= x\inf a',
+\end{align*}
+por lo cual $x\leq a'$.
+
+Juntando estas observaciones, obtenemos el siguiente resultado:
+\begin{lemma}
+  \label{lemma:complementado-ssi-supneg}
+   Si $A$ es una retícula distributiva,
+   un elemento $a\in A$ con negación tiene complemento $a'$
+   si, y solo si, $\neg a\sup a=1$ y, en este caso, $a'=\neg a$.
+\end{lemma}
+
+En particular, en un álgebra booleana $A$, todo elemento $a\in A$
+tiene negación dada por el complemento: $\neg a = a'$.
+
+De la definición de la negación, tenemos que
+$x\leq \neg\neg a$ si, y solo si, $x\inf\neg a=0$.
+Dado que $a\inf\neg a=0$, podemos deducir que $a\leq\neg\neg a$.
+Aunque en un álgebra booleana se tiene la otra comparación
+(es decir, $\neg\neg a = a$),
+esto no es cierto en general:
+
+\begin{exa}
+  \label{exa:negaciones-en-espacios-top}
+  Sea $S$ un espacio topológico y consideremos el marco $\cal OS$.
+  Todo abierto $u\in\cal O S$ tiene negación $\neg u$ en $\cal OS$.
+  En efecto, para todo abierto $v\in\cal OS$ tenemos
+  \begin{align*}
+        u\cap v = \emptyset
+        &\iff v\subseteq u' \\
+        &\iff v\subseteq (u')^\circ \in\cal OS.
+  \end{align*}
+  Por lo tanto, $u$ tiene negación dada como
+  $\neg u = (u')^\circ = {\ol u}'$.
+  
+  En particular, el abierto $u=(-1,0)\cup(0,1)\in\cal O\mathbb R$
+  tiene cerradura $\ol u = [-1,1]$, así que
+  \begin{align*}
+    \neg\neg u
+    &= \neg(\ol u ') \\
+    &= \neg([-1,1]') \\
+    &= ([-1,1]'')^\circ \\
+    &= [-1,1]^\circ \\
+    &= (-1,1) \\
+    &\neq u.
+  \end{align*}
+\end{exa}
+
+Es decir, aunque $\neg a$ tenga negación, en general
+solo tenemos la comparación $a\leq\neg\neg a$.
+Sin embargo, si $\neg\neg a$ tiene negación, entonces sí se
+cumple que $\neg\neg\neg a=\neg a$.
+En efecto, dado que
+\[
+  a \leq \neg\neg a
+,\]
+al hacer ínfimo con $\neg\neg a$ obtenemos
+\begin{align*}
+  \neg\neg\neg a\inf a
+  &\leq \neg\neg\neg a\inf \neg\neg a  \\
+  &= 0,
+\end{align*}
+lo cual, por definición de la negación, es equivalente a
+$\neg\neg\neg a\leq\neg\neg a$, mientras que la otra comparación
+$\neg a\leq\neg\neg\neg a$ ya la teníamos.
+
+En el ejemplo \ref{exa:negaciones-en-espacios-top} encontramos
+una retícula distributiva donde todo elemento tiene negación.
+Ahora consideraremos ese tipo de retículas.
+
+Por el lema \ref{lemma:complementado-ssi-supneg}, sabemos que
+$a$ es tiene complemento $a'$ ssi $a\sup\neg a=1$.
+Esto justifica el primer punto de la siguiente definición.
+\begin{defn}
+  Sea $A$ una retícula distributiva donde todo elemento tiene
+  negación y tomemos un elemento $a\in A$.
+  Decimos que
+  \begin{itemize}
+    \item $a$ es complementado si $a\sup\neg a=1$,
+    \item $a$ es regular si $\neg\neg a = a$,
+    \item $a$ es denso si $\neg a = 0$.
+  \end{itemize}
+\end{defn}
+
+Nótese que $\neg a$ es regular para todo $a$, ya que
+$\neg\neg\neg a =\neg a$.
+
+\begin{exa}
+  Consideremos un espacio topológico $S$ y un abierto $u\in\cal
+  OS$. Por el ejemplo \ref{exa:negaciones-en-espacios-top},
+  sabemos que $u$ tiene negación dada como $\neg u=\ol
+  u'=(u')^\circ$.
+  Por lo tanto
+  \begin{enumerate}
+    \item
+    $u$ es complementado en el sentido de retículas
+    ($u\sup\neg u=1$)
+    si, y solo si, su complemento es abierto.
+    \item
+    el abierto $u$ es regular en el sentido de retículas
+    ($\neg\neg u = u$)
+    si, y solo si, es regular en el sentido topológico
+    ($(\ol u)^\circ=u$).
+    \item
+    Similarmente, $u$ es denso como elemento de la retículas
+    ($\neg u=0$)
+    si, y solo si, es denso en el sentido topológico
+    ($\ol u=S$).
+  \end{enumerate}
+\end{exa}
+
+\begin{prop}%[Dante $\checkmark$ ]
+  Un elemento $a$ de una retícula $A$ es denso
+  ($\neg a=0$) si, y solo si $\neg\neg a = 1$.
+\end{prop}
+\begin{proof}
+Tenemos
+\begin{align*}
+  \neg a = 0
+  &\iff \neg a \leq 0 \\
+  &\iff 1\inf \neg a \leq 0 \\
+  &\iff 1\leq \neg\neg a \\
+  &\iff 1=\neg\neg a.
+\end{align*}
+\end{proof}
+
+%\section*{(SESIÓN 5: 23 SEP)}
+
+\begin{prop}
+  Si $A$ es una retícula distributiva y $a,b\in A$ tienen
+  negación, entonces $a\sup b$ también tiene negación y tenemos
+  \[
+    \neg(a\sup b) = \neg a \inf \neg b
+  .\]
+\end{prop}
+\begin{proof}
+  Para cualquier $x\in A$, tenemos
+  \begin{align*}
+    x\inf(a\sup b) \leq 0
+    &\iff (x\inf a)\sup(x\inf b) \leq 0 \\
+    &\iff (x\inf a)\leq 0, \; (x\inf b) \leq 0 \\
+    &\iff x\leq\neg a, \; x\leq\neg b \\
+    &\iff x\leq(\neg a \inf \neg b).
+  \end{align*}
+  Así, $\neg a\inf\neg b$ es la negación de $a\sup b$, como se
+  quería.
+\end{proof}
+
+Ahora, si en una retícula distrubutiva $A$ todos los elementos
+tienen negación, entonces
+\[
+  \neg(a\sup\neg a) = \neg a\inf\neg\neg a = 0
+,\]
+por lo cual $a\sup\neg a$ siempre es denso.
+Además
+\begin{align*}
+  \neg\neg a\inf(a\sup\neg a)
+  &= (\neg\neg a\inf a)\sup(\neg\neg a\inf\neg a) \\
+  &= a \inf 0 \\
+  &= a,
+\end{align*}
+así que todo elemento $a\in A$ se puede expresar como el ínfimo
+de un elemento denso y un elemento regular.
+
+\begin{lemma}
+  Sea $A$ una retícula distributiva donde todos los elementos
+  tienen negación.
+  Entonces $A$ es un álgebra booleana (todo elemento es
+  complementado) si, y solo si, todo elemento es regular.
+\end{lemma}
+\begin{proof}
+    $\Rightarrow )$ Supongamos que $A$ es booleana, entonces todo
+    $a\in A$ cumple $a\vee \neg a=1$.
+    Luego $\neg a\vee \neg\neg a=1$, es decir, $\neg\neg a$ es
+    complementado.
+    Como el complemento de $\neg a$ es único, se tiene que $\neg
+    \neg a=a$. \\ 
+    $\Leftarrow)$ Supongamos que todos los elementos de $A$ son
+    regulares y sea $a\in A$.
+    Como $a$ y $a\sup\neg a$ son regulares, tenemos
+    $a\sup\neg a=\neg\neg (a\sup\neg a)=\neg(\neg
+    a\wedge \neg\neg a)=\neg 0=1$.
+    Por lo tanto, $a\vee \neg a=1$, es decir, $a$ es
+    complementado. Con ello $A$ es un álgebra booleana.
+\end{proof}
+
+\subsection{Implicaciones}
+
+Una implicación en una semiretícula inferior $A$ es una operación
+$(-\succ -):A\to A$ tal que, para cualesquiera $a,x,y\in A$ se tiene
+\[
+  x\inf y\leq a \ssi x\leq (y\succ a )
+.\]
+
+\begin{exa}
+  En un álgebra booleana, nuestro caballo de batalla nos dice que
+  \[
+    x\inf y\leq a \ssi
+    x\leq \neg y\sup a
+  .\]
+  Por lo tanto, toda álgebra booleana tiene implicación dada
+  como $(y\succ a)=\neg y\sup a$.
+\end{exa}
+
+Ahora vienen dos lemas técnicos.
+\begin{lemma}
+  Sea $A$ una $\inf$-semiretícula con implicación.
+  Entonces
+  \begin{enumerate}
+    \item $(x\succ -)$ infla.
+    \item $x\inf(x\succ a) = x\inf a$
+    \item $(-\succ a)$ es antítona.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item Como $a\wedge x\leq a$, tenemos
+        $a\leq (x\succ a).$
+        \item Consideremos $a, x\in A$.
+        Para cada $z$ tenemos que 
+        \begin{align*}
+            z\leq x\wedge (x\succ a)
+            & \iff z\leq x \mbox{ y } z\leq (x\succ a)\\
+            & \iff z\leq x \mbox{ y } z\wedge x\leq a\\
+            & \iff z\leq x \mbox{ y } z\leq a\\
+            & \iff z\leq a\wedge x.
+        \end{align*}
+        Por lo tanto $x\inf(x\succ a) = x\inf a$.
+        \item Supongamos que $x\leq y$. Consideremos $z=(y\succ a)$, entonces $x\wedge z\leq y\wedge z$ y por los incisos anteriores de este lema, $y\wedge z\leq a$. Así, $x\wedge z\leq a$ y por la definición de implicación obtenemos que $(y\succ a)\leq (x\succ a)$. 
+    \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  \label{lemma:w-cerradura}
+  Sea $A$ una $\inf$-semiretícula con implicación.
+  Para cualquier elemento $a\in A$, la función
+  $((-\succ a)\succ a):A\to A$ tiene las siguientes propiedades.
+  \begin{enumerate}
+    \item $((-\succ a)\succ a)$ infla.
+    (Inmediado del punto 2 del lema anterior).
+    \item $((-\succ a)\succ a)$ es monótona.
+      (Inmediato del punto 3 del lema anterior).
+    \item $((-\succ a)\succ a)$ es idempotente.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Solo falta probar el punto 3.
+  Por el punto 1, tenemos
+  \[
+    (x\succ a) \leq (((x\succ a)\succ a)\succ a),
+  \]
+  así que resta probar
+  \[
+     (((x\succ a)\succ a)\succ a) \leq (x\succ a),
+  \]
+  que, por definición de la implicación, equivale a
+  \[
+     (((x\succ a)\succ a)\succ a) \inf x \leq a.
+  \]
+  Recordemos que $x\leq ((x\succ a)\succ a)$, porque $((-\succ
+  a)\succ a)$ infla, y que
+  $(y\succ a)\inf y = y\inf a$ para todo $y\in A$.
+  En particular, para $y=((x\succ a)\succ a)$, tenemos
+  \begin{align*}
+     (((x\succ a)\succ a)\succ a) \inf x
+     &\leq (((x\succ a)\succ a)\succ a)
+       \inf ((x\succ a)\succ a) \\
+     &= (y\succ a) \inf y \\
+     &= y \inf a \\
+     &\leq a,
+  \end{align*}
+  como se quería. 
+\end{proof}
+
+En el capítulo \ref{ch:cocientes} definiremos los operadores
+cerradura como funciones $A\to A$ que cumplen estas tres
+propiedades (definición \ref{def:operador-cerradura}).
+Allí veremos que estos operadores juegan un papel
+importante en el contexto de $\Sup$-semirretículas.
+
+Así, el resultado anterior dice que, si $A$ es una
+$\inf$-semiretícula con implicación,
+entonces $((-\succ a)\succ a)$ es un operador cerradura.
+Además, el operador $((-\succ a)\succ a)$ tiene otra propiedad:
+preserva ínfimos.
+
+\begin{lemma}
+  \label{lemma:modalidad-w}
+  Si $A$ es una $\inf$-semirretícula con implicación, entonces
+  \[
+    (((x\inf y)\succ a)\succ a)
+    =
+    ((x\succ a)\succ a) \inf
+    ((y\succ a)\succ a)
+  .\]
+\end{lemma}
+\begin{proof}
+  Por un lado, como $((-\succ a)\succ a)$ es monótono, tenemos
+  \begin{align*}
+    (((x\inf y)\succ a)\succ a)
+    &\leq ((x\succ a)\succ a)
+    \\
+    (((x\inf y)\succ a)\succ a)
+    &\leq ((y\succ a)\succ a)
+  \end{align*}
+  así que $(((x\inf y)\succ a)\succ a)$ es cota inferior de
+  $((x\succ a)\succ a)$ y $((y\succ a)\succ a)$.
+
+  Ahora, dada cualquier cota inferior $z$ de estos dos elementos,
+  queremos probar que $z \leq (((x\inf y)\succ a)\succ a)$,
+  lo cual equivale a $z\inf((x\inf y)\succ a)\leq a$.
+  Como $z$ es cota inferior, tenemos
+  \begin{align*}
+    z&\leq ((x\succ a)\succ a)
+    &
+    z&\leq ((y\succ a)\succ a)
+  \end{align*}
+  lo cual, por definición de la implicación, es
+  \begin{align*}
+    z\inf (x\succ a) &\leq a
+    &
+    z\inf (y\succ a) &\leq a.
+  \end{align*}
+  Ahora sea $w=((x\inf y)\succ a)$, de modo que
+  \begin{align*}
+    z\inf w\inf x\inf y
+    &= z\inf ((x\inf y)\succ a)\inf(x\inf y) \\
+    &\leq z\inf a \\
+    &\leq a
+  \end{align*}
+  por definición de la implicación, esto nos da
+  \begin{align*}
+    z\inf w \inf x &\leq (y\succ a).
+  \end{align*}
+  Al hacer ínfimo con $z$ obtenemos
+  \begin{align*}
+    z\inf w \inf x
+    &\leq z\inf (y\succ a) \leq a
+  \end{align*}
+  aplicando de nuevo la definición de la implicación,
+  \begin{align*}
+    z\inf w &\leq (x\succ a)
+  \end{align*}
+  y haciendo ínfimo con $z$,
+  \begin{align*}
+    z\inf w &\leq z\inf (x\succ a) \leq a
+  \end{align*}
+  Luego, $z\leq (w\succ a)=(((x\inf y)\succ a)\succ a)$,
+  como se quería.
+\end{proof}
+
+También en el capítulo \ref{ch:cocientes}, veremos que
+los operadores cerradura con esta propiedad, llamados núcleos
+(definición \ref{def:nucleo}) tienen gran
+relevancia en el contexto de marcos.
+
+

@@ -1,0 +1,307 @@
+\chapter{El encaje de un marco en su ensamble}
+
+\begin{thm}
+  Si $A$ es un marco, la función $\eta_A:A\to NA$, dada como
+  \[
+    \eta_A(a) = \unuc a
+  ,\]
+  es un epimorfismo inyectivo de marcos.
+  (Sin embargo, $\eta_A$ no es suprayectivo, en general. Véase
+  el teorema \ref{thm:ensamble-booleanidad}).
+\end{thm}
+\begin{proof}
+Para ver que $\eta_A$ es un morfismo de marcos primero notemos que
+$\eta_A(0)=\unuc 0=\id$ y $\eta_A(1)=\unuc 1=\tp$. También es una
+función monótona pues $a\leq b$ implica $\unuc a\leq \unuc
+b$. Además,
+$$(\unuc a\wedge \unuc b)(x)=\unuc a(x)\wedge \unuc b(x)=(a\sup
+x)\inf(b\sup x)=(a\wedge b)\vee x=\unuc {a\wedge b}(x).$$
+Así, $\eta_A(a)\wedge \eta_A(b)=\eta_A(a\wedge b).$\\
+Ahora consideremos $X\subseteq A$, queremos ver que $\bigvee\eta_A(X)=\eta_A(\bigvee X)$. Como $\eta_A$ es monótona, se cumple que $\eta_A(x)\leq \eta_A(\bigvee X)$ para todo $x\in A$, es decir, $\bigvee\eta_A (X)\leq \eta_A(\bigvee X).$ Resta ver la otra desigualdad.\\
+Consideremos $c=\bigvee X$ y $j=\bigvee \eta_A(X)=\bigvee\{ \unuc x\mid x\in X\}.$ Queremos ver que $\unuc c\leq j$. Sea $a\in A$, entonces $$\unuc c(a)=c\vee a=\bigvee X\vee a=\bigvee\{x\vee a\mid x\in X\}=\left(\dot{\bigvee}\{\unuc x\mid x\in X\}\right)(a)\leq j(a)$$
+pues el supremo puntual es menor que el supremo en $NA.$\\
+Veamos ahora que $\eta_A$ es inyectiva. Consideremos $a,b\in A$ tales que $\eta_A(a)=\eta_A(b)$, entonces $\unuc a=\unuc b$. Evaluando en $x=0$, obtenemos que $a=a\vee 0=b\vee 0=b$. \\
+Por último veamos que $\eta_A$ es un epimorfismo. Para ello consideremos dos morfismos 
+\[\begin{tikzcd}
+	{NA} \ar[r,"f",shift left] \ar[r,"g"',shift right] & {B},
+\end{tikzcd}\]
+donde $B$ es un marco y $f\circ\eta_A=g\circ\eta_A$,es decir, $f(\unuc a)=g(\unuc a)$ para todo $a\in A$. Por el teorema anterior tenemos que 
+\begin{align*}
+    f(j)
+    &= f\left(\bigvee\{\unuc {j(a)}\wedge \vnuc a\mid a\in A\}\right)
+    =\Sup\{f(\unuc {j(a)})\wedge f(\vnuc a)\mid a\in A\} & \mbox{ y } \\
+    g(j)
+    &= g\left(\bigvee\{\unuc {j(a)}\wedge \vnuc a\mid a\in A\}\right)
+    = \Sup\{g(\unuc {j(a)})\wedge g(\vnuc a)\mid a\in A\} & 
+\end{align*}
+Ahora usemos que $f(\unuc {j(a)})=g(\unuc {j(a)})$ y,
+tomando complementos, $f(\vnuc a)=g(\vnuc a)$, pues $\vnuc a$ y $\unuc a$
+son complementarios en $A$ y los morfismos de marcos $f,g$
+preservan complementos.
+Por lo tanto, para todo $j\in NA$, tenemos $f(j)=g(j)$.
+Así, $\eta_A$ es un epimorfismo.
+\end{proof}
+
+%\section*{(SESIÓN 12: 21 OCT)}
+
+\subsubsection{El ensamble como solución a un problema universal}
+\label{ssec:complementacion}
+
+\begin{obs}[Adjunción del ensamble]
+  Si $A$ es un marco, entonces la primera de las equivalencias en
+  \ref{lemma:equivalencias}
+  \[
+    \unuc a \leq j \ssi a\leq j(0) 
+  \]
+  nos dice que el adjunto derecho del morfismo $\eta_A:A\to NA$ es
+  $\bot:NA\to A$, $\bot(j)=j(0)$.
+  Es decir, tenemos $\eta_A\dashv\bot$.
+\end{obs}
+
+\begin{defn}
+  Sea $f:A\to B$ un morfismo de marcos.
+  Diremos que $f$ resuelve el problema de complementación para
+  $A$ si, para todo $a\in A$, $f(a)\in B$ es complementado en
+  $B$.
+\end{defn}
+\begin{exa}
+  Para todo $a\in A$, el núcleo $\unuc a$ es complementado en
+  $NA$ (su complemento es $\vnuc a$).
+  Es decir, $\eta_A:A\to NA$ resuelve el problema de
+  complementación para $A$.
+\end{exa}
+
+\begin{thm}
+  Sea $A$ un marco.
+  El morfismo $\eta_A:A\to NA$ resuelve el problema de
+  complementación de manera universal.
+  Es decir, para cualquier morfismo $f:A\to B$ que resuelve el
+  problema de complementación, existe un único morfismo
+  $f^\sharp:NA\to B$ tal que el diagrama
+  \[
+    \begin{tikzcd}
+      A \ar[dr,"\eta_A"'] \ar[rr,"f"] && B \\
+      & NA \ar[ur,"f^\sharp"',dotted]
+    \end{tikzcd}
+  \]
+  es conmutativo.
+
+  Más aún, si $f_*:B\to A$ es el adjunto derecho de $f=f^*:A\to
+  B$, el adjunto derecho $f_\flat:B\to NA$ de $f^\sharp:NA\to B$
+  se calcula como
+  \[
+    f_\flat(b) = f_*\unuc b f^* \in NA
+  .\]
+\end{thm}
+\begin{proof}
+  Para empezar, como $\eta_A$ es epi, la factorización de $f$ a
+  través de $\eta_A$ es única, en caso de existir.
+  Es decir, si $f^\sharp,f^!:NA\to B$ son tales que
+  $f^\sharp\eta_A=f=f^!\eta_A$, entonces $f^\sharp=f^!$.
+  \[
+    \begin{tikzcd}
+      A \ar[dr,"\eta_A"'] \ar[rr,"f"] && B \\[5mm]
+      & NA \ar[ur,shift right,"f^!"'] \ar[ur,shift left,"f^\sharp"]
+    \end{tikzcd}
+  \]
+  Por lo tanto, basta con mostrar la existencia de $f^\sharp$.
+  
+  Recordemos que queremos definir $f^\sharp:NA\to B$ tal que el
+  diagrama 
+  \[
+    \begin{tikzcd}
+      A \ar[dr,"\eta_A"'] \ar[rr,"f"] && B \\
+      & NA \ar[ur,"f^\sharp"',dotted]
+    \end{tikzcd}
+  \]
+  conmute.
+  Es decir, tal que $f^\sharp(\unuc a) = f(a)$.
+  Recordemos que cada núcleo $j\in NA$ se puede representar como
+  \[
+    j = \Sup\{\unuc{j(a)} \inf \neg \unuc a \mid a\in A\}
+  ,\]
+  pues $\neg\unuc a = \vnuc a$.
+  Dado que los morfismos de marcos respetan complementos,
+  si existiese un morfismo $f^\sharp:NA\to B$ con las propiedades
+  deseadas, necesariamente debería cumplirse que
+  \begin{align*}
+    f^\sharp(j)
+    &= f^\sharp\left(
+      \Sup\{\unuc{j(a)}\inf\neg\unuc a\mid a\in A\}
+      \right) \\
+    &= \Sup\{f^\sharp(\unuc{j(a)}\inf\neg\unuc a)\mid a\in A\} \\
+    &= \Sup\{f^\sharp(\unuc{j(a)})\inf f^\sharp(\neg\unuc a)
+       \mid a\in A\} \\
+    &= \Sup\{f^\sharp(\unuc{j(a)})\inf \neg f^\sharp(\unuc a)
+       \mid a\in A\} \\
+    &= \Sup\{f(j(a))\inf \neg f(a) \mid a\in A\}.
+  \end{align*}
+  Con esta motivación, definimos $f^\sharp$ como
+  \[
+    f^\sharp(j) = \Sup\{f(j(a))\inf\neg f(a) \mid a\in A\}
+  .\]
+  
+  Hay que probar que esta definición nos da un morfismo de marcos
+  con las propiedades deseadas.
+  Verificamos la monotonía.
+  Si $k\leq j$ son núcleos en $A$, entonces $k(x)\leq j(x)$ para
+  todo $x\in A$.
+  Aplicando $f$ tenemos $f(k(x))\leq f(j(x))$, y así $f(k(x))\inf
+  f(x)\leq f(j(x))\inf f(x)$.
+  Esto nos dice que $f^\sharp$ es monótono.
+
+  Por otro lado $f_\flat:B\to NA$ también es monótona,
+  pues si $b\leq c\in B$, entonces $\unuc b\leq\unuc c \in NB$.
+  Luego, $f_*\unuc bf^*\leq f_*\unuc cf^*$, pero
+  esto es $f_\flat(b)\leq f_\flat(c)$.
+
+  Ahora veamos que $f^\sharp \dashv f_\flat$.
+  Dados $j\in NA$ y $b\in B$ arbitrarios, debemos mostrar la
+  equivalencia
+  \[
+    f^\sharp(j)\leq b \ssi j\leq f_\flat(b)
+  .\]
+  Por definición
+  $f^\sharp(j)=\Sup\{f^*(j(x))\inf\neg f^*(x) \mid x\in A\}$.
+  Luego, tenemos las equivalencias
+  \begin{align*}
+    f^\sharp(j) \leq b
+    &\iff \forall(x\in A)\;f^*(j(x))\inf\neg f^*(x)\leq b \\
+    &\iff \forall(x\in A)\;f^*(j(x))\leq (\neg f^*(x)\succ b) \\
+    &\iff \forall(x\in A)\;f^*(j(x)) \leq f^*(x)\sup b
+      & \text{caballo de batalla} \\
+    &\iff \forall(x\in A)\;j(x) \leq f_*(b\sup f^*(x))
+      & \text{adjunción } f^*\dashv f_* \\
+    &\iff \forall(x\in A)\;j(x) \leq f_*(\unuc b(f^*(x))) \\
+    &\iff j\leq f_*\unuc b f^* = f_\flat(b).
+  \end{align*}
+  Esto muestra que $f^\sharp\dashv f_*$.
+  En particular, $f^\sharp$ preserva supremos arbitrarios.
+  Ahora hay que ver que $f^\sharp$ preserva ínfimos finitos.
+  Como $f^\sharp$ es monótona, tenemos
+  $f^\sharp(j\inf k)\leq f^\sharp(j)\inf f^\sharp(k)$,
+  así que falta probar la otra comparación.
+  Tenemos
+  \begin{align*}
+    f^\sharp(j)\inf f^\sharp(k)
+    &= \Sup\Big\{[f(j(x))\inf\neg f(x)]
+        \inf[f(k(y))\inf\neg f(y)] \mid x,y\in A\Big\} \\
+    &= \Sup\Big\{f(j(x)\inf k(y))\inf\neg f(x\sup y)
+        \mid x,y\in A\Big\} \\
+    &\leq \Sup\Big\{f(j(x\sup y)\inf k(x\sup y))
+        \inf\neg f(x\sup y) \mid x,y\in A\Big\} \\
+    &= \Sup\Big\{f(j(z)\inf k(z))
+        \inf\neg f(z) \mid z\in A\Big\} \\
+    &= \Sup\Big\{f((j\inf k)(z))
+        \inf\neg f(z) \mid z\in A\Big\} \\
+    &= f^\sharp(j\inf k).
+  \end{align*}
+  Finalmente, hay que ver que $f=f^\sharp \eta_A$.
+  En efecto: para cualquier $a\in A$, tenemos
+  \begin{align*}
+    f^\sharp(\eta_A(a))
+    &= f^\sharp(\unuc a) \\
+    &= \Sup\{f(\unuc a(x))\inf\neg f(x)\mid x\in A\} \\
+    &= \Sup\{f(a\sup x)\inf\neg f(x)\mid x\in A\} \\
+    &= \Sup\{(f(a)\sup f(x))\inf\neg f(x)\mid x\in A\} \\
+    &= \Sup\{f(a)\inf\neg f(x)\mid x\in A\} \\
+    &= f(a)\inf\Sup\{\neg f(x)\mid x\in A\} \\
+    &= f(a)\inf 1 \\
+    &= f(a),
+  \end{align*}
+  lo cual concluye la prueba.
+\end{proof}
+
+\subsubsection{Funtorialidad}
+
+Si $f:A\to B$ es un morfismo de marcos, entonces
+$\eta_Bf:A\to NB$ resuelve
+el problema de complementación, así que el teorema anterior nos dice
+que el morfismo de marcos
+\begin{align}
+  Nf=(\eta_Bf)^{\sharp}:NA&\to NB \\
+  j&\mapsto \Sup\{\eta_Bf(j(a)) \inf \neg \eta_Bf(a)\mid a\in A\} \\
+   &\quad =\Sup\{\unuc{f(j(a))} \inf \vnuc{f(a)}\mid a\in A\}
+\end{align}
+es el único que hace conmutar el diagrama
+\begin{equation}
+  \begin{tikzcd}
+    A \ar[r,"f"] \ar[d,"\eta_A"'] & B \ar[d,"\eta_B"] \\
+    NA \ar[r,"Nf"'] & NB,
+  \end{tikzcd}
+\end{equation}
+es decir, el único tal que
+\begin{equation}
+  Nf(\unuc a) = \unuc{f(a)}
+.\end{equation}
+Por lo tanto, obtenemos el siguiente corolario.
+\begin{cor}[Funtorialidad del ensamble]
+  El ensamble es un funtor $N:\Frm\to\Frm$, donde $Nf:NA\to NB$ 
+  está dado por
+  \begin{equation}
+    Nf(j) = \Sup\{\unuc{f(j(a))} \inf \vnuc{f(a)}\mid a\in A\}
+  \end{equation}
+  para cualquier $f:A\to B$.
+
+  Además, $\eta=(\eta_A:A\to NA\mid A\in\Frm)$ es una transformación
+  natural
+  \begin{equation}
+    \eta:\id_\Frm \to N
+  .\end{equation}
+  En particular, $Nf(\unuc a) = \unuc{f(a)}$.
+
+  Más aún, para cualquier $f:A\to B$, el adjunto derecho $(Nf)_*:NB\to
+  NA$ de $Nf:NA\to NB$ es $(\eta_Bf)_\flat$, que se calcula, para
+  cualquier $j\in NA$, como
+  \begin{equation}
+    (Nf)_*(j) = (\eta_Bf)_*\unuc j\eta_Bf
+  \end{equation}
+  o, en cualquier $a\in A$ :
+  \begin{align}
+    (Nf)_*(j)(a)
+    &= f_*(\bot(j\sup\eta_B(f(a)))) \\
+    &= f_*((j\unuc{f(a)})(0)) \\
+    &= f_*(j(f(a)))
+  .\end{align}
+  I.e, $(Nf)_*(j) = f_*jf$ para todo $j\in NB$.
+\end{cor}
+
+\begin{thm}[El ensamble como indicador de booleanidad]
+  \label{thm:ensamble-booleanidad}
+  Sea $A$ un marco.
+  Entonces el encaje $\eta_A:A\to NA$ es suprayectivo (y, por lo
+  tanto, un isomorfismo) si, y solo
+  si, $A$ es un álgebra booleana completa.
+\end{thm}
+\begin{proof}
+    Supongamos que $\eta_A$ es suprayectiva.
+    Entonces, para todo elemento $a\in A$,
+    $\eta_A(a)=\unuc a$ tiene complemento $\vnuc a$ en $NA$.
+    Como $\eta_A$ es isomorfismo, entonces
+    $a$ tiene complemento en $A$.
+    Luego, $A$ es booleana.
+    
+    Por otro lado, supongamos que $A$ es booleana.
+    Dado $j\in NA$, mostraremos que $\eta_A(a)=j$,
+    donde $a=j(0)$.
+    Como $a\leq j(0)$, tenemos que $\unuc a\leq j$
+    (por la adjunción $\eta_A\dashv\bot$).
+    Queda demostrar la comparación $j\leq\unuc a$;
+    esto es: $j(x)\leq x\sup a$ para todo $x\in A$.
+    Como $A$ es booleana, podemos usar nuestro
+    caballo de batalla, que nos dice que esto es equivalente
+    a mostrar que $j(x)\inf\neg x\leq a$ para todo $x\in A$.
+    En efecto, tenemos
+    \begin{align*}
+        j(x)\inf\neg x
+        &\leq j(x)\inf j(\neg x) \\
+        &= j(x\inf\neg x) \\
+        &= j(0) \\
+        &= a.
+    \end{align*}
+    Esto muestra que $\unuc a=j$,
+    así que $\eta_A$ es suprayectiva y,
+    por lo tanto, un isomorfismo.
+\end{proof}
+
+
