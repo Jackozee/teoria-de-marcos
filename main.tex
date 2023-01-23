@@ -28,17 +28,24 @@
 \newtheorem{defn}[thm]{Definición}
 \newtheorem{obs}[thm]{Observación}
 \newtheorem{exe}{Ejercicio}
-\newtheorem{exa}[thm]{Ejemplo}
 \newtheorem{lemma}[thm]{Lema}
 \newtheorem{cor}[thm]{Corolario}
 \newtheorem{prop}[thm]{Proposición}
 \theoremstyle{definition}
-\newtheorem*{soltemp}{Solución}
 \newtheorem*{axiom}{Axioma}
+
+\newtheorem{exatemp}[thm]{Ejemplo}
+\newenvironment{exa}[1] {
+    \begin{exatemp}#1}{%
+      \xqed{\blacksquare}\end{exatemp}%
+}
+
+\newtheorem*{soltemp}{Solución}
 \newenvironment{sol}[1]{%
     \begin{soltemp}#1}{%
     \xqed{\blacksquare}\end{soltemp}%
 }
+
 \newcommand\down{{\downarrow}}
 \newcommand\ol[1]{\overline{#1}}
 \newcommand\Inf{\bigwedge}
@@ -97,12 +104,13 @@
 \newcommand{\Top}{\mathrm{Top}}
 \newcommand{\Pos}{\mathrm{Pos}}
 \newcommand{\Lat}{\mathrm{Lat}}
-\newcommand{\SupLat}{\mathrm{SupSLat}}
-\newcommand{\InfLat}{\mathrm{InfSLat}}
-\newcommand{\CLat}{\mathrm{CLat}}
-\newcommand{\DLat}{\mathrm{DLat}}
-\newcommand{\CBA}{\mathrm{CBA}}
+\newcommand{\SupLat}{\mathrm{cPos}^\sup}%{\mathrm{SupSLat}}
+\newcommand{\InfLat}{\mathrm{cPos}^\inf}%{\mathrm{InfSLat}}
+\newcommand{\CLat}{\mathrm{cLat}}
+\newcommand{\DLat}{\mathrm{dLat}}
+\newcommand{\CBA}{\mathrm{cBool}}
 \newcommand{\Heyt}{\mathrm{Heyt}}
+\newcommand{\cHeyt}{\mathrm{cHeyt}^\sup}
 \newcommand{\Bool}{\mathrm{Bool}}
 \newcommand{\Vect}{\mathrm{Vect}}
 \newcommand{\Ord}{\mathrm{Ord}}
@@ -139,7 +147,7 @@
 \maketitle
 
 \chapter*{Introducción}
-\input{intro.tex}
+\input{intro}
 
 \tableofcontents
 %\listoftheorems[ignoreall,show=exe]
@@ -147,28 +155,37 @@
 
 \part{Preliminares}
 
-\input{aspectos-basicos.tex}
-\input{cocientes.tex}
-\input{derivadas.tex}
-\input{adjuncion.tex}
-\input{sobrio-espacial.tex}
-\input{ejemplos-relevantes.tex}
+\input{aspectos-basicos}
+\input{apartado}
+\input{categorico}
+\input{cocientes}
+
+\part{El ensamble} \label{part:ensamble}
+
+\input{derivadas}
+\input{calculos}
+\input{encaje}
+
+\part{El espacio de puntos} \label{part:espacio-de-puntos}
+
+\input{adjuncion}
+\input{sobrio-espacial}
+\input{ejemplos-relevantes}
+
 
 \part{Temas selectos}
 
-\input{cantor-bendixon.tex}
-\input{productos-coproductos.tex}
-\input{tychonoff.tex}
-\input{producto-top-vs-coproducto-frm.tex}
-\input{gavillas.tex}
-\input{anillos-y-modulos.tex}
+\input{cantor-bendixon}
+\input{productos-coproductos}
+\input{tychonoff}
+\input{producto-top-vs-coproducto-frm}
+\input{gavillas}
+\input{anillos-y-modulos}
 
 \part{Apéndices}
 
-\input{categorias.tex}
-\input{ordinales.tex}
-
-
-
+\input{categorias}
+\input{ordinales}
+\printbibliography
 \end{document}
 
