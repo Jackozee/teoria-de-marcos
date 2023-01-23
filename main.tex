@@ -5,10 +5,12 @@
 \usepackage{amsmath,amsfonts,amsthm,mathrsfs,amssymb,todonotes}
 \usepackage{enumitem,mathtools,thmtools,tikz-cd,multicol,stmaryrd}
 \usetikzlibrary{babel}
-\usepackage{MnSymbol,wasysym,titlesec,nameref}
+\usepackage{wasysym,titlesec,nameref}
 \usepackage{palatino}
 \usepackage[final]{microtype}
 \usepackage[final]{hyperref}
+\usepackage[mathscr]{eucal}
+
 %\setenumerate[0]{label=(\alph*)}
 
 \usepackage[style=numeric,sorting=none]{biblatex}
@@ -46,6 +48,7 @@
     \xqed{\blacksquare}\end{soltemp}%
 }
 
+\newcommand\nin{{\not\in}}
 \newcommand\down{{\downarrow}}
 \newcommand\ol[1]{\overline{#1}}
 \newcommand\Inf{\bigwedge}
@@ -160,9 +163,9 @@
 \input{categorico}
 \input{cocientes}
 
-\part{El ensamble} \label{part:ensamble}
+ \part{El ensamble} \label{part:ensamble}
 
-\input{derivadas}
+ \input{derivadas}
 \input{calculos}
 \input{encaje}
 
