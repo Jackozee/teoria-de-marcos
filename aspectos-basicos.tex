@@ -546,12 +546,24 @@ Estas son las propiedades de una topología que abstrae un marco.
   \[
       y\inf\Sup X = \Sup\{y\inf x\mid x\in X\}
   .\]
-  En particular, un marco es una retícula distributiva.
   Un morfismo de marcos es un morfismo de copos que respeta
   supremos arbitrarios e ínfimos finitos.
   Los morfismos de marcos son cerrados
   bajo composición, así que obtenemos una categoría $\Frm$.
 \end{defn}
+
+Notemos que, en particular, un marco es una retícula distributiva.
+Además, cualquier morfismo de marcos preserva ínfimos y supremos
+finitos (en particular, preservan el $1$ y el $0$). Así que todo
+morfismo de marcos es morfismo de retículas distributivas. Por lo
+tanto, obtenemos un funtor fiel $\Frm\to\DLat$. Este funtor no es
+pleno, pues para que un morfismo de retículas entre marcos sea
+morfismo de marcos necesita preservar supremos arbitrarios, lo cual no
+necesariamente sucede.
+
+Además, nótese que un morfismo de marcos puede no preservar ínfimos
+arbitrarios, mientras que los supremos finitos no necesariamente
+distribuyen sobre ínfimos arbitrarios.
 
 \begin{exa}
   \begin{enumerate}
@@ -575,10 +587,6 @@ Estas son las propiedades de una topología que abstrae un marco.
     adjunción entre $\Top$ y $\Frm$.
   \end{enumerate}
 \end{exa}
-
-Notemos que los morfismos de marcos pueden no preservar
-ínfimos arbitrarios. Además, en general, los supremos finitos no
-distribuyen sobre ínfimos arbitrarios.
 
 \section{Álgebras booleanas completas}
 Recordemos que un álgebra booleana es una retícula distributiva
