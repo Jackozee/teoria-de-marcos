@@ -1,9 +1,20 @@
 \chapter{La adjunción entre \tps{$\Frm$}{Frm} y \tps{$\Top$}{Top}}
+Antes de comenzar vale la pena mencionar que todos nuestros espacios (de carne y hueso) ser\'an al menos $T_{0}$, más aún:
 
+\begin{thm}\label{tcero}
+    La categoría $\Top_0$ de espacios topológicos
+    $T_0$  es \emph{reflexiva} en $\Top$.
+    Es decir, el funtor de inclusión $\Top_0\to\Top$
+    tiene un adjunto izquierdo.
+\end{thm}
+
+\begin{proof}
+Es un ejercicio sencillo.
+\end{proof}
 %\section*{VIDEO 5: El espacio de puntos, parte 1. (18 OCT)}
-La asignación que manda cada espacio topológico $S$ a su marco de
+Sabemos que la asignación que manda cada espacio topológico $S$ a su marco de
 abiertos $\cal OS$ es un funtor contravariante
-$\cal O:\Top\to\Frm$.
+$\cal O\colon\Top\to\Frm$.
 
 Queremos ver que hay un funtor de regreso $\pt:\Frm\to\Top$, que
 a cada marco $A$ le asigna un espacio topológico cuyos elementos
