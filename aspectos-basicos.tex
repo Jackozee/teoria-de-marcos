@@ -1,21 +1,34 @@
-\chapter{Aspectos básicos}
+\chapter{Aspectos básicos}\label{chap 1}
 
-El objetivo de este capítulo es introducir varias categorías y las
+El objetivo de este capítulo es introducir varias categorías que son base de muchas construcciones posteriores y las
 relaciones entre estas.
 
-\section{Copos}
+\section{Conjuntos parcialmente ordenados}\label{copos}
+
+
+
+Recordemos que un \emph{ conjunto parcialmente ordenado } (copo) es un par $(A,\leq)$ donde $A$ es un conjunto y $\leq$ es una relación en $A$ que satisface:
+\begin{itemize}
+  \item[(1)] $\leq$ es reflexiva, es decir, $a\leq a$ para todo $a\in A$.
+  \item[(2)]  $\leq$ es transitiva, es decir, $a\leq b$ y $b\leq c$ entonces $a\leq c$.
+  \item[(3)] $\leq$ es antisimetrica, es decir, $a\leq b$ y $b\leq a$ entonces $a=b$.
+\end{itemize}
+
+
+
+
 Sean $A,B$ dos conjuntos parcialmente ordenados
-(copos, para abreviar).
-Un morfismo de copos $f:A\to B$ es una función monótona (creciente).
+
+Un \emph{morfismo de copos } $f:A\to B$ es una función monótona (creciente), es decir,
 siempre que $a\leq b\in A$, se tiene que $f(a)\leq f(b)$.
 Viendo a $A$ y a $B$ como categorías, entonces un morfismo $f:A\to B$
 es un lo mismo que un funtor.
 
 Si $A$ es un copo y $X\subseteq A$ es cualquier subconjunto,
-un elemento $a\in A$ es una cota superior de $X$
+un elemento $a\in A$ es una \emph{ cota superior } de $X$
 si $x\leq a$ para todo $x\in X$.
 Similarmente, si $a\leq x$ para todo $x\in X$, entonces decimos
-que $a$ es una cota inferior de $X$. \\
+que $a$ es una \emph{ cota inferior } de $X$. \\
 Si $x\in A$ es una cota inferior de $X$ y, además, $x\in X$,
 entonces $a$ es único con esta propiedad y decimos que es el
 menor elemento de $X$. Similarmente, $x\in X$ es el mayor
@@ -31,12 +44,12 @@ es el ínfimo o el supremo de $X$, respectivamente.
 
 Dado que los morfismos de copos (funciones monótonas)
 son cerrados bajo composición y la función identidad
-de cualquier copo es un morfismo,
+de cualquier copo es un monótono,
 éstos forman una categoría, a la cual denotamos $\Pos$.
 
 \section{Semiretículas}
 \label{ss:semireticulas}
-Decimos que un copo es una semiretícula superior
+Decimos que un copo es una \emph{ semiretícula superior }
 (o $\sup$-semiretícula) si todos sus subconjuntos finito tienen
 supremo.
 Equivalentemente, un copo $A$ es una $\sup$-semiretícula si
@@ -112,10 +125,10 @@ de manera análoga usando ínfimos en vez de supremos, obteniendo
 la noción de semiretículas inferiores, $\inf$-morfismos, la
 categoría $\Pos^{\inf}$ y un funtor $\Pos^{\inf}\to\Pos$.
 
-\section{Retículas}
+\section{Retículas}\label{ret}
 
-Decimos que un copo $A$ es una retícula si cualquier
-subconjunto finito $X\subseteq A$ tiene supremo e ínfimo.
+Decimos que un copo $A$ es una \emph{ retícula } si cualquier
+subconjunto finito $X\subseteq A$ tiene supremo e ínfimo en $A$.
 Equivalentemente, un copo $A$ es una retícula si, y solo si:
 \begin{enumerate}
     \item cualquier par de elementos $a,b\in A$ tiene
@@ -129,7 +142,7 @@ Equivalentemente, un copo $A$ es una retícula si, y solo si:
 Algunos autores denominan retículas a los copos que
 cumplen el punto 1 aunque no cumplan el punto 2.
 Con esa convención, lo que nosotros llamamos retícula se llama
-retícula acotada.
+\emph{ retícula acotada}.
 Nótese también que un subconjunto arbitrario de una retícula $A$
 puede no tener supremo o ínfimo.
 
@@ -171,7 +184,7 @@ Un argumento similar muestra que
   \geq (a\inf b)\sup(a\inf c)
 .\]
 Sin embargo, estas desigualdades no siempre son igualdades.
-Un retícula es distributiva si las ecuaciones
+Un retícula es \emph{ distributiva } si las ecuaciones
 \begin{align*}
   a\sup(b\inf c) &= (a\sup b)\inf (a\sup c) \\
   a\inf(b\sup c) &= (a\inf b)\sup(a\inf c)
@@ -588,7 +601,7 @@ distribuyen sobre ínfimos arbitrarios.
   \end{enumerate}
 \end{exa}
 
-\section{Álgebras booleanas completas}
+\section{Álgebras booleanas completas}\label{ABC}
 Recordemos que un álgebra booleana es una retícula distributiva
 donde todo elemento tiene un complemento, el cual es único por la
 distributividad. (Ver \ref{ss:complementos-algebras-booleanas}).
