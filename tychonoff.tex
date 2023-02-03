@@ -1,11 +1,16 @@
 \chapter{El teorema de Tychonoff en marcos}
 
-Un espacio topológico es compacto si cualquier cubierta
+Un espacio topológico es  \emph{compacto} si cualquier cubierta
 abierta del espacio admite una subcubierta finita.
-En la categoría de espacios topológicos tenemos el
-teorema de Tychonoff, que dice que un producto de espacios
-topológicos es compacto, si, y solo si, cada uno de los
-factores es un compacto.
+En la categoría de espacios topológicos tenemos el siguiente 
+teorema debido a Tychonoff alumno doctoral de Pavel Alexandrov (que como muchos dicen es el teorema fundamental de la topológia sensible a puntos):
+
+\begin{theorem*}
+  Sea $\{S_{\alpha}\mid\alpha\in\Lambda\}$ una familia de espacios topológicos, entonces
+  El producto $\prod\{S_{\alpha}\mid\alpha\in\Lambda\}$ es compacto si y solo si cada factor $S_{\alpha}$ es compacto para toda $\alpha\in\Lambda$.
+
+
+\end{theorem*}
 
 Del mismo modo, cualquier marco tiene su noción de compacidad.
 \begin{defn}[Compacidad de marcos]
@@ -30,7 +35,7 @@ al de Tychonoff, pero en la categoría de marcos:
 \end{thm}
 
 \section{Idea de la demostración}
-
+La prueba usa el concepto de \emph{Sitio} para un marco y la \emph{técnica cubriente} estas situaciones tiene un contexto mas general, que se explorara en (chap), también en algún punto cuando se tenga a la mano la tecnología de la toería de gavillas podremos probar que general un marco como el cociente de un sitio adecuado es , en efecto, considerar una engavillanización de un funtor sobre el sitio a conjuntos, basicamente veremos una prueba del \cite[Lemma V.1.7]{johnstone1986stone} 
 En la sección anterior probamos que
 $\coprod_{\lambda\in\scr I}A_\lambda$
 es el marco de $C$-ideales de $A$, donde $A$ es el coproducto
@@ -41,7 +46,7 @@ los supremos en $C\Idl$ se calculan como
 \[
     \Sup S = j(\bigcup S)
 ,\]
-donde $j:\cal LA\to\cal LA$ es el núcleo asociado a $C\Idl$.
+donde $j\colon\cal LA\to\cal LA$ es el núcleo asociado a $C\Idl$.
 Por lo tanto, es de esperarse que la demostración de
 nuestra versión del teorema de Tychonoff involucre al núcleo
 $j$ de alguna manera.
@@ -565,7 +570,7 @@ también es un $C_f$-ideal.
     Se sigue que $I_\gamma=j(S)$, como se afirmó.
 
 
-\section{Lema: generar a \tps{$A$}{A} como \tps{$C$}{C}-ideal implica generarlo como \tps{$C_f$}{Cf}-ideal}
+\section{Lema: generar como \tps{$C$}{C}-ideal implica generarlo como \tps{$C_f$}{Cf}-ideal}
     Tomemos una familia $A_\lambda$ de marcos compactos
     y sea $A$ su coproducto como $\inf$-semiretículas.
     Equipémoslo con los cubrientes $C$ y $C_f$.
