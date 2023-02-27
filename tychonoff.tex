@@ -1,19 +1,17 @@
-\chapter{El teorema de Tychonoff en marcos}
+\section{El teorema de Tychonoff en marcos}
 
 Un espacio topológico es  \emph{compacto} si cualquier cubierta
 abierta del espacio admite una subcubierta finita.
 En la categoría de espacios topológicos tenemos el siguiente 
 teorema debido a Tychonoff alumno doctoral de Pavel Alexandrov (que como muchos dicen es el teorema fundamental de la topológia sensible a puntos):
 
-\begin{theorem*}
+\begin{theorem}
   Sea $\{S_{\alpha}\mid\alpha\in\Lambda\}$ una familia de espacios topológicos, entonces
   El producto $\prod\{S_{\alpha}\mid\alpha\in\Lambda\}$ es compacto si y solo si cada factor $S_{\alpha}$ es compacto para toda $\alpha\in\Lambda$.
-
-
-\end{theorem*}
+\end{theorem}
 
 Del mismo modo, cualquier marco tiene su noción de compacidad.
-\begin{defn}[Compacidad de marcos]
+\begin{definition}[Compacidad de marcos]
 Un marco $A$ es compacto si, para cualquier $S\in A$
 se satisface lo siguiente:
 \[
@@ -22,19 +20,19 @@ se satisface lo siguiente:
     \textit{ existe } T\subseteq S\text{ finito, tal que }
     \Sup T= 1_A
 .\]
-\end{defn}
+\end{definition}
 El objetivo de esta sección es probar el teorema análogo
 al de Tychonoff, pero en la categoría de marcos:
-\begin{thm}
+\begin{theorem}
     Sea $\{A_\lambda\}_{\lambda\in\scr I}$ una familia de marcos.
     El coproducto
     \[
         \coprod_{\lambda\in\scr I}A_\lambda
     \]
     es compacto si, y solo si, cada $A_\lambda$ es compacto.
-\end{thm}
+\end{theorem}
 
-\section{Idea de la demostración}
+\subsection{Idea de la demostración}
 La prueba usa el concepto de \emph{Sitio} para un marco y la \emph{técnica cubriente} estas situaciones tiene un contexto mas general, que se explorara en (chap), también en algún punto cuando se tenga a la mano la tecnología de la toería de gavillas podremos probar que general un marco como el cociente de un sitio adecuado es , en efecto, considerar una engavillanización de un funtor sobre el sitio a conjuntos, basicamente veremos una prueba del \cite[Lemma V.1.7]{johnstone1986stone} 
 En la sección anterior probamos que
 $\coprod_{\lambda\in\scr I}A_\lambda$
@@ -107,7 +105,7 @@ Más específicamente, el plan es el siguiente:
     La implicación $\implies$ es directa.
 \end{itemize}
 
-\section{La cobertura de cubiertas finitas}
+\subsection{La cobertura de cubiertas finitas}
 
 \begin{lemma}
 La función $C_f:A\to\cal P(\cal P(A))$
@@ -120,7 +118,7 @@ Nuestra primera tarea será obtener una construcción para
 el núcleo asociado al cociente $\cal LA\to C_f\Idl$.
 Para esto, introduciremos algo de notación.
 
-\begin{defn}
+\begin{definition}
 Sean $\lambda_1,\dots,\lambda_n\in \scr I$ índices distintos y
 $x_1,\dots,x_n$ elementos tales que
 $x_i\in A_{\lambda_i}$ para todo $i$.
@@ -161,9 +159,9 @@ En particular, si $x_i\in A_{\lambda_i}$, se cumple que
 %Sin embargo, no lo haremos así, pues todas las
 %sustituciones se harán en un contexto que permita saber
 %el conjunto exacto de índices.
-\end{defn}
+\end{definition}
 
-\begin{defn}
+\begin{definition}
   Dado un conjunto $S\subseteq A$, defino el conjunto $FS$
   especifivando que $a\in FS$ si, y solo si,
   existe un conjunto finito no vacío de índices
@@ -180,9 +178,9 @@ En particular, si $x_i\in A_{\lambda_i}$, se cumple que
   que $(\Gamma,S_1,\dots,S_n)$ es el testigo de $a\in FS$,
   ya que $(\Gamma,S_1,\dots,S_n)$ atestigua (o prueba) que
   $a$ pertenece a $FS$.
-\end{defn}
+\end{definition}
 
-\section{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} también.}
+\subsection{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} también.}
 
 Sea $S$ una sección inferior, $a\in FS$ y $b\leq a$.
 
@@ -225,7 +223,7 @@ Se sigue que $b$ es finitamente generado por $S$ con testigo
 $(\Gamma,T_1,\dots,T_n)$, es decir: $b\in FS$,
 así que $FS$ es sección inferior.
 
-\section{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} está contenido en todos los \tps{$C_f$}{Cf}-ideales que contienen a \tps{$S$}{S}.}
+\subsection{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} está contenido en todos los \tps{$C_f$}{Cf}-ideales que contienen a \tps{$S$}{S}.}
 
 Sea $J$ un $C_f$-ideal que contiene a $S$.
 Tomemos un elemento $a\in FS$ con testigo $(\Gamma,S)$, donde
@@ -271,7 +269,7 @@ pero esta es una $C_f$-cubierta de $a$ contenida en $J$,
 así que $a\in J$.
 Por lo tanto, $FS\subseteq J$.
 
-\section{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} es cerrado bajo
+\subsection{Si \tps{$S$}{S} es sección inferior, \tps{$FS$}{FS} es cerrado bajo
 cubiertas y, por lo tanto, es un \tps{$C_f$}{Cf}-ideal.}
 
 Si $a\in A$ tiene una cubierta vacía, entonces tiene una entrada
@@ -337,7 +335,7 @@ dos formas posibles.
 Como $S$ es sección inferior, se sigue que $1(x)$ siempre está en
 $S$, así que $a\sup b$ está en $FS$.
 
-\section{El conjunto de supremos dirigidos \tps{$\D S$}{DS} está contenido en todos los \tps{$C$}{C}-ideales que contienen a \tps{$S$}{S}.}
+\subsection{El conjunto de supremos dirigidos \tps{$\D S$}{DS} está contenido en todos los \tps{$C$}{C}-ideales que contienen a \tps{$S$}{S}.}
 
 Sea $S$ una sección inferior y $\D S$ su conjunto de supremos
 dirigidos.
@@ -419,7 +417,7 @@ Se sigue que $a\in J$, así que $J$ es cerrado bajo supremos
 dirigidos.
 Por lo tanto, $\D S\subseteq J$.
 
-\section{Si \tps{$S$}{S} es un \tps{$C_f$}{Cf}-ideal,
+\subsection{Si \tps{$S$}{S} es un \tps{$C_f$}{Cf}-ideal,
 entonces \tps{$\D S$}{DS} también.}
 
 Dado $a\in S$, $\{a\}\subseteq S$ es dirigido, así que
@@ -528,7 +526,7 @@ Así, $F\subseteq S$, por lo cual $a\sup b\in\D S$.
 Es decir, $\D S$ es cerrado bajo $C_f$-cubiertas, por lo cual
 también es un $C_f$-ideal.
 
-\section{Lema: saltar de \tps{$\D(FS)$}{D(FS)} a \tps{$j(S)$}{j(S)}.}
+\subsection{Lema: saltar de \tps{$\D(FS)$}{D(FS)} a \tps{$j(S)$}{j(S)}.}
     Sea $I$ un $C_f$-ideal de $A$.
     Como ya vimos, $\D I$ es un $C_f$-ideal contenido
     entre $I$ y el $C$-ideal $j(I)$ generado por $I$.
@@ -570,7 +568,7 @@ también es un $C_f$-ideal.
     Se sigue que $I_\gamma=j(S)$, como se afirmó.
 
 
-\section{Lema: generar como \tps{$C$}{C}-ideal implica generarlo como \tps{$C_f$}{Cf}-ideal}
+\subsection{Lema: generar como \tps{$C$}{C}-ideal implica generarlo como \tps{$C_f$}{Cf}-ideal}
     Tomemos una familia $A_\lambda$ de marcos compactos
     y sea $A$ su coproducto como $\inf$-semiretículas.
     Equipémoslo con los cubrientes $C$ y $C_f$.
@@ -638,7 +636,7 @@ también es un $C_f$-ideal.
     Se sigue que $\gamma=0$.
     Esto es, $A=j(\Sup P) = I_0 = F(\bigcup P)$, como se deseaba.
 
-\section{Una implicación (Tychonoff)}
+\subsection{Una implicación (Tychonoff)}
     Con toda esta herramienta, podemos demostrar el teorema
     de Tychonoff.
     Si $A_\lambda$ es una familia de marcos compactos y $A$
@@ -694,7 +692,7 @@ también es un $C_f$-ideal.
 
 %\section*{SESIÓN 22: 30 NOV (Expo Alfredo, dudas tarea)}
 
-\section{La otra implicación}
+\subsection{La otra implicación}
 
 Necesitamos este pequeño resultado.
 \begin{lemma}

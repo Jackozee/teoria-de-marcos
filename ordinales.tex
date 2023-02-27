@@ -1,7 +1,7 @@
 \chapter{Ordinales}
 
 %\section{VIDEO 4: ordinales: (4 OCT)}
-\begin{defn}[Conjuntos linealmente ordenados]
+\begin{definition}[Conjuntos linealmente ordenados]
 \leavevmode
 \begin{itemize}
   \item Un conjunto parcialmente ordenado $(A,\leq)$ es linealmente ordenado si para cualesquiera $a,b\in A$ se tiene $a\leq b$ o $b\leq a$. 
@@ -11,12 +11,12 @@ $$a\leq^{op}b\iff b\leq a$$
 El opuesto de $A$ es llamado simplemente $A^*$.
 \item $(A,\leq)$ es bien ordenado si todo subconjunto de $A$ tiene por lo menos un primer elemento. Nótese que cualquier conjunto linealmente ordenado finito es bien ordenado.
 \end{itemize} 
-\end{defn}
-\begin{exe}%[Dante $\checkmark$ ]
+\end{definition}
+\begin{lemma}%[Dante $\checkmark$ ]
     \label{exe:sucesor}
   Sea $A$ un conjunto linealmente ordenado. $A$ es bien ordenado si y sólo si $A^{\star}=A\cup \{\star\}$, donde $\star$ es un elemento genérico, también lo es.
-\end{exe}
-\begin{sol}
+\end{lemma}
+\begin{proof}
     $\Rightarrow$\\
     Sea $(A,\leq^{\prime})$ bien ordenado y considérese la relación $\leq\subset A^\star\times A^\star$ definida como $\leq^{\prime} \cup \{(\star,a):a \ \in A\}\cup \{(\star,\star)\}$. 
     \begin{enumerate}
@@ -38,16 +38,16 @@ El opuesto de $A$ es llamado simplemente $A^*$.
         \item Sea $B\subset A$. Como $A\subset A^\star$, entonces $B\subset A^\star$, por lo que $\exists b\in B$ que es el menor elemento de $B$.
     \end{enumerate}
     Por lo anterior, $A$ es bien ordenado.
-\end{sol}
-\begin{defn}[Isomorfismo de conjuntos linealmente ordenados]
+\end{proof}
+\begin{definition}[Isomorfismo de conjuntos linealmente ordenados]
 Un morfismo $f:A\to B$ entre conjuntos linealmente ordenados es una biyección monótona.
-\end{defn}
-\begin{defn}[Tipo de orden]
+\end{definition}
+\begin{definition}[Tipo de orden]
   Para un conjunto linealmente ordenado $A$, el tipo de orden $\iota(A)$ es la clase de equivalencia de $A$ bajo la relación de equivalencia $\simeq$ definida como
   $$A\simeq B \iff \exists f: A\to B \ \text{tal que f es isomorfismo}$$
   Si $\alpha=\iota(A)$, entonces $\alpha^*=\iota(A^*)$.
-\end{defn}
-\begin{exa}[Construcción Von Neumann de $\mathbb{N}$]
+\end{definition}
+\begin{example}[Construcción Von Neumann de $\mathbb{N}$]
 $\mathbb{N}$ es un conjunto bien ordenado, pensado como la siguiente construcción:
 $$0=\emptyset$$
 $$1=\{\emptyset\}=\{0\}$$
@@ -59,18 +59,18 @@ $$\vdots$$
 Así, $\mathbb{N}=\{0,1,\cdots\}$ es un conjunto bien ordenado con el orden $\leq$ definido como 
 $$a\leq b \iff a\subset b$$
 Y esta construcción también cumple con los axiomas de Peano.
-\end{exa}
-\begin{exa}[Algunos tipos de orden]
+\end{example}
+\begin{example}[Algunos tipos de orden]
 $\mathbb{N},\mathbb{Q}$ y $\mathbb{R}$ son conjuntos linealmente ordenados, y sus tipos de orden son 
 \begin{itemize}
     \item $\omega=\iota(\mathbb{N})$
     \item $\eta=\iota(\mathbb{Q})$
     \item $\zeta=\iota(\mathbb{R})$
 \end{itemize}
-\end{exa}
-\begin{defn}[Sucesor]
+\end{example}
+\begin{definition}[Sucesor]
   Para $(A,\leq)$ con $\alpha=\iota(A)$, por el ejercicio \ref{exe:sucesor} $A^+=A\cup\{A\}$ es también linealmente ordenado. $A^+$ es llamad sucesor de $A$, y $\alpha^+=\iota(A^+)=\alpha\cup\{\alpha\}$
-\end{defn}
+\end{definition}
 Claramente la construcción de Von Neumann de $\mathbb{N}$ es compatible con esta definición de sucesor, y cualquier $n\in\mathbb{N}$ tiene la forma $n=\{0,1,\cdots,n-1\}$. Por lo tanto, se puede pensar en el tipo de orden de $\mathbb{N}$ como 
 $$\omega=\bigcup\{n:n\mathbb{N}\}$$
 Y a través de la operación sucesor se pueden obtener los ordinales
@@ -83,10 +83,10 @@ Y a través de la operación sucesor se pueden obtener los ordinales
     \omega^2&=\omega\cdot\omega=\bigcup\{\omega^n:nz\omega\}\\
     &\vdots
 \end{align*}
-\begin{defn}[Ordinal]
+\begin{definition}[Ordinal]
   Un ordinal es el tipo de orden de un conjunto bien ordenado.
-\end{defn}
-\begin{defn}[Operaciones con conjuntos linealmente ordenados]
+\end{definition}
+\begin{definition}[Operaciones con conjuntos linealmente ordenados]
   Sean $A,B$ conjuntos linealmente ordenados, con tipos de orden $\alpha$ y $\beta$ respectivamente.
   \begin{itemize}
       \item La unión ajena de $A$ y $B$ es $A\dot\cup B=(B\times\{0\})\cup(A\times\{1\})$.
@@ -99,9 +99,9 @@ Y a través de la operación sucesor se pueden obtener los ordinales
       Nótese que si $A$ y $B$ son bien ordenados, $B+A$ también lo es. Más aún, si $A\simeq A^\prime$ y $B\simeq B^\prime$, entonces $B+A\simeq B^\prime+A^\prime$. Por lo tanto, se puede definir el ordinal
       $$\alpha+\beta=\iota(B+A)$$
   \end{itemize}
-\end{defn}
+\end{definition}
 Ya que se ha definido la suma de ordinales, vale la pena hacer algunas observaciones con los ordinales conocidos.
-\begin{exa}[Algunas propiedades de la suma de ordinales]
+\begin{example}[Algunas propiedades de la suma de ordinales]
     \leavevmode
    \begin{itemize}
        \item Si $A$ y $B$ son conjuntos finitos, la suma de los ordinales $\alpha$ y $\beta$ funciona como la suma usual de números naturales.
@@ -113,8 +113,8 @@ Ya que se ha definido la suma de ordinales, vale la pena hacer algunas observaci
    \end{itemize} 
    También, para cualesquiera $\alpha,\beta,\gamma$ ordinales, se cumples que 
    $$(\gamma+\beta)+\alpha=\gamma+\beta+\alpha)$$
-\end{exa}
-\begin{defn}[Producto y potencias de ordinales]
+\end{example}
+\begin{definition}[Producto y potencias de ordinales]
   Es fácil ver que para dos conjuntos bien ordenados $A$ y $B$con tipos de orden $\alpha$ y $\beta$ respectivamente, el conjunto $B\times A$ es bien ordenado con un orden que compara los elementos de $B\times A$ entrada por entrada. Así, se puede definir el producto de ordinales
   $$\beta\alpha=\iota(B\times A)$$
   Es fácil ver que el producto de ordinales es asociativo, distributivo y además que 
@@ -125,19 +125,19 @@ Ya que se ha definido la suma de ordinales, vale la pena hacer algunas observaci
       \beta^{a+1}&=\beta^{a}\beta
   \end{align*}
   para cualquier $a\in\mathbb{N}$.
-\end{defn}
+\end{definition}
 Nótese que bajo esta definición de potencia, se cumple que 
 $$\omega^a+\omega^b=\omega^b$$
 para cualesquiera $a,b\in\mathbb{N}$.
 La clase de ordinales $\mathbb{O}rd$ es una clase no cardinable, y es bien ordenada.
-\begin{defn}[Encaje bien ordenado]
+\begin{definition}[Encaje bien ordenado]
 Un encajebien ordenado entre dos conjuntos bien ordenados $A$ y $B$ es una función $f:A\to B$ si es monótona, inyectiva y se $f(A)\simeq A$ es una sección inferior de $B$.
 Si existe un encaje bien ordenado $fA\to B$, se dice que $A$ es un sub-orden de $B$, o $A\trianglelefteq B$.
 Es fácil ver que si $A\trianglelefteq B$ y también $B\trianglelefteq A$, entonces $A\simeq B$, con un isomorfismo único.
-\end{defn}
-\begin{exe}%[Yareli $\checkmark$ ]
+\end{definition}
+\begin{lemma}%[Yareli $\checkmark$ ]
   Sean $A, B$ conjuntos bien ordenados, y $f,g:A\to B$ dos encajes. Entonces $f=g$.
-\end{exe}
+\end{lemma}
 \begin{proof}
 Sea $a_0\in A$. Como $B$ es bien ordenado, los elementos $f(a_0)$ y $g(a_0)$ son comparables. Sin perder generalidad, supongamos que $f(a_0)\leq g(a_0)$.\\
 Entonces $f(a_0)=g(a_1)\leq g(a_0)$ para algún $a_1\in A$ ya que $g[A]$ es sección inferior. Además $a_1\leq a_0$ ya que, en caso contrario, se tiene que $g(a_1)>g(a_0)$, lo cual es una contradiccion.\\

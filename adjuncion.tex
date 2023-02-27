@@ -1,34 +1,53 @@
 \chapter{La adjunción entre \tps{$\Frm$}{Frm} y \tps{$\Top$}{Top}}
-Antes de comenzar vale la pena mencionar que todos nuestros espacios (de carne y hueso) ser\'an al menos $T_{0}$, más aún:
 
-\begin{thm}\label{tcero}
+%\section*{VIDEO 5: El espacio de puntos, parte 1. (18 OCT)}
+Uno de los primeros ejemplos de marcos, y de hecho, la
+motivación para la definición, fue que los abiertos de un espacio
+topológico $S$ forman un marco $\cal OS$.
+En este capítulo desarrollaremos más a fondo la relación entre marcos
+y espacios topológicos. Sabemos que la asignación $S\mapsto\cal OS$ es
+un funtor contravariante $\cal O\colon\Top\to\Frm$.
+Ahora construiremos un funtor de regreso $\pt:\Frm\to\Top$
+y probaremos que ambos funtores forman una adjunción.
+\[
+  \begin{tikzcd}
+    \Top \ar[d,shift right=2,"\cal O"'{name=L}]
+    \\
+    \Frm^\op \ar[u,shift right=2,"\pt"'{name=R}]
+    \adj{L}{R}
+  \end{tikzcd}
+\]
+
+Antes de continuar, vale la pena mencionar que todos nuestros espacios
+(de carne y hueso) ser\'an al menos $T_{0}$. Recordemos que un espacio
+$T_0$ es un espacio donde cada par de puntos se pueden separar por al
+menos un abierto. Más aún:
+\begin{theorem}\label{tcero}
     La categoría $\Top_0$ de espacios topológicos
     $T_0$  es \emph{reflexiva} en $\Top$.
     Es decir, el funtor de inclusión $\Top_0\to\Top$
     tiene un adjunto izquierdo.
-\end{thm}
-
+\end{theorem}
 \begin{proof}
 Es un ejercicio sencillo.
 \end{proof}
-%\section*{VIDEO 5: El espacio de puntos, parte 1. (18 OCT)}
-Sabemos que la asignación que manda cada espacio topológico $S$ a su marco de
-abiertos $\cal OS$ es un funtor contravariante
-$\cal O\colon\Top\to\Frm$.
+La razón de esta decisión es que, en un espacio que no es $T_0$, hay
+pares de puntos que tienen exactamente las mismas vecindades de
+abiertos, así que no tienen mucha esperanza de ser caracterizados por
+sus marcos de abiertos.
+Otro ejercicio sencillo que ayuda a familiarizarse con los espacios
+$T_0$ es el siguiente. En cualquier espacio topológico, los puntos
+tienen un preorden (es decir, una relación reflexiva y transitiva)
+dado por
+  \[q\sqsubseteq p\iff \overline{q}\subseteq \overline{p}\]
+Este se llama preorden de especialización.
+\begin{exercise}
+  \label{exe:especializacion}
+  Un espacio $S$ es $T_0$ si, y solo si, su preorden de
+  especialización es antisimétrico y, por lo tanto, un orden parcial.
+\end{exercise}
 
-Queremos ver que hay un funtor de regreso $\pt:\Frm\to\Top$, que
-a cada marco $A$ le asigna un espacio topológico cuyos elementos
-se verán como los puntos del marco.
-Veremos que $\cal O$ y $\pt$ forman una adjunción
-\[
-\begin{tikzcd}
-\Top \ar[d,shift right=2,"\cal O"'{name=L}]
-\\
-\Frm^\op \ar[u,shift right=2,"\pt"'{name=R}]
-\adj{L}{R}
-\end{tikzcd}
-\]
-
+\section{El espacio de puntos}
 Dado un espacio con un punto $\{*\}$, el conjunto de
 puntos de $S$ está en biyección con las funciones continuas
 $\{*\}\to S$:
@@ -69,9 +88,9 @@ $x\inf y\leq p$, tenemos
 así que $\chi(x)=0$ o bien $\chi(x)=0$, pues $\chi$ toma valores
 en el marco $2$. es decir: $x\leq p$ o bien $y\leq p$.
 
-\begin{defn}
+\begin{definition}
   Sea $A\in \Frm$. Un punto o elemento $\inf$-irreducible de A es un elemento $p\in A$ con $p\neq 1$ tal que si $x\inf y\leq p$, entonces $x\leq p$ ó $y\leq p$. Denotamos por $\pt A$ al conjunto de todos los puntos de $A$.
-\end{defn}
+\end{definition}
 
 
 \begin{lemma}
@@ -92,22 +111,17 @@ en el marco $2$. es decir: $x\leq p$ o bien $y\leq p$.
   \end{itemize}
 \end{proof}
 
-\section{La reflexión espacial de un marco}
-
 Sean $A\in \Frm$ y $a\in A$. Decimos que un punto $p\in \pt A$ está en $U_A(a)\subseteq \pt A$ si, y sólo si $a\not\leq p$.
-\begin{exe}%[Yareli $\checkmark$ ]
-Demostrar el siguiente lema:
-  \begin{lemma}
-    Sean $A\in \Frm$ y $a,b\in A$.
-    \begin{itemize}
-        \item $U_A(1)=\pt A$.
-        \item $U_A(0)=\emptyset$.
-        \item $U_A(a\inf b)=U_A(a)\cap U_A(b)$.
-        \item $U_A(\Sup X)=\bigcup \{U_A(x)|x\in X\}$, $\forall X\subseteq A$.
-    \end{itemize}
-  \end{lemma}
-\end{exe}
-\begin{proof}
+\begin{lemma}
+  Sean $A\in \Frm$ y $a,b\in A$.
+  \begin{itemize}
+      \item $U_A(1)=\pt A$.
+      \item $U_A(0)=\emptyset$.
+      \item $U_A(a\inf b)=U_A(a)\cap U_A(b)$.
+      \item $U_A(\Sup X)=\bigcup \{U_A(x)|x\in X\}$, $\forall X\subseteq A$.
+  \end{itemize}
+\end{lemma}
+\begin{proof}%[Yareli $\checkmark$ ]
   Sean $A\in \Frm$ y $a,b\in A$.
 \begin{itemize}
 \item Por definición $U_A(1)\subseteq \pt A$. Sea $p\in \pt A$, entonces $p\neq 1$. Además $1\not\leq p$, por lo que $p\in U_A(1)$. Así, $U_A(1)=\pt A$.
@@ -137,83 +151,74 @@ p\in \bigcup\{U_A(x)\mid x\in X\}&\Rightarrow p\in U_A(x)\textit{ para algún }x
 Por lo tanto, $U_A(\Sup x)=\bigcup \{U_A(x)|x\in X\}$, $\forall X\subseteq A$.
 \end{itemize}
 \end{proof}
-Por el lema anterior, $U_A(A)=\{U_A(a)\mid a\in A\}$
-es una topología en $\pt A$ y $U_A:A\to\cal O\pt A$ es un morfismo
-suprayectivo de marcos.\\
-Al espacio topológico $(\pt A,U_A(A))$ lo llamamos
-el \textit{espacio de puntos} de $A$,
-mientras que al morfismo $U_A\colon A\to \cal O\pt A$
-lo llamamos la \textit{reflexión espacial} de $A$.
-Además, si $U_A$ es un isomorfismo (basta con que sea inyectivo),
-decimos que el marco $A$ es \textit{espacial}.
+Se sigue que $U_A(A)=\{U_A(a)\mid a\in A\}$ es una topología en $\pt
+A$. Al espacio topológico $(\pt A,U_A(A))$ lo llamamos
+el \textit{espacio de puntos} de $A$.
+Dado que la topología de $\pt A$ es $\cal O\pt A=U_A(A)$,
+se sigue que $U_A:A\to\cal O\pt A$ es un
+morfismo suprayectivo de marcos, al cual llamamos la \textit{reflexión
+espacial} de $A$. Si $U_A$ es inyectivo (y, por lo tanto, un
+isomorfismo) decimos que el marco $A$ es \textit{espacial}.
 
-Observemos que, como $U_A$ es suprayectivo,
-existe un núcleo $S\in NA$ tal que $A_S\cong \cal O\pt A$.\par
-Sabemos que $S$ está caracterizado como $x\leq S(a) \iff U(x)\subseteq U(a)$. Probaremos que $S(a)=\Inf \{p\in \pt A|a\leq p\}$.
-\begin{align*}
-    x\leq S(a) &\iff U(x)\subseteq U(a)\\
-    &\iff (\forall p\in \pt A)[x\not\leq p\Rightarrow a\not\leq p]\\
-    &\iff (\forall p\in \pt A)[a\leq p \Rightarrow x\leq p]\\
-    &\iff x\leq \Inf \{p\in \pt A|a\leq p\}
-\end{align*}
+\begin{remark}
+  \leavevmode
+  \begin{enumerate}
+    \item (La reflexión espacial como un cociente)
+      Como $U_A:A\to\cal O\pt$ es suprayectivo, el marco $\cal O\pt A$ 
+      es el cociente de $A$ bajo el núcleo de $U_A$: el núcleo
+      $S\in NA$ dado como
+      \[
+        x\leq S(a) \iff U(x)\subseteq U(a)
+      .\]
+    \item
+      Además, por el lema \ref{lemma:cerraduras-y-conjuntosfijos}, el
+      núcleo $S$ de $U_A$ admite la descripción
+      \[
+        S(a)=\Inf \{p\in \pt A|a\leq p\}
+      .\]
+    \item
+      Dados dos puntos $p,q\in \pt A$, se cumple
+      \begin{align*}
+        q\sqsubseteq p&\iff \overline{q}\subseteq \overline{p}\\
+        &\iff (\forall x\in A)[q\in U(x)\Rightarrow p\in U(x)]\\
+        &\iff (\forall x\in A)[x\leq p\Rightarrow x\leq q]\\
+        &\iff p\leq q.
+      \end{align*}
+      Es decir, el preorden de especialización del espacio de puntos es
+      el orden opuesto al orden heredado del marco:
+      \[
+        (\pt A,\sqsubseteq) = (\pt A,\leq)^\op.
+      \]
+      En particular, ya que su preorden de especialización es un orden
+      parcial, esto prueba que el espacio de puntos es $T_0$.
+  \end{enumerate}
+\end{remark}
 
-\section{El orden de especialización}
-\begin{exe}[Para el lector]%[Juan]
-    \label{exe:especializacion}
-  Sean $S\in Top$ y $p,q\in S$. Probar que la relación
-  \[q\sqsubseteq p\iff \overline{q}\subseteq \overline{p}\]
-  es un preorden. Si el espacio es $T_0$, entonces es un orden parcial.
-\end{exe}
-A la relación del ejercicio \ref{exe:especializacion}
-le llamamos el \textit{orden de especialización}.\par 
-Sean $p,q\in \pt A$. Notemos que
-\begin{align*}
-    q\sqsubseteq p&\iff \overline{q}\subseteq \overline{p}\\
-    &\iff (\forall x\in A)[q\in U(x)\Rightarrow p\in U(x)]\\
-    &\iff (\forall x\in A)[x\leq p\Rightarrow x\leq q]\\
-    &\iff p\leq q.
-\end{align*}
-Es decir, el orden de especialización del espacio de puntos es el orden opuesto del marco original.
-\[
-    (\pt A,\sqsubseteq) = (\pt A,\leq)^\op.
-\]
-En particular, esto prueba que el espacio de puntos, $\pt A$, es $T_0$.
-
-\section{El espacio de puntos del marco de abiertos}
-Tomemos un espacio topológico $S\in\Top$.
-¿Cómo se relacionan los puntos $s\in S$ con los puntos $p\in\cal OS$?
-Dado $s\in S$ y $u\in\cal OS$ con $u\subseteq \overline{s}'$. Tenemos que
-\[u\subseteq \overline{s}' \iff \overline{s}\subseteq u' \iff s\in u' \iff s\notin u.\]
-Primero, observemos que $\overline{s}'\neq S$ ya que, de otro modo,
-tendríamos $s\in\ol{s}=\emptyset$.\par 
-Además, si $u,v\in \cal OS$ son tales que
-$u\cap v\subseteq \ol{s}'$, entonces $s\notin u\cap v$.
-Esto implica que $s\notin u$ ó $s\notin v$, es decir, $u\subseteq \ol{s}'$ ó $v\subseteq \ol{s}'$.
-Esto nos dice que $\ol{s}'$ es un punto de $\cal OS$.
-Por lo tanto, tenemos una función $\Phi_S:S\to\pt\cal OS$ dada
-como $\Phi_S(s) = \ol{s}'$.
-Además, si consideramos a $\pt\cal OS$ con la topología
-$U_{\cal OS}(\cal OS)$, tenemos que
-\begin{align*}
-    s\in (\Phi_S)^{-1}(U_{\cal OS}(u))
-    &\iff \Phi_S(s) \in U_{\cal OS}(u) \\
-    &\iff u \nsubseteq \Phi_{\cal OS}(s) \\
-    &\iff u \nsubseteq \ol{s}' \\
-    &\iff s\in u.
-\end{align*}
-Es decir, $(\Phi_S)^{-1}$ manda abiertos de $\pt\cal OS$ en abiertos
-de $S$, así que $\Phi_S:S\to\pt\cal OS$ es continua.
-
-\section{La funtorialidad del espacio de puntos}
-Queremos ver que la asignación $A\mapsto \pt A$ es un funtor.
-Además comprobaremos que, si varía $A$, la reflexión espacial
+\subsection{Funtorialidad y naturalidad}
+Queremos ver que la asignación $A\mapsto \pt A$ es un funtor y que
+la reflexión espacial $U_A:A\to\cal O\pt A$
 es una transformación natural
 \[U_\bullet:\id_{\Frm}\to\cal O\pt(\_).\]
 
-Notemos que, para un morfismo de marcos $f\colon A\to B$ y un punto $p\in \pt B$, $z\leq f_\ast (p)\iff f(z)\leq p$, donde $f_\ast$ es adjunto derecho de $f$. En particular, si $1\leq f_\ast(p)\iff f(1)=1\leq p$. Esto es imposible ya que $p\in \pt B$. Por lo que $f_\ast(p)\neq 1$.\\
-Sean $x,y\in A$ tales que $x\inf y\leq f_\ast(b)$. Esto pasa si, y sólo si $f(x)\inf f(y)\leq p$, en consecuencia, $f(x)\leq p$ ó $f(y)\leq p$, i.e., $x\leq f_\ast (p)$ ó $y\leq f_\ast (p)$. Por lo que $f_\ast (p)\in \pt A$.\par 
-En resumen, dado un morfismo de marcos $f\colon A\to B$, obtenemos una función $\pt f \colon \pt B\to \pt A$ dada por la restricción
-de $f_*:B\to A$.\par
+Lo primero es verificar que, dado un morfismo de marcos $f:A\to B$,
+obtenemos una función continua $\pt f:\pt B\to\pt A$ entre los
+espacios de puntos. De hecho, $\pt f$ será la restricción del adjunto
+derecho $f_*:B\to A$ a los puntos de $B$, pero hay que verificar que
+$f_*$ manda puntos a puntos.
+
+Si $p$ es un punto de $\pt B$, veamos que $f_*p$ es un punto de $A$.
+Primero, $f_*p$ no puede ser $1$, ya que en ese caso $1\leq f_\ast(p)$
+implicaría $f(1)\leq p$ por la adjunción, pero esto es imposible ya
+que $p\neq 1$.
+Ahora veamos que $f_*p$ es $\inf$-irreducible. Si $x,y\in A$ son tales
+que $x\inf y\leq f_\ast(p)$, por adjunción tenemos $f(x)\inf f(y)\leq p$.
+En consecuencia, $f(x)\leq p$ ó $f(y)\leq p$, i.e., $x\leq f_\ast (p)$
+ó $y\leq f_\ast (p)$. Por lo tanto, $f_\ast (p)\in \pt A$.
+
+En resumen, dado un morfismo de marcos $f\colon A\to B$, obtenemos una
+función $\pt f \colon \pt B\to \pt A$ dada por la restricción de
+$f_*:B\to A$.
+
 Observemos que, para todo $p\in \cal \pt B$, tenemos
 \begin{align*}
     p\in (\pt f)^{-1} \left(U_A(a)\right)&\iff f_\ast (p)\in U_A(a)\\
@@ -245,8 +250,70 @@ es conmutativo, así que $U_\bullet=(U_A\mid A\in\Frm)$
 es una transformación
 natural $U_\bullet:\id_\Frm\to\cal O\pt$.
 
-Por último, hagamos la siguiente observación.
-Dada una función continua $\psi:S\to T$,
+\subsection{El espacio de puntos del marco de abiertos}
+
+¿Qué tanta información acerca de un espacio topológico se
+puede recuperar a través de su marco de abiertos?
+Comenzaremos preguntándonos
+¿cómo se relacionan los puntos de un espacio $S$ con los puntos de
+$\pt\cal OS$?
+Como dijimos al principio, un punto $s\in S$ se puede ver como una
+función continua $\{s\}\to S$, la cual induce un morfismo
+$\chi_s:\cal O S \to 2$ como
+\begin{equation}
+  \chi_s(u) =
+  \begin{cases}
+    1 & s\in u  \\
+    0 & s\not\in u.
+  \end{cases}
+\end{equation}
+Por lo tanto, el $\inf$-irreducible que le corresponde a $s$ es
+\begin{equation}
+  \Phi_S(s) = \Sup\{u\in\cal OS\mid \chi_s(u)=0\} \in \pt\cal O S
+.\end{equation}
+Esto nos da una función $\Phi_S:S\to\pt\cal OS$. Esta descripción
+se puede simplificar. Notemos que, dados $s\in S$ y $u\in\cal OS$, tenemos
+\[
+  \chi_s(u) = 0
+  \iff
+  s\not\in u
+  \iff
+  s\in u'
+  \iff
+  \ol s \subseteq u'
+  \iff
+  u \subseteq {\ol s}'.
+\]
+Luego,
+\begin{equation}
+  \Phi_S(s)
+  =
+  \Sup\{u\in\cal OS\mid u\subseteq {\ol s}'\}
+  =
+  {\ol s}'
+  \in
+  \pt\cal OS
+.\end{equation}
+Ahora, recordemos que un abierto de $\pt\cal OS$ es de la forma
+\begin{align*}
+  U_{\cal OS}(u)
+  &= \{p\in\pt\cal OS \mid u\not\subseteq p\}
+.\end{align*}
+Tenemos
+\begin{align*}
+    s\in (\Phi_S)^{-1}(U_{\cal OS}(u))
+    &\iff \Phi_S(s) \in U_{\cal OS}(u) \\
+    &\iff {\ol s}' \in U_{\cal OS}(u) \\
+    &\iff u \nsubseteq {\ol s}' \\
+    &\iff s\in u.
+\end{align*}
+Es decir,
+\[
+  (\Phi_S)^{-1}(U_{\cal OS}(u)) = u
+.\]
+En particular, $(\Phi_S)^{-1}$ manda abiertos de $\pt\cal OS$ en
+abiertos de $S$, así que la función $\Phi_S:S\to\pt\cal OS$ es continua.
+Por último, observemos que, dada una función continua $\psi:S\to T$,
 las funciones $\Phi_S:S\to\pt\cal OS$ hacen conmutar el diagrama
 \[
     \begin{tikzcd}
@@ -266,7 +333,7 @@ En efecto, para todo $v\in\cal OT$, tenemos
     &\iff v\subseteq \Phi_T(\psi(s)),
 \end{align*}
 por lo cual $(\pt\cal O\psi)(\Phi_S(s))=\Phi_T(\psi(s))$.
-Luego, la familia de funciones
+Luego, la familia de funciones continuas
 \[
     \Phi_\bullet=(\Phi_S:S\to\pt\cal OS\mid S\in \Top)
 \]
@@ -278,18 +345,66 @@ es una transformación natural
 %\section*{VIDEO 6: El espacio de puntos, 2da parte (25 OCT)}
 \section{La adjunción}
     \label{ssec:adjuncion}
+
 En la primera parte, vimos que todo morfismo de marcos
 $f:A\to B$ induce una función continua $\pt f:\pt B\to\pt A$ dada
 como la restricción del adjunto derecho $f_*:B\to A$ de $f$ y
 probamos que esta asignación es un funtor $\pt:\Frm\to\Top$.
 Ahora veremos que $\pt$ y el funtor de abiertos
 $\cal O:\Top\to\Frm$ son las mitades de una adjunción contravariante
-entre $\Top$ y $\Frm$; es decir: que existe un isomorfismo
+entre $\Top$ y $\Frm$. En particular, construiremos un isomorfismo
 \begin{equation}
     \label{eqn:adj_frm_top}
     \Frm(A,\cal OS) \simeq \Top(S,\pt A)
 \end{equation}
 natural en $A$ y en $S$.
+
+\iffalse
+\subsubsection{Usando morfismos iniciales}
+
+Veremos que, para cada espacio topológico $S$, la función continua
+$\Phi_S:S\to\pt\cal OS$ es el morfismo inicial de $S$ hacia marcos $A$
+a través de $\pt$. En efecto, tomemos cualquier función continua
+$\phi:S\to \pt A$. Tomando $f$ como la composición
+\[
+  A\xto{U_A}\cal O\pt A\xto{\cal O\phi}\pt S,
+\]
+tenemos la siguiente situación:
+\[
+  \begin{tikzcd}
+    S \ar[r,"\Phi_S"] \ar[dr,"\phi"'] & \pt\cal OS \ar[d,"\pt f"] & \cal OS \\
+                      & \pt A & A \ar[u,"f"'].
+  \end{tikzcd}
+\]
+Veremos que el triángulo de la izquierda conmuta y que
+$f:A\to\cal OS$ es el único morfismo de marcos que, bajo
+$\pt$, lo hace conmutar. Primero notemos que
+\[
+  (\pt f)(\Phi_S(s))
+  = \pt f({\ol s}')
+  = f_*({\ol s}')
+,\]
+así que, para todo $u\in A$,
+\begin{align*}
+  u\leq (\pt f)(\Phi_S(s))
+  &\iff u\leq f_*({\ol s}') \\
+  &\iff fu \subseteq {\ol s}' \\
+  &\iff \cal O\phi(U_A(u)) \subseteq  {\ol s}' \\
+  &\iff \phi^{-1}(U_A(u)) \subseteq  {\ol s}' \\
+  &\iff \ol s \subseteq \phi^{-1}(U_A(u)') \\
+  &\iff s\in \phi^{-1}(U_A(u)') \\
+  &\iff \phi(s)\in U_A(u)' \\
+  &\iff \phi(s)\in \{p\in\pt A\mid u\leq p\} \\
+  &\iff u\leq \phi(s).
+\end{align*}
+Es decir, $(\pt f^{\sharp})\circ\Phi_S=\phi$.
+Ahora, si $f':A\to\cal OS$ es cualquier morfismo que, al aplicarle
+$\pt$, hace conmutar el triángulo (es decir, $(\pt
+f')\circ\Phi_S=\phi$), tenemos $(\pt f')\circ\Phi_S = (\pt
+f')\circ\Phi_S$.
+
+\subsubsection{Otra manera}
+\fi
 
 Cuando aprendimos sobre adjunciones,
 vimos el caso covariante, en el cual el isomorfismo de
@@ -412,53 +527,46 @@ para cualesquiera $s\in S$, $a\in A$, puesto que
     &\iff \phi(s) \in U_A(a) \\
     &\iff s \in (\cal O\phi)(U_A(a)) = \bar\phi(a).
 \end{align*}
-
-La naturalidad de la biyección se deja como ejercicio:
-\begin{exe}%[Alfredo $\checkmark$]
-    Verifica que la biyección (\ref{eqn:adj_frm_top})
-    es natural en $A$ y en $S$.
-\end{exe}
-\begin{sol}
-    Dado un morfismo de marcos $g:A\to B$, el diagrama
-    \[
-        \begin{tikzcd}
-            \Frm(B,\cal OS) \ar[d,"{-}\circ g"'] \ar[r,"f\mapsto\bar f"']
-            & \Top(S,\pt B)
-            \ar[d,"\pt g\circ{-}"]
-            \\
-            \Frm(A,\cal OS) \ar[r,"h\mapsto\bar h"']
-            & \Top(S,\pt A)
-        \end{tikzcd}
-    \]
-    es conmutativo:
-    \begin{align*}
-        \ol{fg}
-        &= \pt(fg)\Phi_S \\
-        &= (\pt g)(\pt f)\Phi_S \\
-        &= (\pt g)\bar f.
-    \end{align*}
-    Similarmente, dada una función continua $\psi:S\to T$,
-    el diagrama
-    \[
-        \begin{tikzcd}
-            \Frm(A,\cal OT)
-            \ar[d,"\cal O\psi\circ{-}"']
-            & \Top(T,\pt A) \ar[l,"\bar \phi\mapsfrom \phi"']
-            \ar[d,"{-}\circ \psi"]
-            \\
-            \Frm(A,\cal OS)
-            & \Top(S,\pt A) \ar[l,"\bar \xi\mapsfrom \xi"']
-        \end{tikzcd}
-    \]
-    es conmutativo:
-    \begin{align*}
-        \ol{\phi\psi}
-        &= \cal O(\phi\psi)U_A \\
-        &= (\cal O\psi)(\cal O\phi)U_A \\
-        &= (\cal O\psi)\bar\phi.
-    \end{align*}
-\end{sol}
-El ejercicio anterior concluye la demostración.
+Finalmente, veamos que la biyección (\ref{eqn:adj_frm_top})
+es natural en $A$ y en $S$.
+Dado un morfismo de marcos $g:A\to B$, el diagrama
+\[
+    \begin{tikzcd}
+        \Frm(B,\cal OS) \ar[d,"{-}\circ g"'] \ar[r,"f\mapsto\bar f"']
+        & \Top(S,\pt B)
+        \ar[d,"\pt g\circ{-}"]
+        \\
+        \Frm(A,\cal OS) \ar[r,"h\mapsto\bar h"']
+        & \Top(S,\pt A)
+    \end{tikzcd}
+\]
+es conmutativo:
+\begin{align*}
+    \ol{fg}
+    &= \pt(fg)\Phi_S \\
+    &= (\pt g)(\pt f)\Phi_S \\
+    &= (\pt g)\bar f.
+\end{align*}
+Similarmente, dada una función continua $\psi:S\to T$,
+el diagrama
+\[
+    \begin{tikzcd}
+        \Frm(A,\cal OT)
+        \ar[d,"\cal O\psi\circ{-}"']
+        & \Top(T,\pt A) \ar[l,"\bar \phi\mapsfrom \phi"']
+        \ar[d,"{-}\circ \psi"]
+        \\
+        \Frm(A,\cal OS)
+        & \Top(S,\pt A) \ar[l,"\bar \xi\mapsfrom \xi"']
+    \end{tikzcd}
+\]
+es conmutativo:
+\begin{align*}
+    \ol{\phi\psi}
+    &= \cal O(\phi\psi)U_A \\
+    &= (\cal O\psi)(\cal O\phi)U_A \\
+    &= (\cal O\psi)\bar\phi.
+\end{align*}
 
 \section{La propiedad universal de las reflexiones}
 La biyección

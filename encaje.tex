@@ -1,6 +1,6 @@
 \chapter{El encaje de un marco en su ensamble}
 
-\begin{thm}
+\begin{theorem}
   Si $A$ es un marco, la función $\eta_A:A\to NA$, dada como
   \[
     \eta_A(a) = \unuc a
@@ -8,7 +8,7 @@
   es un epimorfismo inyectivo de marcos.
   (Sin embargo, $\eta_A$ no es suprayectivo, en general. Véase
   el teorema \ref{thm:ensamble-booleanidad}).
-\end{thm}
+\end{theorem}
 \begin{proof}
 Para ver que $\eta_A$ es un morfismo de marcos primero notemos que
 $\eta_A(0)=\unuc 0=\id$ y $\eta_A(1)=\unuc 1=\tp$. También es una
@@ -47,7 +47,7 @@ Así, $\eta_A$ es un epimorfismo.
 \subsubsection{El ensamble como solución a un problema universal}
 \label{ssec:complementacion}
 
-\begin{obs}[Adjunción del ensamble]
+\begin{remark}[Adjunción del ensamble]
   Si $A$ es un marco, entonces la primera de las equivalencias en
   \ref{lemma:equivalencias}
   \[
@@ -56,22 +56,22 @@ Así, $\eta_A$ es un epimorfismo.
   nos dice que el adjunto derecho del morfismo $\eta_A:A\to NA$ es
   $\bot:NA\to A$, $\bot(j)=j(0)$.
   Es decir, tenemos $\eta_A\dashv\bot$.
-\end{obs}
+\end{remark}
 
-\begin{defn}
+\begin{definition}
   Sea $f:A\to B$ un morfismo de marcos.
   Diremos que $f$ resuelve el problema de complementación para
   $A$ si, para todo $a\in A$, $f(a)\in B$ es complementado en
   $B$.
-\end{defn}
-\begin{exa}
+\end{definition}
+\begin{example}
   Para todo $a\in A$, el núcleo $\unuc a$ es complementado en
   $NA$ (su complemento es $\vnuc a$).
   Es decir, $\eta_A:A\to NA$ resuelve el problema de
   complementación para $A$.
-\end{exa}
+\end{example}
 
-\begin{thm}
+\begin{theorem}
   Sea $A$ un marco.
   El morfismo $\eta_A:A\to NA$ resuelve el problema de
   complementación de manera universal.
@@ -92,7 +92,7 @@ Así, $\eta_A$ es un epimorfismo.
   \[
     f_\flat(b) = f_*\unuc b f^* \in NA
   .\]
-\end{thm}
+\end{theorem}
 \begin{proof}
   Para empezar, como $\eta_A$ es epi, la factorización de $f$ a
   través de $\eta_A$ es única, en caso de existir.
@@ -235,7 +235,7 @@ es decir, el único tal que
   Nf(\unuc a) = \unuc{f(a)}
 .\end{equation}
 Por lo tanto, obtenemos el siguiente corolario.
-\begin{cor}[Funtorialidad del ensamble]
+\begin{corollary}[Funtorialidad del ensamble]
   El ensamble es un funtor $N:\Frm\to\Frm$, donde $Nf:NA\to NB$ 
   está dado por
   \begin{equation}
@@ -264,15 +264,15 @@ Por lo tanto, obtenemos el siguiente corolario.
     &= f_*(j(f(a)))
   .\end{align}
   I.e, $(Nf)_*(j) = f_*jf$ para todo $j\in NB$.
-\end{cor}
+\end{corollary}
 
-\begin{thm}[El ensamble como indicador de booleanidad]
+\begin{theorem}[El ensamble como indicador de booleanidad]
   \label{thm:ensamble-booleanidad}
   Sea $A$ un marco.
   Entonces el encaje $\eta_A:A\to NA$ es suprayectivo (y, por lo
   tanto, un isomorfismo) si, y solo
   si, $A$ es un álgebra booleana completa.
-\end{thm}
+\end{theorem}
 \begin{proof}
     Supongamos que $\eta_A$ es suprayectiva.
     Entonces, para todo elemento $a\in A$,

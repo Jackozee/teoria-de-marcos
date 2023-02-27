@@ -16,16 +16,16 @@ esto es:
     fa\leq b \ssi a\leq gb
 .\]
 
-\begin{exa}
+\begin{example}
   Sea $A$ un álgebra de Heyting (por ejemplo, un marco).
   Para todo $a\in A$ a implicación $(a\succ -)$ es
   el adjunto derecho del ínfimo $-\inf a$, pues
   \[
     y\inf a\leq b \ssi y\leq (a\succ b)
   .\]
-\end{exa}
+\end{example}
 
-\begin{exa}
+\begin{example}
   \label{exa:adjuncion-potencia}
   Sea $\phi:S\to T$ una función entre conjuntos.
   Entonces la imagen directa $\phi_!:\cal PS\to\cal PT$ y
@@ -65,9 +65,9 @@ esto es:
     &= \{y\in T \mid x\not\in \phi_!(U') \} \\
     &= \{y\in T \mid \forall x\in U', y\neq \phi(x) \}.
   \end{align*}
-\end{exa}
+\end{example}
 
-\begin{exa}%[Dante $\checkmark$ ]
+\begin{example}%[Dante $\checkmark$ ]
   \label{exa:adjunto-derecho-top}
   Si $\phi:S\to T$ es una función continua entre espacios
   topológicos, el morfismo de marcos
@@ -91,7 +91,7 @@ esto es:
     \phi_*(u) &= \phi_?(u)^\circ = (\phi_!(u')')^\circ = \ol{\phi_!(u')}',
   \end{align*}
   donde $\phi_!:\cal PS\to\cal PT$ es la imagen directa.
-\end{exa}
+\end{example}
 
 \begin{lemma}
     Sea $f:A\to B$ un morfismo de $\Sup$-semiretículas
@@ -155,14 +155,14 @@ Recordemos que, dada una categoría $\cal C$, un morfismo es
     \item un bimorfismo si es monomorfismo y epimorfismo.
 \end{itemize}
 
-\begin{exe}[Para el lector]%[Armando]
+\begin{exercise}[Para el lector]%[Armando]
     Muéstrese que, en la categoría $\Top$ de los espacios topológicos,
     un morfismo es
     \begin{itemize}
         \item suprayectivo si, y solo si, es un epimorfismo,
         \item inyectivo si, y solo si, es un monomorfismo.
     \end{itemize}
-\end{exe}
+\end{exercise}
 
 Este también es el caso las categorías de conjuntos, grupos y
 espacios vectoriales, pero no en la categoría de anillos.
@@ -358,7 +358,7 @@ $\down:A\to\cal LA$ es el mejor de estos morfismos, en el sentido
 de que $\down:A\to LA$ exhibe a $\cal LA$ como el marco libre
 sobre la $\inf$-semiretícula $A$.
 
-\begin{sol}
+\begin{proof}
 %[Alfredo $\checkmark$]
     Consideremos el funtor de olvido $U:\Frm\to\Pos^{\inf}$.
     Precomponer con $\down$ nos da una flecha
@@ -472,11 +472,11 @@ sobre la $\inf$-semiretícula $A$.
     $\cal L:\Pos^{\inf}\to\Frm$.
     Luego, tenemos una adjunción $\cal L\dashv U$
     (ver \ref{ss:adjunciones}).
-\end{sol}
+\end{proof}
 
-\begin{exe}[Para el lector]%[Armando]
+\begin{exercise}[Para el lector]%[Armando]
   Dado un copo $A$,
   ¿Quién será la negación y la implicación en $\cal LA$?
-\end{exe}
+\end{exercise}
 
 

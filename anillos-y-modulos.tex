@@ -185,106 +185,103 @@ el diagrama
 \]
 es conmutativo.
 
-\begin{exe}%[Alfredo $\checkmark$ ]
-  Mostrar que el morfismo inducido en el límite directo
-  \begin{align*}
-      \mu : \varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)
-        &\to \Q \\
-      [f] &\mapsto \frac{f(n)}{n}
-  \end{align*}
-  es un isomorfismo.
-\end{exe}
-\begin{sol}
-    Primero veamos que $\mu$ está bien definida.
-    Tomemos morfismos relacionados
-    $f\sim g\in\bigsqcup_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)$.
-    Es decir, $f:\<m\>\to\Z$ y $g:\<n\>\to\Z$ satisfacen
-    \[
-        f|_{\<k\>} = g|_{\<k\>}
-    \]
-    para alguna $k\in\Z$ con $m\mid k$, $n\mid k$.
-    Es decir, $k=rm$, $k=sn$ para algunos $r,s\in\Z$.
-    Luego, tenemos
-    \begin{align*}
-        \mu([g])
-        &= \frac {g(n)} n
-        = \frac {sg(n)}{sn} 
-        = \frac {g(sn)}{sn} 
-        = \frac {g(k)}{k} \\
-        &= \frac {f(k)}{k} 
-        = \frac {f(rm)}{rm} 
-        = \frac {rf(m)}{rm} 
-        = \frac {f(m)}{m} 
-        = \mu([f]).
-    \end{align*}
-    Se sigue que $\mu$ está bien definida
-    en las clases de equivalencia;
-    es decir: no depende del representante.
+  %[Alfredo $\checkmark$ ]
+Veremos que el morfismo inducido en el límite directo
+\begin{align*}
+    \mu : \varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)
+      &\to \Q \\
+    [f] &\mapsto \frac{f(n)}{n}
+\end{align*}
+es un isomorfismo.
+Primero veamos que $\mu$ está bien definida.
+Tomemos morfismos relacionados
+$f\sim g\in\bigsqcup_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)$.
+Es decir, $f:\<m\>\to\Z$ y $g:\<n\>\to\Z$ satisfacen
+\[
+    f|_{\<k\>} = g|_{\<k\>}
+\]
+para alguna $k\in\Z$ con $m\mid k$, $n\mid k$.
+Es decir, $k=rm$, $k=sn$ para algunos $r,s\in\Z$.
+Luego, tenemos
+\begin{align*}
+    \mu([g])
+    &= \frac {g(n)} n
+    = \frac {sg(n)}{sn} 
+    = \frac {g(sn)}{sn} 
+    = \frac {g(k)}{k} \\
+    &= \frac {f(k)}{k} 
+    = \frac {f(rm)}{rm} 
+    = \frac {rf(m)}{rm} 
+    = \frac {f(m)}{m} 
+    = \mu([f]).
+\end{align*}
+Se sigue que $\mu$ está bien definida
+en las clases de equivalencia;
+es decir: no depende del representante.
 
-    Ahora, dado $r/m\in\Q$, consideremos la función
-    $f:\<m\>\to\Z$ dada por $am\mapsto ar$.
-    En efecto, $f$ respeta sumas y productos por enteros,
-    así que podemos considerar $[f]$.
-    
-    Queremos ver que la asignación $r/m\mapsto [f]$ no
-    depende de $r$ y de $m$, sino solo del cociente $r/m$.
-    
-    Para esto, tomamos $s/n=r/m$ y
-    debemos mostrar que $g:\<n\>\to\Z$
-    dada como $an\mapsto as$ cumple $[f]=[g]$.
-    Como $s/n=r/m$, entonces $sm=rn$, así que $mn$ cumple
-    \begin{align*}
-        f|_{\<mn\>}(amn)
-        &= f(amn)
-        = arn
-        = asm
-        = g(anm)
-        = g|_{\<mn\>}(amn),
-    \end{align*}
-    por lo cual $f|_{\<mn\>}=g|_{\<mn\>}$ y $[f]=[g]$.
-    
-    Luego, la asignación $r/m\mapsto [(am\mapsto ar)]$
-    es una función
-    \[
-        \xi:\Q\to\varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)
-    .\]
-    Notemos que $\xi$ es $\Z$-lineal, ya que
-    \begin{align*}
-        \xi\left(a\frac r m + \frac s n\right)
-        &= \xi\left(\frac{arn + ms}{mn}\right) \\
-        &= \left( xmn \mapsto x(arn+ms) \right) \\
-        &= (xmn \mapsto xarn+xms) \\
-        &= (xmn \mapsto xarn) + (xmn \mapsto xms) \\
-        &= a(xmn \mapsto xrn) + (xmn \mapsto xms) \\
-        &= a\xi\left(\frac{rn}{mn}\right)
-            + \xi\left(\frac{ms}{mn}\right) \\
-        &= a\xi\left(\frac{r}{m}\right)
-            + \xi\left(\frac{s}{n}\right).
-    \end{align*}
-    Finalmente, observemos que
-    \begin{align*}
-        \xi(\mu(r/m))
-        &= \xi(am\mapsto ar) \\
-        &= \frac{(am\mapsto ar)(m)}{m} \\
-        &= \frac{r}{m} \\
-        \mu(\xi([f]))
-        &= \mu\left(\frac{f(n)} n \right) \\
-        &= [an\mapsto af(n)] \\
-        &= [an\mapsto f(an)] \\
-        &= [f]
-    .\end{align*}
-    Esto muestra que $\xi$ es la inversa de $\mu$,
-    así que tenemos un isomorfismo
-    \[
-        \begin{tikzcd}
-        \mathbb Q \ar[r,shift left,"\mu"] &
-        \displaystyle
-        \varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z),
-        \ar[l,shift left,"\xi"]
-       \end{tikzcd} 
-    \]
-    Esto es lo que se quería.
-\end{sol}
+Ahora, dado $r/m\in\Q$, consideremos la función
+$f:\<m\>\to\Z$ dada por $am\mapsto ar$.
+En efecto, $f$ respeta sumas y productos por enteros,
+así que podemos considerar $[f]$.
+
+Queremos ver que la asignación $r/m\mapsto [f]$ no
+depende de $r$ y de $m$, sino solo del cociente $r/m$.
+
+Para esto, tomamos $s/n=r/m$ y
+debemos mostrar que $g:\<n\>\to\Z$
+dada como $an\mapsto as$ cumple $[f]=[g]$.
+Como $s/n=r/m$, entonces $sm=rn$, así que $mn$ cumple
+\begin{align*}
+    f|_{\<mn\>}(amn)
+    &= f(amn)
+    = arn
+    = asm
+    = g(anm)
+    = g|_{\<mn\>}(amn),
+\end{align*}
+por lo cual $f|_{\<mn\>}=g|_{\<mn\>}$ y $[f]=[g]$.
+
+Luego, la asignación $r/m\mapsto [(am\mapsto ar)]$
+es una función
+\[
+    \xi:\Q\to\varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z)
+.\]
+Notemos que $\xi$ es $\Z$-lineal, ya que
+\begin{align*}
+    \xi\left(a\frac r m + \frac s n\right)
+    &= \xi\left(\frac{arn + ms}{mn}\right) \\
+    &= \left( xmn \mapsto x(arn+ms) \right) \\
+    &= (xmn \mapsto xarn+xms) \\
+    &= (xmn \mapsto xarn) + (xmn \mapsto xms) \\
+    &= a(xmn \mapsto xrn) + (xmn \mapsto xms) \\
+    &= a\xi\left(\frac{rn}{mn}\right)
+        + \xi\left(\frac{ms}{mn}\right) \\
+    &= a\xi\left(\frac{r}{m}\right)
+        + \xi\left(\frac{s}{n}\right).
+\end{align*}
+Finalmente, observemos que
+\begin{align*}
+    \xi(\mu(r/m))
+    &= \xi(am\mapsto ar) \\
+    &= \frac{(am\mapsto ar)(m)}{m} \\
+    &= \frac{r}{m} \\
+    \mu(\xi([f]))
+    &= \mu\left(\frac{f(n)} n \right) \\
+    &= [an\mapsto af(n)] \\
+    &= [an\mapsto f(an)] \\
+    &= [f]
+.\end{align*}
+Esto muestra que $\xi$ es la inversa de $\mu$,
+así que tenemos un isomorfismo
+\[
+    \begin{tikzcd}
+    \mathbb Q \ar[r,shift left,"\mu"] &
+    \displaystyle
+    \varinjlim_{\<n\>\in\nti\Z}\Mod_\Z(\<n\>,\Z),
+    \ar[l,shift left,"\xi"]
+   \end{tikzcd} 
+\]
+Como se quería mostrar.
 
 Ahora, ¿qué tiene que ver esto con núcleos?
 

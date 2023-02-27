@@ -280,7 +280,7 @@ cociente, al igual que en las categorías más familiares de
 anillos, grupos, etc. Una $\Sup$-semirretícula $B$ es cociente de
 $A$ si es de la forma $A/\simr$ para alguna $\Sup$-congruencia
 $\simr$ en $A$. Más formalmente, hacemos la siguiente definición:
-\begin{defn}
+\begin{definition}
   Decimos que un morfismo $f:A\to B$ es un morfismo cociente de
   $A$, o que exhibe a $B$ como cociente de $A$, si hay una
   congruencia $\simr$ en $A$ y un isomorfismo $A/\simr\simeq B$
@@ -294,11 +294,11 @@ $\simr$ en $A$. Más formalmente, hacemos la siguiente definición:
   es conmutativo.
   En este caso, decimos que $B$ es el cociente de $A$ por
   $\simr$.
-\end{defn}
+\end{definition}
 Con esta definición se entiende el título del lema anterior:
 ``toda congruencia produce un cociente''.
 
-\begin{obs}[Correspondencia entre congruencias y cocientes]
+\begin{remark}[Correspondencia entre congruencias y cocientes]
 \leavevmode
   \begin{itemize}
     \item
@@ -308,17 +308,17 @@ Con esta definición se entiende el título del lema anterior:
     Todo morfismo cociente $f:A\to B$ es el cociente de $A$ por la
     congruencia $\simr$ inducida por $f$.
   \end{itemize}
-\end{obs}
+\end{remark}
 Así, los morfismos cociente son exactamente los
 morfismos suprayectivos.
 
-\begin{prop}[Teorema del factor, versión 1]
+\begin{proposition}[Teorema del factor, versión 1]
   Sea $A$ una $\Sup$-semirretícula y $\simr$ una
   $\Sup$-congruencia en $A$.
   Si $f:A\to B$ un $\Sup$-morfismo que respeta a $\simr$,
   entonces $f$ se factoriza de manera única
   a través de $\eta:A\to A/\simr$.
-\end{prop}
+\end{proposition}
 \begin{proof}
   Como $f$ respeta a $\simr$ como relación de equivalencia,
   entonces se factoriza de manera única a través de $A/\simr$ en
@@ -407,13 +407,13 @@ Es decir:
     \eta(\Sup [a]) = [a]
 .\]
 Ahora consideramos la otra composición:
-\begin{defn}
+\begin{definition}
     Sea $\simr$ una $\Sup$-congruencia en $A$.
     El \emph{selector} de $\simr$ es la función $j:A\to A$ dada por
     \[
         j(a) = \Sup\eta(a) = \Sup[a] = \Sup\{x\in A \mid x\sim a\}
     .\]
-\end{defn}
+\end{definition}
 El selector tiene algunas propiedades interesantes.
 \begin{itemize}
     \item 
@@ -442,7 +442,7 @@ El selector tiene algunas propiedades interesantes.
     $j(a)=j(j(a))$.
     En otras palabras, $j$ es idempotente.
 \end{itemize}
-\begin{defn}[Operador cerradura]
+\begin{definition}[Operador cerradura]
   \label{def:operador-cerradura}
   Si $A$ es un copo, un operador cerradura en $A$ es una función
   $j:A\to A$ tal que
@@ -451,7 +451,7 @@ El selector tiene algunas propiedades interesantes.
     \item Es monótona: $a\leq b$ implica que $j(a)\leq j(b)$.
     \item Es idempotente: $j(j(a))=a$.
   \end{itemize}
-\end{defn}
+\end{definition}
 Así, lo que acabamos de mostrar es que, si $j$ es el selector de
 una $\Sup$-congruencia $\simr$, entonces $j$ es un operador
 cerradura.
@@ -525,16 +525,17 @@ De hecho, ahora veremos que la correspondencia es triple:
 los operadores cerradura también están en correspondencia con los
 subconjuntos de $A$ que son cerrados bajo ínfimos arbitrarios.
 
-\begin{defn}
+\begin{definition}
     Si $A$ es una $\Sup$-semirretícula,
     un subconjunto $F\subseteq A$ se dice que es $\Inf$-cerrado si,
     para todo subconjunto $X\subseteq F$, se tiene $\Sup X\in F$.
-\end{defn}
+\end{definition}
 
 Ahora mostraremos que hay una correspondencia entre operadores
 cerradura y conjuntos $\Inf$-cerrados.
 
-\begin{lemma}\leavevmode
+\begin{lemma}\label{lemma:cerraduras-y-conjuntosfijos}
+  \leavevmode
   \begin{enumerate}
     \item
     Dado un operador cerradura $j$ en $A$, el conjunto de sus
@@ -636,7 +637,7 @@ vimos que todo $\Sup$-morfismo $f:A\to B$ induce una
 $\Sup$-congruencia en $A$. Por lo tanto, también induce un
 operador cerradura $k:A\to A$
 
-\begin{defn}
+\begin{definition}
     Para cada $\Sup$-morfismo $f:A\to B$, el núcleo de $\phi$
     es el operador cerradura $k:A\to A$ que le corresponde a
     la $\Sup$-congruencia inducida por $f$.
@@ -644,7 +645,7 @@ operador cerradura $k:A\to A$
     \[
         k(x) = k(y) \ssi f(x) = f(y)
     .\]
-\end{defn}
+\end{definition}
 
 También vimos que toda $\Sup$-congruencia en $A$ produce un
 cociente de $A$. Por lo tanto, todo operador cerradura $k:A\to A$
@@ -670,11 +671,11 @@ y está dado por la fórmula
 \[
     f_*(b) = \Sup\{x\in A \mid f(x) \leq b\}
 .\]
-\begin{prop}[El operador cerradura de un morfismo]
+\begin{proposition}[El operador cerradura de un morfismo]
   Si $f:A\to B$ es un $\Sup$-morfismo y $f_*:B\to A$ es su adjunto
   derecho, entonces la función $k=f_*f:A\to A$ es un operador
   cerradura y, de hecho es el núcleo de $f$.
-\end{prop}
+\end{proposition}
 \begin{proof}
   Primero veremos que $k=f_*f$ es un operador cerradura.
   \begin{itemize}
@@ -733,13 +734,13 @@ $f$, como se quería.
 Esto nos permite probar otra caracterización del nucleo de un
 $\Sup$-morfismo:
 
-\begin{cor}
+\begin{corollary}
   Dado un $\Sup$-morfismo $f:A\to B$, el núcleo de $f$
   es el operador cerradura $k:A\to A$ determinado por la condición
   \[
       x\leq k(a) \ssi f(x) \leq f(a)
   .\]
-\end{cor}
+\end{corollary}
 \begin{proof}
   Recordemos que la adjunción nos da la equivalencia
   \[
@@ -788,13 +789,13 @@ es el únco orden que hace que $j^*$ sea un $\Sup$-morfismo.
   $a\sup b\leq z$, por lo cual $j(a\sup b)\leq j(z)=z$.
   Se sigue que $j(a\sup b)$ es el supremo de $a$ y $b$ en $A_j$.
 \end{proof}
-\begin{cor}
+\begin{corollary}
   Para cualquier subconjunto $Y\subseteq A_j$, se tiene
   \[
       \Sup_j Y = j(\Sup Y)
   ,\]
   donde $\Sup_j$ denota como al supremo calculado en $A_j$.
-\end{cor}
+\end{corollary}
 \begin{proof}
   Considerando a $Y$ como subconjunto de $A$, tenemos
   \[
@@ -806,7 +807,7 @@ es el únco orden que hace que $j^*$ sea un $\Sup$-morfismo.
 Con toda la información que tenemos,
 podemos probar el teorema del factor
 en la categoría de $\Sup$-semiretículas.
-\begin{thm}[Teorema del factor en $\SupLat$]
+\begin{theorem}[Teorema del factor en $\SupLat$]
     Sea $A$ una $\Sup$-semiretícula y $k$ un operador cerradura en $A$.
     Si $f:A\to B$ es un morfismo cuyo núcleo $k$ satisface $j\leq k$,
     entonces existe un único morfismo $f^\sharp:A_j\to B$ tal que
@@ -817,7 +818,7 @@ en la categoría de $\Sup$-semiretículas.
             &A_j \ar[ur,"f^\sharp"']
         \end{tikzcd}
     .\]
-\end{thm}
+\end{theorem}
     
 %\section*{(SESIÓN 7: 30 SEP)}
 
@@ -828,11 +829,11 @@ y $\Sup$-congruencias.
 Cuando trabajamos en un marco, esta correspondencia se puede refinar
 más.
 
-\begin{defn}[Núcleo en un marco]
+\begin{definition}[Núcleo en un marco]
 \label{def:nucleo}
 Un núcleo en un marco $A$ es un operador cerradura $j:A \to A$ que cumple con $j(a\wedge b)=j(a)\wedge j(b) \ \forall \ a,b \ \in \ A$.
 Al conjunto de núcleos de $A$ lo denotamos como $NA$.
-\end{defn}
+\end{definition}
 
 Nótese que, para un morfismo de marcos $f: A\to B$, el operador
 cerradura $k$ inducido por $f$ (el núcleo de $f$, visto como morfismo
@@ -850,11 +851,11 @@ una propiedad extra: se comporta bien con respecto a la implicación.
 Esto queda capturado en la siguiente definición y el lema que la
 acompaña.
 
-\begin{defn}[Conjunto implicativo]
+\begin{definition}[Conjunto implicativo]
 Decimos que un subconjunto $F$ de un marco $A$ es un conjunto
 implicativo si es $\Inf$-cerrado y
 $a\in F \implies  \forall x \in A,\; (x\succ a)\in F$.
-\end{defn}
+\end{definition}
 \begin{lemma}
   Sea $A$ un marco. Entonces un operador cerradura $k:A\to A$
   preserva ínfimos (es un núcleo de marcos) si, y
@@ -906,15 +907,15 @@ resultado.
     $A_j$ es un marco (con el orden heredado de $A$)
     y $j^*:A\to A_j$ es un morfismo de marcos suprayectivo.
 \end{lemma}
-\begin{defn}
+\begin{definition}
   Un cociente de un marco $A$ es un marco $B$ equipado con un morfismo
   suprayectivo $f:A\to B$.
-\end{defn}
+\end{definition}
 
-\begin{exe}%[Dante $\checkmark$ ]
+\begin{corollary}%[Dante $\checkmark$ ]
 Para cualquier marco $A$, existe una biyección entre el conjunto de cocientes de $A$ y $NA$.
-\end{exe}
-\begin{sol}
+\end{corollary}
+\begin{proof}
     Defínase $\mathcal{C}=\{\text{Cocientes de } \ A\}$. Sea $f:A\to B\in \mathcal{C}$. Así, $F=f_*\circ f\in NA$, y si $g:A\to B\in\mathcal{C}$ es tal que $G=g_*\circ g=f_*\circ f=F$, entonces $A_F=A_G$, y $F^*=G^*$, donde $F^*:A\to A_F$ se define como $F^*(a)=F(a)$. Sabemos entonces que existe un único morfismo $f^\sharp:A_F\to B$ tal que el diagrama
     \[
         \begin{tikzcd}
@@ -923,9 +924,9 @@ Para cualquier marco $A$, existe una biyección entre el conjunto de cocientes d
         \end{tikzcd}
     \]
     conmuta, así como $g^\sharp$ que cumple lo mismo para $g$ y $A_G$. Sin embargo, como $G=F$, $A_F=A_G$ y $F^*=G^*$, entonces $f=F^\sharp\circ F^*=G^\sharp\circ G^*=G$, y por lo tanto la función $\phi:\mathcal{C}\to NA$ definida como $\phi(f)=F=f_*\circ f$ es inyectiva. También, si $j\in NA$, claramente $j^*:A\to A_j$ es un cociente de $A$, con $j_*\circ j =j$. Por lo tanto, $\phi$ es una biyección entre $\mathcal{C}$ y $NA$.
-\end{sol}
+\end{proof}
 
-\begin{thm}[Teorema del factor]%[Dante $\checkmark$]
+\begin{theorem}[Teorema del factor]%[Dante $\checkmark$]
 \label{thm:factor-frm}
 Sean $A\in \Frm$ y $j\in NA$, y considérese $f:A\to B$ morfismo de marcos con núcleo $k\geq j$. Entonces existe un único morfismo $f^{\sharp}:A_j \to B$ tal que el diagrama
     \[
@@ -935,7 +936,7 @@ Sean $A\in \Frm$ y $j\in NA$, y considérese $f:A\to B$ morfismo de marcos con n
         \end{tikzcd}
     \]
 conmuta.
-\end{thm}
+\end{theorem}
 \begin{proof}
     Dado que $j$ es núcleo, $A_j$ es un marco, con $A_j=j(A)$, y $j^*$ es un morfismo de marcos suprayectivo. Tomando en cuenta lo anterior, defínase $f^\sharp:A_j\to B$ como
     $$f^\sharp(j(a))=f(a)$$
@@ -980,7 +981,7 @@ es un núcleo.
 Además hay, al menos, otras dos maneras de obtener núcleos
 a partir de $a$.
 
-\begin{defn}[Núcleos cerrado, abierto y regular]
+\begin{definition}[Núcleos cerrado, abierto y regular]
 Sea $a\in A$ fijo, y considérense los operadores siguientes.
   \begin{itemize}
     \item $\unuc a:A\to A$, definido como $\unuc a(x)= a\sup x$.
@@ -991,11 +992,11 @@ Sea $a\in A$ fijo, y considérense los operadores siguientes.
   \end{itemize}
   Los operadores $\unuc a$, $\vnuc a$ y $\wnuc a$ son llamados
   los núcleos cerrado, abierto y regular de $a$, respectivamente.
-\end{defn}
-\begin{prop}
+\end{definition}
+\begin{proposition}
   Los operadores $\unuc a$, $\vnuc a$ y $\wnuc a$ son núcleos, para
   cualquier $a\in A$.
-\end{prop}
+\end{proposition}
 \begin{proof}
   En efecto, $\unuc a$ infla, es idempotente
   y monótono. Además, la afirmación de que preserva ínfimos es
@@ -1009,7 +1010,7 @@ Sea $a\in A$ fijo, y considérense los operadores siguientes.
   \ref{lemma:modalidad-w}.
 \end{proof}
 
-\begin{exa}%[Alfredo $\checkmark$ ]
+\begin{example}%[Alfredo $\checkmark$ ]
   Encontremos todos los núcleos del marco
   \[
     A\hspace{10mm} = \hspace{10mm}
@@ -1080,9 +1081,9 @@ Sea $a\in A$ fijo, y considérense los operadores siguientes.
     \end{tikzcd}
     \hspace{10mm} \simeq \hspace{10mm} A
   .\]
-\end{exa}
+\end{example}
 
-\begin{exa}%[Juan $\checkmark$ ]
+\begin{example}%[Juan $\checkmark$ ]
 Sea $S$ un espacio topológico y considemos el marco $\cal O S$.
 Para cualesquiera abiertos $A,X\in \cal OS$, tenemos
   \begin{itemize}
@@ -1094,12 +1095,12 @@ Para cualesquiera abiertos $A,X\in \cal OS$, tenemos
       =(((X'\cup A)^\circ)'\cup A)^\circ
       =(\ol{X\cap A'}\cup A)^\circ$
   \end{itemize}
-\end{exa}
+\end{example}
 
 La razón de la nomenclatura para los núcleos cerrado y abierto se
 ilustra en el siguiente ejemplo.
 
-\begin{exa}%[Alfredo $\checkmark$ ]
+\begin{example}%[Alfredo $\checkmark$ ]
     \label{exe:cociente-abierto-cerrado}
     Sea $S$ un espacio topológico y $U\in\cal OS$ un abierto.
     Observemos que
@@ -1166,9 +1167,9 @@ ilustra en el siguiente ejemplo.
     Como estas funciones son monótonas,
     son un isomorfismo de copos y, por lo tanto,
     un isomorfismo de marcos.
-\end{exa}
+\end{example}
 
-\begin{exa}
+\begin{example}
 En general, dado un marco $A$ y un elemento $a\in A$,
 los mismos argumentos del ejemplo anterior demuestran que
 \begin{align*}
@@ -1179,12 +1180,12 @@ los mismos argumentos del ejemplo anterior demuestran que
 \end{align*}
 donde el último isomorfismo está dado como $y\mapsto y\inf a$
 y $(a\succ x)\mapsfrom x$.
-\end{exa}
+\end{example}
 
 Por otro lado, los $\wnuc a$ se llaman núcleos regulares por el
 caso $a=0$ de un núcleo espacial:
 
-\begin{exa}
+\begin{example}
   Considerando $\wnuc {\emptyset}:\cal O S\to \cal O S$, definido
   como
   \[
@@ -1196,7 +1197,7 @@ caso $a=0$ de un núcleo espacial:
   $$(\cal OS)_{\wnuc {\emptyset}}
   =\{U\in \cal O S : (\overline{U})^{\circ}=U\}
   =\{\text{Abiertos regulares de }S\}.$$
-\end{exa}
+\end{example}
 
 Ahora estudiaremos más sobre los núcleos regulares de un marco.
 El ejemplo anterior nos mostró que, en un espacio topológico $S$,
@@ -1280,13 +1281,13 @@ un espacio topológico forman un álgebra booleana completa.
 El lema \ref{lemma:cocientes-w-bool} nos dice que los núcleos
 regulares producen cocientes booleanos.
 Ahora tenemos el recíproco.
-\begin{thm}
+\begin{theorem}
   Sean $A$ un marco y $j\in NA$.
   Si el cociente $A_j$ es booleano, entonces
   $j=\wnuc a$, donde $a=j(0)$.
   Así, los cocientes booleanos de $A$ están dados, precisamente,
   por los núcleos regulares $\wnuc a$.
-\end{thm}
+\end{theorem}
 \begin{proof}
     Sea $x\in A$. Como $B$ es booleano, $f(x)$ es complementado.
     Basta mostrar que $f(x\succ a)$ es el complemento $\neg f(x)$
@@ -1330,14 +1331,14 @@ Ahora tenemos el recíproco.
     Concluimos que $f(x\succ a)=\neg f(x)$, lo cual finaliza la prueba.
 \end{proof}
 
-\begin{thm}
+\begin{theorem}
   Sea $A$ un marco.
   Si $A$ es un álgebra booleana completa y $j\in NA$,
   entonces $j=\unuc a$, donde $a=j(0)$.
   
   Dado que $A$ es booleano, entonces $A_j$ también lo es,
   así que el resultado anterior también nos da $j=\wnuc a$.
-\end{thm}
+\end{theorem}
 \begin{proof}
     Dado $x\in A$, debemos mostrar que $j(x)=\unuc a(x)=x\sup a$.
     Por un lado, tenemos $0\leq x$, así que $a=j(0)\leq j(x)$.
@@ -1388,14 +1389,14 @@ De todos modos, aquí repetimos una demostración alternativa.
   como se quería.
 \end{proof}
 
-\begin{thm}
+\begin{theorem}
   Si $\phi:T\to S$ es un morfismo de espacios topológicos,
   el núcleo $k:\cal OS\to\cal OS$ del morfismo de marcos
   $\phi^*:\cal OS\to\cal OT$ tiene la descripción
   \[
     k(U) = (\phi[T]' \cup U)^\circ
   .\]
-\end{thm}
+\end{theorem}
 \begin{proof}
     Sabemos que $k=\phi_*\phi^*$.
     Observando que $\phi[\phi^*(U)]=U\cap\phi[T]$, tenemos
@@ -1422,10 +1423,10 @@ el teorema anterior dice que el núcleo
 $k:\cal OS\to\cal OS$ de $\phi^*:\cal OS\to\cal OT$ es
 $k=[\phi[T]']$. En general, $[E]$ siempre es un núcleo.
 
-\begin{prop}
+\begin{proposition}
   Si $S$ es un espacio topológico y $E\subseteq S$ un
   subconjunto, entonces $[E]:\cal OS\to\cal OS$ es un núcleo.
-\end{prop}
+\end{proposition}
 \begin{proof}
   Sean $U,V\in\cal OS$.
   Primero, $[E]$ es inflacionario, pues
@@ -1461,10 +1462,10 @@ $k=[\phi[T]']$. En general, $[E]$ siempre es un núcleo.
   \end{align*}
 \end{proof}
 
-\begin{defn}
+\begin{definition}
   Sea $S$ un espacio topológico.
   Un núcleo $j\in N\cal O S$ es \emph{espacialmente
   inducido} si es de la forma $j=[E]$ para algún
   $E\subseteq S$.
-\end{defn}
+\end{definition}
 

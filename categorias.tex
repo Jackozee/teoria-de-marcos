@@ -30,7 +30,7 @@ sujetos a las condiciones:
   que $f\id_A=f=\id_B f$.
 \end{itemize}
 
-\begin{obs}
+\begin{remark}
 Dependiendo del autor, el conjunto de morfismos, que aquí
 denotamos como $\cal C(A,B)$, se puede escribir como
 $\mathrm{Hom}(A,B)$,
@@ -38,9 +38,9 @@ $\mathrm{Hom}_{\cal C}(A,B)$, $(A,B)$, $[A,B]$, etc.
 Además, pueden exigir que cada $\cal C(A,B)$ sea un conjunto,
 pero para los propósitos de estas notas, esta clase puede no ser
 cardinable.
-\end{obs}
+\end{remark}
 
-\begin{exa}\leavevmode
+\begin{example}\leavevmode
 \begin{itemize}
     \item $\mathbb{Z}$ puede ser visto como categoría de, al
     menos, dos formas diferentes:
@@ -154,7 +154,7 @@ cardinable.
         (\id_k,\id_L)(c,d) &= (\id_k c,\id_L d) = (c,d).
     \end{align*}
 \end{itemize}
-\end{exa}
+\end{example}
 
 
 \section{Funtores}
@@ -168,7 +168,7 @@ cardinable.
     estructura del grupo; un morfismo de anillos respeta la
     estructura del anillo, etc.
     Con esto en mente, tenemos la definición de funtor:
-    \begin{defn}[Funtor]
+    \begin{definition}[Funtor]
         Para dos categorías $\mathcal{C,D}$, un funtor $F:\mathcal{C\to D}$ actua sobre los objetos y las flechas, de manera que consiste de lo siguiente:
         \item Una asignación 
             \begin{align*}
@@ -181,9 +181,9 @@ cardinable.
                 f & \to F(f) \\
             \end{align*}
         Que además cumple que $F(id_A)=id_{FA}$. 
-    \end{defn}
+    \end{definition}
     
-    \begin{exa}
+    \begin{example}
     \item Dada cualquier categoría $\cal C$, el functor identidad
         $\id_{\cal C}:\cal C\to\cal C$ manda todo objeto a sí mismo y todo
         morfismo a sí mismo.
@@ -192,12 +192,11 @@ cardinable.
     torsión, que consta de todos los elementos de $G$ de orden
     finito. Si $G=TG$ decimos que $G$ es de torsión, y si $TG=0$
     decimos que $G$ es libre de torsión.
-    \end{exa}
+    \end{example}
     
-    \begin{exe}%[Armando $\checkmark$]
-        Mostrar que la construcción del grupo de torsión
+    \begin{example}%[Armando $\checkmark$]
+       La construcción del grupo de torsión
         es un endo-funtor $T:\Z\ds\Mod\to\Z\ds\Mod$.
-        \begin{sol}
     Primero, sean $a,b\in T_G$ arbitrarios, entonces, existen $n,m\in\Z^+$ tales que
     \begin{equation*}
         a^n=e,\ b^m=e,\ e\in G \text{ el neutro de } G.
@@ -231,11 +230,10 @@ cardinable.
     Luego, nótese que $(Tf)(e)=f(e)=e$, y se tiene que $e^1 = e$, por tanto, $Tf$ preserva al neutro.\\
     Con esto, $Tf$ es un morfismo de Grupos Abelianos.\\
     Finalmente, es claro que $T1_A=1_{T_A}$, por lo tanto $T$ preserva morfismos, y en conclusión, es un endo-functor de $\Z-\mathrm{Mod}$. 
-\end{sol}
-    \end{exe}
+    \end{example}
 
 Adicionalmente, los functores deben respetar la composición de las categorías en una de dos maneras, que determinan la varianza del functor.
-\begin{defn}[Functor covariante y contravariante]
+\begin{definition}[Functor covariante y contravariante]
     Dados dos objetos $A,B\in\mathcal{C}$, un functor F es covariante si
     \begin{equation*}
         F(A\overset{f}{\to}B)=FA\overset{Ff}{\to}FB
@@ -254,34 +252,34 @@ Adicionalmente, los functores deben respetar la composición de las categorías 
         F(gf)=F(f)F(g)
     \end{equation*}
     si es contravariante.
-\end{defn}
+\end{definition}
 Finalmente, introducimos unas propiedades adicionales de los functores.
-\begin{defn}[Fidelidad]
+\begin{definition}[Fidelidad]
     Un functor $F$ es fiel si, para cada $A,A'\in\mathcal{C}$ la función 
     \begin{align*}
         \mathcal{C}(A,A') & \to \mathcal{D}(FA,FA')\\
         f & \to F(f)
     \end{align*}
     es inyectiva.
-\end{defn}
-\begin{defn}[Plenitud]
+\end{definition}
+\begin{definition}[Plenitud]
     Un functor $F$ es pleno si, para cada $A,A'\in\mathcal{C}$ la función 
     \begin{align*}
         \mathcal{C}(A,A') & \to \mathcal{D}(FA,FA')\\
         f & \to F(f)
     \end{align*}
     es suprayectiva.
-\end{defn}
+\end{definition}
 
 \section{Transformaciones naturales}
     Ahora que podemos comparar categorías mediante los functores, queremos herramientas que nos permitan comparar dos functores entre dos categorías. Para cumplir esta idea, se creó el concepto de transformación natural.
-    \begin{defn}[Transformación natural]
+    \begin{definition}[Transformación natural]
         Dados dos functores $F,G:\mathcal{C\to D}$, una transformación natural $\alpha:F\to G$ es una familia $(F(A)\overset{\alpha_A}{\to}G(A))_{A\in\mathcal{C}}$ de flechas de $\mathcal{D}$ tal que, para toda flecha $(A\overset{f}{\to}A')\in\mathcal{C}$, se cumple que:
         \begin{equation*}
             G(f)\circ\alpha_A = \alpha_{A'}\circ F(f).
         \end{equation*}
         Aquí, los $(\alpha_\bullet)_{A\in\mathcal{C}}$ se llaman los componentes de la transformación.
-    \end{defn}
+    \end{definition}
     Y además, podemos componer transformaciones naturales:\\
     Si $F,G,H:\mathcal{C\to D}$ son functores, y $\alpha:F\to G$,$\beta:G\to H$ son transformaciones naturales entre los functores, entonces, la composición $\beta\alpha:F\to H$ es una transformación natural que va del functor $F$ al functor $H$.
     
@@ -289,12 +287,12 @@ Finalmente, introducimos unas propiedades adicionales de los functores.
     
     Támbien, se denota por $[\mathcal{C,D}]$ a la clase de todas las transformaciones naturales de $\mathcal{C}$ en $\mathcal{D}$, y támbien se le suele llamar la 'exponenciación', y se denota $\mathcal{D^C}$.
     
-    \begin{defn}[Isomorfismo natural]
+    \begin{definition}[Isomorfismo natural]
         Se dice que una transformación natural es un isomorfismo natural precisamente cuando es un isomorfismo en $\mathcal{D^C}$.
-    \end{defn}
-    \begin{exe}%[Yareli $\checkmark$ ]
-    (*) Probar que la exponenciación es una categoría.
-\end{exe}
+    \end{definition}
+    \begin{lemma}%[Yareli $\checkmark$ ]
+    Probar que la exponenciación es una categoría.
+\end{lemma}
 \begin{proof}
   Consideramos la clase de los funtores $F\colon C\to D$. Para las categorías $C,D$ fijas.\\
 Consideramos las transformaciones naturales como morfismos.\\
@@ -356,16 +354,16 @@ Con estos conceptos, se puede construir la definición de categorías equivalent
 
 La idea es como sigue: Queremos que $\mathcal{C\equiv D}$ signifique que existen dos functores $F:\mathcal{C\to D}$, $G:\mathcal{C\leftarrow D}$ tales que $GF\equiv 1_\mathcal{C}$ y $FG\equiv 1_\mathcal{D}$. Esto quiere decir que hay isomorfismos naturales $\eta:1_\mathcal{C}\to Gf$ y $\varepsilon: FG\to1_\mathcal{D}$.
 
-\begin{defn}
+\begin{definition}
     Un functor $F\in [\mathcal{C,D}]$ es escencialmente suprayectivo en objetos si, para todo $D\in\mathcal{D}$, existe un $A\in\mathcal{D}$ tal que $F(A)\simeq D$.
-\end{defn}
+\end{definition}
 
 Con esta definición, podemos observar que un functor es una equivalencia si y sólo si es pleno, fiel y esencialmente suprayectivo en objetos.
-\begin{exe}%[Alfredo $\checkmark$ ]
-    (**) Probar que un funtor es una equivalencia ssi es
+\begin{lemma}%[Alfredo $\checkmark$ ]
+    (**) Un funtor es una equivalencia ssi es
       esencialmente suprayectivo y fielmente pleno.
-\end{exe}
-\begin{sol}
+\end{lemma}
+\begin{proof}
     Primero probaremos el siguiente lema.
     \begin{lemma}
         Si $\alpha:F\to G$ es un isomorfismo natural entre dos funtores
@@ -700,13 +698,13 @@ Con esta definición, podemos observar que un functor es una equivalencia si y s
     \]
     es conmutativo.
     Esta es la condición de naturalidad.
-\end{sol}
+\end{proof}
 
 \section{Adjunciones}
 \label{ss:adjunciones}
 
 En general, dadas dos categorías y dos functores entre ellas, es muy díficil saber a priori cuando estos functores forman una equivalencia, por eso se buscó las condiciones mínimas que se pueden exigir para tratar a dichas categorías 'como si fueran equivalentes'. De esta idea surgió el concepto de adjunción.
-\begin{defn}
+\begin{definition}
     Dadas dos categorías $\mathcal{C,D}$ y dos functores $F:\mathcal{C\to D}$, $G:\mathcal{C\to D}$, diremos que $F$ es el adjunto izquierdo de $G$, y que $G$ es el adjunto derecho de $F$, denotado $F\dashv G$, si $\mathcal{D}(F(A),B)\simeq \mathcal{C}(A,G(B))$, y esto es natural en $A$ y en $B$.
     Es decir, para cualesquiera morfismos $f:A'\to A$
     en $\cal C$ y $g:B\to B'$ en $\cal D$,
@@ -725,7 +723,7 @@ En general, dadas dos categorías y dos functores entre ellas, es muy díficil s
                 \ar[l,"\sim",shift left]
         \end{tikzcd}
     \]
-\end{defn}
+\end{definition}
 La definición anterior quiere decir que hay un iso natural entre los functores:
 
 Si $A\in\mathcal{C}, B\in\mathcal{D}$,
@@ -769,7 +767,7 @@ del diagrama de arriba.
     \end{enumerate}
 \end{axiom}
 
-\begin{exa}
+\begin{example}
 \begin{itemize}
     \item En álgebra surge mucho el ejemplo $free\dashv forget$. Tomando las categorias $\Vect_k$ y $\Con$, tenemos el functor de olvidar $u:\Vect_k\to\Con$, definido por $u((V,+,\cdot))= V$ (olvida la estructura del espacio y lo considera como conjunto), y el functor libre $F:\Con\to\Vect_k$, definido como $F(U)$ es el espacio libre generado por $U$, y estos functores forman una adjunción.
     
@@ -849,7 +847,7 @@ del diagrama de arriba.
         ({-})^B:\Con\to \Con
     \end{equation*}
 \end{itemize}
-\end{exa}
+\end{example}
     
 Recordemos que cuando dos categorías tiene una adjunción:
 \begin{center}
@@ -940,11 +938,11 @@ Esto nos dice que, para cualquier adjunción
 \end{tikzcd}
 \end{center}
 con unidad $\eta$ y co-unidad $\varepsilon$, se cumple que la transposición es inducida por $\eta$ como $\overline{g}=G(g)\eta_A$, para cualquier $g\in\mathcal{B}\panth{FA,B}$, y dualmente por $\varepsilon$ como $\overline{f}=\varepsilon_BF(f)$, para cualquier $f\in\mathcal{A}\panth{A,GB}$.
-\begin{exe}%[Yareli $\checkmark$ ]
+\begin{lemma}%[Yareli $\checkmark$ ]
   Las transposiciones inducidas por la
   unidad y counidad coinciden con las transposiciones
   originales.
-\end{exe}
+\end{lemma}
 \begin{proof}
     Recordemos que, por compatibilidad:
     \begin{align*}

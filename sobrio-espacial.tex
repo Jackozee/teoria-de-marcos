@@ -36,7 +36,7 @@ es continua.
 A $\Phi_S(x):S\to\pt\cal OS$ le llamamos
 la reflexión sobria de $S$, debido a la siguiente definición.
 
-\begin{defn}
+\begin{definition}
     Decimos que un espacio topológico $S$ es sobrio si
     cada abierto $\inf$-irreducibles es de la forma
     $\Phi_S(x)$ para un único punto $x\in S$.
@@ -50,7 +50,7 @@ la reflexión sobria de $S$, debido a la siguiente definición.
     
     Denotamos como $\Sob$ a la categoría formada por
     los espacios topológicos sobrios y sus funciones continuas.
-\end{defn}
+\end{definition}
 
 \begin{lemma}
     Sea $S$ un espacio topológico.
@@ -128,7 +128,7 @@ obtenemos el siguiente resultado.
     irreducible de $S$ tiene un único punto genérico.
 \end{proof}
 
-\begin{exa}
+\begin{example}
     Dado un anillo conmutativo $R$,
     el espectro primo $\mathrm{Spec}R$ es un espacio sobrio.
     
@@ -136,7 +136,7 @@ obtenemos el siguiente resultado.
     de la forma $c=\{p\}$ (para un primo $p\in\Z$) o $c=\mathrm{Spec}\Z$.
     En el primer caso, el punto genérico es $p$.
     De otro modo, tenemos $\ol{\{0\}}=\mathrm{Spec}\Z$.
-\end{exa}
+\end{example}
 
 %\section*{SESIÓN 15: 4 NOV}
 
@@ -149,7 +149,7 @@ un morfismo $\eta_A:A\to NA$ que resuelve el problema de complementación
 Ahora queremos explorar una situación parecida, para una topología
 $\cal OS$, aunque solo consideraremos topologías en el conjunto $S$.
 
-\begin{defn}
+\begin{definition}
     Sea $S$ un espacio topológico y $\cal OS$ su topología.
     Definimos $\cal O\prs f{}S$ como la topología más pequeña
     en $S$ tal que todo $u\in\cal OS$ es abierto y cerrado.
@@ -164,9 +164,9 @@ $\cal OS$, aunque solo consideraremos topologías en el conjunto $S$.
     $\cal O\prs f{}S$ se llama la \emph{topología de Skula}
     de $S$, y al conjunto $S$ equipado con $\cal O\prs f{}S$
     lo denotamos $\prs f{}S$.
-\end{defn}
+\end{definition}
 
-\begin{exa}
+\begin{example}
     Sea $\R$ el conjunto de los números reales.
     Consideraremos los espacios topológicos
     Además, sean $\prs l{}\R$, $\prs{}m\R$
@@ -196,7 +196,7 @@ $\cal OS$, aunque solo consideraremos topologías en el conjunto $S$.
         \cal O\prs f{}(\prs l{}\R)
         = \cal O\prs r{}\R
     .\]
-\end{exa}
+\end{example}
 
 Dado que la inclusión $\iota:\cal OS\to\cal O\prs f{}S$
 es un morfismo de marcos que resuelve el problema de complementación,
@@ -221,7 +221,7 @@ Recordemos que definimos el espacio de puntos de un marco
 como el conjunto de sus elementos $\inf$-irreducibles.
 Ahora veremos otras dos construcciones equivalentes.
 
-\begin{defn}
+\begin{definition}
     Sea $A$ es una retícula.
     Un subconjunto $F\subseteq A$ es un filtro si
     \begin{itemize}
@@ -248,9 +248,9 @@ Ahora veremos otras dos construcciones equivalentes.
         \item es propio y
         \item siempre que $\Sup X\in F$, entonces existe $x\in X\cap F$.
     \end{itemize}
-\end{defn}
+\end{definition}
 
-\begin{exa}
+\begin{example}
     Sean $S$ un espacio topológico y $x\in S$.
     Entonces el conjunto de vecindades abiertas de $x$
     \[
@@ -267,18 +267,18 @@ Ahora veremos otras dos construcciones equivalentes.
     Además,  $\cal U(x)$ es propio, ya que $\emptyset\nin\cal U(x)$.
     Finalmente, si $X\subseteq \cal OS$ es tal que $x\in \Sup X$,
     entonces existe $u\in X$ tal que $x\in u$.
-\end{exa}
+\end{example}
 
 %\section*{SESIÓN 16: 9 NOV}
 
-\begin{defn}
+\begin{definition}
     Un caracter en un marco $A$ es un morfismo
     \[
         \chi:A\to 2
     .\]
-\end{defn}
+\end{definition}
 
-\begin{thm}
+\begin{theorem}
     Las funciones
     \[
         \begin{aligned}
@@ -287,7 +287,7 @@ Ahora veremos otras dos construcciones equivalentes.
             p &\mapsto F_p=\{a\in A\mid a\nleq p\} \\
             \Sup\{a\in A\mid a\nin F\} = p_F &\mapsfrom F
         \end{aligned}
-        \hspace{20mm}
+        \qquad
         \begin{aligned}
             \Cp(A) &\rightleftarrows \Frm(A,2) \\
             F &\mapsto \chi_F \\
@@ -295,7 +295,7 @@ Ahora veremos otras dos construcciones equivalentes.
         \end{aligned}
     \]
     son isomorfismos de copos.
-\end{thm}
+\end{theorem}
 \begin{proof}
     \textbf{Primera parte.}
     Veamos que las funciones
@@ -674,7 +674,7 @@ espaciales $A,B$ y espacios $S,T$ sobrios, tenemos
     &\simeq \Sp(\cal OT,\cal OS).
 \end{align*}
 Por lo tanto, tenemos el resultado
-\begin{thm}
+\begin{theorem}
     La adjunción contravariante
     \[
         \begin{tikzcd}
@@ -687,7 +687,7 @@ Por lo tanto, tenemos el resultado
     \[
         \Sp^\op \simeq \Sob.
     \]
-\end{thm}
+\end{theorem}
 
 \section{\tps{$\Sp$}{Sp} y \tps{$\Sob$}{Sob} son reflexivas.}
 Ahora veremos que las subcategorías $\Sp$ de $\Frm$ y
@@ -742,7 +742,7 @@ Se sigue que $\pt\cal O\dashv i$.
 
 \section{Dualidad de Stone}
 
-\begin{defn}
+\begin{definition}
     Sea $A$ una retícula completa.
     Decimos que un elemento $a\in A$ es compacto si,
     para todo $S\subseteq A$ tal que $a\leq\Sup S$,
@@ -751,7 +751,7 @@ Se sigue que $\pt\cal O\dashv i$.
     
     Al conjunto de elementos compactos
     de $A$ lo denotamos como $\cal KA$.
-\end{defn}
+\end{definition}
 
 Nótese que $\cal KA$ es cerrado bajo supremos finitos.
 En efecto, sean $a,b\in\cal KA$.
@@ -762,7 +762,7 @@ tales que $a\leq\Sup S$ y $b\leq\Sup T$.
 Luego, $a\sup b\leq\Sup\{S\cup T\}$ con $S\cup T\subseteq X$ finito.
 Claramente, $0\in\cal KA$.
 
-\begin{defn}
+\begin{definition}
     Decimos que un marco $A$ es coherente si
     \begin{itemize}
         \item Todo elemento de $A$ es supremo de elementos
@@ -773,9 +773,9 @@ Claramente, $0\in\cal KA$.
     \end{itemize}
     En particular, dado un marco coherente $A$, la retícula
     $\cal KA$ es distributiva.
-\end{defn}
+\end{definition}
 
-\begin{defn}
+\begin{definition}
     Sea $D$ una retícula distributiva.
     Un ideal de $D$ es un subconjunto $I\subseteq D$ tal que
     \begin{itemize}
@@ -784,12 +784,13 @@ Claramente, $0\in\cal KA$.
         \item Es cerrado bajo supremos finitos.
     \end{itemize}
     Al conjunto de ideales de $D$ lo denotamos como $\cal ID$.
-\end{defn}
+\end{definition}
 
 \begin{lemma}
     Sea $D$ una retícula distributiva.
     El conjunto $\cal ID$ de ideales de $D$ es un marco,
-    con el orden de contención (el heredado de $\cal PD$).
+    con el orden de contención (el heredado del conjunto potencia
+    $\cal PD$).
     
     Nótese que $\cal ID$ no es un submarco de $\cal PD$
     ni de $\cal LD$, pues $\emptyset\nin\cal ID$.
@@ -861,7 +862,7 @@ Claramente, $0\in\cal KA$.
     Se sigue que $\cal ID$ es marco.
 \end{proof}
 
-\begin{thm}
+\begin{theorem}
     \begin{itemize}
         \item Si $A$ es un marco coherente, entonces
         \[
@@ -877,7 +878,7 @@ Claramente, $0\in\cal KA$.
     Nótese: este teorema implica que los marcos coherentes
     son exactamente los marcos de ideales de las retículas
     distributivas.
-\end{thm}
+\end{theorem}
 \begin{proof}
     \begin{itemize}
         \item
@@ -958,7 +959,7 @@ Claramente, $0\in\cal KA$.
     \end{itemize}
 \end{proof}
 
-\begin{defn}
+\begin{definition}
     Sean $A$ y $B$ marcos coherentes.
     Decimos que un morfismo de marcos $f:A\to B$ es coherente
     si $f(\cal KA)\subseteq\cal KB$.
@@ -966,7 +967,7 @@ Claramente, $0\in\cal KA$.
     Los marcos coherentes, junto con los morfismos coherentes,
     forman una categoría, a la cual denotamos como $\CohFrm$.
     Nótese que tenemos un funtor de inclusión $\CohFrm\to\Frm$.
-\end{defn}
+\end{definition}
 
 Por definición, un morfismo de marcos coherentes $f:A\to B$
 se restringe a un morfismo de retículas (distributivas)
@@ -993,7 +994,7 @@ y $g\mapsto\cal Ig$ respetan la identidad y la composición
 de morfismos, por lo cual obtenemos funtores
 $\cal I:\DLat\to\CohFrm$ y $\cal K:\CohFrm\to\DLat$.
 
-\begin{thm}
+\begin{theorem}
     Los funtores
     \[
         \begin{tikzcd}
@@ -1002,7 +1003,7 @@ $\cal I:\DLat\to\CohFrm$ y $\cal K:\CohFrm\to\DLat$.
         \end{tikzcd}
     \]
     constituyen una equivalencia.
-\end{thm}
+\end{theorem}
 \begin{proof}
     Dado que, para toda retícula distributiva $D$
     y todo marco coherente $A$,  $\kappa_D$ y $\iota_A$
@@ -1099,7 +1100,7 @@ que todo marco coherente es espacial.
         Notemos que $M\neq A$, pues $d\nin M$.
         Para mostrar que es primo, veremos que $x,y\nin M$ implica
         $x\inf y\nin M$.
-        En efecto, si $x,y\nin M$,
+        En efecto, si $x,y\not\in M$,
         entonces tenemos
         \begin{align*}
             M&<M\sup \down x=j(M\cup\{x\}), \\
@@ -1170,7 +1171,7 @@ por los puntos 2 y 3.
     Luego, $p$ es el elemento primo que buscábamos.
 \end{proof}
 
-\begin{defn}
+\begin{definition}
     Sea $S$ un espacio sobrio.
     Decimos que $S$ es coherente
     si $\cal OS$ es un marco coherente.
@@ -1183,7 +1184,7 @@ por los puntos 2 y 3.
     
     Los espacios coherentes con sus funciones continuas
     coherentes forman una categoría llamada $\CohTop$.
-\end{defn}
+\end{definition}
 
 De la definición anterior,
 es claro que la equivalencia $\Sob\simeq(\Sp)^\op$
@@ -1191,13 +1192,13 @@ se restringe a una equivalencia $\CohTop\simeq(\CohFrm)^\op$.
 (Nota: en algunos lugares de la literatura, a los espacios
 coherentes se les llama espacios espectrales).
 
-\begin{thm}[Dualidad de Stone generalizada]
+\begin{theorem}[Dualidad de Stone generalizada]
     La categoría de espacios coherentes es dual
     a la categoría de retículas distributivas:
     \[
         \CohTop \simeq (\DLat)^\op
     .\]
-\end{thm}
+\end{theorem}
 \begin{proof}
     Se sigue de lo anterior:
     \[
@@ -1208,7 +1209,7 @@ coherentes se les llama espacios espectrales).
 Un caso especial del teorema anterior es
 la dualidad de Stone clásica.
 
-\begin{defn}
+\begin{definition}
     Decimos que un espacio topológico es cero dimensional
     si existe una base de la topología que consiste en
     conjuntos cerrados-abiertos.
@@ -1218,7 +1219,7 @@ la dualidad de Stone clásica.
     
     Los espacios de Stone y las funciones continuas forman
     una categoría que denotamos como $\Stone$.
-\end{defn}
+\end{definition}
 
 Se puede probar que un espacio topológico es de Stone
 si, y solo si, es Hausdorff y coherente,
@@ -1226,10 +1227,10 @@ y que todas las funciones continuas entre espacios de Stone
 son coherentes, de modo que la dualidad anterior
 se restringe como sigue.
 
-\begin{thm}[Dualidad de Stone]
+\begin{theorem}[Dualidad de Stone]
     \[
         \Stone \simeq (\Bool)^\op.
     \]
-\end{thm}
+\end{theorem}
 
 %\section*{Fin de la sesión 23 (2 de diciembre)}

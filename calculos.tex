@@ -9,7 +9,7 @@ también.
 Sin embargo, aún queda encontrar una descripción para, al menos,
 algunos supremos en $NA$.
 Comenzaremos con una observación sencilla.
-\begin{obs}[Sobre conjuntos dirigidos]
+\begin{remark}[Sobre conjuntos dirigidos]
   Dadas dos derivadas $f$ y $g$ en $A$,
   para todo $a\in A$ tenemos $a\leq g(a)$ y,
   aplicando $f$, se sigue que $f(a)\leq f(g(a))$.
@@ -23,7 +23,7 @@ Comenzaremos con una observación sencilla.
   \[
     f\psup g \leq fg\inf gf
   .\]
-\end{obs}
+\end{remark}
 
 Sea $J\subseteq NA$ un conjunto no vacío de núcleos.
 Como $J\subseteq SA$, entonces $\pSup J$ es el supremo de $J$ en $SA$.
@@ -68,14 +68,14 @@ es el supremo de $J^\circ$ en $PA$.
 
 Uno de los pasos de la demostración anterior
 nos permite mostrar un resultado bastante útil.
-\begin{cor}
+\begin{corollary}
     Sea $J$ una familia de núcleos.
     Si $j\in J^\circ$ es una cota superior de $J$
     y es idempotente, entonces $j=\Sup J$ en $NA$.
     
     En particular, esto sucede cuando $J$ es finito y todos los
     elementos de $J$ aparecen en $j=j_1\cdots j_n\in J^\circ$.
-\end{cor}
+\end{corollary}
 \begin{proof}
     Nótese que $j=j_1\cdots j_n\in J^\circ$
     es un prenúcleo porque es composición de prenúcleos.
@@ -201,7 +201,7 @@ Por lo tanto $\unuc a$ y $\vnuc a$ son complementados.
       &\iff a\leq\iota(j),
     \end{align}
 \end{proof}
-\begin{cor}[El mayor cerrado por debajo y el mayor abierto por arriba]
+\begin{corollary}[El mayor cerrado por debajo y el mayor abierto por arriba]
   De la primera y la última equivalencias del lema anterior
   \begin{align}
     \unuc a\leq j &\iff a\leq j(0), &
@@ -210,7 +210,7 @@ Por lo tanto $\unuc a$ y $\vnuc a$ son complementados.
   se sigue que $\unuc{j(0)}$ es el mayor núcleo cerrado que está
   debajo de $j$ y que $\vnuc {\iota(j)}$ es el menor núcleo abierto
   que está encima de $j$.
-\end{cor}
+\end{corollary}
 
 \begin{lemma}\label{lemma:sup-is-comp}
   Sea $A$ un marco y $j,k\in NA$ núcleos.
@@ -345,7 +345,7 @@ Por lo tanto $\unuc a$ y $\vnuc a$ son complementados.
     La otra desigualdad ($j\leq dj$) se sigue porque $d$ infla.
 \end{proof}
 
-\begin{thm}
+\begin{theorem}
     Sean $A$ un marco y $a\in A$.
     Si $k\in NA$ es un núcleo tal que $\unuc a\leq k\leq\wnuc a$,
     entonces, para todo $j\in NA$ se tiene
@@ -353,7 +353,7 @@ Por lo tanto $\unuc a$ y $\vnuc a$ son complementados.
         \wnuc a\sup j = \wnuc a j k = \wnuc b
     ,\]
     donde $b=\wnuc a(j(a))$.
-\end{thm}
+\end{theorem}
 \begin{proof}
     Para la primera igualdad,
     basta ver que el prenúcleo $h=\wnuc ajk$ es idempotente
@@ -422,15 +422,15 @@ Por lo tanto $\unuc a$ y $\vnuc a$ son complementados.
     como se quería.
 \end{proof}
 
-\begin{cor}
+\begin{corollary}
     Tomando $a=0$ en el resultado anterior,
     vemos que todo $j\in NA$ satisface
     \[
         j\sup\wnuc 0 = \wnuc{\neg\neg j(0)}
     .\]
-\end{cor}
+\end{corollary}
 
-\begin{exa}%[Alfredo $\checkmark$]
+\begin{example}%[Alfredo $\checkmark$]
   Consideremos el marco
   \[
       9 \hspace{10mm} = \hspace{10mm} 
@@ -483,19 +483,19 @@ Por lo tanto $\unuc a$ y $\vnuc a$ son complementados.
           \hline
       \end{array}
   \]
-\end{exa}
+\end{example}
 
 
 \section{Descomposiciones de núcleos}
 
-\begin{thm}[La representación en núcleos abiertos y cerrados]
+\begin{theorem}[La representación en núcleos abiertos y cerrados]
   Sea $A$ un marco y $j$ un núcleo en $A$.
   Entonces
   \[
     j = \Sup\{ \unuc{j(a)}\inf\vnuc a \mid a\in A\}
   \]
   en $NA$.
-\end{thm}
+\end{theorem}
 \begin{proof}
 Sea $k=\bigvee\{\unuc {j(a)}\wedge \vnuc a\mid a\in A\}$.
 Para cualesquiera $a,x\in A$, tenemos
@@ -523,10 +523,10 @@ es decir: $j(a)=(\unuc {j(a)}\wedge \vnuc a)(a)\leq k(a)$,
 por lo cual $j\leq k$.
 \end{proof}
 
-\begin{cor}
+\begin{corollary}
   Si $A$ es un marco finito, entonces su ensamble $NA$ es un
   álgebra booleana completa.
-\end{cor}
+\end{corollary}
 \begin{proof}
 Por el teorema anterior cualquier $j\in NA$ tiene complemento, pues $j$ se puede expresar como un supremo finito de elementos complementados. Por lo tanto $NA$ es un álgebra booleana completa.
 \end{proof}
@@ -714,7 +714,7 @@ los que corresponden a sus cocientes booleanos.
 Ahora probaremos que todo núcleo se puede descomponer en
 núcleos regulares.
 
-\begin{thm}[La descomposición en núcleos regulares]
+\begin{theorem}[La descomposición en núcleos regulares]
     Sea $A$ un marco y $j:A\to A$ un núcleo.
     Entonces
     \[
@@ -724,7 +724,7 @@ núcleos regulares.
     .\]
     Como $\{\wnuc{j(a)}\mid a\in A\}=\{\wnuc a \mid a\in A_j\}$,
     basta probar la primera igualdad.
-\end{thm}
+\end{theorem}
 \begin{proof}
     Sea $l = \Inf\{\wnuc{j(a)}\mid a\in A\}$.
     En \ref{ssec:calculos} probamos que

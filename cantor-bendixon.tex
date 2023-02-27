@@ -2,8 +2,6 @@
 
 %\section*{SESIÓN 14: 28 OCT (parte 2)}
 
-
-
 Recordemos que, dada una derivada $f\in DA$,
 definimos $\infty$ como el menor ordinal donde la cadena
 \[
@@ -58,9 +56,9 @@ Un conjunto es booleano si para cualquier elemento dentro del conjunto, este tie
 \item La derivada de Cantor-Bendixson mide que tan booleano es un conjunto
 \end{itemize}
 
-\begin{defn}
+\begin{definition}
 Para un marco $A$ y elementos $a\leq b$, el intervalo $[a,b]$ es booleano si, como marco, este es booleano.
-\end{defn}
+\end{definition}
 
 \noindent
 En otras palabras, si $x\in[a,b]$ existe un único elemento $y\in[a,b]$ tal que $x\wedge y=a$ y $x\vee y=b$. Cuando existe este elemento $y$ es de la forma $$y=(x\succ a)\wedge b\mbox{  (ó }x=(y\succ a)\wedge b).$$
@@ -97,10 +95,10 @@ Resta ver $z\vee y=b$. Sabemos que $x=z(x)\vee (x\wedge y)=(z(x)\vee x)\wedge (z
 Además, $b=\bigvee X\leq \bigvee\{z(x)\vee y|x\in X\}$. Por lo tanto $y\vee z=b.$ Así,hemos probado que el intervalo $[a,b]$ es booleano y de esta forma $b=\bigvee X\in X$.
 \end{proof}
 
-\begin{defn}
+\begin{definition}
 Para cualquier marco $A$, si $a,x\in A$, decimos que $x$  es \textbf{esencialmente mayor que} $a$ $(a\lessdot x)$ si y sólo si $$a\leq x\mbox{  y  }(x\succ a)=a.$$
 Con esta relación entre elementos de un marco ya podemos definir la \textbf{derivada de Cantor-Bendixson} como $$cbd^A(a)=\bigwedge\{x\in A|a\lessdot x\}.$$
-\end{defn}
+\end{definition}
 
 \begin{lemma}\label{Lema46}
 Sea $A\in$ \textit{Frm}. Para cualquier $a\in A$, $[a,cbd^A(a)]$ es el intervalo booleano más grande arriba de $a$. Es decir, para cualquier $x\in A$, si $[a,x]$ es booleano, entonces $x\leq cbd^A(a)$.
@@ -168,9 +166,9 @@ Notemos que $cbd_j^{A}\neq cbd^{A_j}$ pues el primero es un operador en $A$ y el
 
 En lo que sigue, cuando sea claro el marco en el que se este trabajando omitiremos escribir el supraíndice.
 
-\begin{thm}
+\begin{theorem}
 Sea $A\in$ \textit{Frm} y $j\in NA$, entonces $cbd_j^{A}\in PA$.
-\end{thm}
+\end{theorem}
 
 \begin{proof}
 Sea $j\in NA$ y $x\in A$. Tomemos $e_x=j\circ u_x\circ v_x\circ j$. Como $j, u_x, v_x\in NA$, entonces $e_x$ es al menos un prenúcleo. Sea $e=\bigwedge\{e_x|x\in A\}$, entonces $e\in PA$, pues es ínfimo de prenúcleos.
@@ -229,13 +227,13 @@ Por lo tanto $(cbd_j^A)^\infty$ es el menor núcleo que cumple la propiedad menc
 
 Si consideramos $j=id$ en el lema anterior obtenemos el siguiente corolario.
 
-\begin{cor}
+\begin{corollary}
 Para cualquier $A\in$\textit{Frm}, $(cbd^A)^\infty$ es el núcleo mas pequeño que colapsa a todos los intervalos booleanos de $A$.
-\end{cor}
+\end{corollary}
 
-\begin{thm}
+\begin{theorem}
 Sea $A\in$\textit{Frm}, entonces para cualesquiera $j\in NA$ y $a\in A$ $$cbd_j^A(a)=(w_{j(a)}\succ j)(a)$$
-\end{thm}
+\end{theorem}
 Notemos que la implicación que se enuncia en el Teorema es en $NA$ que no se define como la evaluación puntual.
 
 \begin{proof}
@@ -312,9 +310,9 @@ Así, $k(a)\leq y$, para cualquier $y\in A_j$ que cumpla $j(a)\lessdot y$. Enton
 Por lo tanto $k(a)=b$.
 \end{proof}
 
-\begin{cor}
+\begin{corollary}
 Sea $A\in$ \textit{Frm} para cualquier $j\in NA$, $cbd_j^A=tp\Leftrightarrow j=w_a$, donde $a=j(0)$.
-\end{cor}
+\end{corollary}
 
 \begin{proof}
 Sean $A\in$ \textit{Frm} y $j\in NA$. Sea $a=j(0)$. Como $j(j(0))=j(0)$, entonces $j\leq w_{j(0)}=w_a$. Por el teorema anterior $cbd_j^A(0)=(w_a\succ j)(0)$. De aquí que
@@ -360,9 +358,9 @@ ellas.
 
 Siguiendo esta idea podemos construir la derivada para los distintos niveles de la torre de ensambles.
 
-\begin{thm}\label{Teo24}
+\begin{theorem}\label{Teo24}
 Sea $A\in$ \textit{Frm}, entonces $(cbd_j^A)^\infty=Cbd^A(j)$. Para cada $j\in NA$.
-\end{thm}
+\end{theorem}
 
 \begin{proof}Veamos que $(cbd_j^A)^\infty\leq Cbd^A(j)$ y $Cbd^A(j)\leq (cbd_j^A)^\infty$.\\
 Sean $j,k\in NA$ tales que $j\lessdot k$. Sea $x\in A$ y definimos $a=k(x)$, entonces $a\leq j(a)\leq k(a)=k(k(x))=k(x)=a$, es decir, $j(a)=k(a)=a$. Así, $$k\leq w_a\Rightarrow (w_a\succ j)\leq (k\succ j)=j$$ 
@@ -467,7 +465,7 @@ $\Theta=\mathbb{CBD}^\infty(ID)$\\
 $\Xi=\ldots$
 \end{itemize}
 
-\begin{thm}
+\begin{theorem}
 Para $A\in$\textit{Frm}
 \begin{enumerate}
 \item $A$ es booleano $\Leftrightarrow cbd(0)=1$
@@ -476,7 +474,7 @@ Para $A\in$\textit{Frm}
 \item $N^3A$ es booleano $\Leftrightarrow \xi=tp\Leftrightarrow\xi(0)=1$
 \item $\ldots$
 \end{enumerate}
-\end{thm}
+\end{theorem}
 
 \begin{proof}
 \begin{itemize}
@@ -487,23 +485,23 @@ Para $A\in$\textit{Frm}
 \end{itemize}
 \end{proof}
 
-\begin{thm}
+\begin{theorem}
 Para $A\in$ \textit{Frm} y $j\in NA$ son equivalentes las siguientes condiciones:
 \begin{enumerate}
 \item $cbd_j=j$
 \item $Cbd(j)=j$
 \item $\Delta(j)=j$.
 \end{enumerate}
-\end{thm}
+\end{theorem}
 
-\begin{cor}
+\begin{corollary}
 Para $A\in$ \textit{Frm} son equivalentes las siguientes condiciones:
 \begin{enumerate}
 \item $cbd=id$
 \item $\delta=id$
 \item $\theta=id$.
 \end{enumerate}
-\end{cor}
+\end{corollary}
 
 \section{El caso espacial}
 El contexto original en que se definió la derivada de
@@ -511,12 +509,12 @@ Cantor-Bendixson fue para espacios topológicos.
 Veremos cómo se relaciona esta construcción con la construcción
 de arriba.
 
-\begin{defn}
+\begin{definition}
 Si $S$ es un espacio topológico y $Y, X\subseteq S$ subconjuntos cerrados del espacio. Decimos que $Y$ es una parte no esencial de $X$, denotado por $Y\sqsubset X$ si 
 $$Y\subseteq X \quad\mbox{ y }\quad X=(X-Y)^-.$$ 
 Además para cualquier $X\subseteq S$ cerrado, $X\in CS$
 $$lim_S(X)=\left(\bigcup\{Y\in CS|Y\sqsubset X\}\right)^-$$
-\end{defn}
+\end{definition}
 
 \noindent
 Recordemos que $OS$ es un marco y la implicación en $OS$ esta dada por $$(V\succ U)=(V'\cup U)^\circ$$ 
@@ -564,7 +562,7 @@ Por la dualidad que se tiene entre $cbd$ y $lim$, podemos traducir un problema d
 \end{split}
 \end{equation*}
 
-\begin{exa}
+\begin{example}
 \begin{enumerate}
 \item El operador cerradura para $cbd$, $cbd^\infty$, puede ser tan grande como queramos.
 
@@ -587,11 +585,6 @@ Entonces, al obtener $Cbd(id)=cbd^\infty=\delta$, nos quedará que $\Gamma_\delt
 pero $(b\succ a)=a\Leftrightarrow a<b$. Entonces $cbd(a)=\bigwedge\{0\leq b\leq a\mbox{  y  }a<b\}=a$. Así, $cbd=id\Rightarrow cbd^\infty=id$, por el corolario 3 $\theta=id$. 
 
 \end{enumerate}
-\end{exa}
-
-
-
-
-
+\end{example}
 
 

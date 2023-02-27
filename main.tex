@@ -1,25 +1,25 @@
-\documentclass[12pt,letterpaper,titlepage,draft]{book}
+\documentclass[12pt,letterpaper,draft]{book}
 \usepackage[left=3.5cm,right=3.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
 \usepackage[spanish]{babel}
-\usepackage{amsmath,amsfonts,amsthm,mathrsfs,amssymb,todonotes}
-\usepackage{enumitem,mathtools,thmtools,tikz-cd,multicol,stmaryrd}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{enumitem,mathtools,thmtools,tikz-cd,multicol}
 \usetikzlibrary{babel}
+\usepackage{stmaryrd,todonotes}
 \usepackage{wasysym,titlesec,nameref}
+\usepackage{mathrsfs} % fuente caligráfica. Queda en mathscr.
+\usepackage{eucal} % mathcal Euler. El mathcal original queda en CMcal
 \usepackage{palatino}
 \usepackage[final]{microtype}
 \usepackage[final]{hyperref}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
-    filecolor=cyan,
-    citecolor=blue,     
+    filecolor=magenta,      
     urlcolor=cyan,
-    pdftitle={main},
-    pdfpagemode=FullScreen,
+    pdftitle={teoria-de-marcos-draft},
+%    pdfpagemode=FullScreen,
     }
-
-\usepackage[mathscr]{eucal}
 
 %\setenumerate[0]{label=(\alph*)}
 
@@ -36,31 +36,22 @@
   \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
   \quad\hbox{\ensuremath{#1}}}
 \let\emptyset\varnothing
-\newtheorem{thm}{Teorema}[chapter]
-\newtheorem{defn}[thm]{Definición}
-\newtheorem{obs}[thm]{Observación}
-\newtheorem{exe}{Ejercicio}
-\newtheorem{lemma}[thm]{Lema}
-\newtheorem{cor}[thm]{Corolario}
-\newtheorem{prop}[thm]{Proposición}
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{remark}[theorem]{Observación}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{exercise}{Ejercicio}
 \theoremstyle{definition}
-\newtheorem*{axiom}{Axioma}
-\newtheorem*{theorem*}{Teorema}
-\newtheorem{exa}[thm]{Ejemplo}
-%\newenvironment{exa}{Ejemplo}
-%{
- 
-%\begin{exatemp}#1}{%
- %     \xqed{\blacksquare}\end{exatemp}%
-%}
-
-\newtheorem*{soltemp}{Solución}
-\newenvironment{sol}[1]{%
-    \begin{soltemp}#1}{%
-    \xqed{\blacksquare}\end{soltemp}%
+\newtheorem{axiom}{Axioma}
+\newtheorem{exatemp}[theorem]{Ejemplo}
+\newenvironment{example}[1] {
+    \begin{exatemp}#1}{%
+      \xqed{\blacksquare}\end{exatemp}%
 }
 
-\newcommand\nin{{\not\in}}
+\newcommand\nin{\not\in}
 \newcommand\down{{\downarrow}}
 \newcommand\ol[1]{\overline{#1}}
 \newcommand\Inf{\bigwedge}
@@ -69,7 +60,7 @@
 %\renewcommand\sup{\vee}
 \addto\extrasspanish{ \renewcommand{\inf}{\wedge} }
 \addto\extrasspanish{ \renewcommand{\sup}{\vee} }
-\renewcommand\phi{\varphi}
+\let\phi\varphi
 \newcommand\psup{%
     {\;\stackrel{\raisebox{-3pt}{\scalebox{0.4}{$\bullet$}}}{\vee}\;}
   }%
@@ -85,15 +76,16 @@
 \newcommand{\Grp}{\mathrm{Grp}}
 \newcommand{\panth}[1]{\left({#1}\right)}
 \newcommand{\pangle}[1]{\langle{#1}\rangle}
-\renewcommand\cal[1]{\mathcal{#1}}
 \newcommand\nti[1]{\Lambda^{\text{*}}({#1})}
+\renewcommand\cal[1]{\mathcal{#1}}
 \newcommand\scr[1]{\mathscr{#1}}
+%arrows
 \newcommand\xto[1]{\xrightarrow{#1}}
 \newcommand\from{\leftarrow}
 \newcommand\rmono{\hookrightarrow}
 \newcommand\lar[1]{\xleftarrow{#1}}
 \newcommand\simr{{\sim}}
-\newcommand\ssi{\hspace{5mm}\text{ si, y solo si }\hspace{5mm}}
+\newcommand\ssi{\qquad\text{ si, y solo si }\qquad}
 \newcommand\com[2]{\ar[equal,from={#1},to={#2},shorten=5mm]}
 \newcommand\unuc[1]{\mathbf u_{#1}}
 \newcommand\vnuc[1]{\mathbf v_{#1}}
@@ -108,16 +100,11 @@
 }}
 \let\prs\prescript
 
-%\renewcommand\proofname{Demostraci\'on}
-%\renewcommand\partname{Parte}
-%\renewcommand\chaptername{Cap\'itulo}
-%\renewcommand\contentsname{Contenido}
-%\renewcommand\listtheoremname{Lista de ejercicios}
-
+%categorías
 \newcommand{\Frm}{\mathrm{Frm}}
-\newcommand{\Con}{\EuScript{Set}}
+\newcommand{\Con}{\mathscr{S}\mathrm{et}}
 \newcommand{\Top}{\mathrm{Top}}
-\newcommand{\Pos}{\mathscr{P}os}
+\newcommand{\Pos}{\mathscr{P}\mathrm{os}}
 \newcommand{\Lat}{\mathrm{Lat}}
 \newcommand{\SupLat}{c\EuScript{P}os^\sup}%{\mathrm{SupSLat}}
 \newcommand{\InfLat}{\mathrm{cPos}^\inf}%{\mathrm{InfSLat}}
@@ -175,9 +162,9 @@
 \input{categorico}
 \input{cocientes}
 
- \part{El ensamble} \label{part:ensamble}
+\part{El ensamble} \label{part:ensamble}
 
- \input{derivadas}
+\input{derivadas}
 \input{calculos}
 \input{encaje}
 

@@ -18,7 +18,7 @@ familias de operadores monótonos.
 
 \section{Familias de derivadas}
 
-\begin{defn}[Derivadas]
+\begin{definition}[Derivadas]
   Una inflación o derivada en $A$ es una función $f:A\to A$ que
   es monótona e infla.
   Es decir:
@@ -28,22 +28,22 @@ familias de operadores monótonos.
   \end{itemize}
   Usaremos la notación $DA$ para el conjunto de todas las
   derivadas en $A$.
-\end{defn}
+\end{definition}
 Notemos que un operador cerradura (definición
 \ref{def:operador-cerradura}) es una derivada idempotente, y
 recordemos que usamos la notación $CA$ para el conjunto de los 
 operadores cerradura en $A$.
 
-\begin{defn}[Derivadas estables]
+\begin{definition}[Derivadas estables]
   Una derivada $f\in DA$ es \emph{estable} si
   \[
     f(x)\inf y \leq f(x\inf y)
   \]
   para cualesquiera $x,y\in A$.
   Denotamos como $SA$ al conjunto de derivadas estables en $A$.
-\end{defn}
+\end{definition}
 
-\begin{defn}[Prenúcleos]
+\begin{definition}[Prenúcleos]
   Un prenúcleo sobre $A$ es una derivada $f\in DA$ tal que
   \[
     f(x)\inf f(y) \leq f(x\inf y)
@@ -59,7 +59,7 @@ operadores cerradura en $A$.
     &\leq f(x) \inf f(y) \\
     &\leq f(x\inf y) & \text{ pues $f\in PA$}
   \end{align*}
-\end{defn}
+\end{definition}
 
 En resumen tenemos las contenciones
 \begin{align*}
@@ -170,7 +170,7 @@ De hecho, se puede probar lo siguiente:
 
 \subsubsection{Supremos de derivadas \tps{($DA$)}{(DA)}}
 
-\begin{defn}
+\begin{definition}
   Si $J\subseteq DA$ es un conjunto de derivadas,
   definimos el supremo puntual $\pSup J:A\to A$ de $J$ como la
   función dada por
@@ -178,7 +178,7 @@ De hecho, se puede probar lo siguiente:
     (\pSup J)(a) = \Sup\{f(a) \mid f\in J\}
   \]
   para todo $a\in A$.
-\end{defn}
+\end{definition}
 Notemos que, si $J=\emptyset\subseteq DA$, entonces
 \begin{align*}
   (\pSup\emptyset)(a)
@@ -220,7 +220,7 @@ puntualmente.
 En contraste con lo que sucede con derivadas y estables, el supremo
 de una familia de prenúcleos no se calcula puntualmente, en general.
 
-\begin{exa}
+\begin{example}
   Tomemos el marco $A$ dado como
   \[
     \begin{tikzcd}
@@ -268,7 +268,7 @@ de una familia de prenúcleos no se calcula puntualmente, en general.
         &= 1,
     \end{align*}
     así que $\vnuc a\psup\vnuc b$ no es un prenúcleo.
-\end{exa}
+\end{example}
 
 Sin embargo, hasta cierto punto, esto se puede enmendar:
 si $J\subseteq PA$ es dirigido (en particular, no vacío), el supremo
@@ -369,9 +369,9 @@ Esto muestra lo que queríamos probar: que $NA$ es un subconjunto
 implicativo de $SA$.
 Una consecuencia inmediata es
 
-\begin{thm}[Isbell-Simmons-Johnstone]
+\begin{theorem}[Isbell-Simmons-Johnstone]
   Para cada marco $A$, el ensamble $NA$ es un marco.
-\end{thm}
+\end{theorem}
 \begin{proof}
     $NA$ es $\Inf$-cerrado y, $(j\in k)\in NA$ para cualesquiera
     $k\in SA$, $k\in NA$.
@@ -439,14 +439,14 @@ arriba de $f$.
 
 \subsubsection{\tps{$CA$}{CA} como un conjunto fijo}
 Luego, tenemos el siguiente resultado:
-\begin{thm}
+\begin{theorem}
     La construcción $({-})^\infty$ es un operador cerradura en $DA$
     cuyos puntos fijos son los operadores cerradura en $A$:
     \begin{align*}
       ({-})^\infty &\in CDA \\
       (DA)_\infty &= CA.
     \end{align*}
-\end{thm}
+\end{theorem}
 \begin{proof}
   Claramente, $f\leq f^\infty$, así que $(-)^\infty$ infla.
   Como $f^\infty$ es idempotente, tenemos $(f^\infty)^\alpha=f^\infty$
@@ -585,14 +585,14 @@ Este resultado se puede refinar un poco más:
 
 \subsubsection{\tps{$NA$}{NA} como un conjunto fijo}
 Con estas observaciones, tenemos el siguiente teorema.
-\begin{thm}
+\begin{theorem}
   Para cada marco $A$, el operador cerradura $({-})^\infty:SA\to
   SA$ es un núcleo cuyo conjunto de puntos fijos es el ensamble
   de $A$:
   \[
     (SA)_\infty = NA
   .\]
-\end{thm}
+\end{theorem}
 \begin{proof}
   Como $({-})^\infty:SA\to SA$ es un operador cerradura,
   solo queda demostrar que $(-)^\infty$ es prenúcleo.

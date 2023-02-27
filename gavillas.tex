@@ -7,13 +7,13 @@ al contexto de marcos.
 %\section*{SESIÓN 24: 7 DIC}
 \section{Gavillas sobre espacios topológicos}
 
-\begin{defn}
+\begin{definition}
     Sean $E$, $S$ espacios topológicos
     y $f:E\to S$ una función continua.
     Una sección local de $f$ es una función continua $\sigma:U\to E$,
     donde $U$ es un abierto de $S$, tal que $f\sigma=\id_U$.
     Decimos que una sección $\sigma:U\to E$ de $f$ es global si $U=S$.
-\end{defn}
+\end{definition}
 
 Las secciones locales de una función continua $f:E\to S$
 nos proporcionan información acerca del espacio $E$
@@ -21,7 +21,7 @@ y la manera en la que éste yace sobre $S$.
 ¿En qué condiciones se puede reconstruir $f:E\to S$ si solo
 conocemos sus secciones?
 
-\begin{defn}
+\begin{definition}
     Sean $E$, $S$ espacios topológicos
     y $f:E\to S$ una función continua.
     Decimos que $f$ es étale (o un homeomorfismo local) si,
@@ -29,17 +29,17 @@ conocemos sus secciones?
     $U_e\in\cal OE$ de $e$ y $V_{f(e)}\in\cal OE$ de $f(e)$,
     tales que la restricción
     $f_e:U_e\to V_{f(e)}$ de $f$ es un homeomorfismo.
-\end{defn}
+\end{definition}
 
 Veremos que la respuesta a la pregunta anterior
 es que una función $f:E\to S$ está completamente determinada
 por su secciones exactamente cuando $f$ es étale.
 Para mostrar esto, pasaremos por el concepto de gavilla.
 
-\begin{defn}
+\begin{definition}
     Consideremos un espacio topológico $S$.
     Una pregavilla sobre $S$ es un funtor $(\cal OS)^\op\to\Con$.
-\end{defn}
+\end{definition}
 
 Por ejemplo, tomemos un espacio ``objetivo'' $Y$ y,
 para cada abierto $U\subseteq S$,
@@ -58,7 +58,7 @@ Una pregavilla en $S$ asigna información local, abierto por abierto.
 Queremos imponer una condición de tal modo que nos permita
 convertir esa información local en información global.
 
-\begin{defn}
+\begin{definition}
     Sean $S$ un espacio topológico y $F:(\cal OS)^\op\to\Con$
     una pregavilla sobre $S$.
     
@@ -93,9 +93,9 @@ convertir esa información local en información global.
     Entonces una familia
     $(f_\gamma\mid\gamma\in\Gamma)\in\prod_{\gamma\in\Gamma}FU_\gamma$
     es compatible si sus imágenes bajo estas dos funciones coinciden.
-\end{defn}
+\end{definition}
 
-\begin{defn}
+\begin{definition}
     Sea $S$ un espacio topológico.
     Decimos que una pregavilla en $S$
     \[
@@ -125,7 +125,7 @@ convertir esa información local en información global.
         \prod_{\alpha,\beta\in\Gamma}F(U_\alpha\cap U_\beta)
     \]
     es un igualador.
-\end{defn}
+\end{definition}
 
 Con estas herramientas,
 podemos demostrar que los morfismos étales
@@ -138,7 +138,7 @@ Por un lado, sabemos que los funtores $(\cal OS)^\op\to\Con$
 y las transformaciones naturales entre éstos
 forman una categoría, a la cual denotamos como $\Gav(S)$.
 
-\begin{defn}
+\begin{definition}
     Dado un espacio topológico $S$, definimos la categoría
     $\Et(S)$ como sigue:
     \begin{itemize}
@@ -170,7 +170,7 @@ forman una categoría, a la cual denotamos como $\Gav(S)$.
     no pedimos que la función continua $f:E\to S$ sea coherente,
     seguimos obteniendo una categoría,
     a la cual denotamos como $\Top/S$.
-\end{defn}
+\end{definition}
 
 Ahora ¿qué relación hay entre gavillas y morfismos étales?
 
@@ -202,9 +202,9 @@ es conmutativo.
 Luego, obtenemos un funtor $\Gamma:\Et(S)\to\Gav(S)$.
 El resultado principal es el siguiente teorema.
 
-\begin{thm}
+\begin{theorem}
     El funtor $\Gamma:\Et(S)\to\Gav(S)$ es una equivalencia.
-\end{thm}
+\end{theorem}
 \begin{proof}[Bosquejo de la demostración]
     La demostración se hace construyendo el funtor
     $\Gav(S)\to\Et(S)$ inverso a $\Gamma$.
@@ -242,7 +242,7 @@ El resultado principal es el siguiente teorema.
 Ahora, ¿cómo hacemos esto sobre un marco?
 En realidad, la teoría se puede usar casi sin modificación.
 
-\begin{defn}
+\begin{definition}
     \leavevmode
     \begin{itemize}
         \item
@@ -274,9 +274,9 @@ En realidad, la teoría se puede usar casi sin modificación.
         Una pregravilla $F:A^\op\to\Con$ es una gavilla
         si es separada y cotejada.
     \end{itemize}
-\end{defn}
+\end{definition}
 
-\begin{exa}
+\begin{example}
     Sea $\Omega$ un marco.
     Dado $a\in\Omega$, consideremos
     \begin{align*}
@@ -304,7 +304,7 @@ En realidad, la teoría se puede usar casi sin modificación.
         \item $\Omega\<\cdot\>$ es separada pero no cotejada y
         \item $\Omega[\cdot]$ es gavilla.
     \end{itemize}
-\end{exa}
+\end{example}
 
 Dada una pregavilla $F$ en un marco $\Omega$,
 podemos obtener una gavilla $F^+$ en $\Omega$ como sigue.

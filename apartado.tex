@@ -18,14 +18,14 @@ $b$ que cumple $x\inf b=0$.
 La siguiente definición nos permite trabajar con esta noción en una
 retícula que puede ni siquiera ser álgebra de Heyting.
 
-\begin{defn}[Negaciones]
+\begin{definition}[Negaciones]
   Si $A$ es una retícula y $a\in A$,
   entonces una negación de $a$ es un elemento $b\in A$ tal que
   \[
       x\leq a \ssi x\inf b=0
   \]
   para todo $x\in A$.
-\end{defn}
+\end{definition}
 Así, $b,b'$ son negaciones de $a$,
 entonces $b\inf a=b'\inf a=0$ (porque $b\leq b$ y $b'\leq b'$).
 Así, $b\leq b'$ y $b'\leq b$, por lo cual $b=b$.
@@ -66,7 +66,7 @@ Aunque en un álgebra booleana se tiene la otra comparación
 (es decir, $\neg\neg a = a$),
 esto no es cierto en general:
 
-\begin{exa}
+\begin{example}
   \label{exa:negaciones-en-espacios-top}
   Sea $S$ un espacio topológico y consideremos el marco $\cal OS$.
   Todo abierto $u\in\cal O S$ tiene negación $\neg u$ en $\cal OS$.
@@ -90,7 +90,7 @@ esto no es cierto en general:
     &= (-1,1) \\
     &\neq u.
   \end{align*}
-\end{exa}
+\end{example}
 
 Es decir, aunque $\neg a$ tenga negación, en general
 solo tenemos la comparación $a\leq\neg\neg a$.
@@ -117,7 +117,7 @@ Ahora consideraremos ese tipo de retículas.
 Por el lema \ref{lemma:complementado-ssi-supneg}, sabemos que
 $a$ es tiene complemento $a'$ ssi $a\sup\neg a=1$.
 Esto justifica el primer punto de la siguiente definición.
-\begin{defn}
+\begin{definition}
   Sea $A$ una retícula distributiva donde todo elemento tiene
   negación y tomemos un elemento $a\in A$.
   Decimos que
@@ -126,12 +126,12 @@ Esto justifica el primer punto de la siguiente definición.
     \item $a$ es regular si $\neg\neg a = a$,
     \item $a$ es denso si $\neg a = 0$.
   \end{itemize}
-\end{defn}
+\end{definition}
 
 Nótese que $\neg a$ es regular para todo $a$, ya que
 $\neg\neg\neg a =\neg a$.
 
-\begin{exa}
+\begin{example}
   Consideremos un espacio topológico $S$ y un abierto $u\in\cal
   OS$. Por el ejemplo \ref{exa:negaciones-en-espacios-top},
   sabemos que $u$ tiene negación dada como $\neg u=\ol
@@ -153,12 +153,12 @@ $\neg\neg\neg a =\neg a$.
     si, y solo si, es denso en el sentido topológico
     ($\ol u=S$).
   \end{enumerate}
-\end{exa}
+\end{example}
 
-\begin{prop}%[Dante $\checkmark$ ]
+\begin{proposition}%[Dante $\checkmark$ ]
   Un elemento $a$ de una retícula $A$ es denso
   ($\neg a=0$) si, y solo si $\neg\neg a = 1$.
-\end{prop}
+\end{proposition}
 \begin{proof}
 Tenemos
 \begin{align*}
@@ -172,13 +172,13 @@ Tenemos
 
 %\section*{(SESIÓN 5: 23 SEP)}
 
-\begin{prop}
+\begin{proposition}
   Si $A$ es una retícula distributiva y $a,b\in A$ tienen
   negación, entonces $a\sup b$ también tiene negación y tenemos
   \[
     \neg(a\sup b) = \neg a \inf \neg b
   .\]
-\end{prop}
+\end{proposition}
 \begin{proof}
   Para cualquier $x\in A$, tenemos
   \begin{align*}
@@ -238,7 +238,7 @@ $(-\succ -):A\to A$ tal que, para cualesquiera $a,x,y\in A$ se tiene
   x\inf y\leq a \ssi x\leq (y\succ a )
 .\]
 
-\begin{exa}
+\begin{example}
   En un álgebra booleana, nuestro caballo de batalla nos dice que
   \[
     x\inf y\leq a \ssi
@@ -246,7 +246,7 @@ $(-\succ -):A\to A$ tal que, para cualesquiera $a,x,y\in A$ se tiene
   .\]
   Por lo tanto, toda álgebra booleana tiene implicación dada
   como $(y\succ a)=\neg y\sup a$.
-\end{exa}
+\end{example}
 
 Ahora vienen dos lemas técnicos.
 \begin{lemma}

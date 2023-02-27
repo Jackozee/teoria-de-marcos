@@ -5,17 +5,25 @@ relaciones entre estas.
 
 \section{Conjuntos parcialmente ordenados}\label{copos}
 
-
-
-Recordemos que un \emph{ conjunto parcialmente ordenado } (copo) es un par $(A,\leq)$ donde $A$ es un conjunto y $\leq$ es una relación en $A$ que satisface:
+Un \emph{ conjunto parcialmente ordenado } (copo) es un par $(A,\leq)$
+donde $A$ es un conjunto y $\leq$ es una relación en $A$ que
+satisface:
 \begin{itemize}
   \item[(1)] $\leq$ es reflexiva, es decir, $a\leq a$ para todo $a\in A$.
   \item[(2)]  $\leq$ es transitiva, es decir, $a\leq b$ y $b\leq c$ entonces $a\leq c$.
   \item[(3)] $\leq$ es antisimetrica, es decir, $a\leq b$ y $b\leq a$ entonces $a=b$.
 \end{itemize}
 
-
-
+\begin{example}
+  \begin{itemize}
+    \item
+      Para cualquier conjunto $S$, el conjunto $P(S)$ de los
+      subconjuntos de $S$, es un copo, ordenado por inclusión.
+    \item
+      Si $A$ es un copo, cualquier subconjunto $B\subseteq A$ también
+      es un copo, con el orden heredado de $A$.
+  \end{itemize}
+\end{example}
 
 Sean $A,B$ dos conjuntos parcialmente ordenados
 
@@ -42,9 +50,8 @@ denotamos $\Inf X$.
 Nótese que, si $X$ tiene un menor o un mayor elemento, entonces este
 es el ínfimo o el supremo de $X$, respectivamente.
 
-Dado que los morfismos de copos (funciones monótonas)
-son cerrados bajo composición y la función identidad
-de cualquier copo es un monótono,
+Dado que la composición de dos funciones monótonas también es
+monótona y la función identidad de cualquier copo es un monótona,
 éstos forman una categoría, a la cual denotamos $\Pos$.
 
 \section{Semiretículas}
@@ -223,7 +230,6 @@ cualesquiera $a,b,c\in A$, entonces la otra también se cumple.
     \end{enumerate}
 \end{proof}
 
-
 La categoría $\DLat$ se define como la subcategoría plena de
 $\Lat$ cuyos objetos son las retículas distributivas.
 Es decir, los morfismos en $\DLat$ son simplemente morfismos de
@@ -249,7 +255,7 @@ distributivas, pero tienen estructura o propiedades extra.
 \section{Álgebras booleanas}
 \label{ss:complementos-algebras-booleanas}
 
-\begin{defn}[Álgebras booleanas]
+\begin{definition}[Álgebras booleanas]
   Un álgebra booleana $A$ es una retícula distributiva
   donde, para todo elemento $a\in A$ existe un elemento $b\in B$ tal
   que
@@ -258,7 +264,7 @@ distributivas, pero tienen estructura o propiedades extra.
   \end{equation}
   Este elemento $b$ es el único con esta propiedad, se llama el
   complemento de $a$ y se denota como $a'$ o $\neg a$.
-\end{defn}
+\end{definition}
 
 Dado un elemento $a$ de una retícula cualquiera (no necesariamente
 distributiva), si un elemento $b$ cumple las relaciones
@@ -301,7 +307,7 @@ complementos $b_1,b_2$, entonces tenemos
   Así, $b_1=b_2$.
 %\end{proof}
 
-\begin{exa}[Conjunto potencia]
+\begin{example}[Conjunto potencia]
     Dado cualquier conjunto $S$, el conjunto potencia $\cal PS$
     es un álgebra booleana.
     El complemento de un subconjunto $X\subseteq S$ es el
@@ -309,9 +315,9 @@ complementos $b_1,b_2$, entonces tenemos
     \[
       X' = \{s\in S \mid s\not\in X\}
     .\]
-\end{exa}
+\end{example}
 
-\begin{obs}\label{obs:bool-plena-en-dlat}
+\begin{remark}\label{obs:bool-plena-en-dlat}
 La definición obvia (y correcta) de un morfismo de álgebras booleanas
 es un morfismo de retículas que preserva complementos. Sin embargo,
 cualquier morfismo de retículas entre álgebras booleanas cumple esto.
@@ -335,12 +341,12 @@ por lo cual tenemos inclusiones de subcategorías plenas:
 \begin{equation}
   \Bool \rmono \DLat \rmono \Lat.
 \end{equation}
-\end{obs}
+\end{remark}
 
 \section{Álgebras de Heyting}
 \label{ss:heyting}
 
-\begin{defn}[Álgebra de Heyting]\label{defn:heyting}
+\begin{definition}[Álgebra de Heyting]\label{defn:heyting}
   Un álgebra de Heyting es una retícula distributiva equipada con una
   operación binaria $(-\succ-)$ (llamada implicación) que cumple
   \begin{equation}\label{eq:defn-implicacion}
@@ -350,7 +356,7 @@ por lo cual tenemos inclusiones de subcategorías plenas:
 
   Un morfismo de álgebras de Heyting es un morfismo de retículas
   que preserva la implicación.
-\end{defn}
+\end{definition}
 
 En realidad, no es necesario pedir la distributividad: cualquier
 retícula $A$ equipada con una implicación $(-\succ-)$ que cumple
@@ -457,7 +463,7 @@ tiene un análogo con categorías de retículas completas:
 \end{equation}
 pero antes daremos las definiciones básicas.
 
-\begin{defn}
+\begin{definition}
   Decimos que un copo $A$ es superiormente completo
   si cualquier subconjunto $X\subseteq A$ tiene supremo $\Sup X$.
   En este caso, también decimos que $A$ es una $\Sup$-semiretícula.
@@ -468,7 +474,7 @@ pero antes daremos las definiciones básicas.
 
   Las $\Sup$-semiretículas, junto con sus morfismos,
   forman una categoría $\SupLat$.
-\end{defn}
+\end{definition}
 Notemos que una $\Sup$-semiretícula es, en particular,
 una $\sup$-semiretícula y que todo morfismo de $\Sup$-semiretículas es
 un morfismo de $\sup$-semiretículas (aunque no al revés).
@@ -480,7 +486,7 @@ si todo subconjunto $X\subseteq A$ tiene ínfimo $\Inf X$; tenemos
 morfismos de $\Inf$-semiretículas y un funtor
 $\InfLat\to\Pos^{\inf}$.
 
-\begin{defn}
+\begin{definition}
   Una retícula completa (o copo completo) es un copo $A$
   donde todo subconjunto $X\subseteq A$ tiene ínfimo $\Inf X$ y
   supremo $\Sup X$.
@@ -489,7 +495,7 @@ $\InfLat\to\Pos^{\inf}$.
   preserva supremos arbitrarios e ínfimos arbitrarios.
   Así, las retículas completas y los morfismos completos forman una
   categoría $\CLat$.
-\end{defn}
+\end{definition}
 De la definición, una retícula completa es una
 $\Sup$-semiretícula y una $\Inf$-semiretícula, mientras que todo
 morfismo completo es un $\Sup$-morfismo y un $\Inf$-morfismo.
@@ -509,10 +515,10 @@ son distintos en cada caso, ya que las contenciones
   \InfLat(A,B)\supseteq \CLat(A,B)\subseteq\SupLat(A,B)
 \]
 son propias.
-\begin{thm}
+\begin{theorem}
   Un copo $A$ es superiormente completo si, y solo si, es
   inferiormente completo.
-\end{thm}
+\end{theorem}
 \begin{proof}
   Si $A$ es superiormente completo, entonces
   dado un subconjunto $X\subseteq A$ podemos considerar el conjunto
@@ -553,7 +559,7 @@ Además, como en $\cal PS$ se cumple la ley distributiva
 entonces la misma ley se satisface en $\cal OS$.
 Estas son las propiedades de una topología que abstrae un marco.
 
-\begin{defn}
+\begin{definition}
   Un marco $A$ es una retícula completa que satisface la siguiente
   ley distributiva:
   \[
@@ -563,7 +569,7 @@ Estas son las propiedades de una topología que abstrae un marco.
   supremos arbitrarios e ínfimos finitos.
   Los morfismos de marcos son cerrados
   bajo composición, así que obtenemos una categoría $\Frm$.
-\end{defn}
+\end{definition}
 
 Notemos que, en particular, un marco es una retícula distributiva.
 Además, cualquier morfismo de marcos preserva ínfimos y supremos
@@ -578,7 +584,7 @@ Además, nótese que un morfismo de marcos puede no preservar ínfimos
 arbitrarios, mientras que los supremos finitos no necesariamente
 distribuyen sobre ínfimos arbitrarios.
 
-\begin{exa}
+\begin{example}
   \begin{enumerate}
     \item Dado un conjunto $S$ cualquiera, el conjunto potencia
     $\cal PS$ es un marco.
@@ -599,7 +605,7 @@ distribuyen sobre ínfimos arbitrarios.
     contravariante que forma parte de una
     adjunción entre $\Top$ y $\Frm$.
   \end{enumerate}
-\end{exa}
+\end{example}
 
 \section{Álgebras booleanas completas}\label{ABC}
 Recordemos que un álgebra booleana es una retícula distributiva
@@ -722,7 +728,7 @@ Con este objetivo, demostraremos siguiente resultado.
   $\neg x\leq \Sup\{\neg x\mid x\in X\}$.
   Usando dos veces nuestro caballo de batalla (lema
   \ref{lemma:caballo}), vemos que esto equivale a
-  \[\neg\Sup\{\neg x\mid x\in X\}\leq x.\]
+  $\neg\Sup\{\neg x\mid x\in X\}\leq x$.
   Como $x\in X$ era arbitraria, tenemos que
   \[
       \neg\Sup\{\neg x\mid x\in X\}\leq \Inf X
@@ -771,7 +777,9 @@ completa.
     \end{align*}
     así que la distributividad de marcos implica
     \begin{align*}
-        \Inf\{f(x)\mid x\in X\} \inf \Sup\{f(\neg x)\mid x\in X\}
+        &
+        \hspace{-10mm}
+        \Inf\{f(x)\mid x\in X\} \inf \Sup\{f(\neg x)\mid x\in X\} \\
         &= \Sup\Big\{\Inf\{f(x)\mid x\in X\}\inf f(\neg y)
             \;\;\Big|\;\; y\in X\Big\} \\
         &= \Sup\{0\} \\
@@ -794,7 +802,7 @@ completas.
 
 \section{Álgebras de Heyting completas}
 
-\begin{defn}
+\begin{definition}
   Un álgebra de Heyting completa es un álgebra de Heyting que es
   completa como retícula.
   La categoría $\cHeyt$ de álgebras de Heyting (superiormente)
@@ -802,7 +810,7 @@ completas.
   Sus morfismos son morfismos de Heyting (es decir, morfismos de
   retículas que respetan la implicación) que, además, preservan
   \emph{supremos arbitrarios}.
-\end{defn}
+\end{definition}
 
 Notemos que tenemos un funtor fiel $\CBA\to\cHeyt$, pues toda
 álgebra booleana completa es de Heyting completa y todo
@@ -827,10 +835,10 @@ marco: basta probar que satisface la ley distributiva de marcos. De
 hecho, el siguiente resultado nos da también el recíproco: todo marco
 es, también, un álgebra de Heyting (completa).
 
-\begin{thm}
+\begin{theorem}
   Una retícula completa $A$ es un marco si, y solo si, $A$ tiene
   implicación.
-\end{thm}
+\end{theorem}
 \begin{proof}
     $\Rightarrow )$ Supongamos que $A$ es un marco y sean $a,b\in A$.
     Consideremos el elemento
@@ -872,7 +880,7 @@ es propia: hay morfismos de marcos que no preservan la implicación.
 \end{tikzcd}
 \end{equation}
 
-\begin{exa}
+\begin{example}
   Sea $S$ un espacio topológico.
   Por el teorema anterior, dados $u,v\in\cal OS$
   existe la implicación $v\succ u\in \cal OS$.
@@ -884,7 +892,7 @@ es propia: hay morfismos de marcos que no preservan la implicación.
     &\iff w\leq (v'\cup u)^\circ.
   \end{align*}
   Se sigue que $v\succ u = (u\cup v')^\circ$.
-\end{exa}
+\end{example}
 
 Finalmente, nuestro diagrama se ve así:
 \[
