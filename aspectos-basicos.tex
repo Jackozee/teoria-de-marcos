@@ -1,7 +1,14 @@
 \chapter{Aspectos básicos}\label{chap 1}
 
-El objetivo de este capítulo es introducir varias categorías que son base de muchas construcciones posteriores y las
-relaciones entre estas.
+El objetivo de este capítulo es presentar las estructuras que serán
+base de las construcciones del resto del texto. A lo largo del
+capítulo hay múltiples observaciones planteadas en términos
+categóricos. Aunque
+no se necesita teoría de categorías para entender la parte principal
+del texto, se le invita al lector a familiarizarse con este
+formalismo, pues se usa de manera central en capítulos subsecuentes.
+En el apéndice \ref{chap:categorias} se ofrece una visión general del
+lenguaje de las categorías, funtores y transformaciones naturales.
 
 \section{Conjuntos parcialmente ordenados}\label{copos}
 
@@ -9,69 +16,87 @@ Un \emph{ conjunto parcialmente ordenado } (copo) es un par $(A,\leq)$
 donde $A$ es un conjunto y $\leq$ es una relación en $A$ que
 satisface:
 \begin{itemize}
-  \item[(1)] $\leq$ es reflexiva, es decir, $a\leq a$ para todo $a\in A$.
-  \item[(2)]  $\leq$ es transitiva, es decir, $a\leq b$ y $b\leq c$ entonces $a\leq c$.
-  \item[(3)] $\leq$ es antisimetrica, es decir, $a\leq b$ y $b\leq a$ entonces $a=b$.
+  \item[(1)] reflexividad: $a\leq a$ para todo $a\in A$.
+  \item[(2)]  transitividad: si $a\leq b$ y $b\leq c$, entonces $a\leq c$.
+  \item[(3)] antisimetría: si $a\leq b$ y $b\leq a$, entonces $a=b$.
 \end{itemize}
 
-\begin{example}
+\begin{example} \leavevmode
   \begin{itemize}
     \item
-      Para cualquier conjunto $S$, el conjunto $P(S)$ de los
-      subconjuntos de $S$, es un copo, ordenado por inclusión.
+      Para cualquier conjunto $S$, el conjunto $\cal PS$ de los
+      subconjuntos de $S$, es un copo con el orden de contención $\subseteq$.
     \item
       Si $A$ es un copo, cualquier subconjunto $B\subseteq A$ también
       es un copo, con el orden heredado de $A$.
+    \item
+      Si $X$ un espacio topológico, su topología $\cal OX\subseteq\cal
+      PS$ es un copo con el orden de contención $\subseteq$. Esta es
+      una instancia de los dos puntos anteriores.
   \end{itemize}
 \end{example}
 
-Sean $A,B$ dos conjuntos parcialmente ordenados
-
-Un \emph{morfismo de copos } $f:A\to B$ es una función monótona (creciente), es decir,
-siempre que $a\leq b\in A$, se tiene que $f(a)\leq f(b)$.
-Viendo a $A$ y a $B$ como categorías, entonces un morfismo $f:A\to B$
-es un lo mismo que un funtor.
-
-Si $A$ es un copo y $X\subseteq A$ es cualquier subconjunto,
-un elemento $a\in A$ es una \emph{ cota superior } de $X$
-si $x\leq a$ para todo $x\in X$.
-Similarmente, si $a\leq x$ para todo $x\in X$, entonces decimos
-que $a$ es una \emph{ cota inferior } de $X$. \\
-Si $x\in A$ es una cota inferior de $X$ y, además, $x\in X$,
-entonces $a$ es único con esta propiedad y decimos que es el
-menor elemento de $X$. Similarmente, $x\in X$ es el mayor
-elemento de $X$ si es una cota superior de $X$. \\
-Si el conjunto de cotas superiores de $X$ tiene un menor
-elemento, este elemento se llama supremo de $X$ y lo denotamos
-como $\Sup X$.
-Similarmente, si el conjunto de cotas inferiores de $X$ tiene un
-mayor elemento, este elemento se llama ínfimo de $X$ y lo
-denotamos $\Inf X$.
-Nótese que, si $X$ tiene un menor o un mayor elemento, entonces este
-es el ínfimo o el supremo de $X$, respectivamente.
-
+Un \emph{morfismo} $f:A\to B$ entre dos copos $A,B$, es una función
+monótona (creciente), es decir, siempre que $a\leq b\in A$, se tiene
+que $f(a)\leq f(b)$.
 Dado que la composición de dos funciones monótonas también es
 monótona y la función identidad de cualquier copo es un monótona,
 éstos forman una categoría, a la cual denotamos $\Pos$.
 
+Si $A$ es un copo y $X\subseteq A$ es cualquier subconjunto,
+un elemento $a\in A$ es una \emph{ cota superior } de $X$
+si $x\leq a$ para todo $x\in X$. Simbólicamente, escribimos $X\leq a$.
+Similarmente, si $a\leq x$ para todo $x\in X$, entonces decimos
+que $a$ es una \emph{ cota inferior } de $X$ y escribimos $a\leq X$.
+\\
+Si $a\leq X$ y, además, $a\in X$, entonces $a$ es el único elemento de
+$A$ con ambas propiedades y decimos que es \emph{el menor elemento de
+$X$}. Similarmente, si $a\in X$ y $X\leq a$, entonces $a$ es \emph{el mayor
+elemento de $X$}. \\
+Si el conjunto de cotas superiores de $X$ tiene un menor
+elemento, este elemento se llama supremo de $X$ y lo denotamos
+como $\Sup X$.  Entonces
+\begin{equation}
+  a\leq X \quad\iff\quad a\leq \Inf X
+\end{equation}
+Similarmente, si el conjunto de cotas inferiores de $X$ tiene un
+mayor elemento, este elemento se llama ínfimo de $X$ y lo
+denotamos $\Inf X$. Entonces
+\begin{equation}
+  X\leq a \quad\iff\quad \Sup X\leq a
+\end{equation}
+Nótese que, si $X$ tiene un menor o un mayor elemento, entonces este
+es el ínfimo o el supremo de $X$, respectivamente.
+
+\begin{remark}
+  Un copo $A$ se puede entender como una categoría pequeña en la que
+  hay, a lo más, un morfismo entre cada par de objetos.
+  Desde este punto de vista, un morfismo de copos $f:A\to B$ es,
+  sencillamente, un funtor; mientras que el supremo y el ínfimo de un
+  subconjunto $X\subseteq A$ son el colímite y el límite del funtor
+  de inclusión $X\to A$.
+\end{remark}
+
 \section{Semiretículas}
 \label{ss:semireticulas}
-Decimos que un copo es una \emph{ semiretícula superior }
-(o $\sup$-semiretícula) si todos sus subconjuntos finito tienen
-supremo.
-Equivalentemente, un copo $A$ es una $\sup$-semiretícula si
-todo par de elementos $a,b$ tiene supremo $a\sup b$
-y $A$ tiene un menor elemento $0\in A$ (que es
-el supremo del cojunto vacío).
+Decimos que un copo es una \emph{semirretícula superior},
+o $\sup$-semirretícula, si $A$ tiene un menor elemento $0\in A$ (el
+supremo del conjunto vacío) y todo par
+de elementos $a,b$ tiene supremo $a\sup b$.
+Equivalentemente, un copo es una semiretícula superior si
+todo subconjunto finito de $A$ tiene supremo (ejercicio
+\ref{exe:equiv-1-def-sup-poset}).
 
+Sea $A$ una semirretícula inferior.
 Como $0\leq a$ para todo $a\in A$, entonces $a\sup 0=a$.
 Además, $a\sup b=b\sup a$, $(a\sup b)\sup c=a\sup(b\sup c)$
 y $a\sup a=a$ para cualesquiera $a,b,c\in A$.
-Por lo tanto, el conjunto $A$ equipado con el supremo, pensado
-como operación binaria en $A$, es un monoide
-conmutativo donde todo elemento es idempotente
-(el elemento neutro es el $0\in A$).
-
+Por lo tanto, el conjunto $A$ equipado con el supremo (pensado
+como operación binaria en $A$) es un monoide
+conmutativo donde todo elemento es idempotente.
+De hecho, esta es otra posible definición de una semirretícula
+inferior (ejercicio \ref{exe:monoide-conmutativo-equiv-sup-pos}).
+\iffalse
 Recíprocamente, si $(A,\sup,0)$ es un monoide conmutativo
 en el cual todo elemento es idempotente,
 entonces la relación definida como
@@ -112,12 +137,13 @@ es un orden parcial en $A$ tal que el supremo es $\sup$.
     .\]
     Por lo tanto, $a\sup b\leq c$.
 \end{proof}
+\fi
 
 Si $A,B$ son $\sup$-semiretículas,
 decimos que una función $f:A\to B$ es
 un $\sup$-morfismo (o un morfismo de $\sup$-semiretículas)
 si $f(0)=0$ y si $f(a\sup b)=f(a)\sup f(b)$.
-De nuevo, las $\sup$-semiretículas con sus morfismos forman una
+Las $\sup$-semiretículas con sus morfismos forman una
 categoría, a la cual denotamos como $\Pos^\sup$.
 
 Dado que $a\leq b$ si, y solo si, $a\sup b=a$, entonces
@@ -126,6 +152,20 @@ pues $a\sup b=a$ implica $f(a)\sup f(b)=f(a)$.
 Así, tenemos un funtor $\Pos^\sup\to\Pos$. Sin embargo, este
 funtor no es pleno, pues existen funciones monótonas que no
 preservan el supremo.
+
+\begin{example}
+  Si $G$ es un grupo, entonces el conjunto $\Sub_\Grp(G)$ de subgrupos
+  de $G$ es un subcopo del conjunto potencia $\cal PG$.
+  Más aún, tanto $\cal PG$ como $\Sub_\Grp(G)$ son semirretículas
+  superiores: el supremo en $\cal PG$ es la unión y el supremo en
+  $\Sub_\Grp(G)$ es el subgrupo generado por la unión $H\sup K=\<H\cup
+  K\>$. Así, la inclusión
+  \begin{equation}
+    \Sub_\Grp(G) \to \cal PG
+  \end{equation}
+  es un morfismo de copos que, en general, no es morfismo de
+  $\sup$-semirretículas.
+\end{example}
 
 Las definiciones y observaciones de esta sección se pueden hacer
 de manera análoga usando ínfimos en vez de supremos, obteniendo
@@ -138,20 +178,21 @@ Decimos que un copo $A$ es una \emph{ retícula } si cualquier
 subconjunto finito $X\subseteq A$ tiene supremo e ínfimo en $A$.
 Equivalentemente, un copo $A$ es una retícula si, y solo si:
 \begin{enumerate}
-    \item cualquier par de elementos $a,b\in A$ tiene
-    supremo $a\sup b=\Sup\{a,b\}\in A$ e ínfimo $a\inf
-    b=\Inf\{a,b\}\in A$,
     \item
-    $A$ tiene un menor elemento $0$ y un mayor elemento $1$.
-    Éstos son el supremo y el ínfimo del subconjunto vacío
-    $\emptyset\subseteq A$, respectivamente.
+      cualquier par de elementos $a,b\in A$ tiene supremo $a\sup b$ e
+      ínfimo $a\inf b$ en $A$,
+    \item
+      $A$ tiene un menor elemento $0$ y un mayor elemento $1$.
+      Éstos son el supremo y el ínfimo del subconjunto vacío
+      $\emptyset\subseteq A$, respectivamente.
 \end{enumerate}
+Sin embargo, un subconjunto infinito de una retícula $A$
+no tiene por qué tener supremo o ínfimo.
+
 Algunos autores denominan retículas a los copos que
 cumplen el punto 1 aunque no cumplan el punto 2.
-Con esa convención, lo que nosotros llamamos retícula se llama
-\emph{ retícula acotada}.
-Nótese también que un subconjunto arbitrario de una retícula $A$
-puede no tener supremo o ínfimo.
+Con esa terminología (que no adoptaremos aquí), lo que nosotros
+llamamos retícula se llama \emph{retícula acotada}.
 
 Ahora definimos la categoría de retículas $\Lat$.
 Sus objetos son las retículas y sus
@@ -160,7 +201,7 @@ el ínfimo y el supremo: $f(0)=0$, $f(1)=1$,
 $f(a\sup b)=f(a)\sup f(b)$ y $f(a\inf b)=f(a)\inf f(b)$.
 De este modo, tenemos funtores fieles
 \begin{equation}
-  \Pos^{\inf}\from\Lat\to\Pos^{\sup}
+  \Pos^{\inf}\from\Lat\to\Pos^{\sup}.
 \end{equation}
 Sin embargo, estos no son plenos, ya que una función entre retículas
 puede preservar supremos sin preservar ínfimos o viceversa.
@@ -169,8 +210,8 @@ puede preservar supremos sin preservar ínfimos o viceversa.
 
 Sean $a,b,c$ elementos de una retícula $A$.
 Por definición del supremo, siempre tenemos
-$a\leq a\sup b$ y $a\leq a\sup c$.
-Es decir, $a$ es cota inferior de $\{(a\sup b),(a\sup c)\}$.
+$a\leq a\sup b$ y $a\leq a\sup c$,
+es decir, $a$ es cota inferior de $\{(a\sup b),(a\sup c)\}$.
 Así, $a\leq (a\sup b)\inf(a\sup c)$.
 Además,
 \begin{align*}
@@ -262,20 +303,23 @@ distributivas, pero tienen estructura o propiedades extra.
   \begin{equation}\label{eq:def-complemento}
     a\inf b = 0, \qquad a\sup b = 1.
   \end{equation}
-  Este elemento $b$ es el único con esta propiedad, se llama el
-  complemento de $a$ y se denota como $a'$ o $\neg a$.
+  Si $A$ es un álgebra booleana, para cada $a\in A$ hay un único $b$
+  con esta propiedad (ejercicio \ref{exe:dist-unicidad-complementos}).
+  Le llamamos \emph{el complemento de $a$} y lo denotamos como $a'$ o
+  $\neg a$.
 \end{definition}
 
-Dado un elemento $a$ de una retícula cualquiera (no necesariamente
-distributiva), si un elemento $b$ cumple las relaciones
-\ref{eq:def-complemento}, decimos que es \emph{un complemento} de $a$.
-Sin embargo, si la retícula $A$ no es
-distributiva, entonces un mismo elemento puede
-tener más de un complemento: por ejemplo, si $A$ es la retícula de
-subespacios vectoriales de un espacio vectorial (digamos, $V$)
+Si una retícula $A$ no es distributiva, para un elemento $a\in A$
+puede haber más de un $b\in A$ que cumpla las identidades
+\ref{eq:def-complemento}. Por este motivo, en este contexto decimos
+que cada uno de estos $b$ es \emph{un complemento} de $a$ (en lugar de
+``\emph{el} complemento'').
+Por ejemplo, si $A$ es la retícula de
+subespacios vectoriales de un espacio vectorial $V$,
 entonces un complemento de un subespacio $U\in A$ es cualquier otro
 subespacio $W\in A$ tal que $U\oplus W=V$.
 
+\iffalse
 La unicidad de los complementos en un álgebra booleana se debe
 a la distributividad. En efecto, si $a\in A$ es un elemento con
 complementos $b_1,b_2$, entonces tenemos
@@ -306,12 +350,12 @@ complementos $b_1,b_2$, entonces tenemos
   por lo cual $b_1\leq b_2$.
   Así, $b_1=b_2$.
 %\end{proof}
+\fi
 
 \begin{example}[Conjunto potencia]
-    Dado cualquier conjunto $S$, el conjunto potencia $\cal PS$
-    es un álgebra booleana.
-    El complemento de un subconjunto $X\subseteq S$ es el
-    complemento en el sentido usual:
+    Dado cualquier conjunto $S$, el conjunto potencia $\cal PS$ es un
+    álgebra booleana: el complemento de un subconjunto $X\subseteq S$
+    es el complemento en el sentido usual:
     \[
       X' = \{s\in S \mid s\not\in X\}
     .\]
@@ -515,22 +559,23 @@ son distintos en cada caso, ya que las contenciones
   \InfLat(A,B)\supseteq \CLat(A,B)\subseteq\SupLat(A,B)
 \]
 son propias.
-\begin{theorem}
+\begin{proposition}
   Un copo $A$ es superiormente completo si, y solo si, es
   inferiormente completo.
-\end{theorem}
+\end{proposition}
 \begin{proof}
   Si $A$ es superiormente completo, entonces
   dado un subconjunto $X\subseteq A$ podemos considerar el conjunto
   $\cotInf X$ de cotas inferiores de $X$.
   \[
-    \cotInf X = \{c\in A \mid \forall x\in X, c\leq x\}
+    \cotInf X = \{a\in A \mid a\leq X\}
   .\]
   Notemos que, todo $x\in X$ es una cota superior de $\cotInf X$,
-  ya que tenemos $y\leq x$ para todo $y\in\cotInf X$.
+  ya que tenemos $a\leq x$ para todo $a\in\cotInf X$.
   Así, $\Sup\cotInf X\leq x$, por lo cual
   $\Sup\cotInf X\in\cotInf X$.
-  Esto significa que $\Sup\cotInf X$ es el ínfimo de $X$:
+  Esto significa que $\Sup\cotInf X$ es el menor elemento de $\cotInf
+  X$, es decir, el ínfimo de $X$:
   \[
     \Sup\cotInf X = \Inf X
   .\]
@@ -942,3 +987,33 @@ era más fácil dibujarlo así.
     \end{align*}
 \end{proof}
 
+\section{Ejercicios}
+
+\begin{exercise} \label{exe:equiv-1-def-sup-poset}.
+  Muestra que, en un copo $A$, son equivalentes
+  \begin{itemize}
+    \item
+      $A$ tiene un menor elemento y todo par de elementos tiene
+      supremo,
+    \item
+      todo subconjunto finito tiene supremo.
+  \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+  \label{exe:monoide-conmutativo-equiv-sup-pos}
+  Muestra que, si $(A,\sup,0)$ es un monoide conmutativo donde todo
+  elemento es idempotente, entonces la relación definida como
+  \[
+    a\leq b \ssi a\sup b=b
+  \]
+  es un orden parcial en $A$ tal que el supremo es $\sup$.
+\end{exercise}
+
+\begin{exercise}\label{exe:dist-unicidad-complementos}
+  Muestra que, si $A$ es una retícula distributiva, entonces para cada
+  $a\in A$ hay, a lo más, un elemento $b\in A$ tal que
+  \begin{equation}
+    a\inf b = 0, \qquad a\sup b = 1.
+  \end{equation}
+\end{exercise}
