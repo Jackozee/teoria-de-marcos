@@ -74,22 +74,24 @@ $$a=\Sup\{x\in A \mid x\prec a\}$$
 \end{definition}
 La definición anterior se relaciona con la de un espacio topológico regular:
 \begin{definition}
-    Un espacio $S\in\Top$ es regular si para todo $F\subset S$ cerrado y cualquier $x\S\setminus F$ existen abiertos idsjuntos $V_1, V_2$ tales que $s\in V_1$ y $F\subset V_2$.
+    Un espacio $S\in\Top$ es regular si para todo $F\subset S$ cerrado
+    y cualquier $x\in S\setminus F$ existen abiertos idsjuntos $V_1, V_2$ tales que $s\in V_1$ y $F\subset V_2$.
     Nótese que lo anterior es equivalente a que para todo abierto $U\subset S$ se cumple que
     $$U=\bigcup \{V \in \mathcal{O}(S) \mid \overline{V}\subset U\}$$
 \end{definition}
 Gracias a la definición de la negación en el marco $\mathcal{O}(S)$, se cumple que $S$ es regular si y sólo si $\mathcal{O}(S)$ lo es.
 \begin{definition}[Marco continuo]
-    Sean $A$ un marco y $a,b\in A$. Se dice que $a$ está bien por debajo de $b$, o $a<<b$, si para todo $X\subset A$ se cumple que
+    Sean $A$ un marco y $a,b\in A$. Se dice que $a$ está bien por
+    debajo de $b$, o $a\ll b$, si para todo $X\subset A$ se cumple que
     $$b\leq \Sup X\implies \exists F\subset X \ \text{finito tal que} \ a\leq \Sup F$$
     $A$ es un marco continuo si para todo $a\in A$ se cumple
-    $$a=\Sup\{x\in A\mid x<<a\}$$
+    $$a=\Sup\{x\in A\mid x\ll a\}$$
 \end{definition}
 Es fácil probar que se cumplen los siguientes dos resultados.
 \begin{lemma}
 \begin{itemize}
     \item $S\in\Top$ es localmente compacto si y sólo si el marco $\mathcal{O}(S)$ es continuo.
-    \item Para cualesquiera $a,b$ en un marco $A$ se cumple que $a<<b\implies a\prec b$.
+    \item Para cualesquiera $a,b$ en un marco $A$ se cumple que $a\ll b\implies a\prec b$.
     \item Todo marco continuo es espacial.
     \item Todo maco compacto regular es espacial.
 \end{itemize}

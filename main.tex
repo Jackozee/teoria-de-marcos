@@ -1,6 +1,7 @@
-\documentclass[12pt,letterpaper,draft]{book}
+\documentclass[12pt,letterpaper]{book}
 \usepackage[left=3.5cm,right=3.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
+\overfullrule = 5mm % marcar los overfull hbox
 \usepackage[spanish]{babel}
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
 \usepackage{enumitem,mathtools,thmtools,tikz-cd,multicol}
@@ -10,7 +11,7 @@
 \usepackage{mathrsfs} % fuente caligráfica. Queda en mathscr.
 \usepackage{eucal} % mathcal Euler. El mathcal original queda en CMcal
 \usepackage{palatino}
-\usepackage[final]{microtype}
+\usepackage[final,nopatch=item]{microtype}
 \usepackage[final]{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -25,7 +26,7 @@
 %\setenumerate[0]{label=(\alph*)}
 
 \usepackage[style=numeric,sorting=none]{biblatex}
-\usepackage[babel]{csquotes}
+\usepackage{csquotes}
 \addbibresource{referencias.bib}
 
 \titleclass{\part}{page}
