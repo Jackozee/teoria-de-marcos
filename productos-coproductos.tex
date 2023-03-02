@@ -3,10 +3,19 @@
 \section{Productos de marcos}
 
 \begin{theorem}[Producto de marcos]
-    Sea $\{A_\lambda\}_{\lambda\in\mathscr{I}}$ de marcos arbitraria
-    y sea $L$ el producto cartesiano de los $A_\lambda$
+    Sea $\{A_\lambda\}_{\lambda\in\mathscr{I}}$ una familia arbitraria
+    de marcos y sea $L$ el producto cartesiano de los $A_\lambda$
     (vistos como conjuntos).
-    Entonces $L$, dotado con los operadores puntuales $\inf,\Sup$,
+    Entonces $L$, dotado con los operadores puntuales $\inf,\Sup$:
+    \begin{align*}
+      (a_\lambda)_{\lambda\in\mathscr I}
+      \inf
+      (b_\lambda)_{\lambda\in\mathscr I}
+      &=
+      (a_\lambda \inf b_\lambda)_{\lambda\in\mathscr I} \\
+      \Sup X
+      &= \left(\Sup\{a_\lambda \mid a\in X\}\right)_{\lambda\in\mathscr I}
+    \end{align*}
     es un marco y, equipado con las proyecciones canónicas
     \begin{align*}
         p_\lambda: L&\to A_\lambda \\
@@ -100,7 +109,7 @@ usaremos una técnica distinta, para la cual necesitamos
 algunos resultados concernientes a sitios.
 
 \begin{definition}
-    Sea $A$ una semíretícula inferior.
+    Sea $A$ una semírretícula inferior.
     Una función $C:A\to\mathcal{P}[\mathcal{P(A)}]$
     es una \textit{cobertura} o \textit{función de cubiertas}
     sobre $A$ si,
@@ -123,7 +132,7 @@ algunos resultados concernientes a sitios.
     se le denota por $C\Idl$.
 \end{definition}
 \begin{example}[Ejemplos de sitios]
-    Sea $A$ una $\inf$-retícula.
+    Sea $A$ una semirretícula inferior.
     Consideremos las funciones cubrientes 
     $C_\emptyset$ y $C_T$ definidas como:
     \begin{align*}
@@ -179,18 +188,17 @@ algunos resultados concernientes a sitios.
     \end{itemize}
 \end{example}
 
-\begin{definition}[Marcos generado por un sitio]
-    Sea $(A,C)$ un sitio.
-    Decimos que un marco $B$ es generado por $(A,C)$
-    si existe un morfismo de semiretículas inferiores
-    $f:A\to B$ tal que, para todo $a\in A$, se cumple
-    que $f$ manda $C$-cubiertas en $A$ a $C_{\Sup}$-cubiertas
-    de $B$:
+\begin{definition}[Marco generado por un sitio]
+    Sea $(A,C)$ un sitio, $B$ un marco y $f:A\to B$ un morfismo de
+    semirretículas inferiores. Decimos que el sitio genera al marco
+    $B$ a través de $f$ si $f$ manda $C$-cubiertas en $A$ a
+    $C_{\Sup}$-cubiertas de $B$:
     \begin{equation*}
+      \forall a\in A,\quad
         S\in C(a) \implies f(a) = \Sup\{f(s)\mid s\in S\}
     \end{equation*}
-    y $f$ es universal con respecto a esta propiedad.
-    Explícitamente, la universalidad significa que,
+    y la pareja $(B,f)$ es inicial con respecto a esta propiedad.
+    En este caso, ser inicial significa que,
     si $B'$ es un marco y $f':A\to B'$ es un morfismo
     de $\inf$-semiretículas
     que convierte cubiertas en supremos,
@@ -204,13 +212,20 @@ algunos resultados concernientes a sitios.
         \end{tikzcd}
     \]
     Por el argumento usual, entre cualesquiera dos
-    marcos generados por $(A,C)$ existe un único isomorfismo,
+    marcos $(B,f)$, $(B',f')$ generados por $(A,C)$ existe un único
+    isomorfismo que conmuta con $f$ y $f'$,
     de modo que podemos hablar de \emph{el} marco generado
     por $(A,C)$.
 \end{definition}
 
+Ahora veremos que, dado un sitio $(A,C)$, los $C$-ideales forman un
+marco que está generado por $(A,C)$. Así, obtenemos una construcción
+canónica del marco generado.
+
 \begin{theorem}[$C\Idl$ es un marco]
-    Sea $(A,C)$ un cubriente, entonces, su conjunto de $C$-ideales $C\Idl$ es un marco con la contención, y es generado por $(A,C)$.
+    Sea $(A,C)$ un sitio. Entonces el conjunto $C\Idl$ de los
+    $C$-ideales de $A$ es un marco (con el orden de contención) y es
+    generado por $(A,C)$.
 \end{theorem}
 
 Recordemos que $\mathcal{L}A$ es un marco bajo la contención
@@ -218,39 +233,57 @@ y que, si $B$ es un marco y $\nu\in NA$ es cualquier núcleo,
 entonces $\nu[A]=A_\nu$ es marco con el orden heredado de $A$.
 
 \begin{lemma}[Previo]
-    La intersección arbitraria de $C-$ideales es un $C-$ideal.
+    La intersección arbitraria de $C$-ideales es un $C$-ideal.
 \end{lemma}
 \begin{proof}
-    Sean $\{I_\alpha\}_{\alpha\in\Gamma}$ una familia arbitraria de $C-$ideales, y $I=\bigcap_{\alpha\in\Gamma}I_\alpha$ su intersección. Primero, sean $x\leq y\ \in A$ arbitrarios, con $y\in I$. Entonces $y\in I_\alpha\forall\alpha\in\Gamma$, y así, como cada $I_\alpha$ es sección inferior, entonces $x\in I_\alpha\forall\alpha\in\Gamma$, y esto implica que $x\in I$. Por tanto, cómo $x,y$ son arbitrarios, se cumple que $I$ es sección inferior de $A$.\\
-    Ahora, sean $a\in A, S\in C(a)$ arbitrarios, y supongáse que $S\subseteq I$, entonces, se cumple que $S\subset I_\alpha$ para todo $\alpha\in\Gamma$. Por tanto, ya que cada $I_\alpha$ es $C-$ideal, se sigue que $a\in I_\alpha\ \forall\alpha\in\Gamma$, y se sigue que $a\in I$.\\
-    Con esto, concluimos que $I$ es un $C-$ideal.
+    Sea $\{I_\alpha\}_{\alpha\in\Gamma}$ una familia arbitraria de
+    $C$-ideales. La intersección $I=\bigcap_{\alpha\in\Gamma}I_\alpha$
+    es sección inferior porque cada $I_\alpha$ lo es.
+    Ahora, sea $a\in A$ y tomemos una familia cubriente $S\in C(a)$
+    con $S\subseteq I$. Entonces se cumple que $S\subset I_\alpha$
+    para todo $\alpha\in\Gamma$. Ya que cada $I_\alpha$ es $C$-ideal,
+    se sigue que $a\in I_\alpha\ \forall\alpha\in\Gamma$. Luego, $a\in I$.
+    Concluimos que $I$ es un $C$-ideal.
 \end{proof}
 
-\begin{lemma}[Parte 1]
+\begin{lemma}[Marco generado, parte 1]
     Existe un núcleo $j:\cal LA\to\cal LA$ tal que
     $C\Idl=(\cal LA)_j$, de modo que $C\Idl$ es un cociente
     de $\cal LA$.
     En particular, $C\Idl$ es un marco.
 \end{lemma}
 \begin{proof}
-    Considere el marco de secciones inferiores de $A$, $\mathcal{L}A$, y considere la función $j:\mathcal{L}A\to\mathcal{L}A$ tal que
+  Por el lema anterior, $C\Idl$ es un conjunto $\Inf$-cerrado de $\cal
+  LA$ (ya que el ínfimo en $\cal LA$ es la intersección). Por lo
+  tanto (ver lema \ref{lemma:cerraduras-y-conjuntosfijos}), la función
+  $j:\mathcal{L}A\to\mathcal{L}A$ definida como
     \begin{equation*}
         j(S)=\bigcap\{I\in C\Idl\mid S\subseteq I\}\quad S\in\mathcal{L}A.
     \end{equation*}
-    Primero, para cualquier $S\in\mathcal{L}A$, por la definición de $j$, se tiene que $S\subseteq j(S)$, por tanto $j$ infla. Luego, por el lema anterior, se tiene que $j(S)$ es $C-$ideal, y cómo $j(S)\subseteq j(S)$ trivialmente, y $j(j(S))$ debe ser el menor $C-$ideal que contiene a $j(S)$, obtenemos que $j(j(S))=j(S)$, i.e. $j$ es idempotente.
+  es un operador cerradura, i.e. es monótono, idempotente e
+  inflacionario.
     
     Ahora, sean $R,T\in\mathcal{L}A, I:=j(R\cap T)$. Por definición de $j$, se tiene que $R\subseteq j(R)$ y $T\subseteq j(T)$, entonces $R\cap T\subseteq j(R)\cap j(T)$, y cómo $j$ es idempotente, se sigue que $j(R\cap T)\subseteq j(R)\cap j(T)$.\\
     Defináse ahora el conjunto
     \begin{equation*}
         R' := \{d\in A\mid \forall t\in T,d\wedge t\in I\}.
     \end{equation*}
-    Por la definición de $I$ y ya que $j$ infla, se cumple que $R\subseteq R'$, $T\cap R'\subset I$. Por otro lado, cómo $I\in\mathcal{L}(A)$, obtenemos que $R'\in\mathcal{L}(A)$. Luego, consideremos $U\in C(A)$ tal que $U\subseteq R'$, entonces, para todo $t\in T$, se cumple que $\{u\wedge t\mid u\in U\}\subseteq I$, y además, utilizando la propiedad $(ii)$ de $C$, se cumple que $\{u\wedge t\mid u\in U\}\in C(a\wedge t)$ , y en consecuencia $a\wedge t\in I$, ya que $I$ es $C-$ideal. Luego, cómo $t\in T$ es arbitrario, tenemos que $a\in R'$ y por tanto $R'$ es un $C-$ideal.
+    Por la definición de $I$ y ya que $j$ infla, se cumple que
+    $R\subseteq R'$, $T\cap R'\subset I$. Por otro lado, cómo
+    $I\in\mathcal{L}(A)$, obtenemos que $R'\in\mathcal{L}(A)$. Luego,
+    consideremos $U\in C(A)$ tal que $U\subseteq R'$, entonces, para
+    todo $t\in T$, se cumple que $\{u\wedge t\mid u\in U\}\subseteq
+    I$, y además, utilizando la propiedad $(ii)$ de $C$, se cumple que
+    $\{u\wedge t\mid u\in U\}\in C(a\wedge t)$ , y en consecuencia
+    $a\wedge t\in I$, ya que $I$ es $C$-ideal. Luego, cómo $t\in T$ es
+    arbitrario, tenemos que $a\in R'$ y por tanto $R'$ es un
+    $C$-ideal.
     
-    Análogamente, se construye el $C-$ideal
+    Análogamente, se construye el $C$-ideal
     \begin{equation*}
          T' := \{e\in A\mid \forall r\in R',e\wedge r\in I\},
     \end{equation*}
-    y se cumple que $T\subseteq T'$, $T'\cap R\subseteq I$ y $T'$ es $C-$ideal. Así, se sigue que $j(R)\subseteq R',j(T)\subseteq T'$ y por tanto
+    y se cumple que $T\subseteq T'$, $T'\cap R\subseteq I$ y $T'$ es $C$-ideal. Así, se sigue que $j(R)\subseteq R',j(T)\subseteq T'$ y por tanto
     \begin{equation*}
         j(R)\cap j(T)\subseteq R'\cap T' \subseteq  I = j(R\cap T)
     \end{equation*}
@@ -260,7 +293,7 @@ entonces $\nu[A]=A_\nu$ es marco con el orden heredado de $A$.
 
 %\section*{SESIÓN 21: 25 NOV (Expo Armando 2, Yareli, Dante, Alfredo)}
 
-\begin{lemma}[Parte 2]
+\begin{lemma}[Marco generado, parte 2]
     La función $f:A\to C\Idl$ definida como
     \begin{equation*}
         f(a)=j(\down(a))
@@ -325,35 +358,50 @@ entonces $\nu[A]=A_\nu$ es marco con el orden heredado de $A$.
 
 \section{Coproductos de marcos}
 
-Ya probamos que la categoría de marcos tiene productos.
-Ahora queremos demostrar el siguiente teorema.
-
-\begin{theorem}
-Para una familia de marcos $\{A_\lambda\}_{\lambda\in\scr I}$,
-existe el coproducto
-\[\coprod_{\lambda\in\scr I} A_\lambda.\]
-\end{theorem}
-
-Construiremos el coproducto como sigue:
-Tomaremos el coproducto $A$ de la familia
-en la categoría $\Pos^{\inf}$ de $\inf$-semiretículas.
-Le daremos a $A$ una estructura de sitio, equipándole una
-cobertura $C$.
+Antes probamos que la categoría de marcos tiene productos.
+Ahora veremos que también tiene coproductos.
+La construcción será la siguiente:
+Dada una familia de marcos $\{A_\lambda\}_{\lambda\in\mathscr I}$,
+tomaremos el coproducto $A$ de los $A_\lambda$
+en la categoría $\Pos^{\inf}$ de $\inf$-semiretículas. Luego
+equiparemos esta semirretícula con una cobertura $C$, con lo cual
+obtendremos un sitio $(A,C)$.
 Finalmente, veremos que el marco $C\Idl$ generado por $(A,C)$
 viene equipado con morfismos que lo convierten en el coproducto
 de nuestra familia en la categoría de marcos.
 
-\begin{lemma}
-    Consideremos el conjunto
-    \[
+\begin{lemma}[Coproducto de semirretículas]
+  Sea $\{A_\lambda\}_{\lambda\in\mathscr I}$ una familia de
+  semirretículas inferiores.
+  Entonces la sub-semirretícula inferior del producto
+  \[
     A=
     \left\{ a\in\prod_{\lambda\in\scr I} A_\lambda
     \mid a_\lambda\neq 1_{A_\lambda}
-    \text{ para una cantidad finita de índices} \right\}.
+    \text{ para una cantidad finita de índices} \right\}
+    \subseteq
+    \prod_{\lambda\in\mathscr I} A_\lambda
+  \]
+  equipada con las funciones $q_\lambda\colon A_\lambda\to A$
+  dadas, para cada $\lambda\in \scr I$, por
+    \[
+      q_\lambda(x)=a,
+      \quad
+      \text{donde}
+      \quad
+      a_\mu =
+       \begin{cases}
+         x & \mu=\lambda \\
+         1_\mu & \mu\neq\lambda,
+      \end{cases}
     \]
+  es el coproducto de los $A_\lambda$ en la categoría de
+  $\inf$-semirretículas.
+\end{lemma}
+\begin{proof}
     Notemos que $A$ es una subsemiretícula inferior del producto,
     ya que $1\in A$ y, si $a,b\in A$, entonces
-    $c=a\inf b\in \prod_{\lambda\in\scr I} A_\lambda$
+    $c=a\inf b\in \prod_{\lambda\in\mathscr I} A_\lambda$
     satisface
     \[c_\lambda=
     \begin{cases}
@@ -366,32 +414,14 @@ de nuestra familia en la categoría de marcos.
     entonces los $a_\lambda\wedge b_\lambda$ son finitos,
     por lo que $c\in A$.
     
-    Definimos las funciones
-    $q_\lambda\colon A_\lambda\to A$,
-    para cada $\lambda\in \scr I$, dadas por 
-    \[q_\lambda(x)=a,\]
-    donde $a_\lambda=x$ y $a_\mu =1_{\mu}$
-    para $\mu\in \scr I\setminus \{\lambda\}$.
-    
-    Claramente, $q_\lambda$ es monótona y $q_\lambda(1_\lambda)=1$.
+    Ahora, cada $q_\lambda$ es monótona y $q_\lambda(1_\lambda)=1$.
     Además, si $x,y\in A_\lambda$, entonces
     $q_\lambda(x\wedge y)=q_\lambda(x)\wedge q_\lambda(y)$,
     ya que las operaciones son puntuales.
     Así, cada $q_\lambda$ es un morfismo de semiretículas
     inferiores.
     
-    Afirmamos que $A$, junto con sus funciones
-    \[
-        q_\lambda:A_\lambda\to A
-    \]
-    es el coproducto de la familia
-    $\{A_\lambda\}_{\lambda\in\scr I}$
-    en la categoría de $\inf$-semiretículas.
-\end{lemma}
-\begin{proof}
-    Para este resultado, los $\{A_\lambda\}_{\lambda\in\scr I}$
-    solo necesitan ser $\inf$-semiretículas.
-    Sean $B$ una $\inf$-semiretícula y
+    Ahora sean $B$ una $\inf$-semiretícula y
     $r_\lambda:A_\lambda\to B$ una familia de morfismos
     indicada por $\lambda\in\scr I$.
     Definimos $R:A\to B$ como
@@ -422,9 +452,35 @@ de nuestra familia en la categoría de marcos.
     es el coproducto de las $A_\lambda$ en $\Pos^{\inf}$.
 \end{proof}
 
-\begin{definition}
-Sean $a=(a_\lambda)\in A$, $\mu\in\scr I$ y $S\subseteq A_\mu$, definimos el reemplazo de $a$ por $S$ en la entrada $\mu-$ésima como
-\[S(a,\mu)=\{(b_\lambda)\in A\mid b_\lambda=a_\lambda\textit{ para }\lambda\in\scr I\setminus \{\mu\}\textit{ y }b_\mu\in S\}\]
+Ahora, si $A_\lambda$ son marcos, equiparemos al coproducto $A$ (en la
+categoría de semirretículas inferiores) con una cobertura $C$.
+Necesitaremos la siguiente definición.
+
+\begin{definition}[Sustituciones en el coproducto de semirretículas]
+  Tomemos una familia de marcos $A_\lambda, \lambda\in\scr I$ y sea
+  $A$ su coproducto como semirretículas inferiores. Fijemos un
+  elemento $a\in A$.
+  
+  Dado un elemento $x\in A_\mu$ para un índice $\mu\in\scr I$ dado,
+  denotamos como $a(x)$ al elemento de $A$ que tiene todas las
+  entradas iguales a las de  $a$, excepto la entrada $\mu$-ésima,
+  donde está $x$. Es decir,
+  \[
+    p_\mu(a(x)) = (a_x)_\lambda =
+    \begin{cases}
+      a_\lambda & \lambda\neq\mu \\
+      x & \lambda = \mu.
+    \end{cases}
+  \]
+
+  Dada una familia $S\subseteq A_\mu$ de un índice $\mu\in\scr I$
+  dado, definimos el reemplazo de $a$ por $S$ en la entrada
+  $\mu$-ésima como
+  \[
+    S(a,\mu)
+    =
+    \{a(x) \mid x\in S\}
+  \]
 \end{definition}
 \begin{example}
 Si $a=(a_1,a_2,a_3,a_4)\in\prod_{\lambda=1}^4A_\lambda$, $\mu=2$ y $S=\{x,y,z\}\subseteq A_2$, entonces
@@ -440,16 +496,17 @@ Si $a=(a_1,a_2,a_3,a_4)\in\prod_{\lambda=1}^4A_\lambda$, $\mu=2$ y $S=\{x,y,z\}\
 \end{example}
 
 
-\begin{lemma}[La estructura de sitio en $A$]
+\begin{lemma}[La cobertura en $A$ de supremos en una entrada]
+  \label{lemma:cobertura-en-A}
     La función $C:A\to\cal P(\cal P(A))$
-    definida como
+    definida para cada $a\in A$ como
     \[
         C(a)
         =\left\{ S(a,\mu)
         \mid \mu\in\scr I, S\subseteq A_\mu
-        \text{ tal que }\Sup S=a_\mu\right \}.
+        \text{ tal que }\Sup S=a_\mu\right \}
     \]
-    para cada $a\in A$, es una cobertura en $A$.
+    es una cobertura en $A$.
 \end{lemma}
 \begin{proof}
     Sean $a=(a_\lambda),b=(b_\lambda)\in A$ con $b\leq a$ y $W=S(a,\mu)\in C(a)$.
@@ -486,13 +543,13 @@ Incluimos un ejemplo de un cálculo en $C\Idl(A)$.
     Es decir, $a_\lambda=0\in A_\lambda$ para algún $\lambda$.
     
     Al fijarnos en la entrada $a_\lambda=0\in A_\lambda$,
-    tenemos $\Sup\emptyset 0\in A_\lambda$.
+    tenemos $\Sup\emptyset =0\in A_\lambda$.
     Como $\emptyset(a,\lambda)=\emptyset\subseteq A$,
     de la definición de las $C$-cubiertas
     se sigue que $\emptyset\in C(a)$;
     es decir: la familia vacía cubre a $a$.
     
-    En particular, para cualquier $C$-ideal $F\subseteq A_\scr I$,
+    En particular, para cualquier $C$-ideal $F\subseteq A$,
     tenemos
     \[
         \emptyset \in C(a)
@@ -539,35 +596,23 @@ Incluimos un ejemplo de un cálculo en $C\Idl(A)$.
 \end{example}
 
 
-\begin{lemma}[Parte 2]
-    Consideremos $C\Idl$ y los morfismos
-    $Q_\lambda\colon A_\lambda\to C\Idl$
-    definidos como
+\begin{lemma}[Coproducto de marcos]
+  Tomemos una familia de marcos $A_\lambda, \lambda\in\scr I$ y sean
+  $A$ su coproducto como semirretículas, $(A,C)$ el sitio asociado y
+  $C\Idl(A)$ su marco de ideales. Entonces las funciones
+  $Q_\lambda\colon A_\lambda\to C\Idl$ definidas como
     \[
         Q_\lambda=j(\down(q_\lambda(\_)))
-    .\]
-    Entonces $C\Idl$, equipado con los morfismos $Q_\lambda$,
-    es el coproducto de la famila de los $A_\lambda$
-    en la categoría de marcos.
+    \]
+  son morfismos de marcos y convierten a $C\Idl$ 
+  en el coproducto de la famila de los $A_\lambda$
+  en la categoría de marcos.
 \end{lemma}
 \begin{proof}
-Para cualquier marco $Y$ y morfismos
-$f_\lambda\colon A_\lambda\to Y$ indicados por $\scr I$,
-queremos encontrar un único morfismo
-$f\colon C\Idl\to Y$ tal que el siguiente diagrama
-\[
-    \begin{tikzcd}
-        A_\lambda
-            \ar[d,"Q_\lambda"']
-            \ar[r,"f_\lambda"]
-        & Y \\
-        C\Idl \ar[ru,"f"']
-    \end{tikzcd}
-\]
-conmuta.
-
-Sean $X$ un marco y una familia de morfismos
-\[\{r_\lambda\colon A_\lambda\to X\mid \lambda\in \scr I\}.\]
+\todo{mostrar que son morfismos}
+Sean $X$ un marco y
+$\{r_\lambda\colon A_\lambda\to X\mid \lambda\in \scr I\}$
+una familia de morfismos.
 Dado que $A$, junto con los $q_\lambda:A_\lambda\to A$,
 es el coproducto de los $A_\lambda$ como $\inf$-semiretículas,
 obtenemos el morfismo de $\inf$-semiretículas
