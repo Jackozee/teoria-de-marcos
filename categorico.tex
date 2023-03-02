@@ -94,14 +94,14 @@ esto es:
 \end{example}
 
 \begin{lemma}
-    Sea $f:A\to B$ un morfismo de $\Sup$-semiretículas
+    Sea $f:A\to B$ un morfismo de $\Sup$-semirretículas
     (por ejemplo, un morfismo de marcos).
     Entonces la función $f_*:B\to A$ dada como
     \[
         f_*(b) = \Sup\{x\in A \mid f(x)\leq b\} 
     \]
     es un morfismo de copos y es adjunto derecho de $f$.
-    Más aún, $f_*$ es morfismo de $\Inf$-semiretículas.
+    Más aún, $f_*$ es morfismo de $\Inf$-semirretículas.
 \end{lemma}
 \begin{proof}
     Sea $X=\{x\in A\mid f(x)\leq b\}$.
@@ -274,7 +274,7 @@ no es suprayectivo.
 \section{Reflexiones}
 
 \subsection{La completación de secciones inferiores}
-Si $A$ es una $\inf$-semiretícula, nos gustaría encontrar un
+Si $A$ es una $\inf$-semirretícula, nos gustaría encontrar un
 marco $\hat A$ que complete a $A$ ``de la mejor manera posible''.
 
 ¿Qué tal el conjunto potencia $\cal PA$?
@@ -328,7 +328,7 @@ Además, $\down$ es una función monótona, idempotente, infla
 (es decir, $F\subseteq\down F$) y cumple $\down(F\cup G)=\down
 F\cup\down G$.
 En general, la igualdad $\down(F\cap G)=\down F\cap\down G$ no se
-cumple. Sin embargo, si $A$ es una semiretícula inferior,
+cumple. Sin embargo, si $A$ es una semirretícula inferior,
 entonces tenemos una identidad similar.
 Definiendo $F\inf G := \{x\inf y \mid x\in F, y\in G\}$,
 tenemos $\down(F\inf G)= \down F\cap\down G$, ya que
@@ -341,22 +341,22 @@ tenemos $\down(F\inf G)= \down F\cap\down G$, ya que
   &\iff a\in \down F\cap\down G.
 \end{align*}
 
-En particular, si $A$ es una $\inf$-semiretícula,
+En particular, si $A$ es una $\inf$-semirretícula,
 entonces la función
 \begin{align*}
     \down : A&\to \cal LA \\
     a&\mapsto \down a:=\down\{a\}
 \end{align*}
-es un morfismo de $\inf$-semiretículas.
-Así, $A$ se puede ver como una sub-$\inf$-semiretícula del marco
+es un morfismo de $\inf$-semirretículas.
+Así, $A$ se puede ver como una sub-$\inf$-semirretícula del marco
 $\cal LA$.
 En este sentido, $\cal LA$ ``le da'' a $A$ los supremos que le
 faltan para ser un marco.
 Además, es de esperarse que existan otros marcos $B$ y morfismos
-de $\inf$-semiretículas $A\to B$. Sin embargo, afirmamos que
+de $\inf$-semirretículas $A\to B$. Sin embargo, afirmamos que
 $\down:A\to\cal LA$ es el mejor de estos morfismos, en el sentido
 de que $\down:A\to LA$ exhibe a $\cal LA$ como el marco libre
-sobre la $\inf$-semiretícula $A$.
+sobre la $\inf$-semirretícula $A$.
 
 \begin{proof}
 %[Alfredo $\checkmark$]
@@ -368,7 +368,7 @@ sobre la $\inf$-semiretícula $A$.
     
     Resta ver que esta flecha es una biyección.
     Es decir, dado un morfismo $f:A\to B$
-    de $\inf$-semiretículas,
+    de $\inf$-semirretículas,
     debemos probar que existe un único morfismo de marcos
     $f^\sharp:\cal LA\to B$ que factoriza a $f$ a través
     de $\down$:
@@ -451,13 +451,13 @@ sobre la $\inf$-semiretícula $A$.
     y, así, $\cal LA$ es el marco libre en $A$.
     
     Observemos que esto es válido para cualquier
-    semiretícula $A$.
-    Más aún, dado un morfismo de $\inf$-semiretículas
+    semirretícula $A$.
+    Más aún, dado un morfismo de $\inf$-semirretículas
     $g:A\to A'$, la composición
     \[
         \cal LA' \lar \down A' \lar g A
     \]
-    es un morfismo de $\inf$-semiretículas y
+    es un morfismo de $\inf$-semirretículas y
     $\cal LA'$ es un marco, así que
     existe un único morfismo de marcos
     $g^\sharp:\cal LA\to \cal LA'$ que factoriza a

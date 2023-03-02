@@ -77,13 +77,13 @@ es el ínfimo o el supremo de $X$, respectivamente.
   de inclusión $X\to A$.
 \end{remark}
 
-\section{Semiretículas}
-\label{ss:semireticulas}
+\section{Semirretículas}
+\label{ss:semirreticulas}
 Decimos que un copo es una \emph{semirretícula superior},
 o $\sup$-semirretícula, si $A$ tiene un menor elemento $0\in A$ (el
 supremo del conjunto vacío) y todo par
 de elementos $a,b$ tiene supremo $a\sup b$.
-Equivalentemente, un copo es una semiretícula superior si
+Equivalentemente, un copo es una semirretícula superior si
 todo subconjunto finito de $A$ tiene supremo (ejercicio
 \ref{exe:equiv-1-def-sup-poset}).
 
@@ -139,11 +139,11 @@ es un orden parcial en $A$ tal que el supremo es $\sup$.
 \end{proof}
 \fi
 
-Si $A,B$ son $\sup$-semiretículas,
+Si $A,B$ son $\sup$-semirretículas,
 decimos que una función $f:A\to B$ es
-un $\sup$-morfismo (o un morfismo de $\sup$-semiretículas)
+un $\sup$-morfismo (o un morfismo de $\sup$-semirretículas)
 si $f(0)=0$ y si $f(a\sup b)=f(a)\sup f(b)$.
-Las $\sup$-semiretículas con sus morfismos forman una
+Las $\sup$-semirretículas con sus morfismos forman una
 categoría, a la cual denotamos como $\Pos^\sup$.
 
 Dado que $a\leq b$ si, y solo si, $a\sup b=a$, entonces
@@ -169,7 +169,7 @@ preservan el supremo.
 
 Las definiciones y observaciones de esta sección se pueden hacer
 de manera análoga usando ínfimos en vez de supremos, obteniendo
-la noción de semiretículas inferiores, $\inf$-morfismos, la
+la noción de semirretículas inferiores, $\inf$-morfismos, la
 categoría $\Pos^{\inf}$ y un funtor $\Pos^{\inf}\to\Pos$.
 
 \section{Retículas}\label{ret}
@@ -510,24 +510,24 @@ pero antes daremos las definiciones básicas.
 \begin{definition}
   Decimos que un copo $A$ es superiormente completo
   si cualquier subconjunto $X\subseteq A$ tiene supremo $\Sup X$.
-  En este caso, también decimos que $A$ es una $\Sup$-semiretícula.
+  En este caso, también decimos que $A$ es una $\Sup$-semirretícula.
   Un $\Sup$-morfismo es una función que preserva supremos arbitrarios;
   es decir: $f(\Sup X)=\Sup\{f(x)\mid x\in X\}$
   para todo subconjunto $X\subseteq A$. En particular, un
   $\Sup$-morfismo es una función monótona.
 
-  Las $\Sup$-semiretículas, junto con sus morfismos,
+  Las $\Sup$-semirretículas, junto con sus morfismos,
   forman una categoría $\SupLat$.
 \end{definition}
-Notemos que una $\Sup$-semiretícula es, en particular,
-una $\sup$-semiretícula y que todo morfismo de $\Sup$-semiretículas es
-un morfismo de $\sup$-semiretículas (aunque no al revés).
+Notemos que una $\Sup$-semirretícula es, en particular,
+una $\sup$-semirretícula y que todo morfismo de $\Sup$-semirretículas es
+un morfismo de $\sup$-semirretículas (aunque no al revés).
 Así, tenemos un funtor $\SupLat\to\Pos^\sup$.
 
 De manera completamente análoga, decimos que un copo es
-inferiormente completo (o es una $\Inf$-semiretícula)
+inferiormente completo (o es una $\Inf$-semirretícula)
 si todo subconjunto $X\subseteq A$ tiene ínfimo $\Inf X$; tenemos
-morfismos de $\Inf$-semiretículas y un funtor
+morfismos de $\Inf$-semirretículas y un funtor
 $\InfLat\to\Pos^{\inf}$.
 
 \begin{definition}
@@ -541,7 +541,7 @@ $\InfLat\to\Pos^{\inf}$.
   categoría $\CLat$.
 \end{definition}
 De la definición, una retícula completa es una
-$\Sup$-semiretícula y una $\Inf$-semiretícula, mientras que todo
+$\Sup$-semirretícula y una $\Inf$-semirretícula, mientras que todo
 morfismo completo es un $\Sup$-morfismo y un $\Inf$-morfismo.
 Así, tenemos funtores fieles
 \begin{equation}
@@ -595,7 +595,7 @@ si $S$ es un espacio topológico, la topología $\cal OS$ es
 un subcopo del conjunto potencia $\cal PS$ que,
 por definición, es cerrado bajo ínfimos finitos y
 supremos arbitrarios. Es decir, $\cal OS$ es una
-sub-$\inf$-semiretícula y una sub-$\Sup$-semiretícula de $\cal
+sub-$\inf$-semirretícula y una sub-$\Sup$-semirretícula de $\cal
 PS$.
 Además, como en $\cal PS$ se cumple la ley distributiva
 \begin{equation}
