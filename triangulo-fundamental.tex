@@ -1,0 +1,75 @@
+\chapter{El triangulo fundamental de un espacio}
+\section{La topología de Skula o topología frontera}
+
+Recordemos que, dado un marco $A$, el ensamble $NA$ viene equipado con
+un morfismo $\eta_A:A\to NA$ que resuelve el problema de complementación
+(de hecho, $\eta_A$ es la solución universal).
+
+Ahora queremos explorar una situación parecida, para una topología
+$\cal OS$, aunque solo consideraremos topologías en el conjunto $S$.
+
+\begin{definition}
+    Sea $S$ un espacio topológico y $\cal OS$ su topología.
+    Definimos $\cal O\prs f{}S$ como la topología más pequeña
+    en $S$ tal que todo $u\in\cal OS$ es abierto y cerrado.
+    Es decir, $\cal O\prs f{}S$ es la topología generada por la subbase
+    \[
+        \cal OS\cup\{u'\mid u\in\cal OS\}
+    .\]
+    En otras palabras, $\cal O\prs f{}S$
+    es la topología más pequeña sobre $S$
+    tal que la inclusión $\cal OS\to\cal O\prs f{}S$ resuelve
+    el problema de complementación.
+    $\cal O\prs f{}S$ se llama la \emph{topología de Skula}
+    de $S$, y al conjunto $S$ equipado con $\cal O\prs f{}S$
+    lo denotamos $\prs f{}S$.
+\end{definition}
+
+\begin{example}
+    Sea $\R$ el conjunto de los números reales.
+    Consideraremos los espacios topológicos
+    Además, sean $\prs l{}\R$, $\prs{}m\R$
+    y $\prs r{}\R$ los espacios topológicos dados por $\R$
+    equipado con la topologías generadas por
+    \begin{align*}
+        \{(-\infty,a)\mid a\in\R\}, \\
+        \{(a,b)\mid a,b\in\R\}, \\
+        \{[a,b)\mid a,b\in\R\},
+    \end{align*}
+    respectivamente.
+    Nótese que $\cal O\prs{}m\R$ es la topología estandar.
+    Además, tenemos
+    \[
+        \cal O\prs l{}\R
+        \subseteq
+        \cal O\prs{}m\R
+        \subseteq
+        \cal O\prs r{}\R.
+    \]
+    No es difícil ver que $\prs l{}\R$ es $T_0$,
+    aunque no es $T_0$.
+    
+    Entonces $\cal O\prs r{}\R$ es la topología de Skula
+    en $\cal O\prs l{}\R$:
+    \[
+        \cal O\prs f{}(\prs l{}\R)
+        = \cal O\prs r{}\R
+    .\]
+\end{example}
+
+Dado que la inclusión $\iota:\cal OS\to\cal O\prs f{}S$
+es un morfismo de marcos que resuelve el problema de complementación,
+se factoriza de manera única a través de $\eta_{\cal OS}$:
+\[
+    \begin{tikzcd}
+        \cal OS \ar[d,"\eta_{\cal OS}"'] \ar[r,"\iota"]
+        & \cal O\prs f{}S \\
+        N\cal OS \ar[ur,"\iota^!"']
+    \end{tikzcd}
+\]
+Por la adjunción entre $\cal O$ y $\pt$,
+el morfismo $\iota^!:N\cal OS\to\cal O\prs f{}S$ corresponde
+a un único morfismo $\phi:\prs f{}S\to\pt N\cal OS$.
+Reemplazando a $\cal OS$ por un marco arbitrario $A$
+y a $S$ por $\pt A$,
+se puede demostrar que $\phi$ es un isomorfismo.

@@ -2,15 +2,17 @@
 \usepackage[left=3.5cm,right=3.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
 \overfullrule = 5mm % marcar los overfull hbox
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-lcroman]{babel}
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
-\usepackage{enumitem,mathtools,thmtools,tikz-cd,multicol}
+\usepackage{mathtools,thmtools,tikz-cd,multicol}
+%\usepackage[shortlabels]{enumitem}
+\usepackage{enumerate}
 \usetikzlibrary{babel}
 \usepackage{stmaryrd,todonotes}
 \usepackage{wasysym,titlesec,nameref}
 \usepackage{mathrsfs} % fuente caligráfica. Queda en mathscr.
 \usepackage{eucal} % mathcal Euler. El mathcal original queda en CMcal
-\usepackage{palatino}
+\usepackage{times}
 \usepackage{microtype}
 \usepackage{hyperref}
 \hypersetup{
@@ -48,6 +50,7 @@
 \theoremstyle{definition}
 \newtheorem{axiom}{Axioma}
 \newtheorem{example}[theorem]{Ejemplo}
+
 %\newtheorem{exatemp}[theorem]{Ejemplo}
 %\newenvironment{example}[1] {
 %    \begin{exatemp}#1}{%
@@ -181,8 +184,10 @@
 
 
 \part{Temas selectos}
-\input{cba-ba}
+
 \input{cantor-bendixon}
+\input{triangulo-fundamental}
+\input{cba-ba}
 \input{productos-coproductos}
 \input{tychonoff}
 \input{producto-top-vs-coproducto-frm}
