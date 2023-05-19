@@ -735,8 +735,8 @@ Esto nos permite probar otra caracterización del nucleo de un
 $\Sup$-morfismo:
 
 \begin{corollary}
-  Dado un $\Sup$-morfismo $f:A\to B$, el núcleo de $f$
-  es el operador cerradura $k:A\to A$ determinado por la condición
+  Dado un $\Sup$-morfismo $f\colon A\to B$, el núcleo de $f$
+  es el operador cerradura $k\colon A\to A$ determinado por la condición
   \[
       x\leq k(a) \ssi f(x) \leq f(a)
   .\]
@@ -748,6 +748,9 @@ $\Sup$-morfismo:
   .\]
   Tomando $y=f(a)$, tenemos la equivalencia deseada.
 \end{proof}
+
+
+
 
 Ahora veamos el regreso. Dado un operador cerradura $j$, podemos
 obtener una descripción sencilla del morfismo cociente asociado.
@@ -819,7 +822,12 @@ en la categoría de $\Sup$-semirretículas.
         \end{tikzcd}
     .\]
 \end{theorem}
-    
+
+
+
+
+
+
 %\section*{(SESIÓN 7: 30 SEP)}
 
 \section{Cocientes en \tps{$\Frm$}{Frm}: núcleos}
@@ -970,6 +978,23 @@ conmuta.
 \end{proof}
 
 Esto termina de establecer las correspondencias que queríamos.
+
+
+Antes de continuar vale la pena destacar lo que tenemos hecho hasta el momento con operadores y adjunciones 
+
+\begin{theorem}\label{posetad}
+Consideremos una adjunción arbitraria, $f*\dashv f_{*}$, entre conjuntos parcialmente ordenados $A$ y $B$ 
+Entonces:
+\begin{enumerate}[(i)]
+  \item La composición $f_{*}f^{*}\colon A\rightarrow A$ es inflacionaria y la composición $f^{*}f_{*}\colon B\rightarrow B$ desinfla, es decir, $f^{*}f_{*}(a)\leq a$ para todo $a\in B$.
+  \item Se tiene que $f^{*}f_{*}f^{*}=f^{*}$ y $f_{*}f^{*}f_{*}=f_{*}$.
+  \item Si $A$ y $B$ son completas entonces $f^{*}$ es un $\bigvee$-morfismo y $f_{*}$ es un $\bigwedge$-morfismo.
+  \item Más aún si $A$ y $B$ son completas entonces cada $\bigvee$-morfismo, $f\colon A\rightarrow B$ tiene adjunto derecho, dualmente cada $f_{*}\colon B\rightarrow A$ que preserve infimos arbitrarios, es decir, $f_{*}(\bigwedge X)=\bigwedge\{f_{*}(x)\mid x\in X\}$ tiende adjunto izquierdo. 
+  \item Si $A$ y $B$ son marcos y $f^{*}$ es un morfismo de marcos entonces $f_{*}f^{*}$ es el núcleo de $f^{*}$.    
+\end{enumerate}
+\end{theorem}
+
+
 
 \subsection{Algunos núcleos particulares}
 
