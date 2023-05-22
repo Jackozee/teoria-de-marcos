@@ -947,10 +947,10 @@ conmuta.
 \end{theorem}
 \begin{proof}
     Dado que $j$ es núcleo, $A_j$ es un marco, con $A_j=j(A)$, y $j^*$ es un morfismo de marcos suprayectivo. Tomando en cuenta lo anterior, defínase $f^\sharp:A_j\to B$ como
-    $$f^\sharp(j(a))=f(a)$$
+    \[f^\sharp(j(a))=f(a)\]
     Como $A_j$ es un marco, es cerrado bajo supremos e ínfimos arbitrarios, por lo que 
     \begin{itemize}
-    \item Sean $a,b\in A$ tales que $j(a)=j(b)$. Nótese que como $j\in NA$, entonces $a\leq j(a)$ y $b\leq j(b)$, por lo que a su vez $f(a)\leq f(j(a))$ y $f(b)\leq f(j(b))$. También, dado que $k\geq j$, se tiene que
+    \item[(1)] Sean $a,b\in A$ tales que $j(a)=j(b)$. Nótese que como $j\in NA$, entonces $a\leq j(a)$ y $b\leq j(b)$, por lo que a su vez $f(a)\leq f(j(a))$ y $f(b)\leq f(j(b))$. También, dado que $k\geq j$, se tiene que
     \begin{align*}
         j(a)=j(b)\leq k(b) \ & \text{de donde, por la definición de} \ k\\
          j(a)\leq k(b) & \iff f(j(a))\leq f(b) \ \text{y}\\
@@ -958,14 +958,14 @@ conmuta.
     \end{align*}
     Por lo anterior, se cumplen las desigualdades 
     $f(a)\leq f(b)$ y $f(b)\leq f(a)$, por lo que $f(a)=f(b)$ y $f^\sharp$ está bien definida.
-    \item Para $j(a), j(b) \in A_j$ cualesquiera, 
+    \item[(2)] Para $j(a), j(b) \in A_j$ cualesquiera, 
     \begin{align*}
     f^\sharp(j(a)\inf j(b))&=f^\sharp(j^*(a\inf b))\\
     &=f(a\inf b)\\
     &=f(a)\inf f(b)\\
     &=f^\sharp(j^*(a))\inf f^\sharp(j^*(b))
     \end{align*}
-    \item Sea $X\subset A_j$. Así, 
+    \item[(3)] Sea $X\subset A_j$. Así, 
     \begin{align*}
         f^\sharp(\Sup X)&=f^\sharp(\Sup j^*(X^\prime))\\
         &=f^\sharp(j^*(\Sup X^\prime))\\
@@ -996,7 +996,7 @@ Entonces:
 
 
 
-\subsection{Algunos núcleos particulares}
+\subsection{Algunos núcleos particulares}\label{nucpar}
 
 En cualquier marco $A$, es fácil encontrar núcleos.
 Por ejemplo, los lemas \ref{lemma:w-cerradura}
@@ -1008,13 +1008,13 @@ a partir de $a$.
 
 \begin{definition}[Núcleos cerrado, abierto y regular]
 Sea $a\in A$ fijo, y considérense los operadores siguientes.
-  \begin{itemize}
+  \begin{enumerate}[(i)]
     \item $\unuc a:A\to A$, definido como $\unuc a(x)= a\sup x$.
     \item $\vnuc a:A\to A$, definido como $\vnuc a(x)=(a\succ
     x)$.
     \item $\wnuc a:A\to A$, definido como
       $\wnuc a(x)=((x\succ a)\succ a)$.
-  \end{itemize}
+  \end{enumerate}
   Los operadores $\unuc a$, $\vnuc a$ y $\wnuc a$ son llamados
   los núcleos cerrado, abierto y regular de $a$, respectivamente.
 \end{definition}
@@ -1024,15 +1024,13 @@ Sea $a\in A$ fijo, y considérense los operadores siguientes.
 \end{proposition}
 \begin{proof}
   En efecto, $\unuc a$ infla, es idempotente
-  y monótono. Además, la afirmación de que preserva ínfimos es
+  y monótona. Además, la afirmación de que preserva ínfimos es
   precisamente la ley distributiva.
 
-  Para $\vnuc a$,...
-  \todo{termi\-nar}
-
-  Finalmente, la demostración para $\wnuc a$ está
-  dada por los lemas \ref{lemma:w-cerradura} y
-  \ref{lemma:modalidad-w}.
+Para  $\vnuc a$ esta función por el lema \ref{imp} es monótona e infla y claramente es idempotente.     
+Finalmente, la demostración para $\wnuc a$ está
+dada por los lemas \ref{lemma:w-cerradura} y
+\ref{lemma:modalidad-w}.
 \end{proof}
 
 \begin{example}%[Alfredo $\checkmark$ ]
@@ -1461,7 +1459,7 @@ $k=[\phi[T]']$. En general, $[E]$ siempre es un núcleo.
     &\geq (U)^\circ \\
     &= U.
   \end{align*}
-  Además, es idempotente: por un lado, por el punto anterior
+  Además, es idempotente: por el punto anterior
   tenemos $[E](U)\leq[E]([E](U))$, mientras que
   \begin{align*}
     [E]([E](U))

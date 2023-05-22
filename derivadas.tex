@@ -19,13 +19,13 @@ familias de operadores monótonos.
 \section{Familias de derivadas}
 
 \begin{definition}[Derivadas]
-  Una inflación o derivada en $A$ es una función $f:A\to A$ que
+  Una \emph{inflación o derivada} en $A$ es una función $f\colon A\to A$ que
   es monótona e infla.
   Es decir:
-  \begin{itemize}
-    \item $a\leq b$ implica $f(a) \leq f(b)$.
-    \item $a\leq f(a)$.
-  \end{itemize}
+\begin{enumerate}[(i)]
+  \item $a\leq b$ implica $f(a) \leq f(b)$.
+  \item $a\leq f(a)$.
+  \end{enumerate}
   Usaremos la notación $DA$ para el conjunto de todas las
   derivadas en $A$.
 \end{definition}
@@ -44,7 +44,7 @@ operadores cerradura en $A$.
 \end{definition}
 
 \begin{definition}[Prenúcleos]
-  Un prenúcleo sobre $A$ es una derivada $f\in DA$ tal que
+  Un \emph{prenúcleo} sobre $A$ es una derivada $f\in DA$ tal que
   \[
     f(x)\inf f(y) \leq f(x\inf y)
   .\]
@@ -80,27 +80,28 @@ si, y solo si,
 Notemos que las derivadas $DA$, las estables $SA$ y los
 prenúcleos $PA$ son cerrados bajo composición.
 Es decir:
-\begin{itemize}
+\begin{enumerate}[(i)]
   \item si $f,g\in DA$, entonces $fg,gf\in DA$,
   \item si $f,g\in SA$, entonces $fg,gf\in SA$,
   \item si $f,g\in PA$, entonces $fg,gf\in PA$.
-\end{itemize}
-Por otro lado, las cerraduras $CA$ y los núcleos $NA$
+\end{enumerate}
+Por otro lado, los operadores cerradura $CA$ y los núcleos $NA$
 no lo son, en general.
 
+
+
+
+
+%\subsubsection{Ínfimos}
 Veremos que cada uno de estos conjuntos tiene más
-estructura que la de conjunto parcialmente ordenado.
-
-\subsubsection{Ínfimos}
-
-Sea $J\subseteq DA$.
-Definimos la función $\Inf J:A\to A$ como
+estructura que la de conjunto parcialmente ordenado. Observemos primero que tenemos infimos arbitrarios, sea $J\subseteq DA$, 
+definimos la función $\Inf J\colon A\to A$ como
 \[
   (\Inf J)(a) = \Inf\{f(a) \mid f\in J\}
 .\]
 Afirmamos que $\Inf J$ es una derivada y, de hecho, es el ínfimo
 de $J$ en $DA$:
-\begin{itemize}
+\begin{enumerate}[(1)]
   \item
   Si $a\leq b\in A$, entonces $f(a)\leq f(b)$ para cada $f\in J$.
   Luego, cada elemento de $\{f(b)\mid f\in J\}$ está acotado
@@ -118,7 +119,7 @@ de $J$ en $DA$:
   $h(a)\leq f(a)$.
   Luego, $h(a)$ es cota inferior de $\{f(a) \mid f\in J\}$, por
   lo cual $h(a)\leq (\Inf J)(a)$.
-\end{itemize}
+\end{enumerate}
 
 De hecho, se puede probar lo siguiente:
 \begin{lemma}%[Dante $\checkmark$ ]
@@ -605,7 +606,7 @@ Con estas observaciones, tenemos el siguiente teorema.
   Sea $l=(f \inf g)^\infty$.
   Por inducción, mostraremos que $f^\alpha\inf g\leq l$ para todo
   ordinal $\alpha$.
-  \begin{itemize}
+  \begin{enumerate}[(i)]
     \item Para $\alpha=0$, tenemos $f^0\inf g=\id \leq l$.
     \item Supongamos que $f^\alpha\inf g\leq l$.
     Entonces, para todo $x\in A$ tenemos
@@ -632,7 +633,7 @@ Con estas observaciones, tenemos el siguiente teorema.
       &= \Sup\{f^\alpha(x)\inf g(x) \mid \alpha<\lambda\} \\
       &\leq l(x) && \text{ pues } f^\alpha\inf g\leq l.
     \end{align*}
-  \end{itemize}
+  \end{enumerate}
   Esto muestra que $f^\infty \inf g\leq l$.
   De manera similar, podemos probar que $f^\infty \inf
   g^\alpha\leq l$ para todo $\alpha$.
