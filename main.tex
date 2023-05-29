@@ -1,4 +1,4 @@
-\documentclass[12pt,letterpaper]{book}
+\documentclass[12pt,letterpaper, openright]{book}
 \usepackage[left=3.5cm,right=3.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
 \overfullrule = 5mm % marcar los overfull hbox
@@ -6,6 +6,7 @@
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
 \usepackage{mathtools,thmtools,tikz-cd,multicol}
 %\usepackage[shortlabels]{enumitem}
+\usepackage[nottoc]{tocbibind}
 \usepackage{enumerate}
 \usetikzlibrary{babel}
 \usepackage{stmaryrd,todonotes}
@@ -26,7 +27,6 @@
     }
 
 %\setenumerate[0]{label=(\alph*)}
-
 \usepackage[style=numeric,sorting=none]{biblatex}
 \usepackage{csquotes}
 \addbibresource{referencias.bib}
@@ -213,7 +213,7 @@
 
 \input{categorias}
 \input{ordinales}
-\printbibliography
+\printbibliography[heading=bibintoc,title={Bibliografía}]
 
 \end{document}
 
