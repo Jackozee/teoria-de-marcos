@@ -120,11 +120,11 @@ Esto justifica el primer punto de la siguiente definición.
   Sea $A$ una retícula distributiva donde todo elemento tiene
   negación y tomemos un elemento $a\in A$.
   Decimos que
-  \begin{itemize}
-    \item $a$ es complementado si $a\sup\neg a=1$,
-    \item $a$ es regular si $\neg\neg a = a$,
-    \item $a$ es denso si $\neg a = 0$.
-  \end{itemize}
+  \begin{enumerate}[(i)]
+    \item $a$ es \emph{complementado} si $a\sup\neg a=1$,
+    \item $a$ es \emph{regular} si $\neg\neg a = a$,
+    \item $a$ es \emph{denso} si $\neg a = 0$.
+  \end{enumerate}
 \end{definition}
 
 Nótese que $\neg a$ es regular para todo $a$, ya que
@@ -154,9 +154,9 @@ $\neg\neg\neg a =\neg a$.
   \end{enumerate}
 \end{example}
 
-\begin{proposition}%[Dante $\checkmark$ ]
+\begin{proposition}
   Un elemento $a$ de una retícula $A$ es denso
-  ($\neg a=0$) si, y solo si $\neg\neg a = 1$.
+   si y solo si $\neg\neg a = 1$.
 \end{proposition}
 \begin{proof}
 Tenemos
@@ -169,7 +169,7 @@ Tenemos
 \end{align*}
 \end{proof}
 
-%\section*{(SESIÓN 5: 23 SEP)}
+
 
 \begin{proposition}
   Si $A$ es una retícula distributiva y $a,b\in A$ tienen
@@ -214,13 +214,13 @@ de un elemento denso y un elemento regular.
   complementado) si, y solo si, todo elemento es regular.
 \end{lemma}
 \begin{proof}
-    $\Rightarrow )$ Supongamos que $A$ es booleana, entonces todo
+     Supongamos que $A$ es booleana, entonces todo
     $a\in A$ cumple $a\vee \neg a=1$.
     Luego $\neg a\vee \neg\neg a=1$, es decir, $\neg\neg a$ es
     complementado.
     Como el complemento de $\neg a$ es único, se tiene que $\neg
     \neg a=a$. \\ 
-    $\Leftarrow)$ Supongamos que todos los elementos de $A$ son
+    Recíprocamente si que todos los elementos de $A$ son
     regulares y sea $a\in A$.
     Como $a$ y $a\sup\neg a$ son regulares, tenemos
     $a\sup\neg a=\neg\neg (a\sup\neg a)=\neg(\neg
@@ -232,7 +232,7 @@ de un elemento denso y un elemento regular.
 \subsection{Implicaciones}
 
 Una implicación en una semirretícula inferior $A$ es una operación
-$(-\succ -):A\to A$ tal que, para cualesquiera $a,x,y\in A$ se tiene
+$(-\succ -)\colon A\rightarrow A$ tal que, para cualesquiera $a,x,y\in A$ se tiene
 \[
   x\inf y\leq a \ssi x\leq (y\succ a )
 .\]
