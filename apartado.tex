@@ -434,10 +434,496 @@ Veamos que en efecto toda topología esta dada por un operador cerradura.
     \item[(iii.4)] $\mathcal{P}(S)_{J_{\mathcal{O}S}(\_)}=\mathcal{O}(S)$. 
   \end{itemize} 
 \end{enumerate}
-
-
-
-
-
-
 \end{itemize}
+
+
+
+
+\section{Aspectos categóricos}\label{ascpect}
+
+\subsection{Morfismos adjuntos de copos}
+\label{ss:adj-copos}
+Recordemos que, cuando vemos a $A$ y a $B$ como categorías,
+un morfismo de copos $f:A\to B$ es lo mismo que un funtor,
+así que podemos aplicar el concepto de adjunción entre funtores.
+En este caso, dos morfismos de copos $f:A\to B$, $g:B\to A$
+cumplen $(f\dashv g)$ (es decir, $g$ es adjunto derecho de $f$ y
+$f$ es adjunto izquierdo de $g$) si
+\[
+    B(fa,b) \simeq A(a,gb)
+;\]
+esto es:
+\[
+    fa\leq b \ssi a\leq gb
+.\]
+
+\begin{example}
+  Sea $A$ un álgebra de Heyting (por ejemplo, un marco).
+  Para todo $a\in A$ a implicación $(a\succ -)$ es
+  el adjunto derecho del ínfimo $-\inf a$, pues
+  \[
+    y\inf a\leq b \ssi y\leq (a\succ b)
+  .\]
+\end{example}
+
+\begin{example}
+  \label{exa:adjuncion-potencia}
+  Sea $\phi:S\to T$ una función entre conjuntos.
+  Entonces la imagen directa $\phi_!:\cal PS\to\cal PT$ y
+  la imagen inversa $\phi^{-1}:\cal PT\to\cal PS$, definidas para
+  cualesquiera $U\subseteq S$ y $V\subseteq T$ como
+  \begin{align*}
+    \phi_!(U)
+    &= \{\phi(x) \mid x\in U\}
+    = \{y\in Y\mid \exists x\in U, y=\phi(x) \}
+    \\
+    \phi^{-1}(V)
+    &= \{x\in X \mid \phi(x)\in V\}
+  \end{align*}
+  son morfismos de copos que satisfacen
+  \begin{align*}
+    \phi_!(U) \subseteq V
+    &\iff \forall x\in U, \phi(x)\in V \\
+    &\iff \forall x\in U, x\in \phi^{-1}(V) \\
+    &\iff U\subseteq \phi^{-1}(V),
+  \end{align*}
+  así que $\phi_!\dashv \phi^{-1}$.
+
+  Más aún, $\phi^{-1}$ también tiene adjunto derecho. En efecto,
+  tenemos
+  \begin{align*}
+    \phi^{-1}(V) \subseteq U
+    &\iff U'\subseteq \phi^{-1}(V)' \\
+    &\iff U'\subseteq \phi^{-1}(V') \\
+    &\iff \phi_!(U')\subseteq V' \\
+    &\iff V\subseteq \phi_!(U')'.
+  \end{align*}
+  Así, definiendo $\phi_?:\cal PS\to\cal PT$ por la fórmula
+  $\phi_?(U)=\phi_!(U')'$, tenemos $\phi^{-1}\dashv \phi_?$.
+  Explícitamente,
+  \begin{align*}
+    \phi_?(U)
+    &= \{y\in T \mid x\not\in \phi_!(U') \} \\
+    &= \{y\in T \mid \forall x\in U', y\neq \phi(x) \}.
+  \end{align*}
+\end{example}
+
+\begin{example}%[Dante $\checkmark$ ]
+  \label{exa:adjunto-derecho-top}
+  Si $\phi:S\to T$ es una función continua entre espacios
+  topológicos, el morfismo de marcos
+  $\phi^*=\cal O\phi:\cal OT\to\cal OS$,
+  definido como $\phi^*(v)=\phi^{-1}(v)$ para cada $v\in\cal OT$,
+  tiene adjunto derecho.
+  Si $\phi_?:\cal PS\to\cal PT$ es el adjunto derecho de la
+  preimagen $\phi^{-1}:\cal PT\to\cal PS$ (ver ejemplo
+  \ref{exa:adjuncion-potencia}), tenemos
+  \begin{align*}
+    \phi^*(v) \leq u
+    &\iff \phi^{-1}(v) \leq u \\
+    &\iff v \leq \phi_?(u) \\
+    &\iff v\leq \phi_?(u)^\circ,
+  \end{align*}
+  ya que $\phi_?(u)^\circ$ es el abierto más grande contenido en
+  $\phi_?(u)$.
+  Por lo tanto, el adjunto derecho $\phi_*:\cal OS\to\cal OT$ de
+  $\phi^*$ se calcula como
+  \begin{align*}
+    \phi_*(u) &= \phi_?(u)^\circ = (\phi_!(u')')^\circ = \ol{\phi_!(u')}',
+  \end{align*}
+  donde $\phi_!:\cal PS\to\cal PT$ es la imagen directa.
+\end{example}
+
+\begin{lemma}
+    Sea $f:A\to B$ un morfismo de $\Sup$-semirretículas
+    (por ejemplo, un morfismo de marcos).
+    Entonces la función $f_*:B\to A$ dada como
+    \[
+        f_*(b) = \Sup\{x\in A \mid f(x)\leq b\} 
+    \]
+    es un morfismo de copos y es adjunto derecho de $f$.
+    Más aún, $f_*$ es morfismo de $\Inf$-semirretículas.
+\end{lemma}
+\begin{proof}
+    Sea $X=\{x\in A\mid f(x)\leq b\}$.
+    Si $a\in A$ es tal que $f(a)\leq b$, entonces $a\in X$,
+    por lo cual
+    \[
+        a\leq \Sup X= f_*(b)
+    .\]
+    Recíprocamente, si $a\leq f_*(b)=\Sup X$, entonces
+    \begin{align*}
+        f(a)
+        &\leq f(\Sup X) \\
+        &= \Sup\{f(x)\mid f(x)\leq b\} \\
+        &\leq b,
+    \end{align*}
+    ya que $f$ preserva supremos.
+
+    La monotonía de $f_*$ se sigue de que preserva ínfimos (lo
+    cual probaremos abajo) pero de todos modos es fácil verlo,
+    así que lo haremos por separado.
+    Si tenemos $b\leq c\in B$, entonces
+    \[
+        \{x\in X\mid f(x)\leq b\} \subseteq
+        \{x\in X\mid f(x)\leq c\}.
+    \]
+    Aplicando supremos, obtenemos $f_*(b)\leq f_*(c)$.
+    
+    Finalmente, veamos que $f_*$ preserva ínfimos.
+    Si $Y\subseteq B$ es cualquier subconjunto,
+    entonces todo $a\in A$ cumple
+    \begin{align*}
+        a\leq f_*(\Inf Y)
+        &\iff f(a)\leq \Inf Y \\
+        &\iff (\forall y\in Y,\; f(a)\leq y) \\
+        &\iff (\forall y\in Y,\; a\leq f_*(y)) \\
+        &\iff a\leq \Inf\{f_*(y) \mid y\in Y\}.
+    \end{align*}
+    Se sigue que $f_*(\Inf Y)=\Inf\{f_*(y)\mid y\in Y\}$.
+\end{proof}
+
+Sin embargo, nótese que, aunque $f:A\to B$ sea un morfismo
+de marcos, su adjunto derecho $f_*:B\to A$
+puede no preservar supremos finitos.
+
+
+
+
+
+
+
+\section{Monomorfismos y epimorfismos}
+
+Recordemos que, dada una categoría $\cal C$, un morfismo es
+\begin{itemize}
+    \item un monomorfismo si es cancelable por la izquierda,
+    \item un epimorfismo si es cancelable por la derecha y
+    \item un bimorfismo si es monomorfismo y epimorfismo.
+\end{itemize}
+
+\begin{exercise}[Para el lector]%[Armando]
+    Muéstrese que, en la categoría $\Top$ de los espacios topológicos,
+    un morfismo es
+    \begin{itemize}
+        \item suprayectivo si, y solo si, es un epimorfismo,
+        \item inyectivo si, y solo si, es un monomorfismo.
+    \end{itemize}
+\end{exercise}
+
+Este también es el caso las categorías de conjuntos, grupos y
+espacios vectoriales, pero no en la categoría de anillos.
+En efecto, aunque un morfismo de anillos es
+\begin{align*}
+    \text{inyectivo} &\iff \text{monomorfismo y} \\
+    \text{suprayectivo} &\implies \text{epimorfismo},
+\end{align*}
+la inclusión
+\[
+    i:\mathbb Z\to\mathbb Q
+\]
+es un ejemplo de un epimorfismo de anillos que no es suprayectivo.
+
+Veremos que, en este aspecto, la categoría de marcos se comporta
+parecido a la categoría de anillos, pues aunque en $\Frm$ es cierto que
+\begin{align*}
+    \text{inyectivo} &\iff \text{monomorfismo y} \\
+    \text{suprayectivo} &\implies \text{epimorfismo},
+\end{align*}
+también existen epimorfismos no suprayectivos.
+
+\begin{lemma}
+    Todo monomorfismo de marcos es inyectivo,
+    así que, en $\Frm$, un morfismo es
+    \[
+        \text{inyectivo} \iff \text{monomorfismo.}
+    \]
+\end{lemma}
+\begin{proof}
+    Vamos a usar el marco
+    \[
+        3 \hspace{10mm} = \hspace{10mm}
+        \begin{tikzcd}
+            1 \\ \star \ar[u,no head] \\ 0. \ar[u,no head]
+        \end{tikzcd}
+    \]
+    Sea $m:A\to B$ un monomorfismo y $a,b\in A$ tales que $m(a)=m(b)$.
+    Como las funciones $f_a,f_b:3\to A$ dadas por
+    $f_a(\star)=a$ y $f_b(\star)=b$ son morfismos de marcos que cumplen
+    $m(f_a(\star))=m(a)=m(b)=m(f_b(\star))$, se sigue que $mf_a=mf_b$.
+    Como $m$ es monomorfismo, se sigue que $f_a=f_b$, así que
+    $a=f_a(\star)=f_b(\star)=b$.
+\end{proof}
+
+Del truco del marco $3$ que usamos en la demostración anterior,
+se puede deducir que las asignaciones
+\begin{align*}
+    B &\leftrightarrows \Frm(3,B) \\
+    a &\mapsto f_a \\
+    f(\star) &\mapsfrom f
+\end{align*}
+forman un isomorfismo de marcos,
+donde $\Frm(3,B)$ tiene el orden puntual.
+
+Ahora queremos construir un epimorfismo de marcos que no es
+suprayectivo.
+\begin{lemma}
+    Si $S$ es un espacio topológico $T_1$, entonces
+    la inclusión $i:\cal OS\to\cal PS$ es un epimorfismo.
+\end{lemma}
+\begin{proof}
+    Sean
+    \[
+        \begin{tikzcd}
+            A
+            & \cal PS \ar[l,"f"',shift right] \ar[l,"g",shift left]
+            & \cal OS \ar[l,"i"']
+        \end{tikzcd}
+    \]
+    morfismos en $\Frm$ con $fi=gi$.
+    
+    Dado $p\in S$, consideremos $X_p=\{p\},U_p=\{p\}'\in\cal PS$.
+    Como $X_p$ y $U_p$ son complementarios en $\cal PS$,
+    sus imágenes en $A$ (bajo $f$ y bajo $g$) son complementarias.
+    Ahora, como $S$ es $T_1$, entonces $X_p$ es cerrado, así que
+    $U_p$ es abierto.
+    Como $fi=gi$, esto implica que
+    \begin{align*}
+        f(U_p)
+        &= f(i(U_p)) \\
+        &= g(i(U_p)) \\
+        &= g(U_p).
+    \end{align*}
+    Luego, la unicidad de los complementos nos da
+    \begin{align*}
+        f(X_p)
+        &= \neg f(U_p) \\
+        &= \neg g(U_p) \\
+        &= g(X_p).
+    \end{align*}
+    Ahora, para cualquier $E\in\cal PS$ tenemos
+    $E=\Sup\{X_p\mid p\in E\}$.
+    Como $f$ y $g$ son morfismos de marcos,
+    \begin{align*}
+        f(E)
+        &= \Sup\{f(X_p) \mid p\in E\} \\
+        &= \Sup\{g(X_p) \mid p\in E\} \\
+        &= g(E),
+    \end{align*}
+    por lo cual $f=g$.
+    Se sigue que $i$ es un epimorfismo.
+\end{proof}
+En particular, si $S$ es un espacio topológico $T_1$ no discreto
+(es decir, $\cal OS\neq\cal PS$), entonces la inclusión
+$i:\cal OS\to\cal PS$ es un ejemplo de epimorfismo de marcos que
+no es suprayectivo.
+
+\subsection{Reflexiones}
+
+\subsection{La completación de secciones inferiores}
+Si $A$ es una $\inf$-semirretícula, nos gustaría encontrar un
+marco $\hat A$ que complete a $A$ ``de la mejor manera posible''.
+
+¿Qué tal el conjunto potencia $\cal PA$?
+Es un álgebra booleana completa, tiene leyes distributivas
+fuertes; quizá demasiado fuertes.
+Además, la retícula que buscamos debería tener a $A$ como una
+subretícula, mientras que
+la función obvia $A\to\cal PA$ dada por $a\mapsto\{a\}$
+no preserva el orden, así que no es una inclusión de
+retículas.
+Vamos a refinar esta situación.
+
+Si $A$ es un copo, una sección inferior de $A$
+es un subconjunto $L\subseteq A$ que "absorbe hacia abajo".
+Es decir, si $a\leq b\in L$, entonces $a\in L$.
+
+Denotemos como $\cal LA$ al conjunto de todas las secciones
+inferiores en $A$.
+Nótese que, por vacuidad, el conjunto vacío
+$\emptyset\subseteq A$ es una sección inferior de $A$.
+Además, la intersección de dos secciones
+inferiores vuelve a ser una sección inferior, mientras que la
+unión arbitraria de secciones inferiores también lo es.
+En otras palabras, $\cal LA$ es un submarco de $\cal PA$.
+
+Así, $\cal LA$ es una topología en $A$, que podríamos llamar la
+topología de coespecialización. (La topología de especialización
+en un copo $A$ es el conjunto de secciones superiores).
+Las topologías de especialización y coespecialización tienen la
+propiedad interesante de que una función entre dos copos es
+monótona ssi es continua en la topología de
+especialización ssi es continua en la topología de
+coespecialización.
+Sin embargo, ahora nos enfocaremos más en el aspecto reticular
+de $\cal LA$ que en sus propiedades como topología de $A$.
+
+Para cada subconjunto $F\subseteq A$, el conjunto
+\[
+  \down F = \{a\in A \mid \exists c\in F , a\leq c\} \subseteq A
+\]
+es una sección inferior.
+De hecho, es la sección inferior más pequeña que contiene a $F$.
+Decimos que $\down F$ es la sección inferior generada por $F$.
+La asignación $F\mapsto\down F$ nos da una función
+\[
+  \down:\cal PA\to\cal PA
+\]
+cuyo conjunto de sus puntos fijos
+(es decir, los $F\in\cal PA$ con $F=\down F$) es $\cal LA$.
+Además, $\down$ es una función monótona, idempotente, infla
+(es decir, $F\subseteq\down F$) y cumple $\down(F\cup G)=\down
+F\cup\down G$.
+En general, la igualdad $\down(F\cap G)=\down F\cap\down G$ no se
+cumple. Sin embargo, si $A$ es una semirretícula inferior,
+entonces tenemos una identidad similar.
+Definiendo $F\inf G := \{x\inf y \mid x\in F, y\in G\}$,
+tenemos $\down(F\inf G)= \down F\cap\down G$, ya que
+\begin{align*}
+  a\in\down(F\inf G)
+  &\iff \exists(c\in F\inf G).(a\leq c) \\
+  &\iff \exists(f\in F,g\in G).(a\leq f\inf g) \\
+  &\iff \exists(f\in F,g\in G).(a\leq f, a\leq g) \\
+  &\iff a\in \down F, a\in \down G \\
+  &\iff a\in \down F\cap\down G.
+\end{align*}
+
+En particular, si $A$ es una $\inf$-semirretícula,
+entonces la función
+\begin{align*}
+    \down : A&\to \cal LA \\
+    a&\mapsto \down a:=\down\{a\}
+\end{align*}
+es un morfismo de $\inf$-semirretículas.
+Así, $A$ se puede ver como una sub-$\inf$-semirretícula del marco
+$\cal LA$.
+En este sentido, $\cal LA$ ``le da'' a $A$ los supremos que le
+faltan para ser un marco.
+Además, es de esperarse que existan otros marcos $B$ y morfismos
+de $\inf$-semirretículas $A\to B$. Sin embargo, afirmamos que
+$\down:A\to\cal LA$ es el mejor de estos morfismos, en el sentido
+de que $\down:A\to LA$ exhibe a $\cal LA$ como el marco libre
+sobre la $\inf$-semirretícula $A$.
+
+\begin{proof}
+
+    Consideremos el funtor de olvido $U:\Frm\to\Pos^{\inf}$.
+    Precomponer con $\down$ nos da una flecha
+    \[
+        \Frm(\cal LA,-)\to \Pos^{\inf}(A,U-)
+    ,\]
+    
+    Resta ver que esta flecha es una biyección.
+    Es decir, dado un morfismo $f:A\to B$
+    de $\inf$-semirretículas,
+    debemos probar que existe un único morfismo de marcos
+    $f^\sharp:\cal LA\to B$ que factoriza a $f$ a través
+    de $\down$:
+    \[
+        f^\sharp\down = f
+    .\]
+    Es decir, $f^\sharp(\down a)=f(a)$ para todo $a\in A$.
+    Esta condición determina completamente a $f^\sharp$.
+    En efecto, para toda sección inferior $F\in\cal LA$ tenemos
+    $F=\bigcup\{\down a \mid a\in F\}$ y, como también queremos
+    que $f^\sharp$ respete supremos, se debe cumplir
+    \begin{align*}
+        f^\sharp(F)
+        &= \Sup\{f^\sharp(\down a) \mid a\in F\} \\
+        &= \Sup\{f(a) \mid a\in F\}.
+    \end{align*}
+    Tomando esta ecuación como la definición de $f^\sharp$, es
+    claro que $f^\sharp(\down a)=f(a)$.
+    Por lo tanto, si $f^\sharp:\cal LA\to B$ es un
+    morfismo de marcos, es el único con esta propiedad.
+    Verificamos las propiedades directamente.
+    \begin{itemize}
+        \item En efecto, si $F\subseteq G\cal\in LA$, entonces 
+        \[
+            \{f(a) \mid a\in F\} \subseteq \{f(a) \mid a\in G\}
+        .\]
+        Tomando supremos, obtenemos
+        $f^\sharp(F)\leq f^\sharp(G)$, así que $f^\sharp$ es
+        monótona.
+        \item
+        Dadas $F,G\in\cal LA$, hay que mostrar
+        que $f^\sharp(F\cap G)=f^\sharp(F)\inf f^\sharp(G)$.
+        La comparación $\leq$ se sigue de la monotonía de
+        $f^\sharp$.
+        Por otro lado, observemos que
+        \[
+            \{ a\inf b \mid a\in F, b\in G\}
+            \subseteq F\cap G,
+            \hspace{10mm} (*)
+        \]
+        pues $F$ y $G$ son secciones inferiores.
+        Luego,
+        \begin{align*}
+            f^\sharp(F)\inf f^\sharp(G)
+            &= \Sup\{f(a)\inf f(b) \mid a\in F, b\in G\}
+                && \text{ ley dist. de marcos } \\
+            &= \Sup\{f(a\inf b) \mid a\in F, b\in G\} \\
+            &\leq \Sup\{f(c) \mid c\in F\cap G\}
+                && \text{ por $(*)$ } \\
+            &= f^\sharp(F\cap G),
+        \end{align*}
+        como se quería.
+        \item
+        Dado $X\subseteq \cal LA$, hay que mostrar que
+        $f^\sharp(\bigcup X)=\Sup\{f^\sharp(F) \mid F\in X\}$.
+        Como $f^\sharp$ es monótona,
+        $f^\sharp(\bigcup X)$ es cota superior de
+        $\{f^\sharp(F) \mid F\in X\}$.
+        Para ver que es la mínima, sea $b\in B$ tal que
+        $f^\sharp(F)\leq b$ para todo $F\in X$.
+        Por definición de $f^\sharp$, esto significa que
+        $f(a)\leq b$ para cualesquiera $a\in F, F\in X$.
+        Luego,
+        \begin{align*}
+            f^\sharp(\bigcup X)
+            &= f^\sharp (
+            \{a\in A \mid a\in F\text{ para algún }F\in X\}
+            ) \\
+            &=
+            \Sup\{f(a)\in A \mid a\in F\text{ para algún }F\in X\}) \\
+            &\leq b,
+        \end{align*}
+        como se deseaba.
+    \end{itemize}
+    Por lo tanto, $f^\sharp$ es morfismo de marcos.
+    Así, tenemos un isomorfismo
+    \[
+        \Frm(\cal LA,-)\xto{-\circ \down} \Pos^{\inf}(A,U-)
+    \]
+    y, así, $\cal LA$ es el marco libre en $A$.
+    
+    Observemos que esto es válido para cualquier
+    semirretícula $A$.
+    Más aún, dado un morfismo de $\inf$-semirretículas
+    $g:A\to A'$, la composición
+    \[
+        \cal LA' \lar \down A' \lar g A
+    \]
+    es un morfismo de $\inf$-semirretículas y
+    $\cal LA'$ es un marco, así que
+    existe un único morfismo de marcos
+    $g^\sharp:\cal LA\to \cal LA'$ que factoriza a
+    $\down g$ a través de $\down:A\to \cal LA$.
+    Si definimos $\cal Lg=g^\sharp:\cal LA\to\cal LA'$,
+    obtenemos una función
+    \[
+        \Pos^{\inf}(A,A') \to \Frm(\cal LA,\cal LA')
+    .\]
+    Más aún, las propiedades de unicidad de
+    $\cal Lg=g^\sharp$ aseguran que $\cal L$ es un funtor
+    $\cal L:\Pos^{\inf}\to\Frm$.
+    Luego, tenemos una adjunción $\cal L\dashv U$
+    (ver \ref{ss:adjunciones}).
+\end{proof}
+
+\begin{exercise}[Para el lector]%[Armando]
+  Dado un copo $A$,
+  ¿Quién será la negación y la implicación en $\cal LA$?
+\end{exercise}
+
+
