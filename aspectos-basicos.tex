@@ -11,6 +11,8 @@ En el apéndice \ref{chap:categorias} se ofrece una visión general del
 lenguaje de las categorías, funtores, transformaciones naturales y adjunciones.
 
 \section{Conjuntos parcialmente ordenados}\label{copos}
+\begin{definition}\label{copo}
+  
 
 Un \emph{ conjunto parcialmente ordenado } (copo) es un par $(A,\leq)$
 donde $A$ es un conjunto y $\leq$ es una relación en $A$ que
@@ -20,9 +22,9 @@ satisface:
   \item[(2)]  transitividad: si $a\leq b$ y $b\leq c$, entonces $a\leq c$.
   \item[(3)] antisimetría: si $a\leq b$ y $b\leq a$, entonces $a=b$.
 \end{itemize}
-
+\end{definition}
 \begin{example} \leavevmode
-  \begin{itemize}
+  \begin{enumerate}[(i)]
     \item
       Para cualquier conjunto $S$, el conjunto $\cal PS$ de los
       subconjuntos de $S$, es un copo con el orden de contención $\subseteq$.
@@ -33,10 +35,10 @@ satisface:
       Si $X$ un espacio topológico, su topología $\cal OX\subseteq\cal
       PS$ es un copo con el orden de contención $\subseteq$. Esta es
       una instancia de los dos puntos anteriores.
-  \end{itemize}
+  \end{enumerate}
 \end{example}
 
-Un \emph{morfismo} $f:A\to B$ entre dos copos $A,B$, es una función
+Un \emph{morfismo} $f\colon A\rightarrow B$ entre dos copos $A,B$, es una función
 monótona (creciente), es decir, siempre que $a\leq b\in A$, se tiene
 que $f(a)\leq f(b)$.
 Dado que la composición de dos funciones monótonas también es
@@ -68,13 +70,13 @@ denotamos $\Inf X$. Entonces
 Nótese que, si $X$ tiene un menor o un mayor elemento, entonces este
 es el ínfimo o el supremo de $X$, respectivamente.
 
-\begin{remark}
+\begin{remark}\label{obs1}
   Un copo $A$ se puede entender como una categoría pequeña en la que
   hay, a lo más, un morfismo entre cada par de objetos.
   Desde este punto de vista, un morfismo de copos $f:A\to B$ es,
   sencillamente, un funtor; mientras que el supremo y el ínfimo de un
   subconjunto $X\subseteq A$ son el colímite y el límite del funtor
-  de inclusión $X\to A$.
+  de inclusión $X\to A$ (ver  \ref{chap:categorias}).
 \end{remark}
 
 \section{Semirretículas}
@@ -406,7 +408,9 @@ En realidad, no es necesario pedir la distributividad: cualquier
 retícula $A$ equipada con una implicación $(-\succ-)$ que cumple
 \eqref{eq:defn-implicacion} es distributiva y, por lo tanto, un
 álgebra de Heyting.
-
+\begin{proposition}\label{disheyt}
+Toda ret\'icula con una implicación es distributiva, ergo es un álgebra de Heyting.
+\end{proposition}
 \begin{proof}
     Notemos que $a\wedge b \leq (a\wedge b)\vee (a\wedge c)$ y de
     igual manera $a\wedge c\leq  (a\wedge b)\vee (a\wedge c)$. Por la
