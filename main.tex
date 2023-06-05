@@ -26,6 +26,12 @@
 %    pdfpagemode=FullScreen,
     }
 
+\usepackage{glossaries}
+
+\makeglossaries
+\input{glosarios.tex}
+
+
 %\setenumerate[0]{label=(\alph*)}
 \usepackage[style=numeric,sorting=none]{biblatex}
 \usepackage{csquotes}
@@ -51,11 +57,7 @@
 \newtheorem{axiom}{Axioma}
 \newtheorem{example}[theorem]{Ejemplo}
 
-%\newtheorem{exatemp}[theorem]{Ejemplo}
-%\newenvironment{example}[1] {
-%    \begin{exatemp}#1}{%
-%      \xqed{\blacksquare}\end{exatemp}%
-%}
+
 
 \newcommand\nin{\not\in}
 \newcommand\down{{\downarrow}}
