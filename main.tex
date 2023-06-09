@@ -26,11 +26,11 @@
 %    pdfpagemode=FullScreen,
     }
 
-\usepackage{glossaries}
+\usepackage[index, symbols]{glossaries}
 
 \makeglossaries
 \input{glosarios.tex}
-
+\makeglossaries
 
 %\setenumerate[0]{label=(\alph*)}
 \usepackage[style=numeric,sorting=none]{biblatex}
@@ -216,6 +216,6 @@
 \input{categorias}
 \input{ordinales}
 \printbibliography[heading=bibintoc,title={Bibliografía}]
-\printglossaries
+\printglossaries[title=Índice]
 \end{document}
 
