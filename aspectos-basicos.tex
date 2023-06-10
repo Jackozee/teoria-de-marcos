@@ -81,7 +81,7 @@ es el ínfimo o el supremo de $X$, respectivamente.
 
 \section{Semirretículas}
 \label{ss:semirreticulas}
-Decimos que un copo es una \emph{semirretícula superior},
+Decimos que un copo $(A,\leq, 0, \vee)$ es una \emph{semirretícula superior},
 o $\sup$-semirretícula, si $A$ tiene un menor elemento $0\in A$ (el
 supremo del conjunto vacío) y todo par
 de elementos $a,b$ tiene supremo $a\sup b$.
@@ -89,7 +89,7 @@ Equivalentemente, un copo es una semirretícula superior si
 todo subconjunto finito de $A$ tiene supremo (ejercicio
 \ref{exe:equiv-1-def-sup-poset}).
 
-Sea $A$ una semirretícula inferior.
+Sea $A$ una semirretícula inferior $(A,\leq, 1, \wedge)$.
 Como $0\leq a$ para todo $a\in A$, entonces $a\sup 0=a$.
 Además, $a\sup b=b\sup a$, $(a\sup b)\sup c=a\sup(b\sup c)$
 y $a\sup a=a$ para cualesquiera $a,b,c\in A$.
@@ -176,7 +176,7 @@ categoría $\Pos^{\inf}$ y un funtor $\Pos^{\inf}\to\Pos$.
 
 \section{Retículas}\label{ret}
 
-Decimos que un copo $A$ es una \emph{ retícula } si cualquier
+Decimos que un copo $(A,\leq,\vee,\wedge,0,1)$ es una \emph{ retícula } si cualquier
 subconjunto finito $X\subseteq A$ tiene supremo e ínfimo en $A$.
 Equivalentemente, un copo $A$ es una retícula si, y solo si:
 \begin{enumerate}
@@ -189,7 +189,7 @@ Equivalentemente, un copo $A$ es una retícula si, y solo si:
       $\emptyset\subseteq A$, respectivamente.
 \end{enumerate}
 Sin embargo, un subconjunto infinito de una retícula $A$
-no tiene por qué tener supremo o ínfimo.
+no tiene por qué tener supremo o ínfimo en $A$.
 
 Algunos autores denominan retículas a los copos que
 cumplen el punto 1 aunque no cumplan el punto 2.
@@ -238,7 +238,7 @@ Sin embargo, estas desigualdades no siempre son igualdades.
 \begin{definition}\label{distri}
   
 
-Un retícula es \emph{ distributiva } si las ecuaciones
+Un retícula $(A,\leq, \vee,\wedge,0,1)$ es \emph{ distributiva } si las ecuaciones
 \begin{align*}
   a\sup(b\inf c) &= (a\sup b)\inf (a\sup c) \\
   a\inf(b\sup c) &= (a\inf b)\sup(a\inf c)
