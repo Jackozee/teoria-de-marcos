@@ -106,7 +106,7 @@ entonces la relación definida como
   a\leq b \ssi a\sup b=b
 \]
 es un orden parcial en $A$ tal que el supremo es $\sup$.
-%[Alfredo $\checkmark$ ]
+
 \begin{proof}
     En efecto, esto es un orden parcial:
     \begin{itemize}
@@ -208,7 +208,7 @@ De este modo, tenemos funtores fieles
 Sin embargo, estos no son plenos, ya que una función entre retículas
 puede preservar supremos sin preservar ínfimos o viceversa.
 
-\subsection*{Distributividad}
+\subsection{Retículas distributivas}\label{distr}
 
 Sean $a,b,c$ elementos de una retícula $A$.
 Por definición del supremo, siempre tenemos
@@ -234,20 +234,24 @@ Un argumento similar muestra que
   \geq (a\inf b)\sup(a\inf c)
 .\]
 Sin embargo, estas desigualdades no siempre son igualdades.
+
+\begin{definition}\label{distri}
+  
+
 Un retícula es \emph{ distributiva } si las ecuaciones
 \begin{align*}
   a\sup(b\inf c) &= (a\sup b)\inf (a\sup c) \\
   a\inf(b\sup c) &= (a\inf b)\sup(a\inf c)
 \end{align*}
 son válidas para cualesquiera $a,b,c\in A$.
+\end{definition}
 La primera igualdad es la distributividad del supremo sobre el
 ínfimo y la segunda es la distributividad del ínfimo sobre el
 supremo.
 De hecho, basta pedir una de las dos igualdades:
 si en una retícula $A$ se cumple una de las ecuaciones para
-cualesquiera $a,b,c\in A$, entonces la otra también se cumple.
-\begin{proof}
-    Sean $a,b,c\in A$.
+cualesquiera $a,b,c\in A$, entonces la otra también se cumple, en efecto
+sean $a,b,c\in A$.
     \begin{enumerate}
       \item
       Supongamos que el supremo distribuye sobre el ínfimo,
@@ -271,7 +275,7 @@ cualesquiera $a,b,c\in A$, entonces la otra también se cumple.
           &= a\sup (b\inf c).
       \end{align*}
     \end{enumerate}
-\end{proof}
+
 
 La categoría $\DLat$ se define como la subcategoría plena de
 $\Lat$ cuyos objetos son las retículas distributivas.
@@ -321,11 +325,11 @@ subespacios vectoriales de un espacio vectorial $V$,
 entonces un complemento de un subespacio $U\in A$ es cualquier otro
 subespacio $W\in A$ tal que $U\oplus W=V$.
 
-\iffalse
+%\iffalse
 La unicidad de los complementos en un álgebra booleana se debe
 a la distributividad. En efecto, si $a\in A$ es un elemento con
 complementos $b_1,b_2$, entonces tenemos
-%\begin{proof}%[Yareli $\checkmark$ ]
+
   \begin{align*}
     a\wedge b_1&=0 & a\vee b_1&=1 \\
     a\wedge b_2&=0 & a\vee b_2&=1.
@@ -351,9 +355,12 @@ complementos $b_1,b_2$, entonces tenemos
   \]
   por lo cual $b_1\leq b_2$.
   Así, $b_1=b_2$.
-%\end{proof}
-\fi
 
+%\fi
+Como los complementos son únicos en cualquier retícula distributiva, denotemos por \[\neg a\] 
+al complemento de cualquier elemento $a$, también por dualidad tenmos que $\neg a$ es complementado,
+con complemento $\neg\neg a$ como este es único, tenemos que \[\neg\neg a=a\] es cualquier álgebra booleana.
+Esto lo usaremos en varias partes del texto.
 \begin{example}[Conjunto potencia]
     Dado cualquier conjunto $S$, el conjunto potencia $\cal PS$ es un
     álgebra booleana: el complemento de un subconjunto $X\subseteq S$
@@ -416,8 +423,8 @@ Toda ret\'icula con una implicación es distributiva, ergo es un álgebra de Hey
     igual manera $a\wedge c\leq  (a\wedge b)\vee (a\wedge c)$. Por la
     definición de implicación, estas desigualdades equivalen a las
     siguientes:
-    $$b\leq (a \succ ((a \wedge b) \vee (a \wedge c))) \mbox{ y } c
-    \leq (a\succ ((a \wedge b) \vee (a \wedge c)))$$
+    \[b\leq (a \succ ((a \wedge b) \vee (a \wedge c))) \mbox{ y } c
+    \leq (a\succ ((a \wedge b) \vee (a \wedge c)))\]
     Entonces $b \vee c \leq (a \succ ((a \wedge b) \vee (a \wedge
     c)))$ y de nuevo por la definición de implicación resulta $a
     \wedge (b \vee c)\leq (a\wedge b)\vee (a \wedge c)$. Además, para
@@ -441,7 +448,7 @@ Heyting:
 La primera parte es consecuencia del lema siguiente, el cual es un
 poco más general:
 
-\begin{lemma}[Caballo de batalla] \label{lemma:caballo}
+\begin{lemma}\label{lemma:caballo}
     Sea $A$ una retícula distributiva
     y $a\in A$ un elemento con complemento $\neg a$.
     Entonces
@@ -473,12 +480,12 @@ poco más general:
     como se quería.
 \end{proof}
 
-Nuestro ``caballo de batalla'' muestra que toda álgebra booleana tiene
-implicación dada como $(x\succ y)=\neg x\sup y$. De aquí también es
+Nuestro ``lema de batalla'' muestra que toda álgebra booleana tiene
+implicación dada como \[(x\succ y)=\neg x\sup y.\] De aquí también es
 inmediato que todo morfismo de álgebras booleanas preserva
 la implicación, pues ya preserva complementos y supremos.
 Poniendo $y=0$, obtenemos que $(x\succ 0)=\neg x$.
-Se sigue que, si $f:A\to B$ es un morfismo de Heyting entre
+Se sigue que, si $f\colon A\rightarrow B$ es un morfismo de Heyting entre
 álgebras booleanas, entonces también preserva complementos, pues $f$
 ya preserva implicaciones y el cero, así que $f$ es un morfismo
 booleano.
@@ -591,8 +598,8 @@ son propias.
 \end{proof}
 
 
-%\section*{(SESIÓN 3: 14 SEP)}
-\section{Marcos}
+
+\section{Marcos}\label{frm}
 La definición de un marco surge al estudiar las propiedades
 algebraicas de las topologías:
 si $S$ es un espacio topológico, la topología $\cal OS$ es
@@ -658,8 +665,8 @@ distribuyen sobre ínfimos arbitrarios.
 
 \section{Álgebras booleanas completas}\label{ABC}
 Recordemos que un álgebra booleana es una retícula distributiva
-donde todo elemento tiene un complemento, el cual es único por la
-distributividad. (Ver \ref{ss:complementos-algebras-booleanas}).
+donde todo elemento $a$ tiene un complemento denotado por $\neg a$, 
+el cual es único por la distributividad. (Ver \ref{ss:complementos-algebras-booleanas}).
 Un álgebra booleana completa es un álgebra booleana que es
 completa como retícula. (Ver \ref{ss:completez}).
 
@@ -716,7 +723,7 @@ pues los morfismos completos son morfismos de marcos automáticamente.
     \[
         a\inf\Sup X \leq \Sup\{a\inf x\mid x\in X\}
     .\]
-    Por nuestro caballo de batalla (lema \ref{lemma:caballo}),
+    Para eso usaremos (lema \ref{lemma:caballo}),
     esto es equivalente a
     \[
         \Sup X \leq \neg a\sup \Sup\{a\inf x\mid x\in X\}
@@ -751,7 +758,7 @@ En otras palabras, mostraremos que todo morfismo de marcos entre
 álgebras booleanas completas es un morfismo completo.
 Con este objetivo, demostraremos siguiente resultado.
 
-\begin{lemma}[Ley de DeMorgan]
+\begin{lemma}[Ley de DeMorgan]\label{demorgan}
   Sea $A$ un álgebra booleana completa y $X\subseteq A$.
   Entonces
   \[
@@ -773,20 +780,13 @@ Con este objetivo, demostraremos siguiente resultado.
       &= \Sup\{0\} \\
       &= 0.
   \end{align*}
-  Por otro lado, para todo $x\in X$ tenemos
-  $\neg x\leq \Sup\{\neg x\mid x\in X\}$.
-  Usando dos veces nuestro caballo de batalla (lema
-  \ref{lemma:caballo}), vemos que esto equivale a
-  $\neg\Sup\{\neg x\mid x\in X\}\leq x$.
-  Como $x\in X$ era arbitraria, tenemos que
-  \[
-      \neg\Sup\{\neg x\mid x\in X\}\leq \Inf X
-  .\]
-  Usando el caballo de batalla una vez más, obtenemos
-  \[
-      1\leq \Sup\{\neg x\mid x\in X\} \sup \Inf X
-  .\]
-  Esto concluye la demostración.
+  Por otro lado, pongamos $c=\neg\bigvee\{\neg x\mid x\in X\}$
+  Entonces para cada $x\in X$ tenemos \[c\wedge\neg x\leq c\wedge(\bigvee\{\neg x\mid x\in X\})=0 \]
+  es decir, $c\leq x$ para toda $x\in X$ por lo que $c\leq\bigwedge X$,
+  y así  
+  
+  \[1=c\vee \bigvee\{\neg x\mid x\in X\}\leq \bigvee\{\neg x\mid x\in X\}\vee\bigwedge X\]
+  como se quería.
 \end{proof}
 
 Con esto podemos probar lo que queríamos: todo morfismo de marcos
@@ -805,35 +805,19 @@ completa.
     \]
     viene de la monotonía de $f$.
     Por otro lado, como $\Inf X$ y $\Sup\{\neg x\mid x\in X\}$
-    son complementarios en $A$ (por DeMorgan)
+    son complementarios en $A$ por el lema \ref{demorgan}
     y $f$ preserva los complementos
     (pues respeta ínfimos y supremos finitos), entonces $f(\Inf X)$
     y $\Sup\{f(\neg x)\mid x\in X\}$ son complementarios en $B$.
-    Luego, la desigualdad faltante
-    \[
-        \Inf\{f(x)\mid x\in X\} \leq f(\Inf X)
-    \]
-    es equivalente, por nuestro caballo de batalla, a la desigualdad
-    \[
-        \Inf\{f(x)\mid x\in X\} \inf \Sup\{f(\neg x)\mid x\in X\} = 0,
-    \]
-    la cual es sencilla de comprobar: para todo $y\in X$, tenemos
-    \begin{align*}
-        \Inf\{f(x)\mid x\in X\} \inf f(\neg y)
-        &\leq f(y)\inf f(\neg y) \\
-        &\leq f(y\inf \neg y) \\
-        &= 0,
-    \end{align*}
-    así que la distributividad de marcos implica
-    \begin{align*}
-        &
-        \hspace{-10mm}
-        \Inf\{f(x)\mid x\in X\} \inf \Sup\{f(\neg x)\mid x\in X\} \\
-        &= \Sup\Big\{\Inf\{f(x)\mid x\in X\}\inf f(\neg y)
-            \;\;\Big|\;\; y\in X\Big\} \\
-        &= \Sup\{0\} \\
-        &= 0.
-    \end{align*}
+    Luego, para la desigualdad faltante, pongamos \[b=f(\Inf X)\;\;\; d=\Inf\{f(x)\mid x\in X\}\]
+    y \[Y=\{\neg x\mid x\in X\}\;\;\; c=f(\Sup X)\]
+    entonces para cada $y\in Y$ se tiene \[d\wedge f(y)\leq f(x)\wedge f(y)=0\]
+    y como $f$ es morfismo de marcos se tiene que $c=\bigvee\{f(y)\mid y\in Y\}$
+    así que la distributividad de marcos implica 
+    \[d\wedge c=\bigvee\{d\wedge f(y)\mid y\in Y\}=0\]
+  Por otro lado como $b\vee c=1$ entonces
+  \[d=d\wedge 1=d\wedge (c\vee b)=(d\wedge c)\vee(d\wedge b)=d\wedge b\leq b\]
+  dando así la desigualdad faltante.
 \end{proof}
 
 Esto muestra lo que queríamos: el funtor $\CBA\to\Frm$ es fielmente
@@ -909,10 +893,56 @@ es, también, un álgebra de Heyting (completa).
     Basta probar que $A$ cumple la LDM.
     Como $a\inf x\leq a\inf\Sup X$, tenemos que
     $\Sup\{x\inf a\mid x\in X\}\leq a\inf\Sup X$.
-    Solo falta demostrar la otra desigualdad. Consideremos $y=\bigvee\{x\wedge a\mid x\in X\}$, entonces $a\wedge x\leq y$ para toda $x\in X$, es decir, $x\leq (a\succ y)$ para toda $x\in X$. Entonces $\bigvee X\leq (a\succ y)\Leftrightarrow a\wedge\bigvee X\leq y=\bigvee \{x\wedge a\mid x\in X\}$. Por lo tanto se cumple la LDM.
+    Solo falta demostrar la otra desigualdad. Consideremos $y=\bigvee\{x\wedge a\mid x\in X\}$
+    entonces $a\wedge x\leq y$ para toda $x\in X$, es decir, $x\leq (a\succ y)$ para toda $x\in X$. 
+    Entonces \[\bigvee X\leq (a\succ y)\Leftrightarrow a\wedge\bigvee X\leq y=\bigvee \{x\wedge a\mid x\in X\}.\] 
+    Por lo tanto se cumple la LDM.
 \end{proof}
 
-En particular, obtenemos el funtor $\cHeyt\to\Frm$ deseado.
+
+
+\begin{example}
+  Sea $S$ un espacio topológico.
+  Por el teorema anterior, dados $u,v\in\cal OS$
+  existe la implicación $v\succ u\in \cal OS$.
+  Para todo $w\in\cal OS$, tenemos
+  \begin{align*}
+    w\leq (v\succ u)
+    &\iff w\cap v\leq u \\
+    &\iff w\leq v'\cup u \\
+    &\iff w\leq (v'\cup u)^\circ.
+  \end{align*}
+  Se sigue que $v\succ u = (u\cup v')^\circ$.
+\end{example}
+
+Por otro lado la implicación se comporta en general como en \ref{demorgan}
+
+\begin{lemma}\label{demorim}
+  Sean $A$ un marco, $a\in A$ y $X\subseteq A$.
+  Entonces
+  \[
+      (\Sup X)\succ a = \Inf\{(x\succ a) \mid x\in X\}
+  .\]
+  En particular, tomando $X=\{x,y\}$, tenemos
+  \[
+      (x\sup y)\succ a = (x\succ a)\inf(y\succ a)
+  .\]
+\end{lemma}
+\begin{proof}
+  Para todo $y\in A$, tenemos
+  \begin{align*}
+      y\leq (\Sup X)\succ a
+      &\iff y\inf \Sup X \leq a \\
+      &\iff \Sup\{y\inf x\mid x\in X\} \leq a \\
+      &\iff (\forall x\in X,\; y\inf x\leq a) \\
+      &\iff (\forall x\in X,\; y\leq(x\succ a)) \\
+      &\iff y\leq \Sup\{(x\succ a)\mid x\in X\}.
+  \end{align*}
+\end{proof}
+
+
+
+Todas esas observaciones dan lugar al funtor $\cHeyt\to\Frm$ deseado.
 Notemos que, aunque un marco es lo mismo que un álgebra de Heyting
 completa, las categorías $\cHeyt$ y $\Frm$ son distintas, pues dados
 dos marcos $A$, $B$, la contención entre los conjuntos de morfismos
@@ -929,19 +959,6 @@ es propia: hay morfismos de marcos que no preservan la implicación.
 \end{tikzcd}
 \end{equation}
 
-\begin{example}
-  Sea $S$ un espacio topológico.
-  Por el teorema anterior, dados $u,v\in\cal OS$
-  existe la implicación $v\succ u\in \cal OS$.
-  Para todo $w\in\cal OS$, tenemos
-  \begin{align*}
-    w\leq (v\succ u)
-    &\iff w\cap v\leq u \\
-    &\iff w\leq v'\cup u \\
-    &\iff w\leq (v'\cup u)^\circ.
-  \end{align*}
-  Se sigue que $v\succ u = (u\cup v')^\circ$.
-\end{example}
 
 Finalmente, nuestro diagrama se ve así:
 \[
@@ -968,28 +985,7 @@ La parte central del dibujo es el diagrama
 \eqref{diag:prisma-cheyt-completo}, pero aquí aparece aplastado porque
 era más fácil dibujarlo así.
 
-\begin{lemma}
-    Sean $A$ un marco, $a\in A$ y $X\subseteq A$.
-    Entonces
-    \[
-        (\Sup X)\succ a = \Inf\{(x\succ a) \mid x\in X\}
-    .\]
-    En particular, tomando $X=\{x,y\}$, tenemos
-    \[
-        (x\sup y)\succ a = (x\succ a)\inf(y\succ a)
-    .\]
-\end{lemma}
-\begin{proof}
-    Para todo $y\in A$, tenemos
-    \begin{align*}
-        y\leq (\Sup X)\succ a
-        &\iff y\inf \Sup X \leq a \\
-        &\iff \Sup\{y\inf x\mid x\in X\} \leq a \\
-        &\iff (\forall x\in X,\; y\inf x\leq a) \\
-        &\iff (\forall x\in X,\; y\leq(x\succ a)) \\
-        &\iff y\leq \Sup\{(x\succ a)\mid x\in X\}.
-    \end{align*}
-\end{proof}
+
 
 \section{Ejercicios}
 
