@@ -55,8 +55,6 @@ Juntando estas observaciones, obtenemos el siguiente resultado:
    si, y solo si, $\neg a\sup a=1$ y, en este caso, $a'=\neg a$.
 \end{lemma}
 
-En particular, en un álgebra booleana $A$, todo elemento $a\in A$
-tiene negación dada por el complemento: $\neg a = a'$.
 
 De la definición de la negación, tenemos que
 $x\leq \neg\neg a$ si, y solo si, $x\inf\neg a=0$.
@@ -136,7 +134,7 @@ $\neg\neg\neg a =\neg a$.
   sabemos que $u$ tiene negación dada como $\neg u=\ol
   u'=(u')^\circ$.
   Por lo tanto
-  \begin{enumerate}
+  \begin{enumerate}[(i)]
     \item
     $u$ es complementado en el sentido de retículas
     ($u\sup\neg u=1$)
@@ -173,7 +171,7 @@ Tenemos
 
 \begin{proposition}
   Si $A$ es una retícula distributiva y $a,b\in A$ tienen
-  negación, entonces $a\sup b$ también tiene negación y tenemos
+  negación, entonces $a\sup b$ también tiene negación, de hecho:
   \[
     \neg(a\sup b) = \neg a \inf \neg b
   .\]
@@ -238,7 +236,7 @@ $(-\succ -)\colon A\rightarrow A$ tal que, para cualesquiera $a,x,y\in A$ se tie
 .\]
 
 \begin{example}
-  En un álgebra booleana, nuestro caballo de batalla nos dice que
+  En un álgebra booleana, nuestro lema de batalla \ref{lemma:caballo} nos dice que
   \[
     x\inf y\leq a \ssi
     x\leq \neg y\sup a
