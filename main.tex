@@ -25,12 +25,16 @@
     pdftitle={teoria-de-marcos-draft},
 %    pdfpagemode=FullScreen,
     }
-
+    
 \usepackage[index, symbols]{glossaries}
-
 \makeglossaries
 \input{glosarios.tex}
 \makeglossaries
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
 
 %\setenumerate[0]{label=(\alph*)}
 \usepackage[style=numeric,sorting=none]{biblatex}
