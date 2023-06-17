@@ -2,6 +2,23 @@
 \usepackage[left=3.5cm,right=3.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \setlength{\marginparwidth}{2cm}
 \overfullrule = 5mm % marcar los overfull hbox
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\fancyhead[R]{\footnotesize\textsl{\leftmark}}
+%\fancyhead{} % clear all header fields
+%\fancyhead[RO,LE]
+\fancyfoot{} % clear all footer fields
+\usepackage{lipsum}
+
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt} 
+%\fancypagestyle{plain}
+%\fancyhead{} 
+
 \usepackage[spanish,es-lcroman]{babel}
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
 \usepackage{mathtools,thmtools,tikz-cd,multicol}
@@ -30,11 +47,6 @@
 \makeglossaries
 \input{glosarios.tex}
 \makeglossaries
-\usepackage{titlesec, blindtext, color}
-\definecolor{gray75}{gray}{0.75}
-\newcommand{\hsp}{\hspace{20pt}}
-\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
-
 
 %\setenumerate[0]{label=(\alph*)}
 \usepackage[style=numeric,sorting=none]{biblatex}
